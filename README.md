@@ -3,7 +3,7 @@
 # Comprehensive React and Redux using TypeScript
 
 - [Concepts](./concepts/00-Cover.md)
-- [Labs](./concepts/00-Cover.md)
+- [Labs](./labs/00-Cover.md)
 
 
 <p align="justify">
