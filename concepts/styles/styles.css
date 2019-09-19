@@ -1,0 +1,31 @@
+h1,
+h2,
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: 'Palatino', 'Meiryo', 'Segoe WPC', 'Segoe UI', 'SFUIText-Light',
+    'HelveticaNeue-Light', sans-serif, 'Droid Sans Fallback';
+}
+
+h2 {
+  color: #111;
+  font-weight: 500;
+}
+
+h3 {
+  color: #5f9ea0;
+}
+h2:before {
+  content: ' ';
+  display: block;
+  border: 1px dashed #111;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+code {
+  font-family: Fira Code iScript, Menlo, Monaco, Consolas, 'Droid Sans Mono',
+    'Courier New', monospace, 'Droid Sans Fallback';
+}

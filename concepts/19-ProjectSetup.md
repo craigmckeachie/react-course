@@ -1,0 +1,209 @@
+# Project Setup
+
+## Create New ES6 Project
+
+[Create React App](https://facebook.github.io/create-react-app/) is an officially supported way to create single-page React
+applications. It offers a modern build setup with no configuration.
+
+1. Open a command prompt or terminal and run the commands:
+
+### npm
+
+```sh
+npx create-react-app my-app --use-npm
+cd my-app
+npm start
+```
+
+### Yarn
+
+```sh
+yarn create react-app my-app
+```
+
+2. Then open [http://localhost:3000/](http://localhost:3000/) to see your app.
+
+   > If you've previously installed `create-react-app` globally via `npm install -g create-react-app`, it is recommended that you uninstall the package using `npm uninstall -g create-react-app` to ensure that `npx` always uses the latest version.
+
+## Create New TypeScript Project
+
+1. Open a command prompt or terminal and run the commands:
+
+### npm
+
+```sh
+npx create-react-app my-app --use-npm --typescript
+```
+
+### Yarn
+
+```
+yarn create react-app my-app --typescript
+```
+
+1. Then open [http://localhost:3000/](http://localhost:3000/) to see your app.
+   https://facebook.github.io/create-react-app/docs/adding-typescript
+
+## Folder Structure
+
+After creation, your project should look like this:
+
+```
+my-app/
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    App.css
+    App.js
+    App.test.js
+    index.css
+    index.js
+    logo.svg
+```
+
+For the project to build, **these files must exist with exact filenames**:
+
+- `public/index.html` is the page template;
+- `src/index.js` is the JavaScript entry point.
+
+You can delete or rename the other files.
+
+You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack. You need to **put any JS and CSS files inside `src`**, otherwise Webpack won’t see them.
+
+Only files inside `public` can be used from `public/index.html`. Read instructions below for using assets from JavaScript and HTML.
+
+You can, however, create more top-level directories. They will not be included in the production build so you can use them for things like documentation.
+
+If you have Git installed and your project is not part of a larger repository, then a new repository will be initialized resulting in an additional top-level `.git` directory.
+
+[Reference](https://facebook.github.io/create-react-app/docs/folder-structure)
+
+## Browser Support
+
+By default, the generated project supports all modern browsers. Support for Internet Explorer 9, 10, and 11 requires polyfills. For a set of polyfills to support older browsers, use [react-app-polyfill](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md).
+
+### Supported Language Features
+
+This project supports a superset of the latest JavaScript standard. In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, it also supports:
+
+- [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).
+- [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).
+- [Object Rest/Spread Properties](https://github.com/tc39/proposal-object-rest-spread) (ES2018).
+- [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)
+- [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (part of stage 3 proposal).
+- [JSX](https://facebook.github.io/react/docs/introducing-jsx.html), [Flow](./adding-flow) and [TypeScript](./adding-typescript).
+
+Learn more about [different proposal stages](https://tc39.github.io/process-document/).
+
+While we recommend using experimental proposals with some caution, Facebook heavily uses these features in the product code, so we intend to provide [codemods](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) if any of these proposals change in the future.
+
+Note that **this project includes no [polyfills](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md)** by default.
+
+If you use any other ES6+ features that need **runtime support** (such as `Array.from()` or `Symbol`), make sure you are [including the appropriate polyfills manually](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md), or that the browsers you are targeting already support them.
+
+By default, the generated project includes a [`browserslist`](https://github.com/browserslist/browserslist) configuration in your `package.json` file to target a broad range of browsers based on global usage (`> 0.2%`) for production builds, and modern browsers for development.
+
+The `browserslist` configuration controls the outputted JavaScript so that the emitted code will be compatible with the browsers specified. The `browserslist` configuration does not automatically change what polyfills are included in the build it affects the code generated by the compiler that emits JavaScript.
+
+### Polyfills
+
+#### react-app-polyfill
+
+This package includes polyfills for various browsers.
+It includes minimum requirements and commonly used language features used by [Create React App](https://github.com/facebook/create-react-app) projects.
+
+### Usage
+
+First, install the package using Yarn or npm:
+
+```sh
+npm install react-app-polyfill
+```
+
+or
+
+```sh
+yarn add react-app-polyfill
+```
+
+For IE11:
+
+```js
+// These must be the first lines in src/index.js
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
+// ...
+```
+
+> See the [react-app-polyfill documentation](https://github.com/facebook/create-react-app/blob/master/packages/react-app-polyfill/README.md) for details.
+
+> The react-app-polyfill can be used to fill in the Fetch API to make AJAX requests in older browsers. [For more details, read this documentation.](https://facebook.github.io/create-react-app/docs/fetching-data-with-ajax-requests)
+
+## Styles and Assets
+
+This project setup uses [Webpack](https://webpack.js.org/) for handling all assets. Webpack offers a custom way of “extending” the concept of `import` beyond JavaScript. To express that a JavaScript file depends on a CSS file, you need to **import the CSS from the JavaScript file**:
+
+#### `Button.css`
+
+```css
+.Button {
+  padding: 20px;
+}
+```
+
+#### `Button.js`
+
+```js
+import React, { Component } from 'react';
+import './Button.css'; // Tell Webpack that Button.js uses these styles
+
+class Button extends Component {
+  render() {
+    // You can use them as regular CSS styles
+    return <div className="Button" />;
+  }
+}
+```
+
+**This is not required for React** but many people find this feature convenient. You can read about the benefits of this approach [here](https://medium.com/seek-blog/block-element-modifying-your-javascript-components-d7f99fcab52b). However you should be aware that this makes your code less portable to other build tools and environments than Webpack.
+
+In development, expressing dependencies this way allows your styles to be reloaded on the fly as you edit them. In production, all CSS files will be concatenated into a single minified `.css` file in the build output.
+
+If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/index.js`, but you could always remove that import if you later migrate to a different build tool.
+
+## Dependencies
+
+The generated project includes React and ReactDOM as dependencies. It also includes a set of scripts used by Create React App as a development dependency. You may install other dependencies (for example, React Router) with `npm`:
+
+```sh
+npm install --save react-router-dom
+```
+
+Alternatively you may use `yarn`:
+
+```sh
+yarn add react-router-dom
+```
+
+This works for any library, not just `react-router-dom`.
+
+<!-- ## Configuration & Environment Variables
+
+https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
+https://stackoverflow.com/questions/51024542/how-to-inject-api-server-url-when-deploying-react-frontend
+
+https://facebook.github.io/create-react-app/docs/proxying-api-requests-in-development -->
+
+## Reference
+
+- [Create React App](https://facebook.github.io/create-react-app/)
+- [3 ways to create-react-app with npm](https://elijahmanor.com/npm-init-initializer/)
+- [Getting Started with Create React App](https://www.youtube.com/watch?v=eCz3rhsDG5s&list=PLmbQyp9IK3JPFBrv31e5Gq-Zv57KxtTnZ)
+- [Installing a Dependency](https://facebook.github.io/create-react-app/docs/installing-a-dependency)
+- [Adding a Router](https://facebook.github.io/create-react-app/docs/adding-a-router)
+- [Adding Bootstrap](https://facebook.github.io/create-react-app/docs/adding-bootstrap)
