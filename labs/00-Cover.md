@@ -1,4 +1,4 @@
-# React Labs
+# Labs: React
 
 ![React Logo](https://user-images.githubusercontent.com/1474579/64926660-1362fd00-d7ce-11e9-9772-46e38f600614.png)
 
