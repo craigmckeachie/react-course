@@ -1,4 +1,4 @@
-# Redux
+# Chapter 21: Redux
 
 ## What is Redux?
 

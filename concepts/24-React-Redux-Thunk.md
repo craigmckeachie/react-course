@@ -1,3 +1,4 @@
+# Chapter 24: React, Redux & Thunk 
 common issues:
 List was undefined b/c tried to connect it before it was defined further down in main.jsx
 

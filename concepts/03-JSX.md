@@ -1,4 +1,4 @@
-# Chapter 2: JSX
+# Chapter 3: JSX
 
 JSX just provides syntactic sugar for the function:
 

@@ -1,4 +1,4 @@
-# Chapter 1: Elements
+# Chapter 2: Elements
 
 React implements a browser-independent DOM system for performance and cross-browser compatibility. They call this the Virtual DOM.
 

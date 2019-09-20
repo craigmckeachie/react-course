@@ -1,4 +1,4 @@
-# Chapter 5: Props
+# Chapter 6: Props
 
 `Props` is short for `properties`. When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object `props`.
 

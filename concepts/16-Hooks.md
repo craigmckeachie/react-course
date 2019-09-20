@@ -1,4 +1,4 @@
-# Hooks
+# Chapter 16: Hooks
 
 #### Hooks are a new addition in React 16.8. They let you use state and other React features (Lifecycle Methods) without writing a class.
 

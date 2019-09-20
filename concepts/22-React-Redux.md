@@ -1,4 +1,4 @@
-# React Redux
+# Chapter 22: React Redux
 
 **React bindings for Redux.**
 

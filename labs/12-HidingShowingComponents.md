@@ -64,7 +64,7 @@
    let item: JSX.Element;
    ```
 
-   > Refer to your manual **Chapter 9: Conditional Rendering** or the solution to the lab to get the correct syntax ([it's tricky](https://youtu.be/l-O5IHVhWj0?t=79)).
+   > Refer to your manual **Chapter 12: Hiding and Showing Components** or the solution to the lab to get the correct syntax ([it's tricky](https://youtu.be/l-O5IHVhWj0?t=79)).
 
    #### src\projects\ProjectList.tsx
 

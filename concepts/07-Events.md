@@ -1,4 +1,4 @@
-# Chapter 6: Events
+# Chapter 7: Events
 
 ## Listening/Subscribing/Wiring to an Event
 

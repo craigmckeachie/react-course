@@ -1,4 +1,4 @@
-# Lists
+# Chapter 11: Lists
 
 Often the answer to the question of how do I do something in React can be answered by understanding how would you do it in JavaScript.
 

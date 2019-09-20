@@ -1,4 +1,4 @@
-# Project Setup
+# Chapter 20: Project Setup
 
 ## Create New ES6 Project
 

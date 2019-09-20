@@ -1,4 +1,4 @@
-# Redux Thunk
+# Chapter 23: Redux Thunk
 
 Thunk middleware for Redux. Enables async actions (making http calls from actions).
 

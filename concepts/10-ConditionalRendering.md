@@ -1,4 +1,4 @@
-# Conditional Rending
+# Chapter 10: Conditional Rending
 
 Just use the features in the JavaScript language.
 

@@ -1,4 +1,4 @@
-# State
+# Chapter 8: State
 
 Just an object that lives inside a component and stores all of the data that that component and maybe some of its children need.
 
