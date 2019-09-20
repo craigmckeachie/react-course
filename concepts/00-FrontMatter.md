@@ -19,12 +19,12 @@ information storage and retrieval systems, without permission from the author.
 
 ## Table of Contents
 
-- Tools
+- Foundation
   - [Package Manager (npm/Yarn)](A1-PackageManager.md)
   - [Compiler Setup](A2-CompilerSetup.md)
   - [ES6/ES2015](A3-ES6.md)
   - [TypeScript (optional)](A4-TypeScript.md)
-  - [Backend API Setup](A5-BackendAPISetup.md)
+  - [Promises & Async/Await](A5-Promises.md)
   
   
 - React
@@ -43,6 +43,7 @@ information storage and retrieval systems, without permission from the author.
   - [Forms](12-Forms.md)
   - [Component Architecture](13-ComponentArchitecture.md)
   - [HTTP](14-HTTP.md)
+    - [Backend API Setup](A6-BackendAPISetup.md)
   - [Routing (React Router)](15-Routing.md)
   - [Hooks (new)](16-Hooks.md)
   - [Best Practices (Code Organization & Conventions)](17-BestPractices.md)
@@ -64,7 +65,7 @@ information storage and retrieval systems, without permission from the author.
   - [Redux with TypeScript](A12-ReduxTypeScript.md) 
 
 
-- Advanced/Optional Topics
+- Advanced Topics (optional)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [HTTP Advanced](A15-AdvancedHTTP.md)
 
