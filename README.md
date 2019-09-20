@@ -1,4 +1,5 @@
 
+- [Setup](./Setup)
 - [Concepts](./concepts/00-Cover.md)
 - [Labs](./labs/00-Cover.md)
 

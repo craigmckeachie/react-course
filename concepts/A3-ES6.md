@@ -8,9 +8,10 @@
 
 - [ECMAScript 6 (ES6)](#ecmascript-6-es6)
   - [Contents](#contents)
-  - [Create Project](#create-project)
-  - [Install Babel](#install-babel)
-  - [Run Babel](#run-babel)
+  - [Setup (Babel)](#setup-babel)
+    - [Create Project](#create-project)
+    - [Install Babel](#install-babel)
+    - [Run Babel](#run-babel)
   - [Classes](#classes)
     - [Constructors](#constructors)
     - [Methods](#methods)
@@ -40,7 +41,9 @@
 
 <div style="page-break-after: always;"></div>
 
-## Create Project
+## Setup (Babel)
+
+### Create Project
 
 ```
 mkdir esdemos
@@ -48,7 +51,7 @@ cd esdemos
 code . //opens Visual Studio Code
 ```
 
-## Install Babel
+### Install Babel
 
 1. Open a command-prompt or terminal
 2. Change directory to `esdemos`
@@ -83,7 +86,7 @@ code . //opens Visual Studio Code
 
 <div style="page-break-after: always;"></div>
 
-## Run Babel
+### Run Babel
 
 1.  Create file `src\program.js`
 2.  Add the following code:

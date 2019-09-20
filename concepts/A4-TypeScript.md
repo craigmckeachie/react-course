@@ -8,11 +8,12 @@
 
 - [TypeScript](#typescript)
   - [Contents](#contents)
-  - [Create Project](#create-project)
-  - [Install TypeScript](#install-typescript)
-  - [Configure TypeScript](#configure-typescript)
+  - [Setup (TypeScript)](#setup-typescript)
+    - [Create Project](#create-project)
+    - [Install TypeScript](#install-typescript)
+    - [Configure TypeScript](#configure-typescript)
     - [Setting the Compiler Strictness](#setting-the-compiler-strictness)
-  - [Run TypeScript](#run-typescript)
+    - [Run TypeScript](#run-typescript)
   - [Type Annotations](#type-annotations)
   - [Classes](#classes)
     - [Fields](#fields)
@@ -26,7 +27,9 @@
 
 <div style="page-break-after: always;"></div>
 
-## Create Project
+## Setup (TypeScript)
+
+### Create Project
 
 ```
 mkdir typescriptdemo
@@ -34,7 +37,7 @@ cd typescriptdemo
 code . //opens Visual Studio Code
 ```
 
-## Install TypeScript
+### Install TypeScript
 
 In a command-prompt or terminal
 
@@ -45,7 +48,7 @@ npm install typescript@3.1.6 --save-dev
 
 <div style="page-break-after: always;"></div>
 
-## Configure TypeScript
+### Configure TypeScript
 
 1.  Open a `command-prompt` or `terminal`.
 
@@ -86,7 +89,7 @@ npx tsc --init
 
 <div style="page-break-after: always;"></div>
 
-## Run TypeScript
+### Run TypeScript
 
 1. Create file `program.ts`
 2. Code:
