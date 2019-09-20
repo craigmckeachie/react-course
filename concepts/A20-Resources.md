@@ -1,8 +1,9 @@
-https://reactjs.org/community/support.html
-https://reactjs.org/community/external-resources.html
-https://github.com/enaqx/awesome-react
+# Appendix A20: Resources 
 
-Example Apps:
-https://github.com/microsoft/TechnicalCommunityContent/tree/master/Web%20Frameworks/React/Session%203%20-%20Hands%20On
+- [React Community Resources (see navigation on right)](https://reactjs.org/community/support.html)
+- [React Resource Lists](https://reactjs.org/community/external-resources.html)
+- [Collection of Awesome React Things](https://github.com/enaqx/awesome-react)
 
-[Thinkster](https://github.com/gothinkster/react-redux-realworld-example-app)
+## Example Application:
+- [Color Picker: Microsoft Community Content](https://github.com/microsoft/TechnicalCommunityContent/tree/master/Web%20Frameworks/React/Session%203%20-%20Hands%20On)
+- [Medium Blog Clone: Thinkster](https://github.com/gothinkster/react-redux-realworld-example-app)

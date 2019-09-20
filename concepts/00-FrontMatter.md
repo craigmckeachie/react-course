@@ -30,8 +30,8 @@ information storage and retrieval systems, without permission from the author.
 
 - React
 
-  - Elements
-  - JSX
+  - [Elements](02-Elements.md)
+  - [JSX](03-JSX.md)
   - Virtual DOM
   - Components
   - Props

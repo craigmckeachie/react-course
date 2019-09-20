@@ -1,6 +1,6 @@
-# Compiler Setup
+# Appendix A2: Compiler Setup
 
-- [Compiler Setup](#compiler-setup)
+- [Appendix A2: Compiler Setup](#appendix-a2-compiler-setup)
   - [Setup (Babel)](#setup-babel)
     - [Create Project](#create-project)
     - [Install Babel](#install-babel)

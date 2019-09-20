@@ -1,4 +1,4 @@
-# TypeScript
+# Appendix A4: TypeScript
 
 ![TypeScript Logo](./assets/ts-logo.png)
 
@@ -6,7 +6,7 @@
 
 ## Contents
 
-- [TypeScript](#typescript)
+- [Appendix A4: TypeScript](#appendix-a4-typescript)
   - [Contents](#contents)
   - [Type Annotations](#type-annotations)
   - [Classes](#classes)

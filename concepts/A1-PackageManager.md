@@ -1,7 +1,7 @@
 
-# Package Managers
+# Appendix A1: Package Managers
 
-- [Package Managers](#package-managers)
+- [Appendix A1: Package Managers](#appendix-a1-package-managers)
 - [npm](#npm)
   - [What is Node.js?](#what-is-nodejs)
     - [Compare to:](#compare-to)

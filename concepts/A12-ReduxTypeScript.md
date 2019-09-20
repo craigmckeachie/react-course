@@ -1,4 +1,4 @@
-# Redux with TypeScript
+# Appendix A12: Redux with TypeScript
 
 ## Install
 ```

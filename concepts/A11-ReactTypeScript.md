@@ -1,4 +1,4 @@
-# React with TypeScript
+# Appendix A11: React with TypeScript
 
 ## Installation
 

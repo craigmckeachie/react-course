@@ -1,4 +1,4 @@
-# Advanced Components
+# Appendix A13: Advanced Components
 
 # Higher-Order Components
 

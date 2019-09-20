@@ -1,3 +1,5 @@
+Appendix A2: Visual Studio Code Extensions
+
 https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
 
 Tip: VS Code supports Auto Save, which by default saves your files after a delay. Check the Auto Save option in the File menu to turn on Auto Save or directly configure the files.autoSave user setting.

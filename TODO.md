@@ -1,7 +1,9 @@
 //TODO: Do I need to install TS Lint to get linting working?
 https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
 
-https://stackoverflow.com/questions/2751227/how-to-download-source-in-zip-format-from-github
+
+
+
 
 export function deleteProject(
 project: Project
