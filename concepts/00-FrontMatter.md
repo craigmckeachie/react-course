@@ -2,7 +2,7 @@
 
 ![React Logo](./assets/react-logo.png)
 
-<br /><br /><br /><br /><br />
+<br />
 
 Copyright © 2019-2021
 
