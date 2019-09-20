@@ -3,7 +3,7 @@
 - [Concepts](concepts/00-FrontMatter.md)
 - [Labs](./labs/00-Cover.md)
 
-<kbd>![Accelebrate Cove](https://user-images.githubusercontent.com/1474579/65268354-f9366100-dae4-11e9-80c6-69a89d818700.png)</kbd>
+<kbd>![Accelebrate Cover](https://user-images.githubusercontent.com/1474579/65268354-f9366100-dae4-11e9-80c6-69a89d818700.png)</kbd>
 
 
 

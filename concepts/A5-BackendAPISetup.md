@@ -1,4 +1,4 @@
-# Appendix A5: HTTP Server Setup
+# Appendix A5: Backend API Setup
 
 1. In the `demos` directory, install `json-server`
 
