@@ -1,4 +1,4 @@
-# Appendix A13 ECMAScript 6 (ES6)
+# Appendix A3: ECMAScript 6 (ES6)
 
 ![ Logo](./assets/es-ecmascript-logo.png)
 
@@ -6,7 +6,7 @@
 
 ## Contents
 
-- [Appendix A13 ECMAScript 6 (ES6)](#appendix-a13-ecmascript-6-es6)
+- [Appendix A3: ECMAScript 6 (ES6)](#appendix-a3-ecmascript-6-es6)
   - [Contents](#contents)
   - [Classes](#classes)
     - [Constructors](#constructors)
