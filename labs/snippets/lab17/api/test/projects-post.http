@@ -1,0 +1,13 @@
+POST http://localhost:4000/projects HTTP/1.1
+content-type: application/json
+
+{
+    "imageUrl": "http://placehold.it/500x300/e4d2ba",
+    "id": 7,
+    "name": "Another Project",
+    "description": "A project description . Mauris iaculis nunc vitae elit commodo lobortis. Sed dapibus, odio sit amet",
+    "contractTypeId": 1,
+    "isActive": true,
+    "contractSignedOn": "2016-03-15T05:00:00.000Z",
+    "budget": 42344
+}

@@ -1,6 +1,7 @@
 # Appendix A2: Compiler Setup
 
 - [Appendix A2: Compiler Setup](#appendix-a2-compiler-setup)
+  - [How It Works](#how-it-works)
   - [Setup (Babel)](#setup-babel)
     - [Create Project](#create-project)
     - [Install Babel](#install-babel)
@@ -12,6 +13,24 @@
     - [Setting the Compiler Strictness](#setting-the-compiler-strictness)
     - [Run TypeScript](#run-typescript)
 
+
+## How It Works
+
+- TypeScript or Babel provides a compiler:
+  -  `tsc` (TypeScript compiler)
+  -  `babel`  (Babel compiler)
+-  Compiles 
+   - newer language features written in TypeScript or `ES2015` and beyond 
+   -  to earlier versions of JavaScript (commonly `ES5`) that are supported in web browsers (where the application will be running)
+- The compilation is often more specificaly referred to as **transpilation**.
+  - Transpilation refers to a specific kind of compilation, source code to source code. 
+  - We traditionally think about compilers as transforming source code to bytecode.
+
+
+- To see this in action:
+  - Visit: babeljs.io
+    - or
+  - Visit: typescriptlang.org/play/index.html
 
 ## Setup (Babel)
 

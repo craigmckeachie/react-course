@@ -1,6 +1,7 @@
 # Appendix A4: TypeScript
 
-![TypeScript Logo](./assets/ts-logo.png)
+<!-- ![TypeScript Logo](./assets/ts-logo.png) -->
+<kbd>![TypeScript Logo](https://user-images.githubusercontent.com/1474579/65373054-1df61a00-dc46-11e9-97bb-10e5e00a9981.png)</kbd>
 
 <div style="page-break-after: always;"></div>
 
@@ -8,6 +9,9 @@
 
 - [Appendix A4: TypeScript](#appendix-a4-typescript)
   - [Contents](#contents)
+  - [Diagram](#diagram)
+  - [How TypeScript Works](#how-typescript-works)
+  - [Who is Behind TypeScript?](#who-is-behind-typescript)
   - [Type Annotations](#type-annotations)
   - [Classes](#classes)
     - [Fields](#fields)
@@ -21,7 +25,28 @@
 
 <div style="page-break-after: always;"></div>
 
+## Diagram
 
+![image](https://user-images.githubusercontent.com/1474579/65372978-f5b9eb80-dc44-11e9-809d-4363f5e02fc8.png)
+
+## How TypeScript Works
+
+- TypeScript provides a compiler tsc (TypeScript compiler) that transpiles TypeScript to JavaScript or more specifically ES5.
+- Transpilation refers to a specific kind of compilation, source code to source code. 
+- We traditionally think about compilers as transforming source code to bytecode.
+- Remember, ES5 is valid TypeScript.
+- Visit: typescriptlang.org/play/index.html
+
+
+## Who is Behind TypeScript?
+Anders Hejlsberg	
+- Core developer of TypeScript
+- Microsoft technical fellow
+- Lead architect C#
+- Original author Turbo Pascal: Delphi
+
+
+![Anders](https://user-images.githubusercontent.com/1474579/65373220-a37ac980-dc48-11e9-8833-0fee81c948e5.png)
 
 ## Type Annotations
 

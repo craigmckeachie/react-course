@@ -1,0 +1,13 @@
+PUT http://localhost:4000/projects/3 HTTP/1.1
+content-type: application/json
+
+{
+    "imageUrl": "http://placehold.it/500x300/e4d2ba",
+    "id": 3,
+    "name": "Remote Water",
+    "description": "Sed a fermentum diam. Vestibulum vel dignissim nisi, ultrices finibus odio. Sed nec tempus elit. Quisque auctor sem odio.",
+    "contractTypeId": 2,
+    "isActive": true,
+    "contractSignedOn": "2016-03-05T05:00:00.000Z",
+    "budget": 25233
+}

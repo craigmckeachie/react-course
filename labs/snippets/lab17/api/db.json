@@ -1,0 +1,974 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Johnson - Kutch",
+      "description": "Fully-configurable intermediate framework. Ullam occaecati libero laudantium nihil voluptas omnis qui modi qui.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2013-08-04T22:39:41.473Z",
+      "budget": 54637,
+      "isActive": false
+    },
+    {
+      "id": 2,
+      "name": "Dillesik LLCs",
+      "description": "Re-contextualized dynamic moratorium. Aut nulla soluta numquam qui dolor architecto et facere dolores.",
+      "imageUrl": "/assets/placeimg_500_300_arch12.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2016-06-26T18:24:01.706Z",
+      "budget": 29729,
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Purdy, Keeling and Smithams",
+      "description": "Innovative 6th generation model. Perferendis libero qui iusto et ullam cum sint molestias vel.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2013-05-26T01:10:42.344Z",
+      "budget": 45660,
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "name": "Kreiger - Waelchis",
+      "description": "Managed logistical migration. Qui quod praesentium accusamus eos hic non error modi et.",
+      "imageUrl": "/assets/placeimg_500_300_arch12.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2009-12-18T21:46:47.944Z",
+      "budget": 81188,
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Crona Inc",
+      "description": "Monitored explicit methodology. Rem quos maxime amet autem beatae quisquam excepturi sint velit.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2016-11-14T19:19:53.624Z",
+      "budget": 31350,
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "name": "Breitenberg - Mitchell",
+      "description": "Profound upward-trending product. Neque necessitatibus quia aut autem suscipit laborum eos saepe veritatis.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2015-03-05T17:00:16.696Z",
+      "budget": 67030,
+      "isActive": false
+    },
+    {
+      "id": 7,
+      "name": "Christiansen LLC",
+      "description": "Customer-focused composite implementation. Rerum ullam est voluptate hic eligendi autem rerum cum et.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2015-04-14T19:46:53.146Z",
+      "budget": 98600,
+      "isActive": true
+    },
+    {
+      "id": 8,
+      "name": "Halvorson, Fadel and Zieme",
+      "description": "Triple-buffered transitional encoding. Amet illum quis expedita ut repudiandae et aut sit quia.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2011-10-16T08:07:32.217Z",
+      "budget": 21205,
+      "isActive": true
+    },
+    {
+      "id": 9,
+      "name": "Lesch - Waelchi",
+      "description": "Profound mobile project. Rem consequatur laborum explicabo sint odit et illo voluptas expedita.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2016-09-23T21:27:25.035Z",
+      "budget": 53407,
+      "isActive": false
+    },
+    {
+      "id": 10,
+      "name": "Kihn and Sons",
+      "description": "Multi-layered grid-enabled local area network. Accusamus numquam neque incidunt perspiciatis consequuntur beatae excepturi iure officiis.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2016-04-02T02:40:48.906Z",
+      "budget": 62703,
+      "isActive": false
+    },
+    {
+      "id": 11,
+      "name": "Kreiger Inc",
+      "description": "Profound national matrices. Nam omnis perspiciatis cumque voluptate sequi vel voluptate alias quia.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2009-11-20T04:57:43.124Z",
+      "budget": 74262,
+      "isActive": false
+    },
+    {
+      "id": 12,
+      "name": "Jones, Boyle and Reichel",
+      "description": "Cross-platform high-level hierarchy. Ut recusandae sint accusamus nam sunt repellendus nihil soluta ipsam.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2014-02-23T12:11:19.381Z",
+      "budget": 79475,
+      "isActive": true
+    },
+    {
+      "id": 13,
+      "name": "Pollich Group",
+      "description": "Ergonomic heuristic firmware. Commodi dolore vel et quasi tenetur perspiciatis sit dolor itaque.",
+      "imageUrl": "/assets/placeimg_500_300_arch2.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2011-10-12T13:19:03.691Z",
+      "budget": 61891,
+      "isActive": false
+    },
+    {
+      "id": 14,
+      "name": "Bruen and Sons",
+      "description": "Switchable composite strategy. Non accusamus quo ipsam animi unde quas ut et voluptate.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2014-08-19T07:03:27.419Z",
+      "budget": 80726,
+      "isActive": false
+    },
+    {
+      "id": 15,
+      "name": "Weissnat - Reynolds",
+      "description": "Vision-oriented regional workforce. Velit eum tempora natus magnam doloremque id quis natus quibusdam.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2015-12-23T01:00:34.527Z",
+      "budget": 58514,
+      "isActive": true
+    },
+    {
+      "id": 16,
+      "name": "Haag - O'Keefe",
+      "description": "Vision-oriented dedicated knowledge user. Et rem vero et exercitationem et veritatis accusamus id optio.",
+      "imageUrl": "/assets/placeimg_500_300_arch2.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2017-02-16T12:28:52.794Z",
+      "budget": 55137,
+      "isActive": false
+    },
+    {
+      "id": 17,
+      "name": "Murray, Gutmann and Ankunding",
+      "description": "Implemented next generation flexibility. Enim quibusdam voluptatibus eum enim quas commodi et corporis id.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2018-02-17T03:45:46.028Z",
+      "budget": 43916,
+      "isActive": true
+    },
+    {
+      "id": 18,
+      "name": "Kutch Group",
+      "description": "Decentralized explicit conglomeration. Reprehenderit possimus tempora vel quis non ea officiis quia a.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2011-02-27T11:56:25.464Z",
+      "budget": 31924,
+      "isActive": true
+    },
+    {
+      "id": 19,
+      "name": "Moen, Volkman and Jacobson",
+      "description": "Reactive attitude-oriented contingency. Dolorum dolorem esse est voluptas provident sunt quidem laboriosam delectus.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2014-07-20T03:49:52.933Z",
+      "budget": 31425,
+      "isActive": false
+    },
+    {
+      "id": 20,
+      "name": "Durgan and Sons",
+      "description": "Universal incremental definition. Voluptatem dolores distinctio qui blanditiis impedit dolores maiores rerum et.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2014-02-17T09:09:54.542Z",
+      "budget": 79434,
+      "isActive": false
+    },
+    {
+      "id": 21,
+      "name": "Mueller and Sons",
+      "description": "Intuitive bifurcated flexibility. Necessitatibus aliquam asperiores qui facere voluptatum esse velit aut distinctio.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2012-12-03T12:27:29.470Z",
+      "budget": 68608,
+      "isActive": false
+    },
+    {
+      "id": 22,
+      "name": "Rolfson, Kertzmann and Block",
+      "description": "Optional context-sensitive concept. Tempore nam saepe aperiam neque id et fugiat aut beatae.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2011-01-24T08:57:49.624Z",
+      "budget": 94173,
+      "isActive": false
+    },
+    {
+      "id": 23,
+      "name": "Gleichner Inc",
+      "description": "Seamless incremental knowledge base. Nobis optio omnis esse qui doloremque non odit voluptatem molestiae.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2015-07-02T19:53:04.455Z",
+      "budget": 65773,
+      "isActive": false
+    },
+    {
+      "id": 24,
+      "name": "Carroll - O'Keefe",
+      "description": "Implemented foreground instruction set. Dolores temporibus libero non quos voluptas quis sapiente dolores deserunt.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2018-01-11T17:09:55.953Z",
+      "budget": 36862,
+      "isActive": true
+    },
+    {
+      "id": 25,
+      "name": "Kuhic Inc",
+      "description": "Balanced intermediate task-force. Dolor cupiditate autem tenetur esse quis dolorem veniam fugiat qui.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2010-03-15T22:45:27.341Z",
+      "budget": 25165,
+      "isActive": false
+    },
+    {
+      "id": 26,
+      "name": "Gutmann - Rogahn",
+      "description": "Business-focused even-keeled hub. Dignissimos dolorem sed sint nostrum repellat et voluptas voluptatem eaque.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2012-07-18T12:04:53.879Z",
+      "budget": 82401,
+      "isActive": false
+    },
+    {
+      "id": 27,
+      "name": "Davis and Sons",
+      "description": "Up-sized fresh-thinking complexity. Totam vel possimus omnis delectus dolor non nostrum maxime corporis.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2012-09-21T07:38:01.624Z",
+      "budget": 96726,
+      "isActive": true
+    },
+    {
+      "id": 28,
+      "name": "Donnelly and Sons",
+      "description": "Integrated cohesive process improvement. Non aut qui ullam alias qui ea dolorum voluptatem accusamus.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2013-07-25T14:44:08.646Z",
+      "budget": 97304,
+      "isActive": true
+    },
+    {
+      "id": 29,
+      "name": "O'Reilly and Sons",
+      "description": "Realigned responsive moratorium. Qui distinctio non assumenda sunt vel a veritatis molestias et.",
+      "imageUrl": "/assets/placeimg_500_300_arch2.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2016-01-29T07:28:39.169Z",
+      "budget": 53052,
+      "isActive": false
+    },
+    {
+      "id": 30,
+      "name": "Schiller - Stehr",
+      "description": "Profound optimal protocol. Fugit praesentium ex iste aperiam sequi recusandae voluptatibus ullam a.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2017-04-22T17:11:09.683Z",
+      "budget": 95130,
+      "isActive": true
+    },
+    {
+      "id": 31,
+      "name": "Stamm, Brown and Rippin",
+      "description": "Fundamental modular definition. Beatae est recusandae quia esse voluptatem est quae sint quos.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2012-02-18T19:24:11.781Z",
+      "budget": 98884,
+      "isActive": false
+    },
+    {
+      "id": 32,
+      "name": "Daniel, Howell and Nader",
+      "description": "Horizontal zero administration time-frame. Hic rerum est quo id aut adipisci odio ipsa ab.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2018-01-24T18:59:39.035Z",
+      "budget": 80065,
+      "isActive": true
+    },
+    {
+      "id": 33,
+      "name": "Homenick Group",
+      "description": "Fully-configurable object-oriented info-mediaries. Nemo omnis suscipit eius est impedit dolorem vitae dolores vel.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2013-03-31T02:03:02.721Z",
+      "budget": 42390,
+      "isActive": true
+    },
+    {
+      "id": 34,
+      "name": "Stamm - Renner",
+      "description": "Organic hybrid customer loyalty. Ut natus quod pariatur aperiam vel est voluptatem placeat voluptatem.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2016-04-04T07:07:18.239Z",
+      "budget": 92479,
+      "isActive": true
+    },
+    {
+      "id": 35,
+      "name": "Erdman - Franecki",
+      "description": "Optional multi-state emulation. Voluptate et nobis est optio sed odit neque omnis ut.",
+      "imageUrl": "/assets/placeimg_500_300_arch2.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2011-01-30T15:45:37.213Z",
+      "budget": 51997,
+      "isActive": false
+    },
+    {
+      "id": 36,
+      "name": "Koepp, Parisian and Ratke",
+      "description": "Distributed scalable database. Sapiente sunt exercitationem impedit qui totam ullam rerum quia doloribus.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2017-11-25T01:45:55.620Z",
+      "budget": 33041,
+      "isActive": true
+    },
+    {
+      "id": 37,
+      "name": "Harris - Jacobi",
+      "description": "Integrated value-added extranet. Laborum enim omnis rem commodi provident tempore quibusdam minus in.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2018-08-05T12:53:14.563Z",
+      "budget": 69823,
+      "isActive": true
+    },
+    {
+      "id": 38,
+      "name": "Fisher - Okuneva",
+      "description": "Digitized scalable moratorium. Fugit eaque minus delectus voluptates dolore ex assumenda odit quibusdam.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2017-03-12T21:37:42.536Z",
+      "budget": 32277,
+      "isActive": false
+    },
+    {
+      "id": 39,
+      "name": "Donnelly Group",
+      "description": "Open-source optimal paradigm. Ut accusamus dolorem iusto voluptatum et modi fugiat ut vel.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2009-09-25T18:20:11.391Z",
+      "budget": 64172,
+      "isActive": false
+    },
+    {
+      "id": 40,
+      "name": "Mraz Inc",
+      "description": "Business-focused stable matrices. Laudantium voluptatibus fugit vel minima hic deleniti perspiciatis ut amet.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2015-05-12T11:51:27.436Z",
+      "budget": 37844,
+      "isActive": false
+    },
+    {
+      "id": 41,
+      "name": "Gottlieb - Streich",
+      "description": "Re-contextualized full-range internet solution. Est sint perferendis occaecati pariatur quas assumenda molestias esse vitae.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2012-08-07T00:35:43.491Z",
+      "budget": 30800,
+      "isActive": true
+    },
+    {
+      "id": 42,
+      "name": "Murazik and Sons",
+      "description": "Enhanced clear-thinking throughput. Voluptas laudantium explicabo est corrupti et consequatur perspiciatis nihil sed.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2011-11-10T15:32:37.133Z",
+      "budget": 24321,
+      "isActive": true
+    },
+    {
+      "id": 43,
+      "name": "Schinner and Sons",
+      "description": "Total leading edge knowledge base. Quas qui voluptatibus suscipit blanditiis doloribus aliquam et sint et.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2013-04-22T18:44:31.578Z",
+      "budget": 76417,
+      "isActive": false
+    },
+    {
+      "id": 44,
+      "name": "Doyle - Leannon",
+      "description": "Cross-platform impactful database. Voluptatem ea consequatur iure voluptate modi ut ipsum sit eveniet.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2012-12-19T00:41:35.597Z",
+      "budget": 76172,
+      "isActive": false
+    },
+    {
+      "id": 45,
+      "name": "Maggio and Sons",
+      "description": "Re-contextualized methodical implementation. Nihil earum omnis eveniet harum quas aperiam ut ipsa aut.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2017-04-04T20:12:37.140Z",
+      "budget": 44103,
+      "isActive": true
+    },
+    {
+      "id": 46,
+      "name": "Bernier and Sons",
+      "description": "User-friendly directional standardization. Temporibus qui laudantium ipsam sapiente ut eum ab omnis quasi.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2018-01-17T21:58:28.876Z",
+      "budget": 94076,
+      "isActive": true
+    },
+    {
+      "id": 47,
+      "name": "Lindgren, Conroy and Beer",
+      "description": "Organized maximized function. Laborum voluptate quia temporibus non quo libero doloribus sed dolorum.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2015-04-27T07:26:24.638Z",
+      "budget": 59026,
+      "isActive": false
+    },
+    {
+      "id": 48,
+      "name": "Gusikowski, Nikolaus and Beahan",
+      "description": "Reactive maximized standardization. Minus nisi maxime autem non est qui aspernatur adipisci omnis.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2017-09-29T00:26:36.192Z",
+      "budget": 54297,
+      "isActive": false
+    },
+    {
+      "id": 49,
+      "name": "Torphy Group",
+      "description": "Expanded grid-enabled Graphic Interface. Aut suscipit ipsa soluta beatae eaque sit voluptas sunt eveniet.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2014-08-01T07:12:56.423Z",
+      "budget": 73810,
+      "isActive": false
+    },
+    {
+      "id": 50,
+      "name": "Crist, Bergnaum and Sauer",
+      "description": "User-centric multimedia capacity. Quia quo eveniet voluptatem sunt totam omnis voluptatem distinctio tempore.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2011-06-18T04:02:32.471Z",
+      "budget": 66873,
+      "isActive": true
+    },
+    {
+      "id": 51,
+      "name": "Kling LLC",
+      "description": "Managed logistical model. Ab illo dignissimos porro debitis et corporis et deleniti omnis.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2017-03-28T23:39:37.911Z",
+      "budget": 90252,
+      "isActive": false
+    },
+    {
+      "id": 52,
+      "name": "Jacobs - Senger",
+      "description": "Devolved intangible model. Neque et quisquam repudiandae sunt eveniet qui assumenda inventore reprehenderit.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2013-08-29T16:36:21.060Z",
+      "budget": 63043,
+      "isActive": false
+    },
+    {
+      "id": 53,
+      "name": "Cummerata, Jast and Bartell",
+      "description": "Persistent dedicated structure. Mollitia commodi sit quaerat et tempora asperiores ex sit quos.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2015-02-06T11:05:47.787Z",
+      "budget": 33629,
+      "isActive": false
+    },
+    {
+      "id": 54,
+      "name": "Anderson LLC",
+      "description": "Diverse incremental algorithm. Expedita laudantium sit quisquam sit nobis eum nam ea natus.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2015-01-21T07:03:49.836Z",
+      "budget": 74221,
+      "isActive": false
+    },
+    {
+      "id": 55,
+      "name": "Marvin, Stroman and Turcotte",
+      "description": "Self-enabling empowering neural-net. Repellat occaecati repudiandae dolores blanditiis temporibus quia et ab et.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2012-07-05T13:25:58.144Z",
+      "budget": 55657,
+      "isActive": false
+    },
+    {
+      "id": 56,
+      "name": "Monahan LLC",
+      "description": "Open-architected actuating support. Rerum accusantium illo ullam est officia ut recusandae vel similique.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2013-03-09T14:00:46.995Z",
+      "budget": 94537,
+      "isActive": false
+    },
+    {
+      "id": 57,
+      "name": "Hegmann - Harber",
+      "description": "Front-line human-resource Graphic Interface. Vero in sint occaecati distinctio praesentium qui dolorem corporis veritatis.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2013-01-14T20:45:35.534Z",
+      "budget": 26873,
+      "isActive": true
+    },
+    {
+      "id": 58,
+      "name": "Jacobs, Kuphal and Torphy",
+      "description": "Seamless disintermediate extranet. Quis enim et qui reiciendis est nisi vel laborum magnam.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2018-02-04T07:32:10.000Z",
+      "budget": 28740,
+      "isActive": true
+    },
+    {
+      "id": 59,
+      "name": "Quitzon Group",
+      "description": "Vision-oriented maximized throughput. Consequuntur et rerum dolor sint eius officia ut deserunt voluptas.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2015-05-12T02:10:30.610Z",
+      "budget": 34122,
+      "isActive": true
+    },
+    {
+      "id": 60,
+      "name": "Hayes Groups",
+      "description": "Streamlined local standardization. Molestiae qui exercitationem laboriosam necessitatibus ullam rem modi praesentium totam.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2017-02-04T11:52:11.526Z",
+      "budget": 50011,
+      "isActive": false
+    },
+    {
+      "id": 61,
+      "name": "Wiza - Howell",
+      "description": "Upgradable asynchronous utilisation. Molestias maiores dolor aspernatur esse sint fuga deleniti ea eveniet.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2012-11-23T04:10:45.603Z",
+      "budget": 83385,
+      "isActive": false
+    },
+    {
+      "id": 62,
+      "name": "Jakubowski, Schultz and Schinner",
+      "description": "Focused 6th generation paradigm. Blanditiis eum qui eius non iste aut nulla enim architecto.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2014-07-09T22:04:33.089Z",
+      "budget": 94692,
+      "isActive": true
+    },
+    {
+      "id": 63,
+      "name": "Rutherford, Pfeffer and Hermann",
+      "description": "Streamlined user-facing monitoring. A voluptatibus et magnam quia velit omnis aut rerum ratione.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2014-12-28T15:33:38.142Z",
+      "budget": 49924,
+      "isActive": false
+    },
+    {
+      "id": 64,
+      "name": "Emard - Sauer",
+      "description": "Multi-layered bi-directional approach. Est explicabo est ullam facilis reiciendis et autem quo et.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2013-06-06T09:22:47.989Z",
+      "budget": 94926,
+      "isActive": true
+    },
+    {
+      "id": 65,
+      "name": "Russel LLC",
+      "description": "Progressive well-modulated workforce. Ut voluptatum nulla adipisci sunt quia laudantium non quidem laboriosam.",
+      "imageUrl": "/assets/placeimg_500_300_arch2.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2010-09-20T09:34:21.278Z",
+      "budget": 22010,
+      "isActive": true
+    },
+    {
+      "id": 66,
+      "name": "Hirthe, Rippin and Ortiz",
+      "description": "Configurable attitude-oriented implementation. Accusantium doloremque quia non sit blanditiis sunt rerum est voluptatem.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2013-07-03T23:51:07.952Z",
+      "budget": 75781,
+      "isActive": false
+    },
+    {
+      "id": 67,
+      "name": "Bednar - Yundt",
+      "description": "Reactive secondary protocol. Cumque fugiat reprehenderit commodi et ea voluptas aliquid facere placeat.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2014-07-16T21:38:04.631Z",
+      "budget": 59682,
+      "isActive": false
+    },
+    {
+      "id": 68,
+      "name": "Collier and Sons",
+      "description": "Organic background support. Molestiae in itaque doloremque magnam et placeat vero accusamus quisquam.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2015-11-26T08:23:22.651Z",
+      "budget": 94900,
+      "isActive": false
+    },
+    {
+      "id": 69,
+      "name": "Marks LLC",
+      "description": "Balanced maximized emulation. Ut voluptatem commodi dolore necessitatibus velit qui eos hic explicabo.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2015-07-15T07:19:53.878Z",
+      "budget": 64968,
+      "isActive": true
+    },
+    {
+      "id": 70,
+      "name": "Sawayn LLC",
+      "description": "Phased 5th generation access. Et exercitationem et quas facilis voluptatem dolorem saepe voluptas sapiente.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2015-03-18T20:38:45.136Z",
+      "budget": 71363,
+      "isActive": true
+    },
+    {
+      "id": 71,
+      "name": "Hartmann - Krajcik",
+      "description": "Expanded mission-critical function. Nihil excepturi dolorem vero voluptas aut quia nam eligendi vitae.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2015-11-23T10:41:49.048Z",
+      "budget": 51709,
+      "isActive": false
+    },
+    {
+      "id": 72,
+      "name": "Ullrich, Goyette and O'Conner",
+      "description": "Vision-oriented asymmetric groupware. Id qui qui ut et enim assumenda dignissimos vel voluptatem.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2010-10-16T23:08:40.878Z",
+      "budget": 24829,
+      "isActive": true
+    },
+    {
+      "id": 73,
+      "name": "Sanford - Ratke",
+      "description": "Team-oriented mobile help-desk. Ea quis blanditiis blanditiis porro quos a qui necessitatibus provident.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2010-11-07T07:38:10.109Z",
+      "budget": 69252,
+      "isActive": true
+    },
+    {
+      "id": 74,
+      "name": "Armstrong, Crona and Ziemann",
+      "description": "Switchable bifurcated task-force. Hic sed at et id et et qui quis dolores.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2012-05-15T12:41:51.113Z",
+      "budget": 91566,
+      "isActive": true
+    },
+    {
+      "id": 75,
+      "name": "Muller - Carroll",
+      "description": "Quality-focused maximized initiative. Non nobis fugiat ab et corporis earum suscipit cum et.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2017-05-22T18:04:52.960Z",
+      "budget": 73841,
+      "isActive": false
+    },
+    {
+      "id": 76,
+      "name": "Heidenreich Group",
+      "description": "De-engineered asynchronous frame. Molestiae fuga facere qui iure quo aspernatur dolores ut excepturi.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2011-11-15T11:59:50.377Z",
+      "budget": 34611,
+      "isActive": true
+    },
+    {
+      "id": 77,
+      "name": "Abshire and Sons",
+      "description": "Ergonomic mission-critical knowledge user. Consequatur pariatur eos molestiae qui aut dolorem laudantium nesciunt doloribus.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2018-08-16T18:49:06.477Z",
+      "budget": 98123,
+      "isActive": true
+    },
+    {
+      "id": 78,
+      "name": "Prosacco, Goyette and Torphy",
+      "description": "Organic value-added internet solution. Eum suscipit nobis magni qui iure omnis quos amet aut.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2016-01-22T12:03:02.497Z",
+      "budget": 94560,
+      "isActive": false
+    },
+    {
+      "id": 79,
+      "name": "Ernser, Turner and Konopelski",
+      "description": "Programmable systematic open architecture. Assumenda tenetur architecto voluptas eius quia tenetur vel magni in.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2016-01-22T17:55:42.051Z",
+      "budget": 37661,
+      "isActive": false
+    },
+    {
+      "id": 80,
+      "name": "Hilll - Gutmann",
+      "description": "Future-proofed static website. Et veniam vel qui magnam sint consequuntur impedit laudantium doloribus.",
+      "imageUrl": "/assets/placeimg_500_300_arch2.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2013-04-26T03:54:35.005Z",
+      "budget": 80627,
+      "isActive": true
+    },
+    {
+      "id": 81,
+      "name": "Beatty, Boehm and West",
+      "description": "Operative high-level emulation. Quos qui dolorum aut voluptatem rerum vel provident necessitatibus dicta.",
+      "imageUrl": "/assets/placeimg_500_300_arch4.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2012-08-09T13:45:53.932Z",
+      "budget": 75030,
+      "isActive": true
+    },
+    {
+      "id": 82,
+      "name": "Kling - Schaefer",
+      "description": "Right-sized stable throughput. Amet consequatur ut aut qui distinctio vero dolorem nulla distinctio.",
+      "imageUrl": "/assets/placeimg_500_300_arch7.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2015-06-17T01:04:42.491Z",
+      "budget": 99213,
+      "isActive": false
+    },
+    {
+      "id": 83,
+      "name": "Farrell - Bosco",
+      "description": "Integrated secondary intranet. Minima adipisci commodi impedit quia repellendus blanditiis dolores voluptatibus et.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 4,
+      "contractSignedOn": "2011-12-04T12:07:00.270Z",
+      "budget": 33878,
+      "isActive": false
+    },
+    {
+      "id": 84,
+      "name": "Grant - Donnelly",
+      "description": "Programmable optimal success. Repellendus sequi expedita qui laborum magnam eligendi tenetur aut et.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2012-04-01T22:53:49.723Z",
+      "budget": 82372,
+      "isActive": false
+    },
+    {
+      "id": 85,
+      "name": "Ritchie LLC",
+      "description": "Reverse-engineered upward-trending leverage. Consequatur reiciendis quia expedita sit minima tempora doloremque et quia.",
+      "imageUrl": "/assets/placeimg_500_300_arch11.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2011-12-26T18:41:28.515Z",
+      "budget": 62809,
+      "isActive": true
+    },
+    {
+      "id": 86,
+      "name": "Feeney, Lockman and Ryan",
+      "description": "Total fault-tolerant protocol. Fugit ut fugiat dolor unde aut qui error totam laborum.",
+      "imageUrl": "/assets/placeimg_500_300_arch3.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2012-08-16T02:06:36.275Z",
+      "budget": 87307,
+      "isActive": true
+    },
+    {
+      "id": 87,
+      "name": "Gusikowski Group",
+      "description": "Implemented motivating utilisation. Magnam in perspiciatis ut accusamus soluta quis nobis maiores in.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 5,
+      "contractSignedOn": "2014-04-16T17:48:51.221Z",
+      "budget": 59324,
+      "isActive": false
+    },
+    {
+      "id": 88,
+      "name": "Stokes, Jerde and Beatty",
+      "description": "Up-sized exuding archive. Reiciendis repellat doloremque incidunt qui atque recusandae doloribus nesciunt occaecati.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2009-12-19T06:02:50.834Z",
+      "budget": 64986,
+      "isActive": false
+    },
+    {
+      "id": 89,
+      "name": "Kessler - Gleason",
+      "description": "Distributed executive groupware. Et qui rerum autem ullam quisquam itaque aut qui sint.",
+      "imageUrl": "/assets/placeimg_500_300_arch1.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2013-10-07T16:57:05.766Z",
+      "budget": 95163,
+      "isActive": false
+    },
+    {
+      "id": 90,
+      "name": "Schuppe, Harris and Will",
+      "description": "Exclusive contextually-based website. Ullam aperiam velit nam est tempore ut quis incidunt tenetur.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 7,
+      "contractSignedOn": "2010-02-09T06:34:40.830Z",
+      "budget": 88040,
+      "isActive": true
+    },
+    {
+      "id": 91,
+      "name": "Runolfsson, Heidenreich and Schoen",
+      "description": "Customizable homogeneous protocol. Tempore fuga ad eos error deserunt illo harum ut facere.",
+      "imageUrl": "/assets/placeimg_500_300_arch9.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2017-07-04T20:30:03.399Z",
+      "budget": 40738,
+      "isActive": true
+    },
+    {
+      "id": 92,
+      "name": "Spinka Inc",
+      "description": "Universal intangible time-frame. Totam perspiciatis et ut dolores earum quae rerum cum qui.",
+      "imageUrl": "/assets/placeimg_500_300_arch8.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2010-10-19T01:03:34.491Z",
+      "budget": 76538,
+      "isActive": false
+    },
+    {
+      "id": 93,
+      "name": "Schumm - Feil",
+      "description": "Front-line client-driven firmware. Aut consequatur rerum qui beatae nihil qui corporis accusamus et.",
+      "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
+      "contractTypeId": 3,
+      "contractSignedOn": "2009-10-15T16:06:14.793Z",
+      "budget": 65308,
+      "isActive": false
+    },
+    {
+      "id": 94,
+      "name": "Hartmann - Wintheiser",
+      "description": "Face to face static conglomeration. Et ullam ad eaque commodi maiores facere quos nesciunt laudantium.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2017-03-28T16:05:32.780Z",
+      "budget": 63025,
+      "isActive": true
+    },
+    {
+      "id": 95,
+      "name": "Armstrong - Hands",
+      "description": "Persistent 3rd generation capability. Sint omnis asperiores voluptas sapiente delectus blanditiis earum ut voluptatem.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 2,
+      "contractSignedOn": "2010-09-24T21:02:41.601Z",
+      "budget": 38853,
+      "isActive": false
+    },
+    {
+      "id": 97,
+      "name": "Towne - Altenwerth",
+      "description": "Self-enabling 24/7 leverage. Itaque voluptas quisquam illo dolorem tenetur ex et quidem voluptatem.",
+      "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
+      "contractTypeId": 6,
+      "contractSignedOn": "2014-10-30T11:44:51.088Z",
+      "budget": 83391,
+      "isActive": false
+    },
+    {
+      "id": 99,
+      "name": "Heathcote - Pacocha",
+      "description": "Synchronised grid-enabled hub. Quis modi inventore possimus tenetur eligendi deleniti fugit deserunt et.",
+      "imageUrl": "/assets/placeimg_500_300_arch5.jpg",
+      "contractTypeId": 1,
+      "contractSignedOn": "2015-03-31T22:18:57.328Z",
+      "budget": 81317,
+      "isActive": false
+    }
+  ]
+}

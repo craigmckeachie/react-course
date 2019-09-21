@@ -1,4 +1,22 @@
-## Chapter 1: React
+# Chapter 1: React
+
+- [Chapter 1: React](#chapter-1-react)
+  - [Why React?](#why-react)
+    - [Amazing User Experience & Deployment Story](#amazing-user-experience--deployment-story)
+    - [Easy to Learn](#easy-to-learn)
+    - [Ecosystem & Community:](#ecosystem--community)
+    - [Timeless Technology](#timeless-technology)
+  - [What it is?](#what-it-is)
+  - [Why it is useful?](#why-it-is-useful)
+  - [Angular & React Compared](#angular--react-compared)
+    - [React](#react)
+    - [Angular](#angular)
+    - [React vs. Angular: Key Insights](#react-vs-angular-key-insights)
+  - [Web application architectures](#web-application-architectures)
+    - [Server-side web application architecture](#server-side-web-application-architecture)
+    - [Single-page web application architecture](#single-page-web-application-architecture)
+  - [React Architecture](#react-architecture)
+
 
 There are so many JavaScript libraries and frameworks it is difficult to keep up and understand which are worth learning and how they might be valuable to your organization.
 
@@ -13,7 +31,22 @@ Looking at this chart from npm trends (npm is the most popular package manager f
 [View interactive chart online](https://www.npmtrends.com/@angular/core-vs-react-vs-vue)
 
 
-In addition, lots of companies are using React in their technology stack including Airbnb, Facebook, Instagram, Netflix, Uber, Twitter, Pinterest, reddit, Instacart, Wiz, and Bloomberg to name a few.
+In addition, lots of companies are using React in their technology stack including:
+- Facebook
+- Netflix
+- Uber
+- Twitter
+- Pinterest
+- Airbnb
+- Instagram 
+- reddit
+- Instacart
+- and more...
+
+Exercise:
+1. Install the [React DevTools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
+1. Visit some of the sites above and see how they are using React.
+
 
 ### Amazing User Experience & Deployment Story
 
@@ -43,9 +76,10 @@ Not to worry though as React has an entire ecosystem of other tools and librarie
 - TypeScript: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Either the Babel or TypeScript compiler are used to get the features of a modern programming language today
 - wepack: efficiently bundles your JavaScript, CSS, HTML, and images for deployment
 - Create-React App: Creates a React project with best practices by running only one command
-- State Management Libraries including Redux and Mobx to architect and manage the data in your application
+- State Management Libraries including Redux and MobX to architect and manage the data in your application
 - GraphQL: a query language for your data APIs
-- React Native: lets you build native mobile apps using only JavaScript with the same design as React
+- React Native: Create native apps for Android and iOS using React
+- Gatsby: framework based on React that helps developers build blazing fast websites and apps
 
 ### Timeless Technology
 
@@ -70,4 +104,70 @@ The architecture is component-based and allows you that allow you to create new 
 React makes it painless to create interactive UIs on top of web standards. Because it based on web standards, your application is easy to deploy to thousands of users simultaneously.
 
 
+## Angular & React Compared
+
+### React
+- Facebook
+- Components
+- Library
+- Just the View in MVC
+- Need to include other libraries
+  - React Router (Routing)
+  - Axios, fetch API (AJAX)
+- ES6 (Babel compiler) or TypeScript (tsc compiler)
+- Create React App
+- Uses Webpack
+- Redux
+
+
+### Angular
+
+- Google
+- Components
+- Framework
+- Modular
+- Component Router
+- HttpClient
+- Forms
+- Usually TypeScript (tsc compiler)
+- Angular CLI
+- Uses Webpack
+- Reactive Extensions for Angular (ngrx)
+
+### React vs. Angular: Key Insights
+
+> **Angular** continues to put **“JS”** **into HTML**. **React** puts **“HTML” into JS**.  – Cory House
+- Angular is a more comprehensive library while React is more of a targeted micro library.
+- Because React is smaller it is: 
+  - Easier to understand
+  - Easier to include in a project
+- React is much more popular (but has existed longer)
+- React is used more by design/digital/interactive agencies as well as in the Enterprise
+- Angular is used more for Enterprise software particularly at larger organizations
+
+## Web application architectures
+
+### Server-side web application architecture
+
+- Java Spring
+- ASP.NET
+- Ruby on Rails
+- PHP (Laravel, CodeIgniter)
+
+![Server-side web app architecture](https://user-images.githubusercontent.com/1474579/65373190-30715300-dc48-11e9-8343-84fa96372e1b.png)
+
+
+### Single-page web application architecture
+
+- React
+- Angular
+- Vue
+- AngularJS
+- Ember
+- Backbone
+
+![SPA Architecture](https://user-images.githubusercontent.com/1474579/65373203-5565c600-dc48-11e9-957d-63b768bd9cd5.png)
+
+
+## React Architecture
 
