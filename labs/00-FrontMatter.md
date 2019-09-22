@@ -43,7 +43,7 @@ information storage and retrieval systems, without permission from the author.
 - [Lab 24: Redux Actions & Reducer](24-ReduxActionsReducer.md)
 - [Lab 25: Redux with React](25-ReduxWithReact.md)
 - [Lab 26: Testing](26-Testing.md)
-- [Appendix A: How to Skip Labs](A1-SkippingLabs)
+- [Appendix A: How to Skip Labs](A1-SkippingLabs.md)
 
 ## Solutions
 
