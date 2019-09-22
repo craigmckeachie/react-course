@@ -61,10 +61,6 @@ information storage and retrieval systems, without permission from the author.
   
 - [Testing](25-Testing.md)
 
-- React & Redux with TypeScript (optional)
-  
-
-
 - Advanced Topics (optional/ FAQ)
   - [Styling](A9-Styling.md)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
