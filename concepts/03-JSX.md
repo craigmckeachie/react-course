@@ -271,9 +271,9 @@ const element = (
 
 [JSX Illustration](https://illustrated.dev/jsx)
 
-    <!-- - Children
-      - String Literals
-      - JSX Children
-      - JavaScript Expressions as Children
-      - Functions as Children
-      - Booleans, Null, and Undefined are Ignored -->
+<!-- - Children
+- String Literals
+- JSX Children
+- JavaScript Expressions as Children
+- Functions as Children
+- Booleans, Null, and Undefined are Ignored = -->
