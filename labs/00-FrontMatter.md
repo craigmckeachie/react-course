@@ -45,3 +45,9 @@ information storage and retrieval systems, without permission from the author.
 - [Lab 26: Testing](26-Testing.md)
 - [Appendix A: How to Skip Labs](A1-SkippingLabs)
 
+## Solutions
+
+[Finished solution code for each of the above labs is available in this repository](https://github.com/craigmckeachie/r16_keeptrack)
+
+> There is a separate branch with the finished code after each lab.
+
