@@ -49,7 +49,6 @@ information storage and retrieval systems, without permission from the author.
     - [Promises & Async/Await](A5-Promises.md)
   - [Routing (React Router)](15-Routing.md)
   - [Hooks (new)](16-Hooks.md)
-  
   - [Build & Deploy](18-BuildDeploy.md)
  
 - Redux
