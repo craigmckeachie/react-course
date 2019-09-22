@@ -1,7 +1,7 @@
 # Chapter 24: React, Redux & Thunk 
-common issues:
-List was undefined b/c tried to connect it before it was defined further down in main.jsx
 
+## Example Application 
+#### using Redux and Redux Thunk
 
 ```js
 // API ----------
@@ -396,3 +396,7 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('root'));
 
 ```
+
+## Notes
+- When dealing with this much code in one file make sure things are defined before they are used.
+- For example, `List` would be undefined if you tried to connect it before it was defined further down in `main.jsx`.
