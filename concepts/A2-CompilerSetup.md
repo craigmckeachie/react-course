@@ -28,9 +28,9 @@
 
 
 - To see this in action:
-  - Visit: babeljs.io
+  - Visit: [Babel REPL](https://babeljs.io/repl)
     - or
-  - Visit: typescriptlang.org/play/index.html
+  - Visit: [TypeScript Playground](typescriptlang.org/play/index.html)
 
 ## Setup (Babel)
 

@@ -42,12 +42,12 @@ information storage and retrieval systems, without permission from the author.
 - [Lab 23: Redux Install](23-ReduxInstall.md)
 - [Lab 24: Redux Actions & Reducer](24-ReduxActionsReducer.md)
 - [Lab 25: Redux with React](25-ReduxWithReact.md)
-- [Lab 26: Testing](26-Testing.md)
+<!-- - [Lab 26: Testing](26-Testing.md) -->
 - [Appendix A: How to Skip Labs](A1-SkippingLabs.md)
 
 ## Solutions
 
-[Finished solution code for each of the above labs is available in this repository](https://github.com/craigmckeachie/r16_keeptrack)
+[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/r16_keeptrack)
 
 > There is a separate branch with the finished code after each lab.
 
