@@ -24,6 +24,10 @@ React is one of the most popular JavaScript library currently so lets take a loo
 
 ## Why React?
 
+StackOverflow.com 2019 Survey of 90,000 developers:
+- [Most Popular Web Frameworks](https://insights.stackoverflow.com/survey/2019#technology-_-web-frameworks)
+- [Most Loved/Dreaded/Wanted Web Frameworks](https://insights.stackoverflow.com/survey/2019#technology-_-most-loved-dreaded-and-wanted-web-frameworks)
+
 Looking at this chart from npm trends (npm is the most popular package manager for JavaScript) it becomes clear that both React and Angular have extremely strong adoption.
 
 
