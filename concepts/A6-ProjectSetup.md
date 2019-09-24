@@ -1,4 +1,4 @@
-# Chapter 20: Project Setup
+# Appendix A6: Project Setup
 
 ## Create New ES6 Project
 

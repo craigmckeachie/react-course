@@ -1,4 +1,4 @@
-# Chapter 17: Best Practices
+# Appendix A8: Best Practices
 
 ## Code Organization
 

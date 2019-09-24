@@ -1,7 +1,6 @@
-## Promise
+## Appendixes A5:Promise
 
 Foundational technology in JavaScript you need to know Promises first.
-
 
 ### Asynchronous vs Synchronous
 
@@ -388,7 +387,7 @@ Here is the example with error handling:
 ``` -->
 
 ## Resources
+
 - [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 - [Google Web Fundamentals: Promises](https://developers.google.com/web/fundamentals/primers/promises)
 - [Emulate a long-running API](httpstat.us/200?sleep=5000)
-
