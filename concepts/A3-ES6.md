@@ -11,6 +11,8 @@
   - [Classes](#classes)
     - [Constructors](#constructors)
     - [Methods](#methods)
+      - [If using `Babel` compiler:](#if-using-babel-compiler)
+      - [If using TypeScript (`tsc`) compiler:](#if-using-typescript-tsc-compiler)
     - [Class Fields](#class-fields)
   - [Scope (var, let, const)](#scope-var-let-const)
     - [var](#var)
@@ -66,8 +68,27 @@ Ron Swanson
 
 1.  Code:
 
-```js
+#### If using `Babel` compiler:
+```js 
 class Person {
+  constructor(first, last) {
+    this.first = first;
+    this.last = last;
+  }
+  getFullName() {
+    return this.first + ' ' + this.last;
+  }
+}
+
+let person = new Person('Ron', 'Swanson');
+console.log(person.getFullName());
+```
+
+#### If using TypeScript (`tsc`) compiler:
+```ts
+class Person {
+  first;
+  last;
   constructor(first, last) {
     this.first = first;
     this.last = last;
@@ -97,17 +118,18 @@ The proposed feature of class fields is commonly used in React projects and is i
 
 > [Class field declarations for JavaScript](https://github.com/tc39/proposal-class-fields)
 
-1. Install the plugin
 
-```
-npm install --save-dev @babel/plugin-proposal-class-properties
-```
+
+1. This propsed feature is available in TypeScript without any additional configuration but **if you are using Babel** as your compiler you will need to    1. Install the plugin below.
+
+    ```
+    npm install --save-dev @babel/plugin-proposal-class-properties
+    ```
 
 2. Configure the plugin
-
-```
-plugins: ["@babel/plugin-proposal-class-properties"]
-```
+    ```
+    plugins: ["@babel/plugin-proposal-class-properties"]
+    ```
 
 1.  Code:
 
@@ -247,8 +269,8 @@ numbers.forEach(n => console.log(n));
 
 ### First Module
 
-1.  Create file `src\my-module.js`
-2.  Add the following code to `src\my-module.js`
+1.  Create file `src\my-module.[js|ts]`
+2.  Add the following code to `src\my-module.[js|ts]`
 
 ```js
 export function myFunction() {
@@ -256,7 +278,7 @@ export function myFunction() {
 }
 ```
 
-3.  Code in `program.js`
+3.  Code in `program.[js|ts]`
 
 - Auto import doesn't work in JavaScript, you need to use TypeScript
 
@@ -275,7 +297,7 @@ myFunction was run.
 
 ### Another Module
 
-1.  Code in `my-module.js`
+1.  Code in `my-module.[js|ts]`
 
 ```js
 //my-module.js
@@ -305,7 +327,7 @@ export class MyClass {
 }
 ```
 
-2.  Code in `program.js`
+2.  Code in `program.[js|ts]`
 
 ```js
 import { myFunction, myObject, myPrimitive, MyClass } from './my-module';
@@ -549,7 +571,23 @@ Craig D. McKeachie
 
 ## Object.assign()
 
-1.  Code
+1.  **If** you are **using** the **TypeScript** compiler (`tsc`), you will need to update your TypeScript configuration as shown below before doing this excercise.
+```diff
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
++    "lib": [
++      "dom",
++      "es2015"
+    ] 
+    ...
+  }
+```
+> The `es2015` adds `.assign` on the base JavaScript type of `object`. The `dom` also has to be added to use `console.log` which worked previously because is the default lab included with TypeScript.  
+
+2.  Code
 
 ```js
 let o1 = { a: 1, b: 1, c: 1 };

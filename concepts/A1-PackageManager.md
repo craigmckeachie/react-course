@@ -131,7 +131,9 @@ node_modules/.bin/tsc -v #outputs version info
 #### dependencies
 
 ```shell
-npm install typescript --save
+npm install underscore --save
+// or just
+npm install underscore
 ```
 
 ```diff
@@ -150,7 +152,7 @@ npm install typescript --save
     "react-redux": "~7.1.1",
     "react-scripts": "3.1.1",
     "redux": "~4.0.4",
-+   "typescript": "3.6.3"
++   "underscore": "~1.9.1"
   },
   ...
 }
@@ -159,7 +161,7 @@ npm install typescript --save
 #### devDependencies
 
 ```shell
-npm install @types/react-redux --save-dev
+npm install jest --save-dev
 ```
 
 ```diff
@@ -171,7 +173,7 @@ npm install @types/react-redux --save-dev
     ...
   },
   "devDependencies": {
-+   "@types/react-redux": "~7.1.2"
++   "jest": "~24.9.0",
   }
 }
 ```

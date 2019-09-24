@@ -30,7 +30,7 @@
 - To see this in action:
   - Visit: [Babel REPL](https://babeljs.io/repl)
     - or
-  - Visit: [TypeScript Playground](typescriptlang.org/play/index.html)
+  - Visit: [TypeScript Playground](https://www.typescriptlang.org/play/)
 
 ## Setup (Babel)
 
