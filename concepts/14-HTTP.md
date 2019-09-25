@@ -1,6 +1,7 @@
 # Chapter 14: HTTP
 
 - [Chapter 14: HTTP](#chapter-14-http)
+  - [Setup Backend](#setup-backend)
   - [Axios](#axios)
   - [Fetch](#fetch)
 - [Resources](#resources)
@@ -8,11 +9,13 @@
 The ability to make HTTP calls is not built-in to React.
 
 React applications use one of the following to make `HTTP` calls:
+
 - `Axios` library
 - `fetch` API (built-in to modern browsers)
 
+## Setup Backend
 
-
+Before making HTTP calls we need to [setup a backend following these directions](A7-BackendAPISetup.md).
 
 ## Axios
 
@@ -45,8 +48,7 @@ React applications use one of the following to make `HTTP` calls:
 3. Try the following code in `main.jsx`:
 
    ```js
-   const okUrl =
-     'https://jsonplaceholder.typicode.com/photos?_page=1&_limit=100';
+   const okUrl = 'https://localhost:3000/photos?_page=1&_limit=100';
    const notFoundErrorUrl = 'https://httpstat.us/404';
    const forbiddenErrorUrl = 'https://httpstat.us/403';
    const serverErrorUrl = 'https://httpstat.us/500';
@@ -943,14 +945,12 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 # Resources
+
 - [Comparison: Fetch vs Axios](https://gist.github.com/jsjoeio/0fd8563bc23ef852bc921836512992d9)
 - [Gotchas: Fetch vs Axios ](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
 - [JSON Server](https://github.com/typicode/json-server)
 - [AJAX: React FAQ](https://reactjs.org/docs/faq-ajax.html)
-- [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
--[Fetch Examples](https://mdn.github.io/fetch-examples/)
+- [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) -[Fetch Examples](https://mdn.github.io/fetch-examples/)
 - [A Practical Guide to Using Fetch](https://medium.freecodecamp.org/a-practical-es6-guide-on-how-to-perform-http-requests-using-the-fetch-api-594c3d91a547)
 - [Fetch & Errors](https://www.tjvantoll.com/2015/09/13/fetch-and-errors/)
 - [Reusable API Class Example](https://codeburst.io/how-to-call-api-in-a-smart-way-2ca572c6fe86)
-
-

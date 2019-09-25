@@ -20,16 +20,16 @@ information storage and retrieval systems, without permission from the author.
 ## Table of Contents
 
 - Foundation
+
   - [Package Manager (npm/Yarn)](A1-PackageManager.md)
   - [Compiler Setup](A2-CompilerSetup.md)
   - [ES6/ES2015](A3-ES6.md)
   - [TypeScript](A4-TypeScript.md) (if applicable)
   - [Project Setup (Create React App)](A6-ProjectSetup.md)
   - [Best Practices (Code Organization & Conventions)](A8-BestPractices.md)
-  
-  
 
-- React  
+* React
+
   - [Overview](01-React.md)
   - [Elements](02-Elements.md)
   - [JSX](03-JSX.md)
@@ -42,35 +42,34 @@ information storage and retrieval systems, without permission from the author.
   - [Lifecycle](09-Lifecycle.md)
   - [Conditional Rendering](10-ConditionalRendering.md)
   - [Lists](11-Lists.md)
-  - [Forms](12-Forms.md)
-  - [Component Architecture](13-ComponentArchitecture.md)
+  - [Component Architecture](12-ComponentArchitecture.md)
+  - [Forms](13-Forms.md)
   - [HTTP](14-HTTP.md)
     - [Backend API Setup](A7-BackendAPISetup.md)
     - [Promises & Async/Await](A5-Promises.md)
   - [Routing (React Router)](15-Routing.md)
   - [Hooks (new)](16-Hooks.md)
   - [Build & Deploy](17-BuildDeploy.md)
- 
-- Redux
-  
+
+* Redux
+
   - [Redux (Store, State, Reducers, Actions, Action Creators)](21-Redux.md)
   - [Using Redux with React (React Redux Library)](22-ReactRedux.md)
   - [Asynchronous Actions (Redux Thunk)](23-ReduxThunk)
   - [Putting It All Together (React & Redux & Thunk)](24-ReactReduxThunk.md)
   - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable)
-  
-- [Testing](25-Testing.md)
 
-- Advanced Topics (optional/ FAQ)
+* [Testing](25-Testing.md)
+
+* Advanced Topics (optional/ FAQ)
+
   - [Styling](A9-Styling.md)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [HTTP Advanced](A15-AdvancedHTTP.md)
-  
 
-<!-- 
+<!--
 - Future
   - Type checking With PropTypes
   - Debugging Tips & Tricks
   - Animations (using ReactTransitionGroup)
   - Functional Programming -->
-

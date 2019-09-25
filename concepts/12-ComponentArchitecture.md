@@ -1,4 +1,4 @@
-# Chapter 13: Component Architecture
+# Chapter 12: Component Architecture
 
 You can split a component into multiple smaller components to have a more readable and maintanable design and/or to achieve reuse.
 
