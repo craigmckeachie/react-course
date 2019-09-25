@@ -4,6 +4,19 @@
   - [Setup Backend](#setup-backend)
   - [Axios](#axios)
   - [Fetch](#fetch)
+  - [React](#react)
+    - [componentDidMount](#componentdidmount)
+    - [Loading](#loading)
+    - [Error Handling](#error-handling)
+    - [Lists](#lists)
+    - [Example](#example)
+  - [Reuse](#reuse)
+  - [POST](#post)
+      - [POST with Axios](#post-with-axios)
+      - [POST with Fetch](#post-with-fetch)
+  - [PUT](#put)
+  - [DELETE](#delete)
+  - [Item CRUD Implemented](#item-crud-implemented)
 - [Resources](#resources)
 
 The ability to make HTTP calls is not built-in to React.
@@ -112,33 +125,31 @@ The `Fetch API` is now standard in modern browsers and does not require an addit
 
    ```js
    // const urls here
+
+   fetch(okUrl)
+     .then(response => {
+       console.log(response);
+       return response;
+     })
+     .then(response => response.json())
+     .then(data => console.log(data));
    ```
-
-fetch(okUrl)
-.then(response => {
-console.log(response);
-return response;
-})
-.then(response => response.json())
-.then(data => console.log(data));
-
-````
 
 1. In the console you will see the response as well as the data (parsed body) begin logged.
 1. Update the url to an endpoint that throws a server error and update the code to catch the error.
 
-```diff
-// const urls here
+   ```diff
+   // const urls here
 
-+ fetch(serverErrorUrl)
-.then(response => {
- console.log(response);
- return response;
-})
-.then(response => response.json())
-.then(data => console.log(data));
-+ .catch(error => console.log(error));
-````
+   + fetch(serverErrorUrl)
+   .then(response => {
+   console.log(response);
+   return response;
+   })
+   .then(response => response.json())
+   .then(data => console.log(data));
+   + .catch(error => console.log(error));
+   ```
 
 1. You should see the following logged in the console.
    ```shell
@@ -276,8 +287,7 @@ If the data is returned successfully, we can use what we learned in the list sec
 1.  Try the following code in `main.jsx`
 
     ```js
-    const okUrl =
-      'https://jsonplaceholder.typicode.com/photos?_page=1&_limit=100';
+    const okUrl = 'https://localhost:3000/photos?_page=1&_limit=100';
     const notFoundErrorUrl = 'https://httpstat.us/404';
     const forbiddenErrorUrl = 'https://httpstat.us/403';
     const serverErrorUrl = 'https://httpstat.us/500';
@@ -374,7 +384,7 @@ If the data is returned successfully, we can use what we learned in the list sec
 
 ## Reuse
 
-After you get comfortable using `Axios` and/or the `fetch API` and rendering the result in a React component, consider pulling the data access code into a reusable class. The benefit to doing this is that multiple components can make the same API call and convert to more user friendly error messages without repeating the code involved.
+After you get comfortable using `Axios` and/or the `fetch API` and rendering the result in a React component, consider pulling the data access code into a reusable object. The benefit to doing this is that multiple components can make the same API call and convert to more user friendly error messages without repeating the code involved.
 
 React is not very prescriptive about file names but their documentation does show these files being named with an API suffix (for example ProfileAPI.js).
 
