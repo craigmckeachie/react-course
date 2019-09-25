@@ -1,6 +1,6 @@
 ## Appendixes A5:Promise
 
-Foundational technology in JavaScript you need to know Promises first.
+Promises are a foundational technology in JavaScript.
 
 ### Asynchronous vs Synchronous
 
