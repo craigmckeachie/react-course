@@ -124,7 +124,7 @@ store.dispatch({ type: 'ADD_TODO', text: 'Learn Redux' });
 - Action Types
   - types should typically be defined as string constants
   - action type names take the form of
-    - VERB*ENTITY*[ REQUEST | SUCCESS | FAILURE | ]
+    - VERB_*ENTITY*_[ REQUEST | SUCCESS | FAILURE | ]
     - Examples:
       - LOAD_PHOTOS_REQUEST
       - LOAD_PHOTOS_SUCCESS
