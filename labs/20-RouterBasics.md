@@ -46,7 +46,7 @@
    import './App.css';
    + import ProjectsPage from './projects/ProjectsPage';
 
-   + import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+   + import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
    + import HomePage from './home/HomePage';
 
    const App: React.FC = () => {
