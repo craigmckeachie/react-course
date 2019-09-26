@@ -193,6 +193,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 1. Be sure you are running a development web server like serve with the `-s` flag.
 
 #### `package.json`
+
 ```json
 "scripts": {
     "start": "serve -s",
@@ -200,8 +201,9 @@ ReactDOM.render(<App />, document.getElementById('root'));
   },
   ...
 ```
+
 2. Change the URL to `http://localhost:5000/noroute`
-2. The navigation renders but the page is blank. Ideally, we would like to show a `NotFound` component when this happens.
+3. The navigation renders but the page is blank. Ideally, we would like to show a `NotFound` component when this happens.
 
    To achieve this we need to understand two things:
 
@@ -363,9 +365,22 @@ function MovieDetail(props) {
 />
 ```
 
-- Only the last example of passing a function to the component property will work but it is not the best solution. To understand why read this paragraph from the React Router documentation:
+```js
+//works but not ideal
+<Route
+  path="/movies"
+  component={props => <Movies {...props} movies={movies} />}
+/>
+```
+
+- To understand why the `works but is not ideal` code snippet above is not the best solution read this paragraph from the React Router documentation:
 
   > “When you use the component props, the router uses React.createElement to create a new React element from the given component. That means if you provide an inline function to the component attribute, you would create a new component every render. This results in the existing component unmounting and the new component mounting instead of just updating the existing component.”
+
+```js
+//works
+<Route path="/movies" render={props => <Movies {...props} movies={movies} />} />
+```
 
 1. Add a NavLink to navigate to the `Movies` component
 
