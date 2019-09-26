@@ -224,7 +224,7 @@
         <section>
           <p>
             <span class="icon-alert inverse "></span>
-            {this.props.error}
+            {this.state.error}
           </p>
         </section>
       </div>
@@ -478,6 +478,3 @@
 ---
 
 ### &#10004; You have completed the Lab 18 bonus exercise
-
-
-
