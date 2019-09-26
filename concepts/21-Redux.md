@@ -124,7 +124,7 @@ store.dispatch({ type: 'ADD_TODO', text: 'Learn Redux' });
 - Action Types
   - types should typically be defined as string constants
   - action type names take the form of
-    - VERB_*ENTITY*_[ REQUEST | SUCCESS | FAILURE | ]
+    - VERB**ENTITY**[ REQUEST | SUCCESS | FAILURE | ]
     - Examples:
       - LOAD_PHOTOS_REQUEST
       - LOAD_PHOTOS_SUCCESS
@@ -227,6 +227,7 @@ npm install --save redux react-redux redux-thunk
 
 ```js
 //action types
+//action types
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
 
@@ -260,9 +261,12 @@ function logState() {
 store.subscribe(logState);
 
 store.dispatch({ type: '' });
-store.dispatch({ type: INCREMENT });
-store.dispatch({ type: INCREMENT });
-store.dispatch({ type: DECREMENT });
+store.dispatch(increment());
+store.dispatch(increment());
+store.dispatch(decrement());
+store.dispatch(decrement());
+store.dispatch(decrement());
+store.dispatch(decrement());
 ```
 
 4. If your web server is not running, start it up:
