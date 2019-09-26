@@ -177,14 +177,10 @@ ReactDOM.render(<App />, document.getElementById('root'));
       </NavLink>
     </li>
     <li>
-      <NavLink to="/about/">
-        About
-      </NavLink>
+      <NavLink to="/about">About</NavLink>
     </li>
     <li>
-      <NavLink to="/contact/">
-        Contact
-      </NavLink
+      <NavLink to="/contact">Contact</NavLink>
     </li>
   </ul>
 </nav>
@@ -194,7 +190,17 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 ### Not Found (404)
 
-1. Change the URL to http://localhost:5000/noroute/
+1. Be sure you are running a development web server like serve with the `-s` flag.
+
+#### `package.json`
+```json
+"scripts": {
+    "start": "serve -s",
+    ...
+  },
+  ...
+```
+2. Change the URL to `http://localhost:5000/noroute`
 2. The navigation renders but the page is blank. Ideally, we would like to show a `NotFound` component when this happens.
 
    To achieve this we need to understand two things:
@@ -239,7 +245,7 @@ function NotFound() {
 + </Switch>
 ```
 
-7. Navigate to the various routes again and notice that only when you manually go to a route that doesn't exist like: `/noroute/` the `NotFound` component renders.
+7. Navigate to the various routes again and notice that only when you manually go to a route that doesn't exist like: `/noroute` the `NotFound` component renders.
 
 ## Parameters
 
