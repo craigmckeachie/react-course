@@ -536,6 +536,7 @@ function isLinkActive(currentType, linkType) {
 return currentType === linkType ? 'active' : '';
 }
 
+function Movies({ movies: allMovies, location, match }) {
 ...
 <nav>
       <ul>
@@ -565,6 +566,7 @@ return currentType === linkType ? 'active' : '';
         </li>
       </ul>
     </nav>
+}
 ```
 
 ## Nesting
