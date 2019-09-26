@@ -44,10 +44,10 @@
    ```diff
    import React from 'react';
    import './App.css';
-   import ProjectsContainer from './projects/ProjectsPage';
+   + import ProjectsPage from './projects/ProjectsPage';
 
    + import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-   import HomeContainer from './home/HomeContainer';
+   + import HomePage from './home/HomePage';
 
    const App: React.FC = () => {
      return (
