@@ -379,7 +379,11 @@ function MovieDetail(props) {
 
 ```js
 //works
-<Route path="/movies" render={props => <Movies {...props} movies={movies} />} />
+<Route
+  exact
+  path="/movies"
+  render={props => <Movies {...props} movies={movies} />}
+/>
 ```
 
 1. Add a NavLink to navigate to the `Movies` component
