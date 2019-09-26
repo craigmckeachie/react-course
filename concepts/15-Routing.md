@@ -1,6 +1,9 @@
 # Chapter 15: Routing
 
-BrowserRouter (react-router-dom) vs. NativeRouter (react-router-native)
+There are two versions:
+
+1. BrowserRouter (react-router-dom) for web applications.
+2. NativeRouter (react-router-native) for use with React Native.
 
 ## Installation
 
@@ -584,7 +587,7 @@ function Movies({ movies: allMovies, location, match }) {
 
 4. Refresh the browser and notice that the movie detail now shows below the movie list after clicking a movie link.
 
-## Redirects (Auth)
+<!-- ## Redirects (Auth)
 
 ## Static vs Dynamic Routes
 
@@ -597,27 +600,20 @@ https://medium.com/@khwsc1/step-by-step-guide-of-simple-routing-transition-effec
 ## Named
 
 ## Code Splitting
+-->
 
-https://reach.tech/router/
-https://reactjs.org/community/routing.html
+- [Reach Router](https://reach.tech/router/)
+- [List of all React Routers](https://reactjs.org/community/routing.html)
+- [React Router](https://github.com/ReactTraining/react-router)
+- [React Router 4 changes](https://css-tricks.com/react-router-4/)
+- [Next.js](https://nextjs.org/)
+- [Change in React Router 4 and 5 from Earlier Versions](https://www.reddit.com/r/reactjs/comments/8lgmmo/router5_or_reactrouter_4/)
+- [Pass Props to Components](https://tylermcginnis.com/react-router-pass-props-to-components/)
 
-https://github.com/ReactTraining/react-router
-
-https://css-tricks.com/react-router-4/
-
-https://nextjs.org/
-
-https://github.com/reach/router
-https://reach.tech/router/credits
+<!--
 https://medium.com/@jordan.eckowitz/reach-router-react-routing-made-easy-aac7b46cd53c
 
 https://medium.com/@taion/react-routing-and-data-fetching-ec519428135c
 https://github.com/4Catalyzer/found
 
-https://github.com/grahammendick/router-challenge
-
-https://www.reddit.com/r/reactjs/comments/8lgmmo/router5_or_reactrouter_4/
-
-https://stackoverflow.com/questions/40764596/using-react-router-with-cdn-and-without-webpack-or-browserify
-
-https://tylermcginnis.com/react-router-pass-props-to-components/
+https://github.com/grahammendick/router-challenge -->
