@@ -212,14 +212,14 @@
    import ProjectList from './ProjectList';
    + import { Project } from './Project';
 
-   interface ProjectsPageState {
-     projects: Project[];
-   }
+   + interface ProjectsPageState {
+   +  projects: Project[];
+   + }
 
    class ProjectsPage extends React.Component<any, ProjectsPageState> {
-     state = {
-       projects: MOCK_PROJECTS
-     };
+   +  state = {
+   +    projects: MOCK_PROJECTS
+   +  };
      saveProject = (project: Project) => {
    -    console.log('Saving project: ', project);
    +    this.setState((previousState: ProjectsPageState) => {
