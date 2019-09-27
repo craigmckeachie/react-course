@@ -171,7 +171,7 @@ export default connect(mapState, actions)(MyComponent);
 - Connect components when
   - they need to access store state or dispatch actions
   - where passing props down multiple levels would be a pain
-- Only declare your map\* functions with two arguments if you really props
+- Only declare your map\* functions with two arguments if you really need props
 - Both map\* functions are optional
   - if you only need data, use connect(mapState)(MyComponent).
   - if you only need to dispatch, use connect(null, mapDispatch)(MyComponent)
@@ -267,7 +267,7 @@ How does the wrapped component get access to the store?
 
 In this demos we are going to:
 
-1. Use the redux demo code from the previous section
+1. Use the redux demo code from the previous concept chapter on Redux shown below:
    - commenting out the last lines that manually dispatch actions (because there is no UI yet)
 
 ```js
@@ -298,16 +298,15 @@ function reducer(state = 0, action) {
 //store
 var store = Redux.createStore(reducer);
 
-// function logState() {
-//   console.log(store.getState().toString());
-// }
-
 // store.subscribe(logState);
 
 // store.dispatch({ type: '' });
-// store.dispatch({ type: INCREMENT });
-// store.dispatch({ type: INCREMENT });
-// store.dispatch({ type: DECREMENT });
+// store.dispatch(increment());
+// store.dispatch(increment());
+// store.dispatch(decrement());
+// store.dispatch(decrement());
+// store.dispatch(decrement());
+// store.dispatch(decrement());
 ```
 
 2. Add a UI by creating components including manually creating the container component.

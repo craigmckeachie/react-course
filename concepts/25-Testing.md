@@ -160,7 +160,19 @@ Add the following to the `scripts` section in your project's `package.json`
   }
 ```
 
-Place `debugger;` statements in any test and run:
+Place `debugger;` statements in your test.
+
+#### math.test.js
+
+```
+test('add numbers', () => {
+  debugger;
+  expect(add(1, 1)).toEqual(2);
+  expect(add(2, 2)).toEqual(4);
+});
+```
+
+Run:
 
 ```sh
 $ npm run test:debug
@@ -174,7 +186,15 @@ Open the following in Chrome
 about:inspect
 ```
 
-After opening that link, the Chrome Developer Tools will be displayed. Select `inspect` on your process and a breakpoint will be set at the first line of the react script (this is done simply to give you time to open the developer tools and to prevent Jest from executing before you have time to do so). Click the button that looks like a "play" button in the upper right hand side of the screen to continue execution. When Jest executes the test that contains the debugger statement, execution will pause and you can examine the current scope and call stack.
+Choose a the inspect link next to the process you want to debug.
+
+After opening that link, the Chrome Developer Tools will be displayed.
+
+- Select `inspect` on your process and a breakpoint will be set at the first line of the react script (this is done simply to give you time to open the developer tools and to prevent Jest from executing before you have time to do so).
+
+  > Be patient waiting for the breakpoint to be hit it takes awhile.
+
+- Click the button that looks like a "play" button in the upper right hand side of the screen to continue execution. When Jest executes the test that contains the debugger statement, execution will pause and you can examine the current scope and call stack.
 
 > Note: the --runInBand cli option makes sure Jest runs test in the same process rather than spawning processes for individual tests. Normally Jest parallelizes test runs across processes but it is hard to debug many processes at the same time.
 
@@ -205,10 +225,9 @@ Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debu
 }
 ```
 
-### Focusing and Excluding Tests
+### Excluding Tests
 
-You can replace `it()` with `xit()` to temporarily exclude a test from being executed.
-Similarly, `fit()` lets you focus on a specific test without running any other tests.
+You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily exclude a test from being executed.
 
 [Reference](https://facebook.github.io/create-react-app/docs/debugging-tests)
 
@@ -241,6 +260,12 @@ This requires the [`shallow()` rendering API](https://airbnb.io/enzyme/docs/api/
    ```sh
    yarn add enzyme enzyme-adapter-react-16 react-test-renderer
    ```
+
+2. Also install the types:
+
+```sh
+npm install @types/enzyme @types/react-test-renderer --save-dev
+```
 
 As of Enzyme 3, you will need to install Enzyme along with an Adapter corresponding to the version of React you are using. (The examples above use the adapter for React 16.)
 
@@ -284,7 +309,6 @@ It works more directly with DOM nodes, and therefore it's recommended to use wit
 1. To install `react-testing-library` and `jest-dom`, you can run:
 
 ```sh
-
 npm install --save @testing-library/react @testing-library/jest-dom
 ```
 
@@ -298,8 +322,7 @@ yarn add @testing-library/react @testing-library/jest-dom
 
 ```js
 // react-testing-library renders your components to document.body,
-// this will ensure they're removed after each test.
-import '@testing-library/react/cleanup-after-each';
+
 // this adds jest-dom's custom assertions
 import '@testing-library/jest-dom/extend-expect';
 ```
@@ -314,7 +337,7 @@ import { render } from '@testing-library/react';
 
 it('renders welcome message', () => {
   const { getByText } = render(<App />);
-  expect(getByText('Learn React')).toBeInTheDocument();
+  expect(getByText('Learn React').textContent).toEqual('Learn React');
 });
 ```
 
@@ -363,10 +386,10 @@ test('has a valid snapshot', () => {
 
 https://jestjs.io/docs/en/mock-functions
 
-## Async Tests
+<!-- ## Async Tests
 
 https://jestjs.io/docs/en/asynchronous
-https://jestjs.io/docs/en/tutorial-async
+https://jestjs.io/docs/en/tutorial-async -->
 
 ## Reference
 
@@ -379,4 +402,6 @@ https://jestjs.io/docs/en/tutorial-async
 - [Jest Matchers](https://jestjs.io/docs/en/expect.html)
 - [Testing React Apps (with Jest)](https://jestjs.io/docs/en/tutorial-react)
 - [React Documentation: Test Utilities](https://reactjs.org/docs/test-utils.html)
-
+- [Jest Mocking & Spies](https://jestjs.io/docs/en/mock-functions)
+- [Handling Async in Jest](https://jestjs.io/docs/en/asynchronous
+  https://jestjs.io/docs/en/tutorial-async )
