@@ -486,3 +486,7 @@ test();
 ### Testing
 
 - [Redux: Writing Tests](https://redux.js.org/recipes/writing-tests#async-action-creators)
+
+### Diagram
+
+![redux diagram](https://user-images.githubusercontent.com/1474579/65788910-cb26d180-e121-11e9-9444-cda5cc568844.png)
