@@ -6,7 +6,7 @@ https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets
 
 ```
 npm i enzyme enzyme-adapter-react-16 react-test-renderer
-npm i @types/enzyme -D
+npm i @types/enzyme @types/react-test-renderer --save-dev
 npm install @types/react-test-renderer -D
 ```
 

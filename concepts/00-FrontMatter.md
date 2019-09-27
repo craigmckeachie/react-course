@@ -55,7 +55,7 @@ information storage and retrieval systems, without permission from the author.
 
   - [Redux (Store, State, Reducers, Actions, Action Creators)](21-Redux.md)
   - [Using Redux with React (React Redux Library)](22-ReactRedux.md)
-  - [Asynchronous Actions (Redux Thunk)](23-ReduxThunk)
+  - [Asynchronous Actions (Redux Thunk)](23-ReduxThunk.md)
   - [Putting It All Together (React & Redux & Thunk)](24-ReactReduxThunk.md)
   - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable)
 
