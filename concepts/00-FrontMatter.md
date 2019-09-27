@@ -60,8 +60,9 @@ information storage and retrieval systems, without permission from the author.
   - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable)
 
 * [Testing](25-Testing.md)
+* [Resources](A20-Resources.md)
 
-* Advanced Topics (optional/ FAQ)
+- Advanced Topics (optional/ FAQ)
 
   - [Styling](A9-Styling.md)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
