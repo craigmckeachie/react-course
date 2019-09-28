@@ -20,13 +20,13 @@
    #### npx
 
    ```bash
-   npx create-react-app keeptrack --typescript --use-npm
+   npx create-react-app keeptrack --use-npm
    ```
 
    #### npm
 
    ```bash
-   npm init react-app keeptrack --typescript --use-npm
+   npm init react-app keeptrack --use-npm
    ```
 
    > `npm init <initializer>` is available in npm 6+
@@ -34,7 +34,7 @@
    #### Yarn
 
    ```bash
-   yarn create react-app keeptrack --typescript
+   yarn create react-app keeptrack
    ```
 
    > `yarn create` is available in Yarn 0.25+
@@ -61,7 +61,7 @@
 
     - `package.json`
     - `public/index.html` is the page template
-    - `src/index.tsx` is the JavaScript entry point
+    - `src/index.jsx` is the JavaScript entry point
 
     <br/>
 
@@ -69,7 +69,7 @@
 
     > You can delete or rename the other files.
 
-    > You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack. You need to **put any TS and CSS files inside `src`**, otherwise Webpack won’t see them.
+    > You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack. You need to **put any JS and CSS files inside `src`**, otherwise Webpack won’t see them.
 
     > Only files inside `public` can be used from `public/index.html`.
 
