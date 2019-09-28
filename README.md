@@ -1,11 +1,9 @@
-
 - [Setup](Setup.md)
 - [Concepts](concepts/00-FrontMatter.md)
-- [Labs](./labs/00-FrontMatter.md)
+- [JavaScript (ECMAScript) Labs](./labs/js/00-FrontMatter.md)
+- [TypeScript Labs](./labs/ts/00-FrontMatter.md)
 
 <kbd>![Accelebrate Cover](https://user-images.githubusercontent.com/1474579/65268354-f9366100-dae4-11e9-80c6-69a89d818700.png)</kbd>
-
-
 
 [https://www.accelebrate.com](https://www.accelebrate.com)
 

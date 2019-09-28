@@ -1,4 +1,4 @@
-# Labs: React
+# Labs: React (JavaScript/ECMAScript)
 
 ![React Logo](https://user-images.githubusercontent.com/1474579/64926660-1362fd00-d7ce-11e9-9772-46e38f600614.png)
 <br />
@@ -18,7 +18,6 @@ information storage and retrieval systems, without permission from the author.
 
 ## Table of Contents
 
-- [Snippets](<[./snippets/](https://github.com/craigmckeachie/r16_manual/tree/master/labs/snippets)>)
 - [Lab 1: Creating a New Project](01-CreatingNewProject.md)
 - [Lab 2: Running Your Project](02-RunningYourProject.md)
 - [Lab 3: Styles Using CSS](03-StylesUsingCSS.md)

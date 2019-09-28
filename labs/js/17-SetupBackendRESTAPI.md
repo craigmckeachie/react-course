@@ -39,7 +39,7 @@
     },
    }
    ```
-2. Copy the directory `labs\snippets\lab17\api` into the `labs\working\keeptrack` directory.
+2. Copy the directory [labs\snippets\lab17\api](.\snippets\api/) into the `labs\working\keeptrack` directory.
 
 ### Start the REST API server
 
