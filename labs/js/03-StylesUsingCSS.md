@@ -37,21 +37,12 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@types/jest": "24.0.18",
-        "@types/node": "12.7.5",
-        "@types/react": "16.9.2",
-        "@types/react-dom": "16.9.0",
-    +    "mini.css": "~3.0.1",
+        ...
+    +   "mini.css": "~3.0.1",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
-        "react-scripts": "3.1.1",
-        "typescript": "3.6.3"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "react-scripts": "3.1.1"
+        ...
     },
     ...
     }
@@ -60,7 +51,7 @@
 ### Apply CSS
 
 1. **Open** and **delete** the contents of `app.css`
-2. Open the file `app.tsx`.
+2. Open the file `app.jsx`.
 3. Delete the `JSX` returned and replace with the `HTML` below.
    ```html
    <blockquote cite="Benjamin Franklin">
