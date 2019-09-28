@@ -20,18 +20,25 @@
        ```
      - **Verify** the **version** of each program is **returned**.
 
-3. **Permissions** to **install** `npm` **packages** is required for attendees. This can be confirmed by following these steps.
+3. **Install** **Create React App** and **verify** a project can be created.
 
-   - **Open** a `command prompt` (Windows) or `terminal` (Mac).
-   - **Run** the following **command**:
-     ```shell
-     npm install serve -g
-     ```
-   - **Verify** the package installed by running the following **command**:
-     ```shell
-     serve -v
-     ```
-   - The current version of `serve` should be returned `11.x.x`
+   1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
+
+   2. **Run** the following **command**:
+
+   ```shell
+   npx create-react-app my-app --use-npm
+   cd my-app
+   npm start
+   ```
+
+   > If you've previously installed `create-react-app` globally via `npm install -g create-react-app`, it is recommended that you uninstall the package using `npm uninstall -g create-react-app` to ensure that `npx` always uses the latest version.
+
+   3. After the application builds, your default browser should open to [http://localhost:3000/](http://localhost:3000/).
+
+      > If [http://localhost:3000/](http://localhost:3000/) does not open automatically, open your browser and navigate there manually.
+
+   4. **Verify** the **React logo** is displayed in the browser.
 
 4. An **IDE** (Integrated Development Environment) _or_ code **editor** of your choice.
 
