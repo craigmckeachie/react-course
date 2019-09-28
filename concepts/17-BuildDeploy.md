@@ -12,19 +12,17 @@ When running a production build of freshly created Create React App application,
 
 `[number].[hash].chunk.js`
 
-- These files can either be _vendor_ code, or [code splitting chunks](code-splitting.md). _Vendor_ code includes modules that you've imported from within `node_modules`. One of the potential advantages with splitting your _vendor_ and _application_ code is to enable [long term caching techniques](#static-file-caching) to improve application loading performance. Since _vendor_ code tends to change less often than the actual _application_ code, the browser will be able to cache them separately, and won't re-download them each time the app code changes.
+- These files can either be _vendor_ code, or **code splitting chunks**. _Vendor_ code includes modules that you've imported from within `node_modules`. One of the potential advantages with splitting your _vendor_ and _application_ code is to enable [long term caching techniques](#static-file-caching) to improve application loading performance. Since _vendor_ code tends to change less often than the actual _application_ code, the browser will be able to cache them separately, and won't re-download them each time the app code changes.
 
 `runtime-main.[hash].js`
 
-- This is a small chunk of [webpack runtime](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) logic which is used to load and run your application. The contents of this will be embedded in your `build/index.html` file by default to save an additional network request. You can opt out of this by specifying `INLINE_RUNTIME_CHUNK=false` as documented in our [advanced configuration](advanced-configuration.md), which will load this chunk instead of embedding it in your `index.html`.
+- This is a small chunk of [webpack runtime](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) logic which is used to load and run your application. The contents of this will be embedded in your `build/index.html` file by default to save an additional network request. You can opt out of this by specifying `INLINE_RUNTIME_CHUNK=false`, which will load this chunk instead of embedding it in your `index.html`.
 
-If you're using [code splitting](code-splitting.md) to split up your application, this will create additional chunks in the `build/static` folder as well.
-
-
+If you're using **code splitting** to split up your application, this will create additional chunks in the `build/static` folder as well.
 
 ## Deploy
 
-`npm run build` creates a `build` directory with a production build of your app. Set up your favorite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file. For more information see the [production build](production-build.md) section.
+`npm run build` creates a `build` directory with a production build of your app. Set up your favorite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file. For more information see the [production build](<[production-build.md](https://facebook.github.io/create-react-app/docs/production-build)>) section of the Create React App documentation.
 
 ## Static Server
 
@@ -103,21 +101,6 @@ If you’re using [Apache Tomcat](https://tomcat.apache.org/), you need to follo
 
 Now requests to `/todos/42` will be handled correctly both in development and in production.
 
-On a production build, and when you've [opted-in](making-a-progressive-web-app.md#why-opt-in),
-a [service worker](https://developers.google.com/web/fundamentals/primers/service-workers/) will automatically handle all navigation requests, like for
-`/todos/42`, by serving the cached copy of your `index.html`. This
-service worker navigation routing can be configured or disabled by
-[`eject`ing](available-scripts.md#npm-run-eject) and then modifying the
-[`navigateFallback`](https://github.com/GoogleChrome/sw-precache#navigatefallback-string)
-and [`navigateFallbackWhitelist`](https://github.com/GoogleChrome/sw-precache#navigatefallbackwhitelist-arrayregexp)
-options of the `SWPrecachePlugin` [configuration](../config/webpack.config.prod.js).
-
-When users install your app to the homescreen of their device the default configuration will make a shortcut to `/index.html`. This may not work for client-side routers which expect the app to be served from `/`. Edit the web app manifest at [`public/manifest.json`](public/manifest.json) and change `start_url` to match the required URL scheme, for example:
-
-```js
-  "start_url": ".",
-```
-
 ## Building for Relative Paths
 
 By default, Create React App produces a build assuming your app is hosted at the server root.<br>
@@ -180,7 +163,6 @@ You can specify other environments in the same way.
 
 Variables in `.env.production` will be used as fallback because `NODE_ENV` will always be set to `production` for a build.
 
-
 ## Static File Caching
 
 Each file inside of the `build/static` directory will have a unique hash appended to the filename that is generated based on the contents of the file, which allows you to use [aggressive caching techniques](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#invalidating_and_updating_cached_responses) to avoid the browser re-downloading your assets if the file contents haven't changed. If the contents of a file changes in a subsequent build, the filename hash that is generated will be different.
@@ -189,8 +171,7 @@ To deliver the best performance to your users, it's best practice to specify a `
 
 Using `Cache-Control: max-age=31536000` for your `build/static` assets, and `Cache-Control: no-cache` for everything else is a safe and effective starting point that ensures your user's browser will always check for an updated `index.html` file, and will cache all of the `build/static` files for one year. Note that you can use the one year expiration on `build/static` safely because the file contents hash is embedded into the filename.
 
-
-
 ## Resources
+
 - [Create React App Production Builds](https://facebook.github.io/create-react-app/docs/production-build)
 - [Create React App Deployment](https://facebook.github.io/create-react-app/docs/deployment)
