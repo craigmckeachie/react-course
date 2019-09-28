@@ -48,6 +48,6 @@ information storage and retrieval systems, without permission from the author.
 
 ## Solutions
 
-[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/r16_keeptrack)
+[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r16-js)
 
 > There is a separate branch with the finished code after each lab.
