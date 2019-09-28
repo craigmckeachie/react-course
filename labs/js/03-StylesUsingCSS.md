@@ -42,7 +42,6 @@
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
         "react-scripts": "3.1.1"
-        ...
     },
     ...
     }
@@ -50,23 +49,31 @@
 
 ### Apply CSS
 
-1. **Open** and **delete** the contents of `app.css`
-2. Open the file `app.jsx`.
+1. **Open** and **delete** the contents of `App.css`
+2. Open the file `App.js`.
 3. Delete the `JSX` returned and replace with the `HTML` below.
+   #### `src\App.js`
    ```html
    <blockquote cite="Benjamin Franklin">
      Tell me and I forget, teach me and I may remember, involve me and I learn.
    </blockquote>
    ```
-4. Open the file `src\index.css`
-5. Delete the current contents of the file.
-6. Import the stylesheet you installed.
+4. Since the logo is no longer used you can delete the import.
+   #### `src\App.js`
+   ```diff
+   import React from 'react';
+   - import logo from './logo.svg';
+   import './App.css';
+   ```
+5. Open the file `src\index.css`
+6. Delete the current contents of the file.
+7. Import the stylesheet you installed.
    #### `src\index.css`
    ```css
    @import '../node_modules/mini.css/dist/mini-default.min.css';
    ```
    > Alternatively, you could choose a dark theme: `mini-dark.min.css` or a nordic theme: `mini-dark.min.css`
-7. Verify you see the following output in the browser
+8. Verify you see the following output in the browser
 
    ![image](https://user-images.githubusercontent.com/1474579/64926635-c2eb9f80-d7cd-11e9-8ff7-84660d706ff9.png)
 
