@@ -22,9 +22,11 @@
 
 3. **Install** **Create React App** and **verify** a project can be created.
 
-   1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
+   1. Create a `working` directory for the course somewhere on your computer that you will remember.
+   2. **Open** a `command prompt` (Windows) or `terminal` (Mac).
+   3. **Change directory** (`cd`) into the `working` directory you created.
 
-   2. **Run** the following **command**:
+   4. **Run** the following **commands**:
 
    ```shell
    npx create-react-app my-app --use-npm
