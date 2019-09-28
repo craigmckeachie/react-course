@@ -61,7 +61,7 @@
 
     - `package.json`
     - `public/index.html` is the page template
-    - `src/index.jsx` is the JavaScript entry point
+    - `src/index.js` is the JavaScript entry point
 
     <br/>
 

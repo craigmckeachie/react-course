@@ -1,9 +1,10 @@
+git checkout -b lab01
+git add -A
+git commit -m 'lab01'
+git push --set-upstream origin lab01
+
 //TODO: Do I need to install TS Lint to get linting working?
 https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76
-
-
-
-
 
 export function deleteProject(
 project: Project
@@ -21,9 +22,6 @@ dispatch({ type: DELETE_PROJECT_FAILURE, payload: error });
 });
 };
 
-removeProject(project){
-   -
-   -
-   -
-       this.props.onRemove(project)
-   }
+removeProject(project){ - - -
+this.props.onRemove(project)
+}
