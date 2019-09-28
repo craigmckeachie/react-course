@@ -61,7 +61,7 @@ Before making HTTP calls we need to [setup a backend following these directions]
 3. Try the following code in `main.jsx`:
 
    ```js
-   const okUrl = 'https://localhost:3000/photos?_page=1&_limit=100';
+   const okUrl = 'http://localhost:3000/photos?_page=1&_limit=100';
    const notFoundErrorUrl = 'https://httpstat.us/404';
    const forbiddenErrorUrl = 'https://httpstat.us/403';
    const serverErrorUrl = 'https://httpstat.us/500';
@@ -287,7 +287,7 @@ If the data is returned successfully, we can use what we learned in the list sec
 1.  Try the following code in `main.jsx`
 
     ```js
-    const okUrl = 'https://localhost:3000/photos?_page=1&_limit=100';
+    const okUrl = 'http://localhost:3000/photos?_page=1&_limit=100';
     const notFoundErrorUrl = 'https://httpstat.us/404';
     const forbiddenErrorUrl = 'https://httpstat.us/403';
     const serverErrorUrl = 'https://httpstat.us/500';
