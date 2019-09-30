@@ -9,10 +9,9 @@
 
 ### Add state to a component
 
-1. Create a `ProjectListState` interface to strongly type the state.
-2. Add it to the class declaration and add a `state` property `editingProject` to hold the project currently being edited.
+1. Add a `state` property `editingProject` to hold the project currently being edited.
 
-   #### src\projects\ProjectList.tsx
+   #### src\projects\ProjectList.js
 
    ```diff
    import React from 'react';
@@ -20,27 +19,17 @@
    import ProjectCard from './ProjectCard';
    import ProjectForm from './ProjectForm';
 
-   interface ProjectListProps {
-     projects: Project[];
-   }
-
-   + interface ProjectListState {
-   +   editingProject: Project | {};
-   + }
-
-   class ProjectList extends React.Component<
-     ProjectListProps,
-   +  ProjectListState
-   > {
+    class ProjectList extends React.Component{
    +  state = {
    +    editingProject: {}
    +  };
-   }
+      ...
+    }
    ```
 
-3. Update `handleEdit` to set the `editingProject` property in `state`.
+1. Update `handleEdit` to set the `editingProject` property in `state`.
 
-   #### src\projects\ProjectList.tsx
+   #### src\projects\ProjectList.js
 
    ```diff
    class ProjectList extends React.Component<ProjectListProps,ProjectListState> {
@@ -60,73 +49,66 @@
 
    > Hint: create a variable to store the item (Card or Form) to make this more readable.
 
-   ```tsx
-   let item: JSX.Element;
+   ```js
+   let item;
    ```
 
-   > Refer to your manual **Chapter 12: Hiding and Showing Components** or the solution to the lab to get the correct syntax ([it's tricky](https://youtu.be/l-O5IHVhWj0?t=79)).
+   > Refer to your manual **Chapter 12: Hiding and Showing Components** or the solution to the lab to get the correct syntax.
 
-   #### src\projects\ProjectList.tsx
+   #### src\projects\ProjectList.js
 
-   ```tsx
+   ```diff
    import React from 'react';
+   import PropTypes from 'prop-types';
    import { Project } from './Project';
    import ProjectCard from './ProjectCard';
    import ProjectForm from './ProjectForm';
 
-   interface ProjectListProps {
-     projects: Project[];
-   }
-
-   interface ProjectListState {
-     editingProject: Project | {};
-   }
-
-   class ProjectList extends React.Component<
-     ProjectListProps,
-     ProjectListState
-   > {
+   class ProjectList extends React.Component {
      state = {
        editingProject: {}
      };
-     handleEdit = (editingProject: Project) => {
-       this.setState({ editingProject: editingProject });
+     handleEdit = project => {
+       this.setState({ editingProject: project });
      };
-
      render() {
        const { projects } = this.props;
 
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
-         if (project !== this.state.editingProject) {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectCard
-                 project={project}
-                 onEdit={() => {
-                   this.handleEdit(project);
-                 }}
-               ></ProjectCard>
-             </div>
-           );
-         } else {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectForm></ProjectForm>
-             </div>
-           );
-         }
-         return item;
-       });
+   +    let item;
+   +    const items = projects.map(project => {
+   +      if (project !== this.state.editingProject) {
+   +        item = (
+   +          <div key={project.id} className="cols-sm">
+   +            <ProjectCard
+   +              project={project}
+   +              onEdit={() => {
+   +                this.handleEdit(project);
+   +              }}
+   +            ></ProjectCard>
+   +          </div>
+   +        );
+   +      } else {
+   +        item = (
+   +          <div key={project.id} className="cols-sm">
+   +            <ProjectForm></ProjectForm>
+   +          </div>
+   +        );
+   +      }
+   +      return item;
+   +    });
 
        return <div className="row">{items}</div>;
      }
    }
 
+   ProjectList.propTypes = {
+     projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
+   };
+
    export default ProjectList;
    ```
 
-2) **Verify** the application is **working** by _following these steps_:
+2. **Verify** the application is **working** by _following these steps_:
 
    1. **Open** the application in your browser and refresh the page.
    2. **Click** the **edit** button for a project.
@@ -148,29 +130,12 @@
 > If you are curious, below is an alternate syntax for the hide and show a component part of the lab.
 > Please **DO NOT UPDATE the code** as shown below -- it is simply here to illustrate the alternative syntax.
 
-#### src\projects\ProjectList.tsx
+#### src\projects\ProjectList.js
 
-```ts
-import React from 'react';
-import { Project } from './Project';
-import ProjectCard from './ProjectCard';
-import ProjectForm from './ProjectForm';
+```js
 
-interface ProjectListProps {
-  projects: Project[];
-}
-
-interface ProjectListState {
-  editingProject: Project | {};
-}
-
-class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
-  state = {
-    editingProject: {}
-  };
-  handleEdit = (editingProject: Project) => {
-    this.setState({ editingProject: editingProject });
-  };
+class ProjectList extends React.Component{
+...
   render() {
     const { projects } = this.props;
     const items = projects.map(project => (

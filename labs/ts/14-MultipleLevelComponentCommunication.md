@@ -51,9 +51,7 @@
    ```diff
    <form
    className="input-group vertical"
-   +  onSubmit={event => {
-   +    this.handleSubmit(event);
-   +  }}
+   +  onSubmit={this.handleSubmit}
    >
    ```
 

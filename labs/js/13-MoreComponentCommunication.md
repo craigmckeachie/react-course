@@ -9,22 +9,17 @@
 
 ### In a child component, accept a function as a prop and invoke it
 
-1. **Open** the **file** `src\projects\ProjectForm.tsx`.
-2. **If** using **TypeScript**, on the `ProjectFormProps` interface, **add** an `onCancel` **event handler** that takes no parameters and returns `void`.
+1. **Open** the **file** `src\projects\ProjectForm.js`.
+2. **Add** an `onCancel` **event handler** to the Prop Types of the component.
 3. Update the `cancel` button and add a click event to invoke the function passed into the `onCancel` `prop`.
 
-   #### src\projects\ProjectForm.tsx
+   #### src\projects\ProjectForm.js
 
    ```diff
    import React from 'react';
+   + import PropTypes from 'prop-types';
 
-   + interface ProjectFormProps {
-   +  onCancel: () => void;
-   + }
-
-   class ProjectForm extends  React.Component<
-   +ProjectFormProps
-   > {
+   class ProjectForm extends React.Component {
      render() {
    +   const { onCancel } = this.props;
        return (
@@ -32,19 +27,17 @@
            <label htmlFor="name">Project Name</label>
            <input type="text" name="name" placeholder="enter name" />
            <label htmlFor="description">Project Description</label>
-
-           <textarea name="description" placeholder="enter description"></textarea>
+           <textarea name="description" placeholder="enter description" />
            <label htmlFor="budget">Project Budget</label>
-
            <input type="number" name="budget" placeholder="enter budget" />
            <label htmlFor="isActive">Active?</label>
            <input type="checkbox" name="isActive" />
-
            <div className="input-group">
              <button className="primary bordered medium">Save</button>
-             <span></span>
+             <span />
              <button type="button" className="bordered medium"
-   +          onClick={onCancel}>
+   +          onClick={onCancel}
+             >
                cancel
              </button>
            </div>
@@ -52,35 +45,36 @@
        );
      }
    }
-   export default ProjectForm;
+
+   + ProjectForm.propTypes = {
+   +  onCancel: PropTypes.func.isRequired
+   + };
    ```
 
 ### In a parent component, implement a function and pass it as a prop to a child component
 
-1. In `src\projects\ProjectList.tsx` **add** a `cancelEditing`**event handler** to`ProjectList`that sets the state of the component so that `editingProject` is an empty object `{}`.
+1. In `src\projects\ProjectList.js` **add** a `cancelEditing`**event handler** to`ProjectList`that sets the state of the component so that `editingProject` is an empty object `{}`.
 2. **Wire** up the **onCancel** **event** of the `<ProjectForm />` component rendered in the `ProjectList` to the `cancelEditing` event handler.
 
-   #### src\projects\ProjectList.tsx
+   #### src\projects\ProjectList.js
 
    ```diff
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
+   ...
+   class ProjectList extends React.Component {
      state = {
        editingProject: {}
      };
-
-     handleEdit = (editingProject: Project) => {
-       this.setState({ editingProject: editingProject });
+     handleEdit = project => {
+       this.setState({ editingProject: project });
      };
-
    +  cancelEditing = () => {
    +    this.setState({ editingProject: {} });
    +  };
-
      render() {
        const { projects } = this.props;
 
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
+       let item;
+       const items = projects.map(project => {
          if (project !== this.state.editingProject) {
            item = (
              <div key={project.id} className="cols-sm">
@@ -95,9 +89,9 @@
          } else {
            item = (
              <div key={project.id} className="cols-sm">
-             <ProjectForm
-   +           onCancel={this.cancelEditing}>
-             </ProjectForm>
+               <ProjectForm
+   +             onCancel={this.cancelEditing}
+               />
              </div>
            );
          }
@@ -107,8 +101,7 @@
        return <div className="row">{items}</div>;
      }
    }
-
-   export default ProjectList;
+   ...
    ```
 
 3) **Verify** the application is **working** by _following these steps_:
