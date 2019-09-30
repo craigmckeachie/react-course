@@ -60,9 +60,7 @@
           <div key={project.id} className="cols-sm">
             <ProjectCard
               project={project}
-   +          onEdit={(project: Project) => {
-   +             this.handleEdit(project);
-   +           }}
+   +          onEdit={this.handleEdit}
             ></ProjectCard>
             <ProjectForm></ProjectForm>
           </div>
