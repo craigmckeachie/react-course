@@ -10,7 +10,7 @@
 ### Build a React Application
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
-1. Change the **current directory** to `labs\working\keeptrack`.
+1. Change the **current directory** to `working\keeptrack`.
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell

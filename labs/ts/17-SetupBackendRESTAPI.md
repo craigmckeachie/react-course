@@ -11,7 +11,7 @@
 ### Install the backend REST API server
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
-1. Change the **current directory** to `labs\working\keeptrack`.
+1. Change the **current directory** to `working\keeptrack`.
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell
@@ -39,11 +39,11 @@
     },
    }
    ```
-2. Copy the directory [labs\snippets\lab17\api](.\snippets\api/) into the `labs\working\keeptrack` directory.
+2. Copy the directory `labs\ts\snippets\lab17\api` into the `working\keeptrack` directory.
 
 ### Start the REST API server
 
-1. **In** a `command prompt` (Windows) or `terminal` (Mac) with the current **directory** set to `labs\working\keeptrack`.
+1. **In** a `command prompt` (Windows) or `terminal` (Mac) with the current **directory** set to `working\keeptrack`.
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell

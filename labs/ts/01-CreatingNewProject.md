@@ -12,9 +12,9 @@
 
 ### Create a new React project
 
-1. **Create** a `working` directory in `labs`.
+1. As part of the course setup, you created a `working` directory for the course (somewhere on your computer that you would easily remember).
 2. **Open** a `command prompt` (Windows) or `terminal` (Mac).
-3. Change the **current directory** to `labs\working`.
+3. Change the **current directory** to your `working` directory.
 4. **Run** one of the following commands:
 
    #### npx

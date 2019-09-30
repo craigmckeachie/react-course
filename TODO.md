@@ -1,7 +1,7 @@
-git checkout -b lab15
+git checkout -b lab18
 git add -A
-git commit -m 'lab15'
-git push --set-upstream origin lab15
+git commit -m 'lab18'
+git push --set-upstream origin lab18
 
 ---
 
