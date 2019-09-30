@@ -10,12 +10,13 @@
 ### Add data
 
 1. Open File Explorer (Windows) or Finder (Mac).
-1. **Copy** the `lab\snippets\lab05\assets` directory into the `keeptrack\public` directory.
-1. **Copy** the files `lab\snippets\lab05\MockProjects.ts` and `lab\snippets\lab05\Project.ts` into the `keeptrack\src\projects` directory.
+1. **Copy** the `labs\js\snippets\lab05\assets` directory into the `keeptrack\public` directory.
+   > When you are finished copying you should have a `keeptrack\public\assets` directory with images in it.
+1. **Copy** the files `labs\js\snippets\lab05\MockProjects.js` and `labs\js\snippets\lab05\Project.js` into the `keeptrack\src\projects` directory.
 
 ### Display the data
 
-1. Open the file `src\projects\ProjectsPage.tsx`.
+1. Open the file `src\projects\ProjectsPage.js`.
 2. Use `JSON.stringify()` to output the `MOCK_PROJECTS` array from `MockProjects.ts` in the `render` method of the component.
    > **TIPS:**
    >
@@ -28,18 +29,20 @@
     ![image](https://user-images.githubusercontent.com/1474579/64889510-85efa380-d63b-11e9-8dc5-86f6dce8cec2.png)
 
     ### Solution
-    #### `src\projects\ProjectsPage.tsx`
+    #### `src\projects\ProjectsPage.js`
 
-    ```tsx
-    import React, { Fragment } from 'react';
-    import { MOCK_PROJECTS } from './MockProjects';
+    ```diff
+    import React 
+    +         ,{ Fragment } 
+        from 'react';
+    + import { MOCK_PROJECTS } from './MockProjects';
 
     class ProjectsPage extends React.Component {
         render() {
             return (
             <Fragment>
                 <h1>Projects</h1>
-                <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
+    +            <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
             </Fragment>
             );
         }

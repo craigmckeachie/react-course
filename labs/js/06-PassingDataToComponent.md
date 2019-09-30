@@ -9,38 +9,64 @@
 
 ### Create a reusable list component
 
-1. **Create** the **file** `src\projects\ProjectList.tsx`
+1. **Create** the **file** `src\projects\ProjectList.js`
 2. **Implement** a `ProjectList` **class component** that meets the following specifications:
 
    1. Takes a `projects` array as a `prop`.
-      > You will need to create an interface to define the properties that come into the component.
-   2. **Displays** the `projects` array as a `JSON string`.
 
-   #### `src\projects\ProjectList.tsx`
+2)  **Displays** the `projects` array as a `JSON string`.
 
-   ```tsx
-   import React from 'react';
-   import { Project } from './Project';
+#### `src\projects\ProjectList.js`
 
-   interface ProjectListProps {
-     projects: Project[];
-   }
+```js
+import React from 'react';
+import { Project } from './Project';
 
-   class ProjectList extends React.Component<ProjectListProps> {
-     render() {
-       const { projects } = this.props;
-       return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-     }
-   }
+class ProjectList extends React.Component {
+  render() {
+    const { projects } = this.props;
+    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+  }
+}
 
-   export default ProjectList;
-   ```
+export default ProjectList;
+```
+
+3.  Define the property (prop) and its type using the `prop-types` library by doing the steps below.
+
+    1.  In the `keep-track` directory, **install** the `prop-types` library.
+        ```npm
+        npm install prop-types
+        ```
+    1.  Add the following prop type definition.
+
+    #### `src\projects\ProjectList.js`
+
+    ```diff
+    import React from 'react';
+    + import PropTypes from 'prop-types';
+    + import { Project } from './Project';
+
+    class ProjectList extends React.Component {
+      render() {
+        const { projects } = this.props;
+        return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+      }
+    }
+
+    + ProjectList.propTypes = {
+    +  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
+    + };
+
+    export default ProjectList;
+
+    ```
 
 ### Pass data into a component property
 
-1. **Modify** `src\projects\ProjectsPage.tsx` to **render** the `ProjectList` component and **pass** it the `MOCK_PROJECTS` array instead of directly displaying the data.
+1. **Modify** `src\projects\ProjectsPage.js` to **render** the `ProjectList` component and **pass** it the `MOCK_PROJECTS` array instead of directly displaying the data.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    import React from 'react';
@@ -52,6 +78,7 @@
        return (
          <React.Fragment>
            <h1>Projects</h1>
+   -        <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
    +        <ProjectList projects={MOCK_PROJECTS}></ProjectList>
          </React.Fragment>
        );

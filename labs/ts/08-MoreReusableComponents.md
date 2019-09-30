@@ -11,24 +11,21 @@
 
 ### Create another reusable component
 
-1. Create the file `src\projects\ProjectCard.tsx`.
+1. Create the file `src\projects\ProjectCard.js`.
 1. Implement a `ProjectCard` as a **function** (not class) component that meets the following specifications:
 
    1. Takes a `project` object as a `prop`.
-      > Note: If using TypeScript you will need to create an interface to define the properties that come into the component.
+      > Define the type of the object using the `prop-types` library.
    1. Cut the `<div className="card">...</div>` from the `ProjectList` component and use it as the JSX for the `ProjectCard` component.
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
-   ```tsx
+   ```js
    import { Project } from './Project';
    import React from 'react';
+   import PropTypes from 'prop-types';
 
-   interface ProjectCardProps {
-     project: Project;
-   }
-
-   function ProjectCard(props: ProjectCardProps) {
+   function ProjectCard(props) {
      const { project } = props;
      return (
        <div className="card">
@@ -44,15 +41,19 @@
      );
    }
 
+   ProjectCard.propTypes = {
+     project: PropTypes.instanceOf(Project).isRequired
+   };
+
    export default ProjectCard;
    ```
 
 ### Render the reusable component
 
-1. Open the file `src\projects\ProjectList.tsx`.
+1. Open the file `src\projects\ProjectList.js`.
 1. Render the `ProjectCard` component passing it the `project` as a `prop`.
 
-   #### `src\projects\ProjectList.tsx`
+   #### `src\projects\ProjectList.js`
 
    ```diff
    import React from 'react';

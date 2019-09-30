@@ -1,7 +1,21 @@
-git checkout -b lab01
+git checkout -b lab09
 git add -A
-git commit -m 'lab01'
-git push --set-upstream origin lab01
+git commit -m 'lab09'
+git push --set-upstream origin lab09
+
+---
+
+git checkout lab03 -f
+git clean -df
+git push --set-upstream origin lab03
+
+git checkout lab04 -f
+git clean -df
+git push --set-upstream origin lab04
+
+git checkout lab05 -f
+git clean -df
+git push --set-upstream origin lab05
 
 //TODO: Do I need to install TS Lint to get linting working?
 https://medium.com/@rossbulat/how-to-use-typescript-with-react-and-redux-a118b1e02b76

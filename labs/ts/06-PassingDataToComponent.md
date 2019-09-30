@@ -52,6 +52,7 @@
        return (
          <React.Fragment>
            <h1>Projects</h1>
+   -        <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
    +        <ProjectList projects={MOCK_PROJECTS}></ProjectList>
          </React.Fragment>
        );
