@@ -11,7 +11,7 @@
 
 ### Format the list data as list items
 
-1. **Modify** `src\projects\ProjectList.js` to format the project information into a `HTML` unordered list.
+1. **Modify** `src\projects\ProjectList.tsx` to format the project information into a `HTML` unordered list.
 
    ```html
    <ul>
@@ -22,28 +22,27 @@
 
    > Be sure to set a key for each list item.
 
-   #### `src\projects\ProjectList.js`
+   #### `src\projects\ProjectList.tsx`
 
-   ```diff
+   ```tsx
    ...
    class ProjectList extends React.Component<ProjectListProps> {
      render() {
        const { projects } = this.props;
-   -    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-   +    const items = projects.map(project => (
-   +      <li key={project.id}>{project.name}</li>
-   +    ));
-   +    return <ul>{items}</ul>;
+       const items = projects.map(project => (
+         <li key={project.id}>{project.name}</li>
+       ));
+       return <ul>{items}</ul>;
      }
    }
-   ...
+   export default ProjectList;
    ```
 
 2) Verify the project names display correctly in the browser.
 
 ### Format the list data as cards
 
-1. **Update** `src\projects\ProjectList.js` to format the project information into a rows of cards that show additional project information using the `HTML` template below.
+1. **Update** `src\projects\ProjectList.tsx` to format the project information into a rows of cards that show additional project information using the `HTML` template below.
 
    ```html
    <div class="cols-sm">
@@ -64,17 +63,14 @@
 
    > **TIP:** Visual Studio Code has an extension [HTML to JSX](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx) to do the attribute conversion.
 
-   #### `src\projects\ProjectList.js`
+   #### `src\projects\ProjectList.tsx`
 
    ```diff
    ...
    class ProjectList extends React.Component<ProjectListProps> {
      render() {
        const { projects } = this.props;
-   -   const items = projects.map(project => (
-   -   <li key={project.id}>{project.name}</li>
-   -   ));
-   -  return <ul>{items}</ul>;
+   -    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
    +    const items = projects.map(project => (
    +      <div key={project.id} className="cols-sm">
    +        <div className="card">
@@ -112,3 +108,4 @@
 ---
 
 ### &#10004; You have completed Lab 7
+

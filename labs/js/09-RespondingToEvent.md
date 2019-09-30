@@ -9,7 +9,7 @@
 
 ### Add a button
 
-1. **Open** the **file** `src\projects\ProjectCard.tsx`
+1. **Open** the **file** `src\projects\ProjectCard.js`
 2. **Add** an **edit button** to the `ProjectCard` using the `HTML` snippet below.
 
    ```html
@@ -22,16 +22,16 @@
 
    > Remember you will need to change some things about the `HTML` to make it valid `JSX`
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
-   ```html
+   ```diff
    ...
    <p>
-     Budget...
-     <button className=" bordered">
-       <span className="icon-edit "></span>
-       Edit
-     </button>
+     <p>Budget : {project.budget.toLocaleString()}</p>
+   +  <button className=" bordered">
+   +    <span className="icon-edit "></span>
+   +    Edit
+   +  </button>
    </p>
    ```
 
@@ -43,12 +43,12 @@
 
 1. **Add** a `handleEditClick` **event handler** to `ProjectCard` that takes a `project` as an argument and logs it to the `console`.
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
    ```diff
-   function ProjectCard(props: ProjectCardProps) {
+   function ProjectCard(props) {
      const { project } = props;
-   +  const handleEditClick = (projectBeingEdited: Project) => {
+   +  const handleEditClick = (projectBeingEdited) => {
    +    console.log(projectBeingEdited);
    +  };
      return (
@@ -72,7 +72,7 @@
 
 2. **Wire** up the **click** **event** of the edit button to the `handleEditClick` event handler.
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
    ```diff
    function ProjectCard(props: ProjectCardProps) {

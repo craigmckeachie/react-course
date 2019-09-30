@@ -16,7 +16,7 @@
      min-width: 300px;
    }
    ```
-2. Create the file `src\projects\ProjectForm.tsx`.
+2. Create the file `src\projects\ProjectForm.js`.
 3. Implement a `ProjectForm` **class** component that meets the following specifications:
 
    - Paste the HTML below into the render method of the `ProjectForm` and use your editor and the link below to identify the changes needed to the `HTML` to make it `JSX`.
@@ -48,9 +48,9 @@
 
      ### Solution
 
-     #### src\projects\ProjectForm.tsx
+     #### src\projects\ProjectForm.js
 
-     ```tsx
+     ```js
      import React from 'react';
 
      class ProjectForm extends React.Component {
@@ -82,10 +82,10 @@
 
 ### Render the form component
 
-1. Open the file `src\projects\ProjectList.tsx`.
+1. Open the file `src\projects\ProjectList.js`.
 2. Render the `ProjectForm` component below the `ProjectCard`.
 
-   #### `src\projects\ProjectList.tsx`
+   #### `src\projects\ProjectList.js`
 
    ```diff
    ...
@@ -96,8 +96,8 @@
        const { projects } = this.props;
        const items = projects.map(project => (
          <div key={project.id} className="cols-sm">
-           <ProjectCard project={project}></ProjectCard>
-   +       <ProjectForm></ProjectForm>
+           <ProjectCard project={project} />
+   +       <ProjectForm />
          </div>
        ));
        return <div className="row">{items}</div>;

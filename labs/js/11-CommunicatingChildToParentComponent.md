@@ -9,22 +9,22 @@
 
 ### In a child component, accept a function as a prop and invoke it
 
-1. On the `ProjectCardProps` interface, **add** an `onEdit` **function** that requires a `project` as a parameter and returns `void`.
+1. In the `Prop Types` definition, **add** an `onEdit` **function** that requires a `project` as a parameter and returns `void`.
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
    ```diff
    ...
-   interface ProjectCardProps {
-     project: Project;
-   +  onEdit: (project: Project) => void;
-   }
+   ProjectCard.propTypes = {
+     project: PropTypes.instanceOf(Project).isRequired, //include this comma
+   + onEdit: PropTypes.func.isRequired
+   };
    ...
    ```
 
 2. Update the `handleEditClick` event to invoke the function passed into the `onEdit` `prop` and **remove** the console.log statement.
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
    ```diff
     function ProjectCard(props: ProjectCardProps) {
@@ -46,11 +46,11 @@
 1. **Add** a `handleEdit`**event handler** to`ProjectList`that takes a`project`as an argument and **logs** it to the`console`.
 2. **Wire** up the **onEdit** **event** of the `ProjectCard` component to the `handleEdit` event handler.
 
-   #### `src\projects\ProjectList.tsx`
+   #### `src\projects\ProjectList.js`
 
    ```diff
     class ProjectList extends React.Component<ProjectListProps> {
-   +   handleEdit = (project: Project) => {
+   +   handleEdit = (project) => {
    +     console.log(project);
    +   };
 
@@ -60,9 +60,7 @@
           <div key={project.id} className="cols-sm">
             <ProjectCard
               project={project}
-   +          onEdit={(project: Project) => {
-   +             this.handleEdit(project);
-   +           }}
+   +          onEdit={this.handleEdit}
             ></ProjectCard>
             <ProjectForm></ProjectForm>
           </div>
