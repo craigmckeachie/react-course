@@ -8,24 +8,26 @@
 
 ### Add Form Validation
 
-1. **Open** the file `src\project\ProjectForm.tsx`
-1. **Add** an `errors` object of type `any` to the component's state interface `ProjectFormState`.
+1. **Open** the file `src\project\ProjectForm.js`
+1. **Add** an `errors` object of type `any` to the component's `propTypes`.
 
-   #### `src\projects\ProjectForm.tsx`
+#### `src\projects\ProjectForm.js`
 
-   ```diff
-   interface ProjectFormState {
-     project: Project;
-   +  errors: any;
-   }
-   ```
+```diff
+ProjectForm.propTypes = {
+  project: PropTypes.instanceOf(Project),
++ errors: PropTypes.object,
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
+};
+```
 
 1. **Initialize** the `errors` object to `{name: '', description: '', budget: ''}` so we can hold form errors in the component's `state`.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
    ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   class ProjectForm extends React.Component {
      state = {
        project: this.props.project,
    +    errors: { name: '', description: '', budget: '' }
@@ -40,14 +42,14 @@
    3. Description is required.
    4. Budget must be greater than \$0.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
-   ```tsx
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   ```js
+   class ProjectForm extends React.Component{
    ...
 
-    validate = (project: Project) => {
-      let errors: any = { name: '', description: '', budget: '' };
+    validate = project => {
+      let errors = { name: '', description: '', budget: '' };
       if (project.name.length === 0) {
         errors.name = 'Name is required';
       }
@@ -69,9 +71,9 @@
 1. Call the `validate` method to determine if there are any errors in `handleChange`.
 
    ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   class ProjectForm extends React.Component {
    ...
-     handleChange = (event: any) => {
+     handleChange = event => {
        const { type, name, value, checked } = event.target;
        let updatedValue = type === 'checkbox' ? checked : value;
        if (type === 'number') {
@@ -81,7 +83,7 @@
          [name]: updatedValue
        };
 
-       this.setState((previousState: ProjectFormState) => {
+       this.setState(previousState => {
          // Shallow clone using Object.assign while updating changed property
          const project = Object.assign(
            new Project(),
@@ -99,10 +101,10 @@
 
 1. **Implement** an `isValid` method in the `ProjectForm` component that checks whether there are any validation errors.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
-   ```tsx
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   ```js
+   class ProjectForm extends React.Component {
    ...
 
      isValid = () => {
@@ -119,18 +121,18 @@
 
 1. **Call** the `isValid` method on form submit.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
    ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   class ProjectForm extends React.Component {
      ...
 
-     validate = (project: Project) => {
+     validate = project => {
        ...
      };
 
      ...
-    handleSubmit = (event: SyntheticEvent) => {
+    handleSubmit = event => {
       event.preventDefault();
    +   if (!this.isValid()) return;
       this.props.onSave(this.state.project);
@@ -147,7 +149,7 @@
    </div>
    ```
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
    ```diff
    ...
@@ -220,11 +222,10 @@
 1. **Verify** the application is working by **following these steps**.
    1. **Click** the **edit** **button** on any project.
    2. **Delete** the contents of the **project name** textbox.
-   3. Cause the input field to **lose** **focus** by tabbing out of it or clicking on another input field.
-   4. **Verify** the **error message** displays.
-   5. **Test** the **other** validation rules.
+      <!-- 3. Cause the input field to **lose** **focus** by tabbing out of it or clicking on another input field. -->
+   3. **Verify** the **error message** displays.
+   4. **Test** the **other** validation rules.
 
 ---
 
 ### &#10004; You have completed Lab 16
-

@@ -10,41 +10,27 @@
 
 ### Add form data to component state
 
-1. **Open** the **file** `src\projects\ProjectForm.tsx`.
-1. On the `ProjectFormProps` **interface** add the `project` prop to it.
+1. **Open** the **file** `src\projects\ProjectForm.js`.
+1. To the `propTypes`, add a `project` prop.
 
-   #### `src\projects\ProjectForm.tsx`
-
-   ```diff
-   interface ProjectFormProps {
-   + project: Project;
-   onSave: (project: Project) => void;
-   onCancel: () => void;
-   }
-   ```
-
-1. Create a `ProjectFormState` **interface** and add the `project` prop to it. Then add it as the second `Type` to the `React.Component<ProjectFormProps, ProjectFormState>`.
-
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
    ```diff
-   + interface ProjectFormState {
-   +  project: Project;
-   + }
-
-   class ProjectForm extends React.Component<ProjectFormProps,
-   + ProjectFormState
-   >{
    ...
-   }
+   ProjectForm.propTypes = {
+   + project: PropTypes.instanceOf(Project),
+     onSave: PropTypes.func.isRequired,
+     onCancel: PropTypes.func.isRequired
+   };
+   ...
    ```
 
-2) **Add** a `project` object `state.project` to the `state` of the component and initialize the value to `props.project`.
+1. **Add** a `project` object `state.project` to the `state` of the component and initialize the value to `props.project`.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
    ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   class ProjectForm extends React.Component{
    + state = {
    +    project: this.props.project
    + };
@@ -65,15 +51,15 @@
      - `<textarea />`
        > Alternatively, you could write a separate handler for each of the form field types and invoke them as appropriate.
 
-     #### `src\projects\ProjectForm.tsx`
+     #### `src\projects\ProjectForm.js`
 
      ```diff
-     class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+     class ProjectForm extends React.Component {
        state = {
         project: this.props.project
        };
 
-     +  handleChange = (event: any) => {
+     +  handleChange = event => {
      +    const { type, name, value, checked } = event.target;
      +    let updatedValue = type === 'checkbox' ? checked : value;
      +    if (type === 'number') {
@@ -83,7 +69,7 @@
      +      [name]: updatedValue
      +    };
      +
-     +    this.setState((previousState: ProjectFormState) => {
+     +    this.setState(previousState => {
      +      // Shallow clone using Object.assign while updating changed property
      +      const project = Object.assign(
      +        new Project(),
@@ -151,7 +137,7 @@
 
 1. In `handleSubmit`, when calling the `onSave` `prop` pass `state.project` instead of `new Project({ name: 'Updated Project' })`.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
    ```diff
    class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
@@ -169,16 +155,16 @@
 
 2. In `ProjectList` **set** the `project` **prop** on the `<ProjectForm />` in the render method of the component.
 
-   #### `src\projects\ProjecList.tsx`
+   #### `src\projects\ProjectList.js`
 
    ```diff
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
+   class ProjectList extends React.Component {
    ...
    render() {
       const { projects, onSave } = this.props;
 
-      let item: JSX.Element;
-      const items = projects.map((project: Project) => {
+      let item;
+      const items = projects.map(project => {
             if (project !== this.state.editingProject) {
             item = (
             ...
@@ -190,7 +176,7 @@
    +              project={project}
                   onSave={onSave}
                   onCancel={this.cancelEditing}
-                  ></ProjectForm>
+                  />
             </div>
             );
             }
@@ -204,48 +190,49 @@
 
 3. ProjectsPage update the project.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
-   ```diff
-   import React, { Fragment } from 'react';
-   import { MOCK_PROJECTS } from './MockProjects';
-   import ProjectList from './ProjectList';
-   + import { Project } from './Project';
+```diff
+import React, { Fragment } from 'react';
+import { MOCK_PROJECTS } from './MockProjects';
+import ProjectList from './ProjectList';
++ import { Project } from './Project';
 
-   + interface ProjectsPageState {
-   +  projects: Project[];
-   + }
+class ProjectsPage extends React.Component {
 
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
-   +  state = {
-   +    projects: MOCK_PROJECTS
-   +  };
-     saveProject = (project: Project) => {
-   -    console.log('Saving project: ', project);
-   +    this.setState((previousState: ProjectsPageState) => {
-   +      let projects = previousState.projects.map((p: Project) => {
-   +        return p.id === project.id ? Object.assign({}, p, project) : p;
-   +      });
-   +      return { projects };
-   +    });
-     };
-     render() {
-       return (
-         <Fragment>
-           <h1>Projects</h1>
-   -       <ProjectList onSave={this.saveProject} projects={MOCK_PROJECTS} />
-   +       <ProjectList onSave={this.saveProject} projects={this.state.projects} />
-         </Fragment>
-       );
-     }
-   }
-   ```
++ state = {
++ projects: MOCK_PROJECTS
++ };
+saveProject = (project) => {
+
+- console.log('Saving project: ', project);
+
++   this.setState(previousState => {
++        let projects = previousState.projects.map(p => {
++          return p.id === project.id ? Object.assign({}, p, project) : p;
++        });
++       return { projects };
++   });
+};
+  render() {
+  return (
+  <Fragment>
+  <h1>Projects</h1>
+
++  <ProjectList onSave={this.saveProject} projects={MOCK_PROJECTS} />
+-  <ProjectList onSave={this.saveProject} projects={this.state.projects} />
+  </Fragment>
+  );
+  }
+  }
+
+```
 
 4. **Verify** the application is working by following these **steps** in your browser.
    1. **Click** the **edit** button for a project.
-   2. **Change** the **project name** in the form.
-   3. **Click** **save** on the form.
-   4. **Verify** the card shows the **updated** data.
+   1. **Change** the **project name** in the form.
+   1. **Click** **save** on the form.
+   1. **Verify** the card shows the **updated** data.
       > Note that if you refresh your browser page your changes will not persist because the updates are only happening in the browser's memory. We will get a more permanent save working in a future lab when we communicate to our backend web API.
 
 ---
