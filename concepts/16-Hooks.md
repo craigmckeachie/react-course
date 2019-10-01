@@ -734,7 +734,7 @@ https://usehooks.com/useTheme/
 
 ## Reference
 
-[Hooks Documentation](https://reactjs.org/docs/hooks-overview.html)
-[Hooks Introduction](https://academind.com/learn/react/react-hooks-introduction/)
-[Custom Hooks Documentation](https://reactjs.org/docs/hooks-custom.html)
-[Hook Examples/Recipes](https://usehooks.com/)
+- [Hooks Documentation](https://reactjs.org/docs/hooks-overview.html)
+- [Hooks Introduction](https://academind.com/learn/react/react-hooks-introduction/)
+- [Custom Hooks Documentation](https://reactjs.org/docs/hooks-custom.html)
+- [Hook Examples/Recipes](https://usehooks.com/)
