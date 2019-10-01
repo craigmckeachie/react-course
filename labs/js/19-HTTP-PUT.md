@@ -10,16 +10,24 @@
 
 1. **Implement** a **method** in the API object to do a **PUT** (update).
 
-   #### `src\projects\ProjectAPI.ts`
+   #### `src\projects\ProjectAPI.js`
 
    ```diff
    + import { Project } from './Project';
    ...
 
+   + function toProject(object) {
+   +   return new Project(object);
+   + }
+
    const projectAPI = {
+     get(...){
+       ...
+     }
+   + ,
    ...
 
-   +  put(project: Project) {
+   +  put(project) {
    +    return fetch(`${url}/${project.id}`, {
    +      method: 'PUT',
    +      body: JSON.stringify(project),
@@ -29,7 +37,8 @@
    +    })
    +      .then(checkStatus)
    +      .then(parseJSON)
-   +      .catch((error: TypeError) => {
+   +      .then(toProject) // make sure there is no s on toProject
+   +      .catch((error) => {
    +        console.log('log client error ' + error);
    +        throw new Error(
    +          'There was an error updating the project. Please try again.'
@@ -42,7 +51,7 @@
 
 1. **Invoke** the **method** in your container (`ProjectsPage`) component.
 
-   #### `src\projects\ProjectsPage.ts`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    class ProjectsPage extends React.Component<any, ProjectsContainerState> {
@@ -95,5 +104,3 @@
 ---
 
 ### &#10004; You have completed Lab 19
-
-
