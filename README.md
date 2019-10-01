@@ -1,10 +1,10 @@
-# React & Redux 
+# React & Redux
 
 - [Setup](Setup.md)
 - [Concepts](concepts/00-FrontMatter.md)
 - [JavaScript (ECMAScript) Labs](./labs/js/00-FrontMatter.md)
 - [TypeScript Labs](./labs/ts/00-FrontMatter.md)
-
+- [Prerequisite Concepts for Labs](./PrerequisiteConceptsForLabs.md)
 
 ## License
 
