@@ -40,11 +40,12 @@ information storage and retrieval systems, without permission from the author.
 - [Lab 20: Router Basics](20-RouterBasics.md)
 - [Lab 21: Route Parameters](21-RouteParameters.md)
 - [Lab 22: Build & Deploy](22-BuildAndDeploy.md)
-- [Lab 23: Redux Install](23-ReduxInstall.md)
+  <!-- - [Lab 23: Redux Install](23-ReduxInstall.md)
 - [Lab 24: Redux Actions & Reducer](24-ReduxActionsReducer.md)
-- [Lab 25: Redux with React](25-ReduxWithReact.md)
+- [Lab 25: Redux with React](25-ReduxWithReact.md) -->
   <!-- - [Lab 26: Testing](26-Testing.md) -->
-- [Appendix A: How to Skip Labs](A1-SkippingLabs.md)
+- [Appendix 1: How to Skip Labs](A1-SkippingLabs.md)
+- [Appendix 2: Format Description (optional lab)](A2-FormatDescription.md)
 
 ## Solutions
 
