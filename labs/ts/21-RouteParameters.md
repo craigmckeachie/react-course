@@ -59,6 +59,7 @@
    #### `src\projects\ProjectCard.tsx`
 
    ```diff
+   + import { Link } from 'react-router-dom';
    ...
    <section className="section dark">
    +  <Link to={'/projects/' + project.id}>

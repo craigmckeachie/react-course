@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ProjectDetail(props: any) {
+export default function ProjectDetail(props) {
   const { project } = props;
   return (
     <div className="row">

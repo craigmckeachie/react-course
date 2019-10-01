@@ -1,15 +1,8 @@
 import React from 'react';
 import { projectAPI } from './projectAPI';
 import ProjectDetail from './ProjectDetail';
-import { Project } from './Project';
 
-interface ProjectPageState {
-  loading: boolean;
-  project: Project | undefined;
-  error: string | undefined;
-}
-
-class ProjectPage extends React.Component<any, ProjectPageState> {
+class ProjectPage extends React.Component {
   state = {
     loading: false,
     project: undefined,

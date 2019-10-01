@@ -14,25 +14,28 @@
    const projectAPI = {
    ...
 
-   +  find(id: number) {
+   +  find(id) {
    +    return fetch(`${url}/${id}`)
    +      .then(checkStatus)
-   +      .then(parseJSON);
+   +      .then(parseJSON)
+   +      .then(toProject);
    +  },
    +
     ...
    };
    ```
 
-2. Copy the files `snippets\lab21\[ProjectPage.tsx and ProjectDetail.tsx]` into the `src\projects` directory.
+2. Copy the files `snippets\lab21\[ProjectPage.js and ProjectDetail.js]` into the `src\projects` directory.
    > These files contain some pre-built components we will use in this lab. Take a moment to review the code in them.
 3. Add a route to display the `ProjectPage` (notice that we now have a `ProjectPage` and a `ProjectsPage` so be careful you are in the correct file).
+
+   #### `src\App.js`
 
    ```diff
    import ProjectsPage from './projects/ProjectsPage';
    + import ProjectPage from './projects/ProjectPage';
 
-   const App: React.FC = () => {
+   function App () {
    return (
        <Router>
        <header className="sticky">
@@ -56,9 +59,10 @@
 
 4. Make the name and description clickable by adding a `<Link />` component around them.
 
-   #### `src\projects\ProjectCard.tsx`
+   #### `src\projects\ProjectCard.js`
 
    ```diff
+   + import { Link } from 'react-router-dom';
    ...
    <section className="section dark">
    +  <Link to={'/projects/' + project.id}>
