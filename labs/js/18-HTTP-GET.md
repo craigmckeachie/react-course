@@ -4,13 +4,13 @@
 
 - [ ] Create an API object that loads data from an REST API
 - [ ] Update a component to use the API object
-- [ ] Bonus: Add Pagination
+- [ ] Add Pagination
 
 ## Steps
 
 ### Create an API object that loads data from an REST API
 
-1.  Create the file `src\projects\projectAPI.ts`.
+1.  Create the file `src\projects\projectAPI.js`.
 2.  Create a `projectAPI` object and export it from the file.
 3.  Implement a `get` method that requires `page` and `limit` parameters and sets the default to `page = 1` and `limit=20`.
     The projects should be sorted by name.
@@ -21,13 +21,13 @@
     `${url}?_page=${page}&_limit=${limit}&_sort=name`;
     ```
 
-    #### `src\projects\projectAPI.ts`
+    #### `src\projects\projectAPI.js`
 
     ```ts
     const baseUrl = 'http://localhost:4000';
     const url = `${baseUrl}/projects`;
 
-    function translateStatusToErrorMessage(status: number) {
+    function translateStatusToErrorMessage(status) {
       switch (status) {
         case 401:
           return 'Please login again.';
@@ -38,7 +38,7 @@
       }
     }
 
-    function checkStatus(response: any) {
+    function checkStatus(response) {
       if (response.ok) {
         return response;
       } else {
@@ -54,13 +54,17 @@
       }
     }
 
-    function parseJSON(response: Response) {
+    function toProjects(array) {
+      return array.map(object => new Project(object));
+    }
+
+    function parseJSON(response) {
       return response.json();
     }
 
     // eslint-disable-next-line
-    function delay(ms: number) {
-      return function(x: any): Promise<any> {
+    function delay(ms) {
+      return function(x) {
         return new Promise(resolve => setTimeout(() => resolve(x), ms));
       };
     }
@@ -71,7 +75,8 @@
           .then(delay(600))
           .then(checkStatus)
           .then(parseJSON)
-          .catch((error: TypeError) => {
+          .then(toProjects)
+          .catch(error => {
             console.log('log client error ' + error);
             throw new Error(
               'There was an error retrieving the projects. Please try again.'
@@ -85,33 +90,20 @@
 
 ### Update a component to use the API object
 
-5. **Open** the file `src\projects\ProjectsPage.tsx`.
-6. **Update** the `ProjectPageState` **interface** to have two additonal properties `loading` and `error`.
-
-   #### `src\projects\ProjectsPage.tsx`
-
-   ```diff
-   ...
-   interface ProjectsPageState {
-     projects: Project[];
-   +  loading: boolean;
-   +  error: string | undefined
-   }
-   ...
-   ```
-
-7) **Initialize** the component **state** as follows:
+5. **Open** the file `src\projects\ProjectsPage.js`.
+6. Add two additonal properties to `state` `loading` and `error` and **initialize** `state` as follows:
 
    1. `projects` should be an empty array `[]` **(be sure to remove the mock data)**
    2. `loading` should be `false`
    3. `error` should be `undefined`
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    - import { MOCK_PROJECTS } from './MockProjects';
+
    ...
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
+   class ProjectsPage extends React.Component {
      state = {
    -    projects: MOCK_PROJECTS
    +    projects: [],
@@ -122,18 +114,20 @@
    }
    ```
 
-8. **Implement** the loading of the data from the API after the component has been added to the DOM `(componentDidMount`) following these specifications.
+7. **Implement** the loading of the data from the API after the component has been added to the DOM `(componentDidMount`) following these specifications.
 
    1. **Set** state of `loading` to `true`
    2. Call the API: `projectAPI.get(1)`.
    3. If **successful**, **set** the returned `data` into the components `projects` state and `loading` to `false`.
    4. If an **error occurs**, **set** the returned error's message `error.message` to the components `error` state and `loading` to `false`.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    ...
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
+   + import { projectAPI } from './projectAPI';
+
+   class ProjectsPage extends React.Component {
      state = {
        projects: [],
        loading: false,
@@ -162,10 +156,10 @@
    </div>
    ```
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
+   class ProjectsPage extends React.Component {
    ...
      render() {
        return (
@@ -193,7 +187,7 @@
 
       #### `src\index.css`
 
-      ```tsx
+      ```js
       ... //add below existing styles and import
 
       .center-page {
@@ -202,17 +196,6 @@
         align-items: center;
       }
       ```
-
-9. We are using a `delay` function in `projectAPI.get()` to delay the returning of data so it is easier to see the loading indicator. You can remove the `delay` at this point.
-
-   #### `src\projects\projectAPI.ts`
-
-   ```diff
-   return fetch(`${url}?_page=${page}&_limit=${limit}&_sort=name`)
-   - .then(delay(600))
-     .then(checkStatus)
-     .then(parseJSON);
-   ```
 
 10. **Display** the **error** message **above** the `<ProjectList />` using the `HTML` snippet below. Only display the indicator when `error` is defined.
 
@@ -231,36 +214,36 @@
     </div>
     ```
 
-    #### `src\projects\ProjectsPage.tsx`
+    #### `src\projects\ProjectsPage.js`
 
     ```diff
-    class ProjectsPage extends React.Component<any, ProjectsPageState> {
+    class ProjectsPage extends React.Component {
     ...
       render() {
         return (
           <Fragment>
             <h1>Projects</h1>
-            {this.state.error && (
-              <div className="row">
-                <div className="card large error">
-                  <section>
-                    <p>
-                      <span className="icon-alert inverse "></span>
-                      {this.state.error}
-                    </p>
-                  </section>
-                </div>
-              </div>
-            )}
+    +        {this.state.error && (
+    +          <div className="row">
+    +            <div className="card large error">
+    +              <section>
+    +                <p>
+    +                  <span className="icon-alert inverse "></span>
+    +                  {this.state.error}
+    +                </p>
+    +              </section>
+    +            </div>
+    +          </div>
+    +        )}
 
             <ProjectList onSave={this.saveProject} projects={this.state.projects} />
 
-    +        {this.state.loading && (
-    +          <div className="center-page">
-    +            <span className="spinner primary"></span>
-    +            <p>Loading...</p>
-    +          </div>
-    +        )}
+            {this.state.loading && (
+              <div className="center-page">
+                <span className="spinner primary"></span>
+                <p>Loading...</p>
+              </div>
+            )}
 
           </Fragment>
         );
@@ -284,7 +267,7 @@
 
     7. **Change** the **URL** so the API endpoint cannot be reached.
 
-       #### `src\projects\projectAPI.tsx`
+       #### `src\projects\projectAPI.js`
 
        ```diff
        const baseUrl = 'http://localhost:4000';
@@ -298,7 +281,7 @@
 
     9. **Fix** the **URL** to the backend API before continuing to the next lab.
 
-       #### `src\projects\projectAPI.tsx`
+       #### `src\projects\projectAPI.js`
 
        ```diff
        ...
@@ -308,38 +291,15 @@
        ...
        ```
 
----
+### Add Pagination
 
-### &#10004; You have completed Lab 18
+1. **Add** a `page` property to **state** and initialize it to the first page.
 
----
-
-### Bonus: Add Pagination
-
-> This part of the lab is optional and can be safely skipped for now if time is tight.
-
-6. **Update** the `ProjectPageState` `interface` to hold a `page` property.
-
-   #### `src\projects\ProjectsPage.tsx`
-
-   ```diff
-   ...
-   interface ProjectsPageState {
-     projects: Project[];
-     loading: boolean;
-     error: string | undefined;
-   +  page: number
-   }
-   ...
-   ```
-
-7. **Initialize** the `page` property of **state** as follows:
-
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    ....
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
+   class ProjectsPage extends React.Component {
      state = {
        projects: [],
        loading: false,
@@ -350,15 +310,15 @@
    }
    ```
 
-8. **Implement** a `loadProjects` method and call it from `componentDidMount`.
+1. **Implement** a `loadProjects` method and call it from `componentDidMount`. When setting state, set the page as well.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
+   class ProjectsPage extends React.Component {
    ...
 
-   +  loadProjects(page: number) {
+   +  loadProjects(page) {
    +    this.setState({ loading: true });
    +    projectAPI
    +      .get(page)
@@ -376,6 +336,7 @@
    +  }
 
      componentDidMount() {
+   -    this.setState({ loading: true });
    -    projectAPI.get(1)...
    +    this.loadProjects(this.state.page);
      }
@@ -383,98 +344,113 @@
    }
    ```
 
-10) **Implement** a `handleMoreClick` event handler and increment the page and then call `loadProjects`.
+1. **Implement** a `handleMoreClick` event handler and increment the page and then call `loadProjects`.
 
-    #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
-    ```diff
-    class ProjectsPage extends React.Component<any, ProjectsPageState> {
-      ...
-    +  handleMoreClick = () => {
-    +    const nextPage = this.state.page + 1;
-    +    this.loadProjects(nextPage);
-    +  };
-    }
-    ```
+   ```diff
+   class ProjectsPage extends React.Component {
+     ...
+   +  handleMoreClick = () => {
+   +    const nextPage = this.state.page + 1;
+   +    this.loadProjects(nextPage);
+   +  };
+   }
+   ```
 
-11) Add a `More...` button below the `<ProjectList />` using the `HTML` snippet below.
-    ```html
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="button-group fluid">
-          <button class="button default">
-            More...
-          </button>
-        </div>
-      </div>
-    </div>
-    ```
-    > Don't forget that JSX and HTML are not the same exact syntax.
-12) Display the `More...` button only when not `loading` and there is not an `error` and handle the `More...` button's `click` event and call `handleMoreClick`.
+1. Add a `More...` button below the `<ProjectList />` using the `HTML` snippet below.
 
-    #### `src\projects\ProjectsPage.tsx`
+   ```html
+   <div class="row">
+     <div class="col-sm-12">
+       <div class="button-group fluid">
+         <button class="button default">
+           More...
+         </button>
+       </div>
+     </div>
+   </div>
+   ```
 
-    ```diff
-    class ProjectsPage extends React.Component<any, ProjectsPageState> {
-      ...
-      render() {
-        return (
-          <Fragment>
-            <h1>Projects</h1>
-            {this.state.error && (
-              <div className="row">
-                <div className="card large error">
-                  <section>
-                    <p>
-                      <span className="icon-alert inverse "></span>
-                      {this.state.error}
-                    </p>
-                  </section>
-                </div>
-              </div>
-            )}
+   > Don't forget that JSX and HTML are not the same exact syntax.
 
-            <ProjectList onSave={this.saveProject} projects={this.state.projects} />
+1. Display the `More...` button only when not `loading` and there is not an `error` and handle the `More...` button's `click` event and call `handleMoreClick`.
 
-    +       {!this.state.loading && !this.state.error && (
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="button-group fluid">
-                  <button
-                    className="button default"
-    +                 onClick={this.handleMoreClick}
-                  >
-                    More...
-                  </button>
-                </div>
-              </div>
-            </div>
-    +       )}
+   #### `src\projects\ProjectsPage.js`
 
-            {this.state.loading && (
-              <div className="center-page">
-                <span className="spinner primary"></span>
-                <p>Loading...</p>
-              </div>
-            )}
-          </Fragment>
-        );
-      }
-    }
-    ```
+   ```diff
+   class ProjectsPage extends React.Component {
+     ...
+     render() {
+       return (
+         <Fragment>
+           <h1>Projects</h1>
+           {this.state.error && (
+             <div className="row">
+               <div className="card large error">
+                 <section>
+                   <p>
+                     <span className="icon-alert inverse "></span>
+                     {this.state.error}
+                   </p>
+                 </section>
+               </div>
+             </div>
+           )}
 
-12. **Verify** the application is working by **following these steps** in your **browser**.
+           <ProjectList onSave={this.saveProject} projects={this.state.projects} />
 
-    1.  **Refresh** the page.
-    2.  A list of **projects** should **appear**.
-    3.  **Click** on the`More...` **button**.
-    4.  **Verify** that 20 additional projects are appended to the end of the list.
-    5.  **Click** on the`More...` **button** again.
-    6.  **Verify** that another 20 projects are appended to the end of the list.
+   +       {!this.state.loading && !this.state.error && (
+   +        <div className="row">
+   +          <div className="col-sm-12">
+   +            <div className="button-group fluid">
+   +              <button
+   +                className="button default"
+   +                 onClick={this.handleMoreClick}
+   +              >
+   +                More...
+   +              </button>
+   +            </div>
+   +          </div>
+   +        </div>
+   +       )}
 
-    ![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)
-    <kbd>![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)</kbd>
+           {this.state.loading && (
+             <div className="center-page">
+               <span className="spinner primary"></span>
+               <p>Loading...</p>
+             </div>
+           )}
+         </Fragment>
+       );
+     }
+   }
+   ```
+
+1. **Verify** the application is working by **following these steps** in your **browser**.
+
+   1. **Refresh** the page.
+   2. A list of **projects** should **appear**.
+   3. **Click** on the`More...` **button**.
+   4. **Verify** that 20 additional projects are appended to the end of the list.
+   5. **Click** on the`More...` **button** again.
+   6. **Verify** that another 20 projects are appended to the end of the list.
+
+   <kbd>![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)</kbd>
+
+1. We are using a `delay` function in `projectAPI.get()` to delay the returning of data so it is easier to see the loading indicator. You can comment out the `delay` at this point.
+
+   #### `src\projects\projectAPI.js`
+
+   ```js
+   return (
+     fetch(`${url}?_page=${page}&_limit=${limit}&_sort=name`)
+       //.then(delay(600))
+       .then(checkStatus)
+       .then(parseJSON)
+   );
+   ```
 
 ---
 
-### &#10004; You have completed the Lab 18 bonus exercise
+### &#10004; You have completed Lab 18

@@ -240,27 +240,27 @@
         return (
           <Fragment>
             <h1>Projects</h1>
-            {this.state.error && (
-              <div className="row">
-                <div className="card large error">
-                  <section>
-                    <p>
-                      <span className="icon-alert inverse "></span>
-                      {this.state.error}
-                    </p>
-                  </section>
-                </div>
-              </div>
-            )}
+    +        {this.state.error && (
+    +          <div className="row">
+    +            <div className="card large error">
+    +              <section>
+    +                <p>
+    +                  <span className="icon-alert inverse "></span>
+    +                  {this.state.error}
+    +                </p>
+    +              </section>
+    +            </div>
+    +          </div>
+    +        )}
 
             <ProjectList onSave={this.saveProject} projects={this.state.projects} />
 
-    +        {this.state.loading && (
-    +          <div className="center-page">
-    +            <span className="spinner primary"></span>
-    +            <p>Loading...</p>
-    +          </div>
-    +        )}
+            {this.state.loading && (
+              <div className="center-page">
+                <span className="spinner primary"></span>
+                <p>Loading...</p>
+              </div>
+            )}
 
           </Fragment>
         );
@@ -376,6 +376,7 @@
    +  }
 
      componentDidMount() {
+   -    this.setState({ loading: true });
    -    projectAPI.get(1)...
    +    this.loadProjects(this.state.page);
      }
