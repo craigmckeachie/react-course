@@ -26,7 +26,7 @@
 
    ```diff
    ...
-   class ProjectList extends React.Component<ProjectListProps> {
+   class ProjectList extends React.Component{
      render() {
        const { projects } = this.props;
    -    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
@@ -101,7 +101,7 @@
 
 <br/>
 
-> Note you can use `toLocaleString` to format the project budget `number` in JavaScript.
+> Note we are using `toLocaleString` to format the project budget `number` in JavaScript.
 
 ```html
 <p>Budget : {project.budget.toLocaleString()}</p>

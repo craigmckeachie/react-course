@@ -75,9 +75,9 @@
    #### `src\projects\ProjectCard.js`
 
    ```diff
-   function ProjectCard(props: ProjectCardProps) {
+   function ProjectCard(props) {
      const { project } = props;
-     const handleEditClick = (projectBeingEdited: Project) => {
+     const handleEditClick = (projectBeingEdited) => {
        console.log(projectBeingEdited);
      };
      return (

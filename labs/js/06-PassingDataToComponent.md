@@ -16,21 +16,21 @@
 
 2)  **Displays** the `projects` array as a `JSON string`.
 
-#### `src\projects\ProjectList.js`
+    #### `src\projects\ProjectList.js`
 
-```js
-import React from 'react';
-import { Project } from './Project';
+    ```js
+    import React from 'react';
+    import { Project } from './Project';
 
-class ProjectList extends React.Component {
-  render() {
-    const { projects } = this.props;
-    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-  }
-}
+    class ProjectList extends React.Component {
+      render() {
+        const { projects } = this.props;
+        return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+      }
+    }
 
-export default ProjectList;
-```
+    export default ProjectList;
+    ```
 
 3.  Define the property (prop) and its type using the `prop-types` library by doing the steps below.
 
