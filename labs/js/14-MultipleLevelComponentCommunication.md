@@ -59,11 +59,13 @@
 
 #### `src\projects\ProjectList.js`
 
+
+
 ```diff
-interface ProjectListProps {
-projects: Project[];
-+  onSave: (project: Project) => void;
-}
+ProjectList.propTypes = {
+  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
++  onSave: PropTypes.func.isRequired
+};
 ```
 
 3. **Update** the `<ProjectForm>` component tag to **handle** a `onSave` event and have it **invoke** the function passed into the `onSave` `prop`.
@@ -71,7 +73,7 @@ projects: Project[];
    #### `src\projects\ProjectList.js`
 
    ```diff
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
+   class ProjectList extends React.Component {
    ...
    render() {
        const { projects,
@@ -79,7 +81,7 @@ projects: Project[];
                } = this.props;
 
        let item: JSX.Element;
-       const items = projects.map((project: Project) => {
+       const items = projects.map((project) => {
        if (project !== this.state.editingProject) {
            ...
            );

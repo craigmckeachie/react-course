@@ -49,7 +49,7 @@
    #### `src\projects\ProjectList.js`
 
    ```diff
-    class ProjectList extends React.Component<ProjectListProps> {
+    class ProjectList extends React.Component {
    +   handleEdit = (project) => {
    +     console.log(project);
    +   };

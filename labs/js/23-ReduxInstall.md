@@ -38,7 +38,7 @@
 
    const reducer = combineReducers({});
 
-   export default function configureStore(preloadedState: any) {
+   export default function configureStore(preloadedState) {
      const middlewares = [ReduxThunk];
      const middlewareEnhancer = applyMiddleware(...middlewares);
 

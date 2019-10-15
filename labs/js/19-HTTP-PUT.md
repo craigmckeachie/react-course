@@ -54,7 +54,7 @@
    #### `src\projects\ProjectsPage.js`
 
    ```diff
-   class ProjectsPage extends React.Component<any, ProjectsContainerState> {
+   class ProjectsPage extends React.Component d{
      state = {
        projects: [],
        loading: false,
@@ -63,9 +63,9 @@
 
    ...
 
-   saveProject = (project: Project) => {
-   -    this.setState((previousState: ProjectsPageState) => {
-   -      let projects = previousState.projects.map((p: Project) => {
+   saveProject = (project) => {
+   -    this.setState((previousState) => {
+   -      let projects = previousState.projects.map((p) => {
    -        return p.id === project.id ? project : p;
    -      });
    -      return { projects };

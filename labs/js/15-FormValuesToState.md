@@ -140,13 +140,13 @@
    #### `src\projects\ProjectForm.js`
 
    ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
+   class ProjectForm extends React.Component{
    state = {
    project: this.props.project
    };
    ...
 
-   handleSubmit = (event: SyntheticEvent) => {
+   handleSubmit = (event) => {
    event.preventDefault();
    -    this.props.onSave(new Project({ name: 'Updated Project' }));
    +    this.props.onSave(this.state.project);

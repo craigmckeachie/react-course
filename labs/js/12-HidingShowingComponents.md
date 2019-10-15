@@ -32,11 +32,11 @@
    #### src\projects\ProjectList.js
 
    ```diff
-   class ProjectList extends React.Component<ProjectListProps,ProjectListState> {
+   class ProjectList extends React.Component {
      state = {
        editingProject: {}
      };
-     handleEdit = (project: Project) => {
+     handleEdit = (project) => {
    -   console.log(project);
    +   this.setState({ editingProject: project });
      };
