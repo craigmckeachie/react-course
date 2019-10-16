@@ -7,19 +7,20 @@ https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets
 ```
 npm i enzyme enzyme-adapter-react-16 react-test-renderer
 npm i @types/enzyme @types/react-test-renderer --save-dev
-npm install @types/react-test-renderer -D
+npm install @types/react-test-renderer --save-dev
 ```
 
 ```
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
-yarn add @types/enzyme -D
-yarn add @types/react-test-renderer -D
+yarn add @types/enzyme --save-dev
+yarn add @types/react-test-renderer --save-dev
 ```
 
 ### Customize serializer of enzyme shallow wrappers to json
 
 ```
-yarn add enzyme-to-json -D
+npm i enzyme-to-json --save-dev
+yarn add enzyme-to-json --save-dev
 ```
 
 https://www.npmjs.com/package/enzyme-to-json
