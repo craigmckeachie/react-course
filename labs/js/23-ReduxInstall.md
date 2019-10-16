@@ -15,12 +15,10 @@
    #### npm
    ```shell
    npm install redux react-redux redux-devtools-extension redux-thunk
-   npm install --save-dev @types/react-redux
    ```
    #### Yarn
    ```shell
    yarn add redux react-redux redux-devtools-extension redux-thunk
-   yarn add --dev @types/react-redux
    ```
 1. After the installs finish, **open** the `\package.json` file and quickly **verify** the **packages** were added to the `dependencies` and `devDependencies`.
 
@@ -28,7 +26,7 @@
 
 1. Create the following file and configure Redux.
 
-   #### `src\state.ts`
+   #### `src\state.js`
 
    ```ts
    import { createStore, applyMiddleware } from 'redux';
@@ -56,9 +54,7 @@
      return store;
    }
 
-   export interface AppState {}
-
-   export const initialAppState: AppState = {};
+   export const initialAppState = {};
 
    export const store = configureStore(initialAppState);
    ```

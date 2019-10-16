@@ -11,22 +11,13 @@
 
 1. Remove the Page (container) component's state.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
-   > Make sure you are in Project**s**Page.tsx not ProjectPage.tsx.
+   > Make sure you are in Project**s**Page.js not ProjectPage.js.
 
    ```diff
-   - interface ProjectsPageState {
-   -   projects: Project[];
-   -   loading: boolean;
-   -   error: string | undefined;
-   -   page: number;
-   - }
 
-   class ProjectsPage extends React.Component<any,
-   - ProjectsPageState
-   >
-   {
+   class ProjectsPage extends React.Component{
    -  state = {
    -    projects: [],
    -    loading: false,
@@ -39,17 +30,12 @@
 
 2. Replace setState and API calls with calls to action creators passed in via props.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
+   class ProjectsPage extends React.Component{
 
-   class ProjectsPage extends React.Component<any, {}>{
-
-   componentDidMount() {
-       this.loadProjects();
-   }
-
-   loadProjects(page: number) {
+   loadProjects(page) {
    - this.setState({ loading: true });
    - projectAPI
    -   .get(page)
@@ -103,10 +89,10 @@
 
 3. In the render method, update all references to `state` to pull from `props`.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
-   class ProjectsPage extends React.Component<any,{}>{
+   class ProjectsPage extends React.Component{
    ...
 
    render(){
@@ -168,19 +154,17 @@
 
    > You will need to comment out the existing default export as shown below.
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
-   ```tsx
+   ```js
    // import { projectAPI } from './projectAPI';
-   import { AppState } from '../state';
-   import { ProjectState } from './state/projectTypes';
    import { loadProjects, saveProject } from './state/projectActions';
    import { connect } from 'react-redux';
 
    // export default ProjectsPage;
 
    // React Redux (connect)---------------
-   function mapStateToProps(state: AppState): ProjectState {
+   function mapStateToProps(state) {
      return {
        ...state.projectState
      };
@@ -201,7 +185,7 @@
 
 6. Provide the store.
 
-   #### `src\App.tsx`
+   #### `src\App.js`
 
    ```diff
    import ProjectPage from './projects/ProjectPage';
@@ -245,9 +229,9 @@
 
 1. Connect the Form component so it has access to the Redux store's state and is able to dispatch actions in the action creator functions passed in via props.
 
-   #### `src\projects\ProjectForm.tsx`
+   #### `src\projects\ProjectForm.js`
 
-   ```tsx
+   ```js
    ...
    import { saveProject } from './state/projectActions';
    import { connect } from 'react-redux';
@@ -270,27 +254,19 @@
 
 2. Provide the store.
 
-   - This was already done in `src\App.tsx` because it is inherited from the parent Page component: Page =>List=>Form.
+   - This was already done in `src\App.js` because it is inherited from the parent Page component: Page =>List=>Form.
 
-3. In the `ProjectList` component, keep `onSave` in the `ProjectListProps` interface but update the `render` method to not pass `onSave` to `<ProjectForm>` as it is now automatically connected to that Redux action via the `Provider`.
+3. In the `ProjectList` component, keep `onSave` in the `propTypes` but update the `render` method to not pass `onSave` to `<ProjectForm>` as it is now automatically connected to that Redux action via the `Provider`.
 
-   #### `src\Projects\ProjectList.tsx`
+   #### `src\Projects\ProjectList.js`
 
    ```diff
-   interface ProjectListProps {
-     projects: Project[];
-     onSave: (project: Project) => void;
-   }
 
-   interface ProjectListState {
-     editingProject: Project | {};
-   }
-
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
+   class ProjectList extends React.Component {
      state = {
        editingProject: {}
      };
-     handleEdit = (project: Project) => {
+     handleEdit = (project) => {
        this.setState({ editingProject: project });
      };
 
@@ -302,8 +278,8 @@
    -   const { projects, onSave } = this.props;
    +    const { projects } = this.props;
 
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
+       let item;
+       const items = projects.map((project) => {
          if (project !== this.state.editingProject) {
            item = (
              <div key={project.id} className="cols-sm">
@@ -332,6 +308,11 @@
        return <div className="row">{items}</div>;
      }
    }
+
+   ProjectList.propTypes = {
+     projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
+     onSave: PropTypes.func.isRequired
+   };
    ```
 
 4. **Verify** the application still works including loading and updating the projects.

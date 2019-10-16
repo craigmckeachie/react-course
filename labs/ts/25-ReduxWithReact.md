@@ -45,10 +45,6 @@
 
    class ProjectsPage extends React.Component<any, {}>{
 
-   componentDidMount() {
-       this.loadProjects();
-   }
-
    loadProjects(page: number) {
    - this.setState({ loading: true });
    - projectAPI

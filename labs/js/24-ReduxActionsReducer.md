@@ -12,10 +12,10 @@
 ### Define types: actions types, action interfaces, and state
 
 1. **Create** the **directory** `src\projects\state`.
-2. **Create** the **file** `src\projects\projectTypes.ts`.
+2. **Create** the **file** `src\projects\projectTypes.js`.
 3. **Define** the **project** `actions types`, `action interfaces`, and `state`.
 
-   #### `src\projects\state\projectTypes.ts`
+   #### `src\projects\state\projectTypes.js`
 
    ```ts
    import { Project } from '../Project';
@@ -94,10 +94,10 @@
 
 ### Create action creator functions
 
-1. **Create** the **file** `src\projects\state\projectActions.ts`.
+1. **Create** the **file** `src\projects\state\projectActions.js`.
 2. **Define** your **action** **creator** functions and return a `ThunkAction` (`function`) instead of just an `Action` (`object`) to handle the asyncronous nature of the HTTP calls happening.
 
-   #### `src\projects\state\projectActions.ts`
+   #### `src\projects\state\projectActions.js`
 
    ```ts
    import { Action } from 'redux';
@@ -153,9 +153,9 @@
 
 ### Implement a reducer
 
-1. **Create** the **file** `src\projects\state\projectReducer.ts`.
+1. **Create** the **file** `src\projects\state\projectReducer.js`.
 2. **Define** your **reducer** function.
-   `src\projects\state\projectReducer.ts`
+   `src\projects\state\projectReducer.js`
 
 ```ts
 import {
@@ -244,12 +244,12 @@ export function projectReducer(
 
 ### Configure the project reducer and state
 
-- update state.ts
+- update state.js
 
-1. **Open** the **file** `src\state.ts`.
+1. **Open** the **file** `src\state.js`.
 2. **Configure** the `projectReducer` and `ProjectState`.
 
-   #### `src\state.ts`
+   #### `src\state.js`
 
    ```diff
    + import { ProjectState } from './projects/state/projectTypes';
