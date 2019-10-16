@@ -12,14 +12,12 @@
 ### Define types: actions types, action interfaces, and state
 
 1. **Create** the **directory** `src\projects\state`.
-2. **Create** the **file** `src\projects\projectTypes.js`.
-3. **Define** the **project** `actions types`, `action interfaces`, and `state`.
+2. **Create** the **file** `src\projects\projectActions.js`.
+3. **Define** the **project** `actions types`.
 
-   #### `src\projects\state\projectTypes.js`
+   #### `src\projects\state\projectActions.js`
 
-   ```ts
-   import { Project } from '../Project';
-
+   ```js
    //action types
    export const LOAD_PROJECTS_REQUEST = 'LOAD_PROJECTS_REQUEST';
    export const LOAD_PROJECTS_SUCCESS = 'LOAD_PROJECTS_SUCCESS';
@@ -30,95 +28,24 @@
    export const DELETE_PROJECT_REQUEST = 'DELETE_PROJECT_REQUEST';
    export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS';
    export const DELETE_PROJECT_FAILURE = 'DELETE_PROJECT_FAILURE';
-
-   interface LoadProjectsRequest {
-     type: typeof LOAD_PROJECTS_REQUEST;
-   }
-
-   interface LoadProjectsSuccess {
-     type: typeof LOAD_PROJECTS_SUCCESS;
-     payload: { projects: Project[]; page: number };
-   }
-
-   interface LoadProjectsFailure {
-     type: typeof LOAD_PROJECTS_FAILURE;
-     payload: { message: string };
-   }
-
-   interface SaveProjectRequest {
-     type: typeof SAVE_PROJECT_REQUEST;
-   }
-
-   interface SaveProjectSuccess {
-     type: typeof SAVE_PROJECT_SUCCESS;
-     payload: Project;
-   }
-
-   interface SaveProjectFailure {
-     type: typeof SAVE_PROJECT_FAILURE;
-     payload: { message: string };
-   }
-
-   interface DeleteProjectRequest {
-     type: typeof DELETE_PROJECT_REQUEST;
-   }
-
-   interface DeleteProjectSuccess {
-     type: typeof DELETE_PROJECT_SUCCESS;
-     payload: Project;
-   }
-
-   interface DeleteProjectFailure {
-     type: typeof DELETE_PROJECT_FAILURE;
-     payload: { message: string };
-   }
-
-   export type ProjectActionTypes =
-     | LoadProjectsRequest
-     | LoadProjectsSuccess
-     | LoadProjectsFailure
-     | SaveProjectRequest
-     | SaveProjectSuccess
-     | SaveProjectFailure
-     | DeleteProjectRequest
-     | DeleteProjectSuccess
-     | DeleteProjectFailure;
-
-   export interface ProjectState {
-     loading: boolean;
-     projects: Project[];
-     error: string | undefined;
-     page: number;
-   }
    ```
 
 ### Create action creator functions
 
-1. **Create** the **file** `src\projects\state\projectActions.js`.
+1. **Open** the **file** `src\projects\state\projectActions.js`.
 2. **Define** your **action** **creator** functions and return a `ThunkAction` (`function`) instead of just an `Action` (`object`) to handle the asyncronous nature of the HTTP calls happening.
 
    #### `src\projects\state\projectActions.js`
 
-   ```ts
-   import { Action } from 'redux';
-   import { ThunkAction } from 'redux-thunk';
+   ```js
+   //action types
+   //...
+
    import { projectAPI } from '../projectAPI';
-   import { Project } from '../Project';
-   import {
-     LOAD_PROJECTS_REQUEST,
-     LOAD_PROJECTS_SUCCESS,
-     LOAD_PROJECTS_FAILURE,
-     SAVE_PROJECT_REQUEST,
-     SAVE_PROJECT_SUCCESS,
-     SAVE_PROJECT_FAILURE,
-     ProjectState
-   } from './projectTypes';
 
    //action creators
-   export function loadProjects(
-     page: number
-   ): ThunkAction<void, ProjectState, null, Action<string>> {
-     return (dispatch: any) => {
+   export function loadProjects(page) {
+     return dispatch => {
        dispatch({ type: LOAD_PROJECTS_REQUEST });
        return projectAPI
          .get(page)
@@ -134,10 +61,8 @@
      };
    }
 
-   export function saveProject(
-     project: Project
-   ): ThunkAction<void, ProjectState, null, Action<string>> {
-     return (dispatch: any) => {
+   export function saveProject(project) {
+     return dispatch => {
        dispatch({ type: SAVE_PROJECT_REQUEST });
        return projectAPI
          .put(project)
@@ -155,124 +80,135 @@
 
 1. **Create** the **file** `src\projects\state\projectReducer.js`.
 2. **Define** your **reducer** function.
-   `src\projects\state\projectReducer.js`
 
-```ts
-import {
-  ProjectActionTypes,
-  LOAD_PROJECTS_REQUEST,
-  LOAD_PROJECTS_SUCCESS,
-  LOAD_PROJECTS_FAILURE,
-  DELETE_PROJECT_REQUEST,
-  DELETE_PROJECT_SUCCESS,
-  DELETE_PROJECT_FAILURE,
-  SAVE_PROJECT_REQUEST,
-  SAVE_PROJECT_SUCCESS,
-  SAVE_PROJECT_FAILURE,
-  ProjectState
-} from './projectTypes';
-import { Project } from '../Project';
+   #### `src\projects\state\projectReducer.js`
 
-export const initialProjectState: ProjectState = {
-  projects: [],
-  loading: false,
-  error: undefined,
-  page: 1
-};
+   ```js
+   import {
+     LOAD_PROJECTS_REQUEST,
+     LOAD_PROJECTS_SUCCESS,
+     LOAD_PROJECTS_FAILURE,
+     DELETE_PROJECT_REQUEST,
+     DELETE_PROJECT_SUCCESS,
+     DELETE_PROJECT_FAILURE,
+     SAVE_PROJECT_REQUEST,
+     SAVE_PROJECT_SUCCESS,
+     SAVE_PROJECT_FAILURE
+   } from './projectActions';
+   import { Project } from '../Project';
 
-export function projectReducer(
-  state = initialProjectState,
-  action: ProjectActionTypes
-) {
-  switch (action.type) {
-    case LOAD_PROJECTS_REQUEST:
-      return { ...state, loading: true, error: '' };
-    case LOAD_PROJECTS_SUCCESS:
-      let projects: Project[];
-      const { page } = action.payload;
-      if (page === 1) {
-        projects = action.payload.projects;
-      } else {
-        projects = [...state.projects, ...action.payload.projects];
-      }
-      return {
-        ...state,
-        loading: false,
-        page,
-        projects,
-        error: ''
-      };
-    case LOAD_PROJECTS_FAILURE:
-      return { ...state, loading: false, error: action.payload.message };
-    case SAVE_PROJECT_REQUEST:
-      return { ...state };
-    case SAVE_PROJECT_SUCCESS:
-      if (action.payload.isNew) {
-        return {
-          ...state,
-          projects: [...state.projects, action.payload]
-        };
-      } else {
-        return {
-          ...state,
-          projects: state.projects.map((project: Project) => {
-            return project.id === action.payload.id
-              ? Object.assign({}, project, action.payload)
-              : project;
-          })
-        };
-      }
+   export const initialProjectState = {
+     projects: [],
+     loading: false,
+     error: undefined,
+     page: 1
+   };
 
-    case SAVE_PROJECT_FAILURE:
-      return { ...state, error: action.payload.message };
-    case DELETE_PROJECT_REQUEST:
-      return { ...state };
-    case DELETE_PROJECT_SUCCESS:
-      return {
-        ...state,
-        projects: state.projects.filter(
-          (project: Project) => project.id !== action.payload.id
-        )
-      };
-    case DELETE_PROJECT_FAILURE:
-      return { ...state, error: action.payload.message };
-    default:
-      return state;
-  }
-}
-```
+   export function projectReducer(state = initialProjectState, action) {
+     switch (action.type) {
+       case LOAD_PROJECTS_REQUEST:
+         return { ...state, loading: true, error: '' };
+       case LOAD_PROJECTS_SUCCESS:
+         let projects;
+         const { page } = action.payload;
+         if (page === 1) {
+           projects = action.payload.projects;
+         } else {
+           projects = [...state.projects, ...action.payload.projects];
+         }
+         return {
+           ...state,
+           loading: false,
+           page,
+           projects,
+           error: ''
+         };
+       case LOAD_PROJECTS_FAILURE:
+         return { ...state, loading: false, error: action.payload.message };
+       case SAVE_PROJECT_REQUEST:
+         return { ...state };
+       case SAVE_PROJECT_SUCCESS:
+         if (action.payload.isNew) {
+           return {
+             ...state,
+             projects: [...state.projects, action.payload]
+           };
+         } else {
+           return {
+             ...state,
+             projects: state.projects.map(project => {
+               return project.id === action.payload.id
+                 ? Object.assign(new Project(), project, action.payload)
+                 : project;
+             })
+           };
+         }
+
+       case SAVE_PROJECT_FAILURE:
+         return { ...state, error: action.payload.message };
+       case DELETE_PROJECT_REQUEST:
+         return { ...state };
+       case DELETE_PROJECT_SUCCESS:
+         return {
+           ...state,
+           projects: state.projects.filter(
+             project => project.id !== action.payload.id
+           )
+         };
+       case DELETE_PROJECT_FAILURE:
+         return { ...state, error: action.payload.message };
+       default:
+         return state;
+     }
+   }
+   ```
 
 ### Configure the project reducer and state
-
-- update state.js
 
 1. **Open** the **file** `src\state.js`.
 2. **Configure** the `projectReducer` and `ProjectState`.
 
    #### `src\state.js`
 
-   ```diff
-   + import { ProjectState } from './projects/state/projectTypes';
-   + import { initialProjectState } from './projects/state/projectReducer';
-   + import { projectReducer } from './projects/state/projectReducer';
-   + import { combineReducers } from 'redux';
+```diff
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { combineReducers } from 'redux';
++ import {
++   projectReducer,
++   initialProjectState
++ } from './projects/state/projectReducer';
 
-   const reducer = combineReducers({
-   +  projectState: projectReducer
-   });
+const reducer = combineReducers({
++  projectState: projectReducer
+});
 
-   ...
+export default function configureStore(preloadedState) {
+  const middlewares = [ReduxThunk];
+  const middlewareEnhancer = applyMiddleware(...middlewares);
 
-   export interface AppState {
-   +  projectState: ProjectState;
-   }
+  //Thunk is middleware
+  //DevTools is an enchancer (actually changes Redux)
+  //applyMiddleware wraps middleware and returns an enhancer
 
-   export const initialAppState: AppState = {
-   +  projectState: initialProjectState
-   };
+  // to use only thunk middlewar
+  // const enhancer = compose(middlewareEnhancer);
 
-   export const store = configureStore(initialAppState);
-   ```
+  //to use thunk & devTools
+  const enhancer = composeWithDevTools(middlewareEnhancer);
+
+  const store = createStore(reducer, preloadedState, enhancer);
+  return store;
+}
+
+export const initialAppState = {
++  projectState: initialProjectState
+};
+
+export const store = configureStore(initialAppState);
+
+```
 
 3. **Verify** the application **compiles**.
 

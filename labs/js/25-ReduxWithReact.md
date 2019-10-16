@@ -229,28 +229,30 @@
 
 1. Connect the Form component so it has access to the Redux store's state and is able to dispatch actions in the action creator functions passed in via props.
 
-   #### `src\projects\ProjectForm.js`
+> You will need to comment out the existing default export as shown below.
 
-   ```js
-   ...
-   import { saveProject } from './state/projectActions';
-   import { connect } from 'react-redux';
-   ...
+#### `src\projects\ProjectForm.js`
 
-   // export default ProjectForm;
+```js
+...
+import { saveProject } from './state/projectActions';
+import { connect } from 'react-redux';
+...
 
-   // React Redux (connect)---------------
+// export default ProjectForm;
 
-   const mapDispatchToProps = {
-   onSave: saveProject
-   };
+// React Redux (connect)---------------
 
-   export default connect(
-   null,
-   mapDispatchToProps
-   )(ProjectForm);
+const mapDispatchToProps = {
+onSave: saveProject
+};
 
-   ```
+export default connect(
+null,
+mapDispatchToProps
+)(ProjectForm);
+
+```
 
 2. Provide the store.
 
