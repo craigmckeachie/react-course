@@ -5,6 +5,13 @@ git push --set-upstream origin lab22
 
 ---
 
+finish ts testing
+    - form testing?
+    - redux testing?
+
+qa and create branches filling in test output
+translate to js
+
 git checkout lab03 -f
 git clean -df
 git push --set-upstream origin lab03

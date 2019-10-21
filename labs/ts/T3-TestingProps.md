@@ -11,7 +11,7 @@
 
 ### Test Setup
 
-1. **Create** the **directory** `src\projects\__tests__\__tests__`.
+1. **Create** the **directory** `src\projects\__tests__`.
 2. **Create** the **file** `src\projects\__tests__\ProjectCard-test.tsx`.
 3. **Add** the **setup** code below to test the component.
 
@@ -163,6 +163,7 @@
    import ProjectCard from '../ProjectCard';
    import React from 'react';
    import { Project } from '../Project';
+   + import renderer from 'react-test-renderer';
    + import { MemoryRouter } from 'react-router-dom';
 
    describe('<ProjectCard />', () => {
