@@ -47,12 +47,3 @@ removeProject(project){ - - -
 this.props.onRemove(project)
 }
 
-<!-- ### Customize serializer of enzyme shallow wrappers to json
-
-```
-npm i enzyme-to-json --save-dev
-yarn add enzyme-to-json --save-dev
-```
-
-https://www.npmjs.com/package/enzyme-to-json
-https://medium.com/@luisvieira_gmr/snapshot-testing-react-components-with-jest-best-practices-dd1585b2b93d -->

@@ -2,30 +2,6 @@
 
 https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets
 
-## Steps
-
-```
-npm i enzyme enzyme-adapter-react-16 react-test-renderer
-npm i @types/enzyme @types/react-test-renderer --save-dev
-npm install @types/react-test-renderer --save-dev
-```
-
-```
-yarn add enzyme enzyme-adapter-react-16 react-test-renderer
-yarn add @types/enzyme --save-dev
-yarn add @types/react-test-renderer --save-dev
-```
-
-### Customize serializer of enzyme shallow wrappers to json
-
-```
-npm i enzyme-to-json --save-dev
-yarn add enzyme-to-json --save-dev
-```
-
-https://www.npmjs.com/package/enzyme-to-json
-https://medium.com/@luisvieira_gmr/snapshot-testing-react-components-with-jest-best-practices-dd1585b2b93d
-
 #### Redux
 
 ```
@@ -49,6 +25,7 @@ https://jestjs.io/
 https://egghead.io/lessons/react-test-redux-connect-components-with-enzyme
 https://codesandbox.io/s/github/eggheadio-projects/react-enzyme-jest/tree/master/?from-embed
 https://github.com/twclark0/react-enzyme-jest/tree/master
+https://github.com/airbnb/enzyme/issues/1229
 
 ### React Testing Library
 

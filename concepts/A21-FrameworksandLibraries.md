@@ -8,6 +8,9 @@ https://reactjs.org/community/starter-kits.html
 
 ## GraphQL
 
+learngraphql.com
+https://github.com/jkupcho/graphql-talk
+
 ## MobX
 
 ## Next
