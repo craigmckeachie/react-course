@@ -1,13 +1,11 @@
-git checkout -b lab22
+git checkout -b t-lab04
 git add -A
-git commit -m 'lab22'
-git push --set-upstream origin lab22
+git commit -m 't-lab04'
+git push --set-upstream origin t-lab04
 
 ---
 
-finish ts testing
-    - form testing?
-    - redux testing?
+finish ts testing - form testing? - redux testing?
 
 qa and create branches filling in test output
 translate to js
@@ -46,4 +44,3 @@ dispatch({ type: DELETE_PROJECT_FAILURE, payload: error });
 removeProject(project){ - - -
 this.props.onRemove(project)
 }
-

@@ -15,23 +15,23 @@
 
    #### npm
 
-   ```
+   ```shell
    npm i react-test-renderer
    npm i @types/react-test-renderer --save-dev
    ```
 
    #### Yarn
 
-   ```
+   ```shell
    yarn add react-test-renderer
    yarn add @types/react-test-renderer --save-dev
    ```
 
 ### Create Your First Snapshot Test
 
-#### `src\home\HomePage.test.tsx`
-
 1. Add a snapshot test for the component.
+
+#### `src\home\HomePage.test.tsx`
 
 ```diff
 import React from 'react';
@@ -65,6 +65,12 @@ describe('<HomePage />', () => {
 
 });
 ```
+
+1. Verify the snapshot is created.
+
+   ```shell
+    › 1 snapshot written.
+   ```
 
 ---
 
