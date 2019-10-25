@@ -30,11 +30,3 @@
 ---
 
 ### &#10004; You have completed Lab x
-
-#### `src\projects\ProjectsPage.tsx`
-
-```tsx
-```
-
-
-

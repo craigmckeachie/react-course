@@ -193,3 +193,7 @@
 ---
 
 ### &#10004; You have completed Unit Testing Lab 6
+
+## Resources
+
+- [Shallow does not rerender when props change](https://github.com/airbnb/enzyme/issues/1229)
