@@ -8,6 +8,10 @@
 
 ## Steps
 
+> This lab is designed to start with the code after finishing:
+>
+> **Lab 25: Redux with React**
+
 ### Install Enzyme
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
@@ -16,16 +20,48 @@
 
    #### npm
 
-   ```
+   ```shell
    npm i enzyme enzyme-adapter-react-16
    npm i @types/enzyme --save-dev
    ```
 
    #### Yarn
 
-   ```
+   ```shell
    yarn add enzyme enzyme-adapter-react-16
    yarn add @types/enzyme --save-dev
+   ```
+
+1. Create the file `src\setupTests.ts`
+1. Add the following code to configure enzyme.
+
+   #### `src\setupTests.ts`
+
+   ```ts
+   import { configure } from 'enzyme';
+   import Adapter from 'enzyme-adapter-react-16';
+
+   configure({ adapter: new Adapter() });
+   ```
+
+1. **Run** _one_ of the following commands to run the tests:
+
+   #### npm
+
+   ```shell
+   npm test
+   ```
+
+   #### Yarn
+
+   ```shell
+   yarn test
+   ```
+
+1. Verify the test created by Create React App passes.
+
+   ```shell
+   PASS  src/App.test.tsx
    ```
 
 ### Create Your First Component Test
@@ -47,6 +83,12 @@
    });
    ```
 
+1. Verify the test passes.
+
+   ```shell
+   PASS  src/home/HomePage.test.tsx
+   ```
+
 1. Add a test to verify the component renders a title tag.
 
    #### `src\home\HomePage.test.tsx`
@@ -60,6 +102,10 @@
    });
    ```
 
+1. Verify the test passes.
+   ```shell
+   PASS  src/home/HomePage.test.tsx
+   ```
 1. Add a test to verify the component renders a title.
 
    #### `src\home\HomePage.test.tsx`
@@ -71,6 +117,11 @@
      wrapper = shallow(<HomePage />);
      expect(wrapper.find('h2').text()).toBe('Home');
    });
+   ```
+
+1. Verify the test passes.
+   ```shell
+   PASS  src/home/HomePage.test.tsx
    ```
 
 ### Refactor Tests
@@ -103,6 +154,11 @@
        expect(wrapper.find('h2').text()).toBe('Home');
      });
    });
+   ```
+
+1. Verify all the tests of the `HomePage` still pass.
+   ```shell
+   PASS  src/home/HomePage.test.tsx
    ```
 
 ---
