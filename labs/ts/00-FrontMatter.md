@@ -46,6 +46,15 @@ information storage and retrieval systems, without permission from the author.
   <!-- - [Lab 26: Testing](26-Testing.md) -->
 - [Appendix 1: How to Skip Labs](A1-SkippingLabs.md)
 - [Appendix 3: Format Description (optional lab)](A3-FormatDescription.md)
+- [Unit Testing Lab 1: Shallow Rendering with Enzyme](T1-ShallowRendering.md)
+- [Unit Testing Lab 2: Snapshot Tests](T2-SnapshotTests.md)
+- [Unit Testing Lab 3: Testing Props](T3-TestingProps.md)
+- [Unit Testing Lab 4: Nested Components](T4-NestedComponents.md)
+- [Unit Testing Lab 5: Container Components](T5-ContainerComponents.md)
+- [Unit Testing Lab 6: Testing Forms](T6-TestingForms.md)
+- [Unit Testing Lab 7: Action Tests](T7-ActionTests.md)
+- [Unit Testing Lab 8: Reducer Tests](T8-ReducerTests.md)
+- [Unit Testing Lab 9: API Tests](T9-APITests.md)
 
 ## Solutions
 
