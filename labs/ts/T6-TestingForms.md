@@ -88,6 +88,12 @@
    });
    ```
 
+1. **Verify** that the intial **test passes**.
+
+   ```shell
+    PASS  src/projects/__tests__/ProjectForm-test.tsx
+   ```
+
 1. **Test** that the component **renders** the `project` **prop** properly.
 
    #### `src\projects\__tests__\ProjectForm-test.tsx`
@@ -106,6 +112,7 @@
 
    ```ts
    ...
+
     test('should allow users to update name ', () => {
         nameWrapper.simulate('change', {
         target: { type: 'text', name: 'name', value: updatedProject.name }
@@ -133,12 +140,17 @@
     });
    ```
 
+   > Note that enzyme's `ShallowWrapper` objects are immutable and do not update when events are simulated. Because of this we need call find again on the root element's wrapper to see the updates.
+
+   > See the following Github issue for more information: [Shallow does not rerender when props change](https://github.com/airbnb/enzyme/issues/1229).
+
 1. **Test** that `onSave` is **called** when the `form` is **submitted**.
 
    #### `src\projects\__tests__\ProjectForm-test.tsx`
 
    ```ts
    ...
+
     test('should call onSave when submitted ', () => {
         const formWrapper = wrapper.find('form');
         formWrapper.simulate('submit', { preventDefault: () => {} });
@@ -153,6 +165,7 @@
 
    ```ts
    ...
+
     test('should display required validation message if name not provided', () => {
         nameWrapper.simulate('change', {
         target: { type: 'text', name: 'name', value: '' }
@@ -193,7 +206,3 @@
 ---
 
 ### &#10004; You have completed Unit Testing Lab 6
-
-## Resources
-
-- [Shallow does not rerender when props change](https://github.com/airbnb/enzyme/issues/1229)
