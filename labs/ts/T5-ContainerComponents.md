@@ -11,6 +11,8 @@
 
 1. Export the container component before wrapping it.
 
+   > Be sure you working in the file Project**s**Page.tsx not ProjectPage.tsx
+
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
@@ -42,8 +44,8 @@
 
 ### Test the Container Component
 
-2. **Create** the **file** `src\projects\__tests__\ProjectsPage-test.tsx`.
-3. **Add** the **setup** code below to test the component.
+1. **Create** the **file** `src\projects\__tests__\ProjectsPage-test.tsx`.
+1. **Add** the **setup** code below to test the component.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
@@ -73,19 +75,39 @@
    });
    ```
 
-1) **Test** that onLoad is called with a page number when the component is created.
+1. **Verify** the intial **test passe**s.
+   ```
+   PASS  src/projects/__tests__/ProjectsPage-test.tsx
+   ```
+1. **Test** that `onLoad` is called with a page number when the component is created.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
    ```ts
    ...
    test('onLoad should be called with page number', () => {
-       const pageNumber = 1;
-       expect(onLoadMock).toBeCalledWith(pageNumber);
+     const pageNumber = 1;
+     expect(onLoadMock).toBeCalledWith(pageNumber);
    });
    ```
 
-1) **Test** that the `ProjectList` is rendered inside the `Projectspage`.
+1. Export the `ProjectListProps` interface.
+
+   #### `src\projects\ProjectsPage.tsx`
+
+   ```diff
+     ...
+
+   -  interface ProjectListProps {
+   +  export interface ProjectListProps {
+       projects: Project[];
+       onSave: (project: Project) => void;
+     }
+     ...
+
+   ```
+
+1. Import the `ProjectListProps` interterface and **Test** that the `ProjectList` is rendered inside the `ProjectsPage`.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
@@ -149,9 +171,9 @@
 
    ```ts
    ...
-   test('renders without crashing', () => {
-       expect(wrapper).toBeDefined();
-   });
+     test('snapshot', () => {
+       expect(wrapper).toMatchSnapshot();
+     });
    ```
 
 ---
