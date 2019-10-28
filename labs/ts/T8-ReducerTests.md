@@ -8,12 +8,12 @@
 
 ### Test a Reducer
 
-1. Create the file `src\projects\state\__tests__\projectReducer-test.tsx`
+1. Create the file `src\projects\state\__tests__\projectReducer-test.ts`
 1. Add the following code to test the updating of a project.
 
-   #### `src\projects\state\__tests__\projectReducer-test.tsx`
+   #### `src\projects\state\__tests__\projectReducer-test.ts`
 
-   ```tsx
+   ```ts
    import { projectReducer, initialProjectState } from '../projectReducer';
    import { SAVE_PROJECT_SUCCESS } from '../projectTypes';
    import { Project } from '../../Project';
@@ -42,7 +42,7 @@
 1. Verify the test passes.
 
    ```shell
-   PASS  src/projects/state/__tests__/projectReducer-test.tsx
+   PASS  src/projects/state/__tests__/projectReducer-test.ts
    ```
 
 ---
