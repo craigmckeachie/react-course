@@ -26,7 +26,7 @@ Tools with similar scope include:
 - Enzyme is a **React Component** testing library
 - Provides testing utilities for React
 - Created by Airbnb
-- Enzyme uses the React Test Utilities underneath, but is more convenient, readable, and powerful.
+- Enzyme uses the React Test Utilities (from the React team at Facebook) underneath, but is more convenient, readable, and powerful.
 
 Features:
 
@@ -94,31 +94,25 @@ Features:
 
 ## JavaScript Tests
 
-https://facebook.github.io/create-react-app/docs/running-tests
-
 1. Open the `my-app` project from the ProjectSetup lab.
-2. Create the file `math.js`
+2. Create the file `src\math.js`.
 3. Add the following code
 
+#### `src\math.js`
+
 ```js
-//math.js
 export function add(a, b) {
   return a + b;
 }
 ```
 
 4. Create the file `math.test.js`
-5. Open a command prompt or terminal in the `my-app` directory and run the tests
+
+5. Add the following code
+
+#### `src\math.test.js`
 
 ```js
-npm test
-```
-
-6. Add the following code
-
-```js
-//math.test.js
-
 import { add } from './math';
 
 test('add numbers', () => {
@@ -129,10 +123,16 @@ test('add numbers', () => {
 
 > Be sure to include the `import` statement.
 
-7. The test should pass.
+1. Open a command prompt or terminal in the `my-app` directory and run the tests
+
+```js
+npm test
+```
+
+1. The test should pass.
 
 ```
-Tests:      2 passed
+ PASS  src/math.test.js
 ```
 
 8. Type `w` to show more commands.
@@ -146,84 +146,227 @@ Tests:      2 passed
  › Press Enter to trigger a test run.
 ```
 
-8. Try out the various commands
+1. Try out the various commands
 
-## Debugging Tests
+## Mocking
 
-## Debugging Tests in Chrome
+### Mocking Modules
 
-Add the following to the `scripts` section in your project's `package.json`
+If we want to mock out the `math` module we could do the following:
 
-```json
-"scripts": {
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
-  }
+1. Create the directory `src\__mocks__`.
+1. Create the file `src\__mocks__\math.js`.
+1. Create the mock math module.
+
+#### `src\__mocks__\math.js`
+
+```js
+export function add(a, b) {
+  return 2;
+}
 ```
 
-Place `debugger;` statements in your test.
+3. Mock the actual implementation and return the expected values.
 
-#### math.test.js
+> Notice we are able to return values regardless of the inputs because we are mocking the module.
 
-```
+#### `src\math.test.js`
+
+```diff
+import { add } from './math';
++ jest.mock('./math');
+
 test('add numbers', () => {
-  debugger;
-  expect(add(1, 1)).toEqual(2);
-  expect(add(2, 2)).toEqual(4);
++  expect(add(1, 1)).toEqual(4);
+-  expect(add(1, 1)).toEqual(2);
+-  expect(add(2, 2)).toEqual(4);
 });
 ```
 
-Run:
+> Jest works based on the convention that if you create the mock module in a `__mocks__` directory next to the actual module and then call `jest.mock(./my-module)` the actual implementation will be replaced with your mock code.
 
-```sh
-$ npm run test:debug
-```
+But we can't meet both of our original expectations `2` and `4` because the mock is hard-coded to return the value `2`.
 
-This will start running your Jest tests, but pause before executing to allow a debugger to attach to the process.
+### Mocking Functions
 
-Open the following in Chrome
+To solve this we can mock not only the module but the `add` function as follows:
 
-```
-about:inspect
-```
+1. Replace the `add` function with a Jest mock function.
 
-Choose a the inspect link next to the process you want to debug.
+   #### `src\__mocks__\math.js`
 
-After opening that link, the Chrome Developer Tools will be displayed.
+   ```diff
+   export const add = jest.fn();
+   - export function add(a, b) {
+   -  return 2;
+   - }
+   ```
 
-- Select `inspect` on your process and a breakpoint will be set at the first line of the react script (this is done simply to give you time to open the developer tools and to prevent Jest from executing before you have time to do so).
+1. Mock the return values.
 
-  > Be patient waiting for the breakpoint to be hit it takes awhile.
+   #### `src\math.test.js`
 
-- Click the button that looks like a "play" button in the upper right hand side of the screen to continue execution. When Jest executes the test that contains the debugger statement, execution will pause and you can examine the current scope and call stack.
+   ```diff
+   import { add } from './math';
+   jest.mock('./math');
+   test('add numbers', () => {
+   +  add.mockReturnValueOnce(2);
+   +  add.mockReturnValueOnce(4);
+   +  expect(add(1, 1)).toEqual(2);
+     expect(add(2, 2)).toEqual(4);
+   });
+   ```
+
+1. Now both expectations pass.
+
+   ```shell
+   PASS  src/math.test.js
+   ```
+
+With our current implementation if we call the `add` function a third time we get `undefined` because no `default` implementation is defined.
+
+1. Add another assertion.
+
+   #### `src\math.test.js`
+
+   ```diff
+   import { add } from './math';
+   jest.mock('./math');
+   test('add numbers', () => {
+     add.mockReturnValueOnce(2);
+     add.mockReturnValueOnce(4);
+     expect(add(1, 1)).toEqual(2);
+     expect(add(2, 2)).toEqual(4);
+   +  expect(add(1,1)).toEqual(2)
+   });
+   ```
+
+2. Verify the test fails.
+
+   ```shell
+   FAIL  src/math.test.js
+     ● add numbers
+
+       expect(received).toEqual(expected) // deep equality
+
+       Expected: 2
+       Received: undefined
+
+         6 |   expect(add(1, 1)).toEqual(2);
+         7 |   expect(add(2, 2)).toEqual(4);
+       > 8 |   expect(add(1,1)).toEqual(2)
+           |                    ^
+         9 | });
+
+         at Object.toEqual (src/math.test.js:8:20)
+   ```
+
+3. Define a default implementation for our mock function.
+
+   #### `src\math.test.js`
+
+   ```diff
+   import { add } from './math';
+   jest.mock('./math');
+   test('add numbers', () => {
+     add.mockReturnValueOnce(2;
+     add.mockReturnValueOnce(4);
+   +  add.mockReturnValue(42);
+     expect(add(1, 1)).toEqual(2);
+     expect(add(2, 2)).toEqual(4);
+   +  expect(add(2, 2)).toEqual(42);
+   +  expect(add(1, 1)).toEqual(42);
+   });
+   ```
+
+4. Verify the default implementation works on subsequent calls.
+
+   ```shell
+   PASS  src/math.test.js
+   ```
+
+Below we define a default implementation to always return `42`.
+
+> [To learn more about mock functions vistit the official documentation](https://jestjs.io/docs/en/mock-functions).
+
+## Debugging Tests
+
+### Debugging Tests in Chrome
+
+1. Add the following to the `scripts` section in your project's `package.json`
+
+   #### `package.json`
+
+   ```json
+   "scripts": {
+       "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
+     }
+   ```
+
+1. Place `debugger;` statements in your test.
+
+   #### math.test.js
+
+   ```diff
+   test('add numbers', () => {
+   +  debugger;
+     expect(add(1, 1)).toEqual(2);
+     expect(add(2, 2)).toEqual(4);
+   });
+   ```
+
+1. Run the command.
+
+   ```sh
+   npm run test:debug
+   ```
+
+   > This will start running your Jest tests, but pause before executing to allow a debugger to attach to the process.
+
+1. Open the following in Chrome
+
+   ```
+   about:inspect
+   ```
+
+1. Choose the inspect link next to the process you want to debug.
+
+1. After opening that link, the Chrome Developer Tools will be displayed.
+
+1. Select `inspect` on your process and a breakpoint will be set at the first line of the react script (this is done simply to give you time to open the developer tools and to prevent Jest from executing before you have time to do so).
+
+   > Be patient waiting for the breakpoint to be hit it takes awhile.
+
+1. Click the button that looks like a "play" button in the upper right hand side of the screen to continue execution. When Jest executes the test that contains the debugger statement, execution will pause and you can examine the current scope and call stack.
 
 > Note: the --runInBand cli option makes sure Jest runs test in the same process rather than spawning processes for individual tests. Normally Jest parallelizes test runs across processes but it is hard to debug many processes at the same time.
 
-## Debugging Tests in Visual Studio Code
+### Debugging Tests in Visual Studio Code
 
 Debugging Jest tests is supported out of the box for [Visual Studio Code](https://code.visualstudio.com).
 
 Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debugging#_launch-configurations) configuration file:
 
-1. Click Debug > Start Debugging > Choose `Node` as the configuration type and add the configuration below.
+1. Click `Debug > Start Debugging > Choose 'Node'` as the configuration type and add the configuration below.
 
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Debug CRA Tests",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
-      "args": ["test", "--runInBand", "--no-cache", "--watchAll=false"],
-      "cwd": "${workspaceRoot}",
-      "protocol": "inspector",
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    }
-  ]
-}
-```
+   ```json
+   {
+     "version": "0.2.0",
+     "configurations": [
+       {
+         "name": "Debug CRA Tests",
+         "type": "node",
+         "request": "launch",
+         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+         "args": ["test", "--runInBand", "--no-cache", "--watchAll=false"],
+         "cwd": "${workspaceRoot}",
+         "protocol": "inspector",
+         "console": "integratedTerminal",
+         "internalConsoleOptions": "neverOpen"
+       }
+     ]
+   }
+   ```
 
 ### Excluding Tests
 
@@ -255,11 +398,12 @@ This requires the [`shallow()` rendering API](https://airbnb.io/enzyme/docs/api/
    npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
    ```
 
-   Alternatively you may use `yarn`:
 
-   ```sh
-   yarn add enzyme enzyme-adapter-react-16 react-test-renderer
-   ```
+    Alternatively you may use `yarn`:
+
+    ```sh
+    yarn add enzyme enzyme-adapter-react-16 react-test-renderer
+    ```
 
 2. Also install the types:
 
@@ -293,7 +437,7 @@ The adapter will also need to be configured in your [global setup file]:
 
 //shallow
 import { shallow } from 'enzyme';
-test('renders without crashing', () => {
+test('shallow renders without crashing', () => {
   shallow(<App />);
 });
 ```
@@ -308,29 +452,33 @@ It works more directly with DOM nodes, and therefore it's recommended to use wit
 
 1. To install `react-testing-library` and `jest-dom`, you can run:
 
-```sh
-npm install --save @testing-library/react @testing-library/jest-dom
-```
+   ```sh
+   npm install --save @testing-library/react @testing-library/jest-dom
+   ```
 
-Alternatively you may use `yarn`:
+   Alternatively you may use `yarn`:
 
-```sh
-yarn add @testing-library/react @testing-library/jest-dom
-```
+   ```sh
+   yarn add @testing-library/react @testing-library/jest-dom
+   ```
 
-2. Similar to `enzyme` you can modify a `src/setupTests.js` file to avoid boilerplate in your test files:
+2. As we did with `enzyme`, you can modify a `src\setupTests.js` file to avoid boilerplate in your test files:
 
-```js
-// react-testing-library renders your components to document.body,
+   #### `src\setupTests.js`
 
-// this adds jest-dom's custom assertions
-import '@testing-library/jest-dom/extend-expect';
-```
+   ```js
+   ...
+   // react-testing-library renders your components to document.body,
+
+   // this adds jest-dom's custom assertions
+   import '@testing-library/jest-dom/extend-expect';
+   ```
 
 3. Add a test using `react-testing-library` and `jest-dom` for testing that the `<App />` component renders "Learn React".
 
+#### `src\app.test.js`
+
 ```js
-// App.test.js
 //full
 
 import { render } from '@testing-library/react';
@@ -349,47 +497,41 @@ Snapshot testing requires you to install the `react-test-renderer` which we alre
 
 1.  Add the following test
 
-```js
-// App.test.js
-//snapshot
-import renderer from 'react-test-renderer';
-test('has a valid snapshot', () => {
-  const component = renderer.create(<App />);
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});
-```
+    #### `src\App.test.[js|tsx]`
 
-> Normally you wouldn't snapshot the `App` component since it contains all other components
+    ```js
+    //snapshot
+    import renderer from 'react-test-renderer';
+    test('has a valid snapshot', () => {
+      const component = renderer.create(<App />);
+      const tree = component.toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+    ```
 
-2. Open `src/__snapshots__\App.test.js.snap`
-3. Change `src/App.js`
+    > Normally you wouldn't snapshot the `App` component since it contains all other components
 
-   ```diff
-   function App() {
-   return (
-       <div className="App">
-       <header className="App-header">
-   +        <h1>Welcome to React</h1>
-           <img src={logo} className="App-logo" alt="logo" />
-   ```
+2.  Open the file `src/__snapshots__\App.test.[js|tsx].snap`
+3.  Update `src/App.js`.
 
-4. See the error message
-   ```
-    › 1 snapshot failed.
-   Snapshot Summary
-   › 1 snapshot failed from 1 test suite. Inspect your code changes or press `u` to update them.
-   ```
-5. Press `u` to update the snapshot.
+    #### `src/App.js`
 
-## Mocking & Spies
+    ```diff
+    function App() {
+    return (
+        <div className="App">
+        <header className="App-header">
+    +        <h1>Welcome to React</h1>
+            <img src={logo} className="App-logo" alt="logo" />
+    ```
 
-https://jestjs.io/docs/en/mock-functions
-
-<!-- ## Async Tests
-
-https://jestjs.io/docs/en/asynchronous
-https://jestjs.io/docs/en/tutorial-async -->
+4.  See the message below.
+    ```shell
+     › 1 snapshot failed.
+    Snapshot Summary
+    › 1 snapshot failed from 1 test suite. Inspect your code changes or press `u` to update them.
+    ```
+5.  Press `u` to update the snapshot.
 
 ## Reference
 
@@ -403,5 +545,8 @@ https://jestjs.io/docs/en/tutorial-async -->
 - [Testing React Apps (with Jest)](https://jestjs.io/docs/en/tutorial-react)
 - [React Documentation: Test Utilities](https://reactjs.org/docs/test-utils.html)
 - [Jest Mocking & Spies](https://jestjs.io/docs/en/mock-functions)
-- [Handling Async in Jest](https://jestjs.io/docs/en/asynchronous
-  https://jestjs.io/docs/en/tutorial-async )
+- [Handling Async in Jest](https://jestjs.io/docs/en/asynchronous)
+
+```
+
+```
