@@ -368,6 +368,10 @@ Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debu
    }
    ```
 
+### Running One Test
+
+ If your test name is unique, you can enter `t` while in watch mode and enter the name of the test you'd like to run.
+
 ### Excluding Tests
 
 You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily exclude a test from being executed.
