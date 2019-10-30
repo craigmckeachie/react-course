@@ -131,8 +131,26 @@
 - Redux with TypeScript (if applicable)
 - React & Redux with TypeScript (if applicable)
 
-#### Labs (not available for JavaScript/ECMAScript yet)
+#### Labs
 
 - Lab 23: Redux Install
 - Lab 24: Redux Actions & Reducer
 - Lab 25: Redux with React
+
+
+## Part 10
+
+#### Concepts
+
+- Testing
+- 
+#### Labs
+- Unit Testing Lab 1: Shallow Rendering with Enzyme
+- Unit Testing Lab 2: Snapshot Tests
+- Unit Testing Lab 3: Testing Props
+- Unit Testing Lab 4: Nested Components
+- Unit Testing Lab 5: Container Components
+- Unit Testing Lab 6: Testing Forms
+- Unit Testing Lab 7: Action Tests
+- Unit Testing Lab 8: Reducer Tests
+- Unit Testing Lab 9: API Tests
