@@ -1,5 +1,7 @@
 # Prerequisite Concepts for Labs
 
+# Fundamentals (Days 1-3)
+
 ## Part 1
 
 #### Concepts
@@ -99,6 +101,9 @@
 
 - Lab 22: Build & Deploy
 
+
+# Advanced (Days 4 & 5)
+
 ## Part 8
 
 #### Concepts
@@ -109,16 +114,6 @@
 
 - Lab 20: Router Basics
 - Lab 21: Route Parameters
-
-## Optional Topics
-
-- Best Practices (Code Organization & Conventions)
-- Appendix A: How to Skip Labs
-- Styling
-- Hooks (new)
-- Testing
-
-# Advanced Course
 
 ## Part 9
 
@@ -154,3 +149,10 @@
 - Unit Testing Lab 7: Action Tests
 - Unit Testing Lab 8: Reducer Tests
 - Unit Testing Lab 9: API Tests
+
+## Optional Topics
+
+- Best Practices (Code Organization & Conventions)
+- Appendix A: How to Skip Labs
+- Styling
+- Hooks (new)
