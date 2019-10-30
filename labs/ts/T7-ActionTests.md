@@ -48,7 +48,7 @@
    ```
 
 1. Create the directory `src\projects\state\__tests__`.
-   > `__mocks__` begins and ends with two underscores and is case-sensitive
+   > `__tests__` begins and ends with two underscores and is case-sensitive
 1. Create the file `src\projects\state\__tests__\projectActions-test.ts`
 1. Add the test setup code including mocking the store away.
 

@@ -48,7 +48,7 @@
    ```
 
 1. Create the directory `src\projects\state\__tests__`.
-   > `__mocks__` begins and ends with two underscores and is case-sensitive
+   > `__tests__` begins and ends with two underscores and is case-sensitive
 1. Create the file `src\projects\state\__tests__\projectActions-test.js`
 1. Add the test setup code including mocking the store away.
 
@@ -60,10 +60,10 @@
    import { initialAppState } from '../../../state';
    import { loadProjects } from '../projectActions';
    import {
-     LOAD_PROJECTS_REQUEST,
-     LOAD_PROJECTS_SUCCESS,
-     LOAD_PROJECTS_FAILURE
-   } from '../projectTypes';
+    LOAD_PROJECTS_REQUEST,
+    LOAD_PROJECTS_SUCCESS,
+    LOAD_PROJECTS_FAILURE
+   } from '../projectActions';
    import { projectAPI } from '../../projectAPI';
    import { MOCK_PROJECTS } from '../../MockProjects';
    jest.mock('../../projectAPI');
@@ -155,7 +155,7 @@
     PASS  src/projects/state/__tests__/projectActions-test.js
    ```
 
-1. Attempt to test that the projects load successfully by adding the code.
+1. Attempt to test that the projects load successfully by adding the code below.
 
    #### `src/projects/state/__tests__/projectActions-test.js`
 

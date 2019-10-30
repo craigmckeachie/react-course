@@ -202,7 +202,11 @@
         expect(validationErrorWrapper.length).toBe(0);
     });
    ```
+1. If you haven't already, **verify** that all the above **tests pass**.
 
+   ```shell
+    PASS  src/projects/__tests__/ProjectForm-test.tsx
+   ```
 ---
 
 ### &#10004; You have completed Unit Testing Lab 6
