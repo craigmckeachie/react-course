@@ -15,7 +15,7 @@
 
    ```js
    import { projectReducer, initialProjectState } from '../projectReducer';
-   import { SAVE_PROJECT_SUCCESS } from '../projectTypes';
+   import { SAVE_PROJECT_SUCCESS } from '../projectActions';
    import { Project } from '../../Project';
    import { MOCK_PROJECTS } from '../../MockProjects';
    describe('project reducer', () => {
