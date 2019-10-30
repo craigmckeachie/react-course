@@ -143,7 +143,7 @@
 #### Concepts
 
 - Testing
-- 
+  
 #### Labs
 - Unit Testing Lab 1: Shallow Rendering with Enzyme
 - Unit Testing Lab 2: Snapshot Tests
