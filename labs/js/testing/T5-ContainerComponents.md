@@ -11,9 +11,9 @@
 
 1. Export the container component before wrapping it.
 
-   > Be sure you working in the file Project**s**Page.tsx not ProjectPage.tsx
+   > Be sure you working in the file Project**s**Page.js not ProjectPage.js
 
-   #### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    ...
@@ -44,12 +44,12 @@
 
 ### Test the Container Component
 
-1. **Create** the **file** `src\projects\__tests__\ProjectsPage-test.tsx`.
+1. **Create** the **file** `src\projects\__tests__\ProjectsPage-test.js`.
 1. **Add** the **setup** code below to test the component.
 
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```ts
+   ```js
    import React from 'react';
    import { ShallowWrapper, shallow } from 'enzyme';
    import { UnconnectedProjectsPage } from '../ProjectsPage';
@@ -77,13 +77,13 @@
 
 1. **Verify** the intial **test passe**s.
    ```
-   PASS  src/projects/__tests__/ProjectsPage-test.tsx
+   PASS  src/projects/__tests__/ProjectsPage-test.js
    ```
 1. **Test** that `onLoad` is called with a page number when the component is created.
 
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```ts
+   ```js
    ...
    test('onLoad should be called with page number', () => {
      const pageNumber = 1;
@@ -91,32 +91,17 @@
    });
    ```
 
-1. Export the `ProjectListProps` interface.
 
-   #### `src\projects\ProjectsPage.tsx`
+1.  **Test** that the `ProjectList` is rendered inside the `ProjectsPage`.
 
-   ```diff
-     ...
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   -  interface ProjectListProps {
-   +  export interface ProjectListProps {
-       projects: Project[];
-       onSave: (project: Project) => void;
-     }
-     ...
-
-   ```
-
-1. Import the `ProjectListProps` interface and **Test** that the `ProjectList` is rendered inside the `ProjectsPage`.
-
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
-
-   ```ts
+   ```js
    ...
    test('renders <ProjectList />', () => {
        let projectListWrapper = wrapper.find('ProjectList');
        expect(projectListWrapper.length).toBe(1);
-       expect((projectListWrapper.props() as ProjectListProps).projects).toBe(
+       expect((projectListWrapper.props()).projects).toBe(
        MOCK_PROJECTS
        );
    });
@@ -124,9 +109,9 @@
 
 1. **Test** that an error is displayed when one occurs.
 
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```ts
+   ```js
    ...
    test('error displays', () => {
        wrapper.setProps({ error: 'Fail' });
@@ -137,9 +122,9 @@
 
 1. **Test** that the loading indicator is displayed.
 
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```ts
+   ```js
    ...
    test('loading indicator displays', () => {
        wrapper.setProps({ loading: true });
@@ -151,9 +136,9 @@
 
 1. **Test** that the pagination works.
 
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```ts
+   ```js
    ...
    test('When clicking more records...onLoad should be called with next page number', () => {
        const moreButton = wrapper.findWhere(
@@ -167,9 +152,9 @@
 
 1. **Take** a snapshot.
 
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+   #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```ts
+   ```js
    ...
      test('snapshot', () => {
        expect(wrapper).toMatchSnapshot();

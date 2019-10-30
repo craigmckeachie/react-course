@@ -22,22 +22,20 @@
 
    ```shell
    npm i enzyme enzyme-adapter-react-16
-   npm i @types/enzyme --save-dev
    ```
 
    #### Yarn
 
    ```shell
    yarn add enzyme enzyme-adapter-react-16
-   yarn add @types/enzyme --save-dev
    ```
 
-1. Create the file `src\setupTests.ts`
+1. Create the file `src\setupTests.js`
 1. Add the following code to configure enzyme.
 
-   #### `src\setupTests.ts`
+   #### `src\setupTests.js`
 
-   ```ts
+   ```js
    import { configure } from 'enzyme';
    import Adapter from 'enzyme-adapter-react-16';
 
@@ -57,21 +55,22 @@
    ```shell
    yarn test
    ```
+
 1. Press `a` to run all tests.
-1. Verify the test created by Create React App passes.
+2. Verify the test created by Create React App passes.
 
    ```shell
-   PASS  src/App.test.tsx
+   PASS  src/App.test.js
    ```
 
 ### Create Your First Component Test
 
-1. Create the file `src\home\HomePage.test.tsx`.
+1. Create the file `src\home\HomePage.test.js`.
 1. Add a test to verify the component shallow renders without crashing.
 
-   #### `src\home\HomePage.test.tsx`
+   #### `src\home\HomePage.test.js`
 
-   ```ts
+   ```js
    import React from 'react';
    import { shallow, ShallowWrapper } from 'enzyme';
    import HomePage from './HomePage';
@@ -86,17 +85,17 @@
 1. Verify the test passes.
 
    ```shell
-   PASS  src/home/HomePage.test.tsx
+   PASS  src/home/HomePage.test.js
    ```
 
 1. Add a test to verify the component renders a title tag.
 
-   #### `src\home\HomePage.test.tsx`
+   #### `src\home\HomePage.test.js`
 
-   ```ts
+   ```js
    // ...
    test('renders title tag', () => {
-     let wrapper: ShallowWrapper;
+     let wrapper;
      wrapper = shallow(<HomePage />);
      expect(wrapper.exists('h2')).toBeTruthy();
    });
@@ -104,16 +103,16 @@
 
 1. Verify the test passes.
    ```shell
-   PASS  src/home/HomePage.test.tsx
+   PASS  src/home/HomePage.test.js
    ```
 1. Add a test to verify the component renders a title.
 
-   #### `src\home\HomePage.test.tsx`
+   #### `src\home\HomePage.test.js`
 
-   ```ts
+   ```js
    // ...
    test('renders title', () => {
-     let wrapper: ShallowWrapper;
+     let wrapper;
      wrapper = shallow(<HomePage />);
      expect(wrapper.find('h2').text()).toBe('Home');
    });
@@ -121,22 +120,22 @@
 
 1. Verify the test passes.
    ```shell
-   PASS  src/home/HomePage.test.tsx
+   PASS  src/home/HomePage.test.js
    ```
 
 ### Refactor Tests
 
 1. Remove repitition by adding a `describe` block and `beforeEach` and `afterEach` functions.
 
-   #### `src\home\HomePage.test.tsx`
+   #### `src\home\HomePage.test.js`
 
-   ```ts
+   ```js
    import React from 'react';
    import { shallow, ShallowWrapper } from 'enzyme';
    import HomePage from './HomePage';
 
    describe('<HomePage />', () => {
-     let wrapper: ShallowWrapper;
+     let wrapper;
 
      beforeEach(() => {
        wrapper = shallow(<HomePage />);
@@ -158,7 +157,7 @@
 
 1. Verify all the tests of the `HomePage` still pass.
    ```shell
-   PASS  src/home/HomePage.test.tsx
+   PASS  src/home/HomePage.test.js
    ```
 
 ---
