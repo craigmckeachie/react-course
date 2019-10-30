@@ -24,9 +24,9 @@
    import { MOCK_PROJECTS } from '../MockProjects';
 
    describe('<ProjectList />', () => {
-     let wrapper: ShallowWrapper;
-     let mockProjects: Project[];
-     let handleSave: jest.Mock;
+     let wrapper;
+     let mockProjects;
+     let handleSave;
 
      beforeEach(() => {
        mockProjects = MOCK_PROJECTS;
@@ -60,9 +60,9 @@
    import { MOCK_PROJECTS } from '../MockProjects';
 
    describe('<ProjectList />', () => {
-   let wrapper: ShallowWrapper;
-   let mockProjects: Project[];
-   let handleSave: jest.Mock;
+   let wrapper;
+   let mockProjects;
+   let handleSave;
 
    beforeEach(() => {
        mockProjects = MOCK_PROJECTS;
@@ -101,9 +101,9 @@
    import { MOCK_PROJECTS } from '../MockProjects';
 
    describe('<ProjectList />', () => {
-   let wrapper: ShallowWrapper;
-   let mockProjects: Project[];
-   let handleSave: jest.Mock;
+   let wrapper;
+   let mockProjects;
+   let handleSave;
 
    beforeEach(() => {
        mockProjects = MOCK_PROJECTS;
@@ -151,9 +151,9 @@
    + import renderer from 'react-test-renderer';
 
    describe('<ProjectList />', () => {
-   let wrapper: ShallowWrapper;
-   let mockProjects: Project[];
-   let handleSave: jest.Mock;
+   let wrapper;
+   let mockProjects;
+   let handleSave;
 
    beforeEach(() => {
        mockProjects = MOCK_PROJECTS;
@@ -350,9 +350,9 @@ import renderer from 'react-test-renderer';
    - import renderer from 'react-test-renderer';
 
    describe('<ProjectList />', () => {
-   let wrapper: ShallowWrapper;
-   let mockProjects: Project[];
-   let handleSave: jest.Mock;
+   let wrapper;
+   let mockProjects;
+   let handleSave;
 
    beforeEach(() => {
        mockProjects = MOCK_PROJECTS;

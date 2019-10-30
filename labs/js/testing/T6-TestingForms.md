@@ -49,13 +49,13 @@
    import { Project } from '../Project';
 
    describe('<ProjectForm />', () => {
-     let wrapper: ShallowWrapper;
-     let project: Project;
-     let updatedProject: Project;
-     let handleSave: jest.Mock;
-     let handleCancel: jest.Mock;
-     let nameWrapper: ShallowWrapper<HTMLAttributes>;
-     let descriptionWrapper: ShallowWrapper<HTMLAttributes>;
+     let wrapper;
+     let project;
+     let updatedProject;
+     let handleSave;
+     let handleCancel;
+     let nameWrapper;
+     let descriptionWrapper;
 
      beforeEach(() => {
        project = new Project({

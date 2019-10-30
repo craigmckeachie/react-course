@@ -76,7 +76,7 @@
    import HomePage from './HomePage';
 
    test('renders without crashing', () => {
-     let wrapper: ShallowWrapper;
+     let wrapper;
      wrapper = shallow(<HomePage />);
      expect(wrapper).toBeDefined();
    });

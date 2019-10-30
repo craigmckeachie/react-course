@@ -72,7 +72,7 @@
    const mockStoreCreator = configureMockStore(middlewares);
 
    describe('Project Actions', () => {
-     let store: any;
+     let store;
 
      beforeEach(() => {
        store = mockStoreCreator(initialAppState);
@@ -115,7 +115,7 @@
    const mockStoreCreator = configureMockStore(middlewares);
 
    describe('Project Actions', () => {
-     let store: any;
+     let store;
 
      beforeEach(() => {
        store = mockStoreCreator(initialAppState);
@@ -177,7 +177,7 @@
    const mockStoreCreator = configureMockStore(middlewares);
 
    describe('Project Actions', () => {
-     let store: any;
+     let store;
 
      beforeEach(() => {
        store = mockStoreCreator(initialAppState);
@@ -239,7 +239,7 @@
    ```diff
    ...
    describe('Project Actions', () => {
-     let store: any;
+     let store;
 
      beforeEach(() => {
        store = mockStoreCreator(initialAppState);

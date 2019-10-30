@@ -25,7 +25,7 @@
    + export { ProjectsPage as UnconnectedProjectsPage };
 
    // React Redux (connect)---------------
-   function mapStateToProps(state: AppState): ProjectState {
+   function mapStateToProps(state) {
    return {
        ...state.projectState
    };
@@ -57,7 +57,7 @@
    import { ProjectListProps } from '../ProjectList';
 
    describe('<ProjectsPage>', () => {
-     let wrapper: ShallowWrapper;
+     let wrapper;
      let onLoadMock = jest.fn();
      beforeEach(() => {
        wrapper = shallow(

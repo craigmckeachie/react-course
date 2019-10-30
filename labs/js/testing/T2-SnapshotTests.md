@@ -38,7 +38,7 @@ import HomePage from './HomePage';
 + import renderer from 'react-test-renderer';
 
 describe('<HomePage />', () => {
-  let wrapper: ShallowWrapper;
+  let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(<HomePage />);

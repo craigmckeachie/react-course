@@ -24,9 +24,9 @@
    import { Project } from '../Project';
 
    describe('<ProjectCard />', () => {
-     let wrapper: ShallowWrapper;
-     let project: Project;
-     let handleEdit: jest.Mock;
+     let wrapper;
+     let project;
+     let handleEdit;
 
      beforeEach(() => {
        project = new Project({
@@ -60,9 +60,9 @@
    import { Project } from '../Project';
 
    describe('<ProjectCard />', () => {
-   let wrapper: ShallowWrapper;
-   let project: Project;
-   let handleEdit: jest.Mock;
+   let wrapper;
+   let project;
+   let handleEdit;
 
    beforeEach(() => {
        project = new Project({
@@ -112,9 +112,9 @@
    import { Project } from '../Project';
 
    describe('<ProjectCard />', () => {
-   let wrapper: ShallowWrapper;
-   let project: Project;
-   let handleEdit: jest.Mock;
+   let wrapper;
+   let project;
+   let handleEdit;
 
    beforeEach(() => {
        project = new Project({
@@ -171,9 +171,9 @@
    import { Project } from '../Project';
 
    describe('<ProjectCard />', () => {
-   let wrapper: ShallowWrapper;
-   let project: Project;
-   let handleEdit: jest.Mock;
+   let wrapper;
+   let project;
+   let handleEdit;
 
    beforeEach(() => {
        project = new Project({
@@ -242,9 +242,9 @@
    + import { MemoryRouter } from 'react-router-dom';
 
    describe('<ProjectCard />', () => {
-   let wrapper: ShallowWrapper;
-   let project: Project;
-   let handleEdit: jest.Mock;
+   let wrapper;
+   let project;
+   let handleEdit;
 
    beforeEach(() => {
        project = new Project({
