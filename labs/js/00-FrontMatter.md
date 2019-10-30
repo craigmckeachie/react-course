@@ -40,12 +40,21 @@ information storage and retrieval systems, without permission from the author.
 - [Lab 20: Router Basics](20-RouterBasics.md)
 - [Lab 21: Route Parameters](21-RouteParameters.md)
 - [Lab 22: Build & Deploy](22-BuildAndDeploy.md)
-  <!-- - [Lab 23: Redux Install](23-ReduxInstall.md)
+- [Lab 23: Redux Install](23-ReduxInstall.md)
 - [Lab 24: Redux Actions & Reducer](24-ReduxActionsReducer.md)
-- [Lab 25: Redux with React](25-ReduxWithReact.md) -->
-  <!-- - [Lab 26: Testing](26-Testing.md) -->
+- [Lab 25: Redux with React](25-ReduxWithReact.md)
 - [Appendix 1: How to Skip Labs](A1-SkippingLabs.md)
 - [Appendix 2: Format Description (optional lab)](A2-FormatDescription.md)
+- [Unit Testing Lab 1: Shallow Rendering with Enzyme](testing/T1-ShallowRendering.md)
+- [Unit Testing Lab 2: Snapshot Tests](testing/T2-SnapshotTests.md)
+- [Unit Testing Lab 3: Testing Props](testing/T3-TestingProps.md)
+- [Unit Testing Lab 4: Nested Components](testing/T4-NestedComponents.md)
+- [Unit Testing Lab 5: Container Components](testing/T5-ContainerComponents.md)
+- [Unit Testing Lab 6: Testing Forms](testing/T6-TestingForms.md)
+- [Unit Testing Lab 7: Action Tests](testing/T7-ActionTests.md)
+- [Unit Testing Lab 8: Reducer Tests](testing/T8-ReducerTests.md)
+- [Unit Testing Lab 9: API Tests](testing/T9-APITests.md)
+
 
 ## Solutions
 
