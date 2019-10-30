@@ -46,6 +46,9 @@
    ```
 
 4. Verify the initial test passes.
+    ```shell
+    PASS  src/projects/__tests__/ProjectCard-test.tsx
+    ```
 
 ### Testing a Prop
 
@@ -95,9 +98,9 @@
    ```
 
 1. **Verify** the **test passes**.
-   ```
-    ✓ renders project prop properly ...
-   ```
+    ```shell
+    PASS  src/projects/__tests__/ProjectCard-test.tsx
+    ```
 
 ### Testing a Function Prop
 
@@ -153,9 +156,9 @@
    ```
 
 1. **Verify** the **test passes**.
-   ```
-    ✓ handler prop called when edit clicked ...
-   ```
+    ```shell
+    PASS  src/projects/__tests__/ProjectCard-test.tsx
+    ```
 
 ### Taking a Snapshot
 
@@ -169,6 +172,7 @@
    import ProjectCard from '../ProjectCard';
    import React from 'react';
    import { Project } from '../Project';
+   + import renderer from 'react-test-renderer';
 
    describe('<ProjectCard />', () => {
    let wrapper: ShallowWrapper;
@@ -238,7 +242,7 @@
    import ProjectCard from '../ProjectCard';
    import React from 'react';
    import { Project } from '../Project';
-   + import renderer from 'react-test-renderer';
+   import renderer from 'react-test-renderer';
    + import { MemoryRouter } from 'react-router-dom';
 
    describe('<ProjectCard />', () => {
@@ -295,8 +299,8 @@
    ```
 
 5. **Verify** the **snapshot** is taken.
-   ```
-   ✓ snapshot
+   ```shell
+   ✓ 1 snapshot written
    ```
 
 ---

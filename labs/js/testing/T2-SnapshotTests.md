@@ -69,6 +69,7 @@ describe('<HomePage />', () => {
    ```shell
     › 1 snapshot written.
    ```
+1. **Open** `src\home\__snapshots__\HomePage.test.js.snap` and review the contents.
 
 ---
 

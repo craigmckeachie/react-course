@@ -71,7 +71,7 @@ describe('<HomePage />', () => {
    ```shell
     › 1 snapshot written.
    ```
-
+1. **Open** `src\home\__snapshots__\HomePage.test.tsx.snap` and review the contents.
 ---
 
 ### &#10004; You have completed Unit Testing Lab 2

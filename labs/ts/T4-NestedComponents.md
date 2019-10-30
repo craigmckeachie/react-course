@@ -301,7 +301,7 @@ import renderer from 'react-test-renderer';
 - jest.mock('../ProjectCard', () => () => 'ProjectCard');
 ```
 
-> We would like the snapshot to be shallow. We can achieve this by installing and registering a better serializer for enzyme's `ShallowWRapper`
+> We would like the snapshot to be shallow. We can achieve this by installing and registering a better serializer for enzyme's `ShallowWrapper`
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
 1. Change the **current directory** to `working\keeptrack`.
@@ -330,9 +330,7 @@ import renderer from 'react-test-renderer';
        "@types/enzyme": "~3.10.3",
        "@types/react-redux": "~7.1.2",
        "@types/react-test-renderer": "~16.9.0",
-       "@types/redux-mock-store": "~1.0.1",
-       "enzyme-to-json": "~3.4.2",
-       "redux-mock-store": "~1.5.3"
+       "enzyme-to-json": "~3.4.2"
    },
    +  "jest": {
    +    "snapshotSerializers": ["enzyme-to-json/serializer"]
@@ -400,8 +398,7 @@ import renderer from 'react-test-renderer';
 1. You should see the error below.
 
    ```
-   1 snapshot failed from 1 test suite. Inspect your code changes or press `u` to update the
-   m.
+   1 snapshot obsolete from 1 test suite. To remove it, press `u`.
    ```
 
 1. Press `u` to update the snapshot.

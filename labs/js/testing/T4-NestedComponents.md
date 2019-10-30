@@ -30,6 +30,7 @@
 
      beforeEach(() => {
        mockProjects = MOCK_PROJECTS;
+       handleSave = jest.fn();
        wrapper = shallow(
          <ProjectList projects={mockProjects} onSave={handleSave} />
        );
@@ -43,7 +44,7 @@
 
 1. Verify the initial test passes.
    ```shell
-    ✓ renders without crashing
+     PASS  src/projects/__tests__/ProjectList-test.js
    ```
 
 ### Testing ProjectCard Renders
@@ -84,7 +85,7 @@
 
 1. Verify the test passes.
    ```shell
-    ✓ renders <ProjectCard/>s
+     PASS  src/projects/__tests__/ProjectList-test.js
    ```
 
 ### Testing ProjectForm Renders
@@ -107,6 +108,7 @@
 
    beforeEach(() => {
        mockProjects = MOCK_PROJECTS;
+       handleSave = jest.fn();
        wrapper = shallow(
        <ProjectList projects={mockProjects} onSave={handleSave} />
        );
@@ -132,7 +134,7 @@
 1. Verify the test passes.
 
    ```shell
-    ✓ render <ProjectForm> for editingProject
+     PASS  src/projects/__tests__/ProjectList-test.js
    ```
 
 ### Taking a Snapshot
@@ -301,7 +303,7 @@ import renderer from 'react-test-renderer';
 - jest.mock('../ProjectCard', () => () => 'ProjectCard');
 ```
 
-> We would like the snapshot to be shallow. We can achieve this by installing and registering a better serializer for enzyme's `ShallowWRapper`
+> We would like the snapshot to be shallow. We can achieve this by installing and registering a better serializer for enzyme's `ShallowWrapper`
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
 1. Change the **current directory** to `working\keeptrack`.
@@ -327,8 +329,7 @@ import renderer from 'react-test-renderer';
    {
    ...
    "devDependencies": {
-       "enzyme-to-json": "~3.4.2",
-       "redux-mock-store": "~1.5.3"
+       "enzyme-to-json": "~3.4.2"
    },
    +  "jest": {
    +    "snapshotSerializers": ["enzyme-to-json/serializer"]
@@ -336,7 +337,7 @@ import renderer from 'react-test-renderer';
    }
    ```
 
-1. Stop by typing `q` and start it again (`npm test`) so the new configuration is picked up.
+1. Stop tht tests by typing `q` and start it again (`npm test`) so the new configuration is picked up.
 1. Now take a snapshot of enzyme's shallow wrapper instead of the entire component tree.
 
    #### `src\projects\__tests__\ProjectList-test.js`
@@ -396,8 +397,7 @@ import renderer from 'react-test-renderer';
 1. You should see the error below.
 
    ```
-   1 snapshot failed from 1 test suite. Inspect your code changes or press `u` to update the
-   m.
+   1 snapshot obsolete from 1 test suite. To remove it, press `u`.
    ```
 
 1. Press `u` to update the snapshot.
