@@ -79,6 +79,7 @@
    ```
    PASS  src/projects/__tests__/ProjectsPage-test.js
    ```
+
 1. **Test** that `onLoad` is called with a page number when the component is created.
 
    #### `src\projects\__tests__\ProjectsPage-test.js`
@@ -91,20 +92,29 @@
    });
    ```
 
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.js
+   ```
+
 
 1.  **Test** that the `ProjectList` is rendered inside the `ProjectsPage`.
 
-   #### `src\projects\__tests__\ProjectsPage-test.js`
+    #### `src\projects\__tests__\ProjectsPage-test.js`
 
-   ```js
-   ...
-   test('renders <ProjectList />', () => {
-       let projectListWrapper = wrapper.find('ProjectList');
-       expect(projectListWrapper.length).toBe(1);
-       expect((projectListWrapper.props()).projects).toBe(
-       MOCK_PROJECTS
-       );
-   });
+    ```js
+    ...
+    test('renders <ProjectList />', () => {
+        let projectListWrapper = wrapper.find('ProjectList');
+        expect(projectListWrapper.length).toBe(1);
+        expect((projectListWrapper.props()).projects).toBe(
+        MOCK_PROJECTS
+        );
+    });
+    ```
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.js
    ```
 
 1. **Test** that an error is displayed when one occurs.
@@ -120,6 +130,11 @@
 
    ```
 
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.js
+   ```
+
 1. **Test** that the loading indicator is displayed.
 
    #### `src\projects\__tests__\ProjectsPage-test.js`
@@ -132,6 +147,10 @@
        expect(spinnerWrapper.exists()).toBeTruthy();
    });
 
+   ```
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.js
    ```
 
 1. **Test** that the pagination works.
@@ -149,6 +168,10 @@
        expect(onLoadMock).toBeCalledWith(2);
    });
    ```
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.js
+   ```
 
 1. **Take** a snapshot.
 
@@ -159,6 +182,11 @@
      test('snapshot', () => {
        expect(wrapper).toMatchSnapshot();
      });
+   ```
+
+  1. Verify the snapshot is written.
+   ```shell
+    › 1 snapshot written.
    ```
 
 ---

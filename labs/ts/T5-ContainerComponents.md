@@ -91,6 +91,11 @@
    });
    ```
 
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.tsx
+   ```
+
 1. Export the `ProjectListProps` interface.
 
    #### `src\projects\ProjectsPage.tsx`
@@ -122,6 +127,11 @@
    });
    ```
 
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.tsx
+   ```
+
 1. **Test** that an error is displayed when one occurs.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
@@ -133,6 +143,10 @@
        expect(wrapper.find('div.error').text()).toContain('Fail');
    });
 
+   ```
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
 1. **Test** that the loading indicator is displayed.
@@ -147,6 +161,10 @@
        expect(spinnerWrapper.exists()).toBeTruthy();
    });
 
+   ```
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
 1. **Test** that the pagination works.
@@ -163,6 +181,11 @@
        moreButton.simulate('click');
        expect(onLoadMock).toBeCalledWith(2);
    });
+   ```
+
+1. Verify the test passes.
+   ```shell
+    PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
 1. **Take** a snapshot.
