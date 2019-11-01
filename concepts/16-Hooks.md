@@ -1,8 +1,29 @@
 # Chapter 16: Hooks
 
-#### Hooks are a new addition in React 16.8. They let you use state and other React features (Lifecycle Methods) without writing a class.
+- [Chapter 16: Hooks](#chapter-16-hooks)
+  - [Defined](#defined)
+  - [Why Hooks?](#why-hooks)
+  - [No Breaking Changes](#no-breaking-changes)
+  - [Hooks API](#hooks-api)
+  - [useState](#usestate)
+    - [Simple Class Component](#simple-class-component)
+    - [Simple Function Component](#simple-function-component)
+        - [Array destructuring](#array-destructuring)
+    - [Items App](#items-app)
+      - [Using useState](#using-usestate)
+      - [Using useState (cleaned up without commented out code)](#using-usestate-cleaned-up-without-commented-out-code)
+  - [useEffect](#useeffect)
+    - [useEffect Demo](#useeffect-demo)
+  - [Custom Hooks](#custom-hooks)
+  - [Rules of Hooks](#rules-of-hooks)
+  - [Reference](#reference)
 
-## Why Hooks
+
+## Defined
+
+> Hooks are a new addition in React 16.8. They let you use state and other React features (Lifecycle Methods) without writing a class.
+
+## Why Hooks?
 
 - It’s hard to reuse stateful logic between components
   - reusable behavior
@@ -713,7 +734,7 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-### Custom Hooks
+## Custom Hooks
 
 Building your own Hooks lets you extract component logic into reusable functions.
 

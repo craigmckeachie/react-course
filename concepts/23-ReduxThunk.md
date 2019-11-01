@@ -1,5 +1,22 @@
 # Chapter 23: Redux Thunk
 
+- [Chapter 23: Redux Thunk](#chapter-23-redux-thunk)
+  - [Overview](#overview)
+  - [Async](#async)
+    - [Async Actions](#async-actions)
+    - [Thunk](#thunk)
+  - [Installation](#installation)
+  - [Demos](#demos)
+    - [1. Your First Thunk](#1-your-first-thunk)
+    - [2. CRUD](#2-crud)
+  - [Middleware & Enhancers](#middleware--enhancers)
+  - [Reference](#reference)
+    - [Thunk](#thunk-1)
+    - [Why Reducers need to be Pure](#why-reducers-need-to-be-pure)
+    - [Middleware & Enhancers](#middleware--enhancers-1)
+    - [Testing](#testing)
+    - [Diagram](#diagram)
+
 Thunk middleware for Redux. Enables async actions (making http calls from actions).
 
 ## Overview
@@ -55,12 +72,12 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 > Note: the registration of Redux Thunk is slightly different in the demos below because we are not using ES Modules yet.
 
-# Demos
+## Demos
 
 - In the following demonstrations we will use Redux with no UI (so no React), just `console.log`
 - We will refactor the HTTP Demo(s) to use Redux with Redux Thunk
 
-## 1. Your First Thunk
+### 1. Your First Thunk
 
 ```js
 const baseUrl = 'http://localhost:3000';
@@ -174,7 +191,7 @@ async function test() {
 test();
 ```
 
-## 2. CRUD
+### 2. CRUD
 
 - GET (Read)
 - POST (Add)
@@ -458,7 +475,7 @@ async function test() {
 test();
 ```
 
-### Middleware & Enhancers
+## Middleware & Enhancers
 
 - Store enhancers are a formal mechanism for adding capabilities to Redux itself. Most people will never need to write one.
 - To use middleware in Redux, we use the applyMiddleware() function exported by the Redux library.

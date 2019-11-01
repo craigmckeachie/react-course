@@ -1,5 +1,30 @@
 # Chapter 7: Events
 
+- [Chapter 7: Events](#chapter-7-events)
+  - [Listening/Subscribing/Wiring to an Event](#listeningsubscribingwiring-to-an-event)
+    - [In Vanilla JavaScript](#in-vanilla-javascript)
+      - [Setup](#setup)
+      - [Steps](#steps)
+    - [In React: Function Component](#in-react-function-component)
+      - [Setup](#setup-1)
+      - [Steps](#steps-1)
+    - [In React: Class Component](#in-react-class-component)
+      - [Setup](#setup-2)
+      - [Steps](#steps-2)
+  - [Binding (the Event Handler)](#binding-the-event-handler)
+    - [Why Binding is Necessary?](#why-binding-is-necessary)
+    - [Class Method](#class-method)
+    - [Arrow Function](#arrow-function)
+  - [Passing Parameters](#passing-parameters)
+    - [Using Arrow Functions](#using-arrow-functions)
+    - [Using Bind](#using-bind)
+    - [Reference](#reference)
+  - [Handling Events](#handling-events)
+    - [Using Arrow Functions](#using-arrow-functions-1)
+    - [Using Bind](#using-bind-1)
+    - [Synthetic Events](#synthetic-events)
+  - [Reference](#reference-1)
+
 ## Listening/Subscribing/Wiring to an Event
 
 You can listen/subscribe/wire to an `Event` by attaching a event handler. An `event handler` is simply a function that will be called when the event is raised/fired/emitted.
@@ -372,7 +397,7 @@ class Button extends React.Component {
 }
 ```
 
-## Reference:
+### Reference
 
 [How do I pass a parameter to an event handler or callback?](https://reactjs.org/docs/faq-functions.html#how-do-i-pass-a-parameter-to-an-event-handler-or-callback)
 

@@ -1,8 +1,17 @@
 # Appendix A13: Advanced Components
 
+---
 # Higher-Order Components
 
-#### A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React’s compositional nature.
+- [Appendix A13: Advanced Components](#appendix-a13-advanced-components)
+- [Higher-Order Components](#higher-order-components)
+      - [Definition](#definition)
+  - [Demo](#demo)
+    - [Simple HOC](#simple-hoc)
+  - [Reference](#reference)
+
+
+> A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React’s compositional nature.
 
 #### Definition
 
@@ -189,7 +198,18 @@ Cross-Cutting Concerns
 - [Example](https://levelup.gitconnected.com/understanding-react-higher-order-components-by-example-95e8c47c8006)
 - [Higher Order Components Article](https://tylermcginnis.com/react-higher-order-components/)
 
+
+
+---
+
 # Render Props
+
+- [Appendix A13: Advanced Components](#appendix-a13-advanced-components)
+- [Higher-Order Components](#higher-order-components)
+      - [Definition](#definition)
+  - [Demo](#demo)
+    - [Simple HOC](#simple-hoc)
+  - [Reference](#reference)
 
 #### The term “render prop” refers to a technique for sharing code between React components using a prop whose value is a function.
 
@@ -268,8 +288,16 @@ Cross-Cutting Concerns
 - [Understanding React Render Props](https://levelup.gitconnected.com/understanding-react-render-props-by-example-71f2162fd0f2)
 - [React Render Props Article](https://tylermcginnis.com/react-render-props/)
 
+---
 
 # Context
+
+- [Appendix A13: Advanced Components](#appendix-a13-advanced-components)
+- [Higher-Order Components](#higher-order-components)
+      - [Definition](#definition)
+  - [Demo](#demo)
+    - [Simple HOC](#simple-hoc)
+  - [Reference](#reference)
 
 #### Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language.
 

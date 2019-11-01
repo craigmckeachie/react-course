@@ -1,8 +1,16 @@
 # Chapter 9: Lifecycle Methods
 
+- [Chapter 9: Lifecycle Methods](#chapter-9-lifecycle-methods)
+  - [What are Lifecycle Methods](#what-are-lifecycle-methods)
+      - [React Lifecycle Methods Diagram: Common Methods](#react-lifecycle-methods-diagram-common-methods)
+  - [Using LifeCycle Methods](#using-lifecycle-methods)
+  - [Reference](#reference)
+
+## What are Lifecycle Methods
+
 Lifecycle methods are custom functionality that gets executed during the different phases of a component. There are methods available when the component gets created and inserted into the DOM (mounting), when the component updates, and when the component gets unmounted or removed from the DOM.
 
-> ## Mounting
+> ## Understanding Mounting
 >
 > The main job of React is to figure out how to modify the DOM to match what the components want to be rendered on the screen.
 >

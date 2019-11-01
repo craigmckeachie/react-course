@@ -1,5 +1,21 @@
 # Appendix A8: Best Practices
 
+- [Appendix A8: Best Practices](#appendix-a8-best-practices)
+  - [Code Organization](#code-organization)
+    - [Opinions](#opinions)
+    - [Key Questions](#key-questions)
+      - [Grouping by features](#grouping-by-features)
+      - [Grouping by file type](#grouping-by-file-type)
+      - [Pro/Con](#procon)
+      - [Pro/Con](#procon-1)
+      - [Pro/Con](#procon-2)
+    - [Best Practices](#best-practices)
+  - [Code Conventions (Style Guides)](#code-conventions-style-guides)
+  - [Project Setup](#project-setup)
+- [Reference](#reference)
+  - [Code Organization](#code-organization-1)
+  - [Code Conventions](#code-conventions)
+
 ## Code Organization
 
 ### Opinions

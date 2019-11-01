@@ -1,5 +1,23 @@
 # Chapter 10: Conditional Rendering
 
+- [Chapter 10: Conditional Rendering](#chapter-10-conditional-rendering)
+  - [if](#if)
+    - [Component](#component)
+    - [Element](#element)
+    - [Null](#null)
+  - [Preventing Components from Rendering](#preventing-components-from-rendering)
+    - [Summary (if)](#summary-if)
+  - [Conditional Operator ? true : false](#conditional-operator--true--false)
+    - [Simple](#simple)
+    - [Complicated](#complicated)
+  - [Logical && Operator](#logical--operator)
+  - [Syntax Summary](#syntax-summary)
+        - [if](#if-1)
+        - [if else](#if-else)
+      - [? (inline)](#-inline)
+      - [&& (inline)](#-inline)
+  - [Resources](#resources)
+
 Just use the features in the JavaScript language.
 
 - if statement
@@ -174,7 +192,7 @@ In summary, `if` statements
 - can be used when you have an if or an if else condition
 - in rare cases, can be used to opt-out early from a render method and prevent a component from rendering at all
 
-## condition ? true : false
+## Conditional Operator ? true : false
 
 ### Simple
 

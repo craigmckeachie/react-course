@@ -1,5 +1,28 @@
 # Chapter 21: Redux
 
+- [Chapter 21: Redux](#chapter-21-redux)
+  - [What is Redux?](#what-is-redux)
+  - [What is State?](#what-is-state)
+  - [Benefits](#benefits)
+    - [Benefit Checklist](#benefit-checklist)
+  - [Principles of Redux](#principles-of-redux)
+  - [Core Concepts](#core-concepts)
+    - [State](#state)
+    - [Actions](#actions)
+    - [Reducer](#reducer)
+    - [Store](#store)
+    - [Developer Tools](#developer-tools)
+  - [Complementary Packages](#complementary-packages)
+  - [When do you need Redux?](#when-do-you-need-redux)
+  - [Demos](#demos)
+    - [Counter Demo](#counter-demo)
+    - [Debugging & Time Traveling Demo](#debugging--time-traveling-demo)
+  - [Gotchas/Tips](#gotchastips)
+  - [Reference](#reference)
+    - [Redux](#redux)
+    - [Action Creators:](#action-creators)
+    - [DevTools](#devtools)
+
 ## What is Redux?
 
 - Redux is an open-source JavaScript library for managing application state
@@ -312,7 +335,7 @@ function enableDevTools() {
 
 > Then configure your store to use the extension by [following these directions](https://redux.js.org/recipes/configuring-your-store#integrating-the-devtools-extension)
 
-## Gotchas/Tips:
+## Gotchas/Tips
 
 - In practice, the reducer and the state property that is computed by the reducer have the same name
 

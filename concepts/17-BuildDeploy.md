@@ -1,5 +1,17 @@
 # Chapter 19: Build & Deploy
 
+- [Chapter 19: Build & Deploy](#chapter-19-build--deploy)
+  - [Build](#build)
+  - [Deploy](#deploy)
+  - [Static Server](#static-server)
+  - [Other Solutions](#other-solutions)
+  - [Serving Apps with Client-Side Routing](#serving-apps-with-client-side-routing)
+  - [Building for Relative Paths](#building-for-relative-paths)
+    - [Serving the Same Build from Different Paths](#serving-the-same-build-from-different-paths)
+  - [Customizing Environment Variables for Arbitrary Build Environments](#customizing-environment-variables-for-arbitrary-build-environments)
+  - [Static File Caching](#static-file-caching)
+  - [Resources](#resources)
+
 ## Build
 
 `npm run build` creates a `build` directory with a production build of your app. Inside the `build/static` directory will be your JavaScript and CSS files. Each filename inside of `build/static` will contain a unique hash of the file contents. This hash in the file name enables [long term caching techniques](#static-file-caching).

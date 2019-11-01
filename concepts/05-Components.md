@@ -1,5 +1,13 @@
 # Chapter 5: Components
 
+- [Chapter 5: Components](#chapter-5-components)
+  - [Creating an Element](#creating-an-element)
+  - [Creating a Function Component](#creating-a-function-component)
+  - [Rendering a Component](#rendering-a-component)
+  - [Creating a Class Component](#creating-a-class-component)
+  - [Composing & Reuse](#composing--reuse)
+  - [Reference](#reference)
+
 ## Creating an Element
 
 1. Previously we created a React element and rendered it as shown below.

@@ -1,5 +1,11 @@
 # Chapter 6: Props
 
+- [Chapter 6: Props](#chapter-6-props)
+  - [Read-only](#read-only)
+  - [String Literals vs. Expressions](#string-literals-vs-expressions)
+  - [Function vs. Class Components](#function-vs-class-components)
+  - [Additional Reading](#additional-reading)
+
 `Props` is short for `properties`. When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object `props`.
 
 1. Create a `Greeter` component and render it
@@ -108,7 +114,7 @@ in a `class component` instead of just `props` as you would in a `function compo
    }
    ```
 
-## Extracting Components
+<!-- ## Extracting Components -->
 
 ## Additional Reading
 

@@ -1,5 +1,25 @@
 # Appendix A6: Project Setup
 
+- [Appendix A6: Project Setup](#appendix-a6-project-setup)
+  - [Create New ES6 Project](#create-new-es6-project)
+    - [npm](#npm)
+    - [Yarn](#yarn)
+  - [Create New TypeScript Project](#create-new-typescript-project)
+    - [npm](#npm-1)
+    - [Yarn](#yarn-1)
+  - [Folder Structure](#folder-structure)
+  - [Browser Support](#browser-support)
+    - [Supported Language Features](#supported-language-features)
+    - [Polyfills](#polyfills)
+      - [react-app-polyfill](#react-app-polyfill)
+    - [Usage](#usage)
+  - [Styles and Assets](#styles-and-assets)
+      - [`Button.css`](#buttoncss)
+      - [`Button.js`](#buttonjs)
+  - [Dependencies](#dependencies)
+  - [Reference](#reference)
+
+
 ## Create New ES6 Project
 
 [Create React App](https://facebook.github.io/create-react-app/) is an officially supported way to create single-page React

@@ -1,5 +1,20 @@
 # Appendix A11: React with TypeScript
 
+- [Appendix A11: React with TypeScript](#appendix-a11-react-with-typescript)
+  - [Installation](#installation)
+  - [Props](#props)
+    - [Function Component](#function-component)
+      - [`src\Hello.tsx`](#srchellotsx)
+      - [`src\App.tsx`](#srcapptsx)
+      - [`src\App.tsx`](#srcapptsx-1)
+    - [Class Component](#class-component)
+      - [`src\Hello.tsx`](#srchellotsx-1)
+  - [State](#state)
+      - [`src\Hello.tsx`](#srchellotsx-2)
+  - [Event Handlers](#event-handlers)
+      - [`src\Hello.tsx`](#srchellotsx-3)
+  - [Resources](#resources)
+
 ## Installation
 
 - See the section `Create New TypeScript Project` in `Chapter 20: Project Setup`.

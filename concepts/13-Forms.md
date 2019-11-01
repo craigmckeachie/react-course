@@ -1,5 +1,17 @@
 # Chapter 13: Forms
 
+- [Chapter 13: Forms](#chapter-13-forms)
+  - [Controlled Components](#controlled-components)
+  - [Reuse of Change Logic across Multiple Inputs](#reuse-of-change-logic-across-multiple-inputs)
+  - [Submitting](#submitting)
+  - [Controlling other Types of HTML Form Elements](#controlling-other-types-of-html-form-elements)
+  - [Validation](#validation)
+  - [Uncontrolled Components](#uncontrolled-components)
+    - [Refs](#refs)
+    - [Setting defaultValue](#setting-defaultvalue)
+    - [File Input](#file-input)
+  - [Reference](#reference)
+
 ## Controlled Components
 
 In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input.
@@ -70,7 +82,7 @@ ReactDOM.render(<ExampleForm />, document.getElementById('root'));
 
 12. Uncomment the `handleChange` implementation and verify it is working again.
 
-## Multiple Inputs
+## Reuse of Change Logic across Multiple Inputs
 
 If we have multiple inputs you can implement one onChange event handler function to handle them all.
 
@@ -217,7 +229,7 @@ class LoginForm extends React.Component {
 ReactDOM.render(<LoginForm />, document.getElementById('root'));
 ```
 
-## Other HTML Form Elements
+## Controlling other Types of HTML Form Elements
 
 The following example of a contact us form demonstrates how controlling other HTML form fields such as: `<select>`, `textarea`, and `<input type='checkbox'>` is very similar to how we work with an `<input>`.
 

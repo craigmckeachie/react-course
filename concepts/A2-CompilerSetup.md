@@ -11,8 +11,9 @@
     - [Install TypeScript](#install-typescript)
     - [Configure TypeScript](#configure-typescript)
     - [Setting the Compiler Strictness](#setting-the-compiler-strictness)
+      - [--strict](#--strict)
+      - [--strictNullChecks](#--strictnullchecks)
     - [Run TypeScript](#run-typescript)
-
 
 ## How It Works
 

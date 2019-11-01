@@ -1,5 +1,14 @@
 # Appendix A9: Styling & CSS
 
+- [Appendix A9: Styling & CSS](#appendix-a9-styling--css)
+  - [Class](#class)
+  - [Style](#style)
+  - [CSS in JS](#css-in-js)
+      - [What is CSS-in-JS?](#what-is-css-in-js)
+      - [CSS-in-JS Libraries](#css-in-js-libraries)
+  - [Reference](#reference)
+
+
 Components can be styled using CSS classes or inline styles as you would in when using plain HTML and CSS without React.
 
 ## Class

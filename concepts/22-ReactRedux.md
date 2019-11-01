@@ -1,5 +1,21 @@
 # Chapter 22: React Redux
 
+- [Chapter 22: React Redux](#chapter-22-react-redux)
+  - [The `connect` function](#the-connect-function)
+    - [What it Does](#what-it-does)
+    - [Using](#using)
+  - [Writing `mapState` Functions](#writing-mapstate-functions)
+  - [Writing `mapDispatch` Functions](#writing-mapdispatch-functions)
+  - [Tips](#tips)
+  - [Provider](#provider)
+    - [Why](#why)
+  - [Inside React Redux](#inside-react-redux)
+    - [Inside connect](#inside-connect)
+    - [Inside Provider](#inside-provider)
+  - [Demo](#demo)
+    - [Final Code](#final-code)
+  - [Reference](#reference)
+
 **React bindings for Redux.**
 
 Redux can be used with any UI layer (such as Angular, Vue, or plain JS), but is most commonly used with React.
@@ -454,7 +470,7 @@ ReactDOM.render(element, rootElement);
    ReactDOM.render(element, rootElement);
    ```
 
-### Final Code:
+### Final Code
 
 ```js
 const INCREMENT = 'INCREMENT';

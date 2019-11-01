@@ -1,5 +1,19 @@
 # Chapter 11: Lists
 
+- [Chapter 11: Lists](#chapter-11-lists)
+  - [In Vanilla JavaScript](#in-vanilla-javascript)
+    - [a. for loop](#a-for-loop)
+    - [b. #array.forEach](#b-arrayforeach)
+    - [c. #array.map](#c-arraymap)
+    - [d. #array.map with arrow function](#d-arraymap-with-arrow-function)
+  - [In React: Rendering Multiple Elements](#in-react-rendering-multiple-elements)
+  - [In React: Rendering Multiple Components](#in-react-rendering-multiple-components)
+  - [Keys](#keys)
+    - [Adding Keys](#adding-keys)
+    - [Where to put Keys](#where-to-put-keys)
+  - [map() in JSX](#map-in-jsx)
+  - [Resources](#resources)
+
 Often the answer to the question of how do I do something in React can be answered by understanding how would you do it in JavaScript.
 
 ## In Vanilla JavaScript
@@ -58,7 +72,7 @@ const tens = numbers.map(number => number * 10);
 console.log(tens);
 ```
 
-## Multiple Elements
+## In React: Rendering Multiple Elements
 
 We can use the Array's `map` function to transform an array of data into an array of React elements and then render them as follows.
 
@@ -107,7 +121,7 @@ function FruitList(props) {
 }
 ```
 
-## Multiple Components
+## In React: Rendering Multiple Components
 
 This same approach works with components as well.
 

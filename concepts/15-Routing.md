@@ -1,5 +1,15 @@
 # Chapter 15: Routing
 
+- [Chapter 15: Routing](#chapter-15-routing)
+  - [Installation](#installation)
+  - [Basics](#basics)
+    - [Not Found (404)](#not-found-404)
+      - [`package.json`](#packagejson)
+  - [Parameters](#parameters)
+    - [URL Parameters](#url-parameters)
+    - [Query Parameters](#query-parameters)
+  - [Nesting](#nesting)
+
 There are two versions:
 
 1. BrowserRouter (react-router-dom) for web applications.

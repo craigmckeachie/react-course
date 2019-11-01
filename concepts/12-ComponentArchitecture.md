@@ -1,26 +1,44 @@
 # Chapter 12: Component Architecture
 
+- [Chapter 12: Component Architecture](#chapter-12-component-architecture)
+  - [Reuse](#reuse)
+  - [Component Communication](#component-communication)
+      - [Common Communication Patterns](#common-communication-patterns)
+      - [Additional Communication Patterns](#additional-communication-patterns)
+- [Design Patterns](#design-patterns)
+  - [Lifting State Up](#lifting-state-up)
+  - [Container and Presentation Components](#container-and-presentation-components)
+    - [Container (Smart) Components](#container-smart-components)
+    - [Presentation Components](#presentation-components)
+    - [Reference](#reference)
+  - [Composition vs Inheritance](#composition-vs-inheritance)
+  - [Thinking in React](#thinking-in-react)
+  - [Demo 1: Items (CRUD)](#demo-1-items-crud)
+  - [Reference](#reference-1)
+
+## Reuse
+
 You can split a component into multiple smaller components to have a more readable and maintanable design and/or to achieve reuse.
 
 But how do you know what should be its own component?
 
 Here are some questions to ask yourself when determining when to create another component:
 
-##### Is it possible for your code chunk to be reused?
+**Is it possible for your code chunk to be reused?**
 
 - If yes, construction of a new component seems like a great idea.
 - Even if the reuse is within a single component.
 
-##### Is your code quite complex?
+**Is your code quite complex?**
 
 - If yes maybe its good idea to split in separate components in order to make your code more readable and maintainable.
 
-##### Software Design
+**Software Design**
 
 - In general, just use the same techniques for deciding if you should create a new function or object.
 - One such technique is the single responsibility principle, that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
 
-### After you create more components, more questions arise such as:
+**After you create more components, more questions arise such as:**
 
 - How should components interact? (Component Communication)
 - Are there any design patterns I should follow when creating components? (Lifting State Up, Composition vs Inheritance)
@@ -513,7 +531,7 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
-
+<!-- 
 ## Demo 2: GitHub API Example
 
 ### Card Component
@@ -920,7 +938,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, mountNode);
-```
+``` -->
 
 ## Reference
 

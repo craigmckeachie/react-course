@@ -1,5 +1,11 @@
 # Chapter 3: JSX
 
+- [Chapter 3: JSX](#chapter-3-jsx)
+  - [Part 1 - Replacing createElement with JSX](#part-1---replacing-createelement-with-jsx)
+  - [Part 2 - Embedding Expressions in JSX](#part-2---embedding-expressions-in-jsx)
+  - [Part 3 - Specifying Attributes with JSX](#part-3---specifying-attributes-with-jsx)
+  - [Reference](#reference)
+
 JSX just provides syntactic sugar for the function:
 
 ```js

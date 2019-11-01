@@ -4,11 +4,11 @@
   - [Why React?](#why-react)
     - [Amazing User Experience & Deployment Story](#amazing-user-experience--deployment-story)
     - [Easy to Learn](#easy-to-learn)
-    - [Ecosystem & Community:](#ecosystem--community)
+    - [Ecosystem & Community](#ecosystem--community)
     - [Timeless Technology](#timeless-technology)
   - [What it is?](#what-it-is)
   - [Why it is useful?](#why-it-is-useful)
-  - [Angular & React Compared](#angular--react-compared)
+  - [Angular, React Compared](#angular-react-compared)
     - [React](#react)
     - [Angular](#angular)
     - [React vs. Angular: Key Insights](#react-vs-angular-key-insights)
@@ -68,7 +68,7 @@ These JavaScript libraries and frameworks allow developers to "have their cake a
 
 The React library itself has a *very low concept count* and is subsequently easy to learn.
 
-### Ecosystem & Community:
+### Ecosystem & Community
 
 > Not to worry though as React has an entire ecosystem of other tools and libraries...
 
@@ -108,7 +108,7 @@ The architecture is component-based and allows you that allow you to create new 
 React makes it painless to create interactive UIs on top of web standards. Because it based on web standards, your application is easy to deploy to thousands of users simultaneously.
 
 
-## Angular & React Compared
+## Angular, React Compared
 
 ### React
 - Facebook

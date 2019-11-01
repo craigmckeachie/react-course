@@ -1,5 +1,11 @@
 # Chapter 2: Elements
 
+
+- [Chapter 2: Elements](#chapter-2-elements)
+  - [Part 1 - Hello World in JavaScript](#part-1---hello-world-in-javascript)
+  - [Part 2 - Hello World in React](#part-2---hello-world-in-react)
+  - [Reference](#reference)
+
 React implements a browser-independent DOM system for performance and cross-browser compatibility. They call this the Virtual DOM.
 
 - A React element is not an actual instance of a [DOM Element](https://developer.mozilla.org/en-US/docs/Web/API/Element)
@@ -236,7 +242,7 @@ const element = {
 
 These objects are called `React elements`. You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
 
-## Resources
+## Reference
 
 - [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)
 - [createElement](https://reactjs.org/docs/react-api.html#createelement)
