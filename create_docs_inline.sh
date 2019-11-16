@@ -7,8 +7,8 @@ export ROOTDIR=$(pwd)
 
 convertMarkDownToHTML(){
     echo 'converting'
-#   for f in *.md; do grip --export $f  --user=craigdmckeachie@gmail.com --pass=be69d85277d12ec1c6396576ba376fee48689087; done
-#   for f in *.html; do sed -i '' "s/.md\"/.html\"/g" $f; done
+  for f in *.md; do grip --export $f  --user=craigdmckeachie@gmail.com --pass=be69d85277d12ec1c6396576ba376fee48689087; done
+  for f in *.html; do sed -i '' "s/.md\"/.html\"/g" $f; done
 }
 
 mkdir docs
@@ -52,4 +52,4 @@ cd $ROOTDIR
 
 rm -rf ./docs
 rsync -zarv  --prune-empty-dirs --include "*/"  --include="*.html" --include="*.png" --exclude="*" "./" "./docs"
-zip -r docs.zip docs -q -X -x "*.DS_Store"
+zip -r ReactReduxManual16.10.zip docs -q -X -x "*.DS_Store"
