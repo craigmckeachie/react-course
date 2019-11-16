@@ -11,10 +11,6 @@ convertMarkDownToHTML(){
   for f in *.html; do sed -i '' "s/.md\"/.html\"/g" $f; done
 }
 
-mkdir docs
-cd docs
-export DOCSDIR = ROOTDIR + '/docs'
-
 convertMarkDownToHTML
 echo "top level done"
 
