@@ -250,6 +250,4 @@ These objects are called `React elements`. You can think of them as descriptions
 - [React Supported HTML Attributes](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
 - [Glossary: Elements](https://reactjs.org/docs/glossary.html#elements)
 
-```
 
-```

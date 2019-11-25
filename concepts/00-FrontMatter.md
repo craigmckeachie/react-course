@@ -38,6 +38,7 @@ information storage and retrieval systems, without permission from the author.
   - [Props](06-Props.md)
   - [Events](07-Events.md)
   - [State](08-State.md)
+  - [PropTypes](A10-PropTypes.md) (if applicable)
   - [React with TypeScript](A11-ReactTypeScript.md) (if applicable)
   - [Lifecycle](09-Lifecycle.md)
   - [Conditional Rendering](10-ConditionalRendering.md)

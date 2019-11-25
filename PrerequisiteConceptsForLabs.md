@@ -49,6 +49,7 @@
 #### Concepts
 
 - Props
+- PropTypes (if applicable)
 - React with TypeScript (if applicable)
 - Lists
 - Component Architecture
