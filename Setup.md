@@ -51,6 +51,7 @@
      - It is **free**, **cross-platform** has a **small** download, and is a **quick** install.
      - **Visit** [https://code.visualstudio.com/](https://code.visualstudio.com/) to **install**.
        > Don't confuse Visual Studio Code with the heavier Visual Studio IDE used for .NET development.
+      - [Follow these directions](VisualStudioCodeSetup.md) to configure Visual Studio Code for the course.
    - **WebStorm** or **IntelliJ IDEA Ultimate** both made by `JetBrains` are also great choices.
 
      - In summary, these IDEs are heavier but have more features built-in.
