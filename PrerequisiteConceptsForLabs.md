@@ -10,7 +10,21 @@
 - Compiler Setup
 - ES6/ES2015
 - TypeScript (if applicable)
+
+## Part 2
+
+#### Concepts
+
 - React Overview
+- Elements
+- JSX
+- Virtual DOM
+
+ 
+## Part 3
+
+#### Concepts
+
 - Project Setup (Create React App)
 
 #### Labs
@@ -19,13 +33,10 @@
 - Lab 2: Running Your Project
 - Lab 3: Styles Using CSS
 
-## Part 2
+## Part 4
 
 #### Concepts
 
-- Elements
-- JSX
-- Virtual DOM
 - Components
 
 #### Labs
@@ -33,7 +44,7 @@
 - Lab 4: Your First Component
 - Lab 5: Creating Data Structures
 
-## Part 3
+## Part 5
 
 #### Concepts
 
@@ -48,7 +59,7 @@
 - Lab 7: Displaying List Data
 - Lab 8: More Reusable Components
 
-## Part 4
+## Part 6
 
 #### Concepts
 
@@ -65,7 +76,7 @@
 - Lab 13: More Component Communication
 - Lab 14: Multiple Levels of Component Communication
 
-## Part 5
+## Part 7
 
 #### Concepts
 
@@ -76,7 +87,7 @@
 - Lab 15: Form Values to State
 - Lab 16: Form Validation
 
-## Part 6
+## Part 8
 
 #### Concepts
 
@@ -91,7 +102,7 @@
 - Lab 18: HTTP GET
 - Lab 19: HTTP PUT
 
-## Part 7
+## Part 9
 
 #### Concepts
 
@@ -104,7 +115,7 @@
 
 # Advanced (Days 4 & 5)
 
-## Part 8
+## Part 10
 
 #### Concepts
 
@@ -115,7 +126,7 @@
 - Lab 20: Router Basics
 - Lab 21: Route Parameters
 
-## Part 9
+## Part 11
 
 #### Concepts
 
@@ -133,7 +144,7 @@
 - Lab 25: Redux with React
 
 
-## Part 10
+## Part 12
 
 #### Concepts
 
