@@ -5,10 +5,10 @@
 1. A **recent** version of **Windows** (7 or later), **macOS**, or **Linux**, with:
    - _current system updates_
    - at least `4 GB` of `RAM`
-2. **Node.js** installed, a recent **10.x LTS** version.
+2. **Node.js** installed, a recent **10.x or 12.x LTS** version.
 
    - **Visit** [http://nodejs.org/](http://nodejs.org/).
-   - **Click** the `10.16.[x] LTS Recommended For Most Users` (or similar) **green button on the left** to **download** the **installer** file.
+   - **Click** the `12.13.[x] LTS Recommended For Most Users` (or similar) **green button on the left** to **download** the **installer** file.
    - **Run** the **installer**, accepting all _default_ _settings_.
    - After installation, **confirm** that the `Path` environment variable on your computer has been modified to include the path for `node` and `npm` by following these steps.
      - **Open** a `command prompt` (Windows) or `terminal` (Mac).
@@ -19,6 +19,7 @@
        npm -v
        ```
      - **Verify** the **version** of each program is **returned**.
+   -  Please **DO NOT use** `Node 8.x` or `11.x` or `13.x` for this class.
 
 3. **Install** **Create React App** and **verify** a project can be created.
 
