@@ -2,9 +2,12 @@
 
 ## Extensions
 
-1. **Click** this **link** to begin [installing the Prettier- Code formatter extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&ssr=false#overview). 
-2. **Click** the **Install** button.
-3. Repeat the above process to [Install the HTML to JSX extension](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx)
+### Install the following extensions:
+   1. **Click** the **link** below.
+       - [Prettier- Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&ssr=false#overview)
+       - [HTML to JSX](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx)
+      -  [Jest Snippets](https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets)
+   1. **Click** the **Install** button. 
 
 ## Configure settings
 
@@ -53,5 +56,4 @@ If you are interested in trying a new font designed for programming.
 #### Other Extensions (not required)
 
 - [React & JS Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) OR [Simple React Snippets](https://marketplace.visualstudio.com/items?itemName=burkeholland.simple-react-snippets)
-- [Jest Snippets](https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets)
 - [React Documentation Extension](https://marketplace.visualstudio.com/items?itemName=avraammavridis.vsc-react-documentation)
