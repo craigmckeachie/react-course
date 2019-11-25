@@ -7,7 +7,7 @@ export ROOTDIR=$(pwd)
 
 convertMarkDownToHTML(){
     echo 'converting'
-  for f in *.md; do grip --export $f  --user=craigdmckeachie@gmail.com --pass=[password]; done
+  for f in *.md; do grip --export $f  --user=craigdmckeachie@gmail.com --pass=[Generate Personal Access Token on GitHub]; done
   for f in *.html; do sed -i '' "s/.md\"/.html\"/g" $f; done
 }
 
