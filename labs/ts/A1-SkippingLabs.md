@@ -39,7 +39,7 @@ Download the completed code for the lab **before** the one you would like to wor
     ```
     > Replacing xx with the lab number
    
- ```
+
  2. Change `tree` to `archive` and add a `.zip` extension
  ```diff
  -   https://github.com/craigmckeachie/keeptrack-r16-ts/tree/lab25
