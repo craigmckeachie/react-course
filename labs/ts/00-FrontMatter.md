@@ -55,6 +55,9 @@ information storage and retrieval systems, without permission from the author.
 - [Unit Testing Lab 8: Reducer Tests](testing/T8-ReducerTests.md)
 - [Unit Testing Lab 9: API Tests](testing/T9-APITests.md)
 
+## Snippets
+- [Snippets](./snippets/)
+  
 ## Solutions
 
 [Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r16-ts)
