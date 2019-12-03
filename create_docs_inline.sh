@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# Ex. ./create_docs_inline.sh -d ./
+# Generate Personal Access Token on GitHub
+# Set Personal Access Token in the script below
+# Run Script Ex. ./create_docs_inline.sh -d ./
 
 
 export ROOTDIR=$(pwd)
