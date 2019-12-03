@@ -48,4 +48,7 @@ cd $ROOTDIR
 
 rm -rf ./docs
 rsync -zarv  --prune-empty-dirs --include "*/"  --include="*.html" --include="*.png" --exclude="*" "./" "./docs"
+rsync -zarv  "./concepts/snippets" "./docs/concepts"
+rsync -zarv  "./labs/js/snippets" "./docs/labs/js"
+rsync -zarv  "./labs/ts/snippets" "./docs/labs/ts"
 zip -r ReactReduxManual16.10.zip docs -q -X -x "*.DS_Store"
