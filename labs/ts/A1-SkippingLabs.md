@@ -26,21 +26,28 @@ Labs can be skipped by attendees who:
 Download the completed code for the lab **before** the one you would like to work on following the steps below.
    > For example, if you wanted to work on lab 18 download lab 17
 
-   > [Finished solution code for each of the labs is available in this repository](https://github.com/craigmckeachie/r16_keeptrack)
+   > [Finished solution code for each of the labs is available in this repository](https://github.com/craigmckeachie/keeptrack-r16-ts)
 
-1. Open the branch you want to download for example
- ```diff
- -   https://github.com/craigmckeachie/r16_keeptrack/tree/labxx
- +   https://github.com/craigmckeachie/r16_keeptrack/tree/lab25 
+1. Open the branch you want to download: 
+   - For example:
+    ```shell
+    https://github.com/craigmckeachie/keeptrack-r16-ts/tree/lab25 
+    ```
+   - You can use this template:
+    ```shell
+    https://github.com/craigmckeachie/keeptrack-r16-ts/tree/labxx 
+    ```
+    > Replacing xx with the lab number
+   
  ```
  2. Change `tree` to `archive` and add a `.zip` extension
  ```diff
- -   https://github.com/craigmckeachie/r16_keeptrack/tree/lab25
- +   https://github.com/craigmckeachie/r16_keeptrack/archive/lab25.zip 
+ -   https://github.com/craigmckeachie/keeptrack-r16-ts/tree/lab25
+ +   https://github.com/craigmckeachie/keeptrack-r16-ts/archive/lab25.zip 
  ```
  3. Rename the zip.
  ```diff
- - r16_keeptrack-lab25.zip
+ - keeptrack-r16-ts-lab25.zip
  + keeptrack.zip
  ``` 
  4. Copy `keeptrack.zip` into `working\keeptrack.zip`.
