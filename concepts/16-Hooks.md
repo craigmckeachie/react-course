@@ -9,11 +9,13 @@
     - [Simple Class Component](#simple-class-component)
     - [Simple Function Component](#simple-function-component)
         - [Array destructuring](#array-destructuring)
-    - [Items App](#items-app)
-      - [Using useState](#using-usestate)
-      - [Using useState (cleaned up without commented out code)](#using-usestate-cleaned-up-without-commented-out-code)
   - [useEffect](#useeffect)
-    - [useEffect Demo](#useeffect-demo)
+    - [useEffect Simple Demo](#useeffect-simple-demo)
+    - [Items App](#items-app)
+      - [Items App Modifying Container to useState](#items-app-modifying-container-to-usestate)
+        - [Steps](#steps)
+      - [Items App using Hooks](#items-app-using-hooks)
+    - [Items App with Hooks and HTTP](#items-app-with-hooks-and-http)
   - [Custom Hooks](#custom-hooks)
   - [Rules of Hooks](#rules-of-hooks)
   - [Reference](#reference)
@@ -61,15 +63,15 @@ Before we continue, note that Hooks are:
 
 ## Hooks API
 
-Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle.
+Hooks provide a more direct API to the React concepts you already know: props, **state**, context, refs, and **lifecycle**.
 
-- In Classes => With Hooks
 
-- this.setState => useState
 
-- Lifecycle Methods => useEffect
-
-- Higher-Order Components, Render Props => Custom Hooks
+| In Classes                            | With Hooks   |
+| ------------------------------------- | ------------ |
+| this.setState                         | useState     |
+| Lifecycle Methods                     | useEffect    |
+| Higher-Order Components, Render Props | Custom Hooks |
 
 ## useState
 
@@ -125,129 +127,111 @@ function Example() {
 ReactDOM.render(<Example />, document.getElementById('root'));
 ```
 
-### Items App
 
-#### Using useState
 
-- Lifecycle Methods => useEffect
 
-  - componentDidMount => useEffect(()=>{ ... }, []) (rendered (first))
-  - componentDidUpdate => useEffect(()=>{ ... }, [dependency1, dependency2]) (rendered (second+))
-  - componentWillUnmount(()=> { ...return ()=>{...cleanup } })
-  - shouldComponentUpdate => no comparable hook instead wrap function component in React.memo(List)
-  - componentWillMount, componentWillUpdate => are deprecated so no comparable hook
 
-Start with Component Architecture demo
-rewrite container
-change class to function remove render method keep implementation
-comment out state
-replace with useState
-all handlers to const functions, comment out implementation
-remove this from jsx
-update eventHandlers to use setItems
+
+
+## useEffect
+
+This Hook should be used for any side-effects you’re executing in your render cycle.
+
+`useEffect()` *takes* a `function` as an input and *returns* `nothing`. 
+
+The function it takes will be executed for you:
+  - after the render cycle
+  - after *every* render cycle
+
+
+
+
+| Lifecycle Methods     	| Hook                                                                   	| Renders                       |
+|-----------------------	|------------------------------------------------------------------------	|-------------------------------|
+| componentDidMount     	| `useEffect(()=>{ ... }`, [ ])                                              | after first render only
+| componentDidUpdate    	| `useEffect(()=>{... }, [dependency1, dependency2])`                       | after first render AND subsequent renders caused by a change in a dependency 	|
+| componentWillUnmount  	| `useEffect(() => { ...  return ()=> {...cleanup}})`                      | 
+| shouldComponentUpdate 	| no comparable hook, instead, wrap function component in `React.memo(List)`  | renders only if a prop changes	|
+| componentWillMount    	| deprecated so no comparable hook                                       	|
+| componentWillUpdate   	| deprecated so no comparable hook                                       	|
+
+
+### useEffect Simple Demo
 
 ```js
-function ID() {
+//class component
+// class Post extends React.Component {
+//   state = {
+//     now: new Date()
+//   };
+
+//   componentWillMount() {
+//     setInterval(() => {
+//       this.setState({ now: new Date() });
+//     }, 1000);
+//   }
+
+//   render() {
+//     return (
+//       <div className="post">
+//         <h1>My First Blog Post</h1>
+//         <div>Author: Mark Twain</div>
+//         <div>Published: {this.state.now.toLocaleTimeString()}</div>
+//         <p>
+//           I am new to blogging and this is my first post. You should expect a
+//           lot of great things from me.
+//         </p>
+//       </div>
+//     );
+//   }
+// }
+
+//function component
+function Post() {
+  const [now, setNow] = React.useState(new Date());
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
+    <div className="post">
+      <h1>My First Blog Post</h1>
+      <div>Author: Mark Twain</div>
+      <div>Published: {now.toLocaleTimeString()}</div>
+      <p>
+        I am new to blogging and this is my first post. You should expect a lot
+        of great things from me.
+      </p>
+    </div>
   );
 }
 
-class Item {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
-  }
-}
+ReactDOM.render(<Post />, document.getElementById('root'));
 
-const initialItems = [
-  new Item(ID(), 'First Item'),
-  new Item(ID(), 'Second Item'),
-  new Item(ID(), 'Third Item')
-];
+```
+### Items App
 
-class List extends React.Component {
-  state = {
-    editingItem: null
-  };
+#### Items App Modifying Container to `useState` 
 
-  handleEditClick = item => {
-    this.setState({ editingItem: item });
-  };
+We will start with the component architecture demo from earlier in the course and refactor the `Container` component to use `hooks`.
 
-  handleCancel = item => {
-    this.setState({ editingItem: null });
-  };
+##### Steps
+- change class to function 
+- remove render method keep implementation
+- comment out state
+- replace with useState
+- all handlers to const functions, comment out implementation
+- remove this from jsx
+- update handlers to use `set` functions
 
-  render() {
-    const { items, onRemove, onUpdate } = this.props;
-    return (
-      <ul>
-        {items.map(item => (
-          <li key={item.id}>
-            {item === this.state.editingItem ? (
-              <Form
-                item={item}
-                onSubmit={onUpdate}
-                onCancel={this.handleCancel}
-              />
-            ) : (
-              <p>
-                <span>{item.name}</span>
-                <button onClick={() => this.handleEditClick(item)}>Edit</button>
-                <button onClick={() => onRemove(item)}>Remove</button>
-              </p>
-            )}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
-
-class Form extends React.Component {
-  state = {
-    inputValue: this.props.item.name || ''
-  };
-
-  handleChange = event => {
-    event.preventDefault();
-    this.setState({ inputValue: event.target.value });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    const item = {
-      id: this.props.item ? this.props.item.id : ID(),
-      name: this.state.inputValue
-    };
-
-    this.props.onSubmit(item);
-    this.setState({ inputValue: '' });
-  };
-
-  handleCancel = event => {
-    event.preventDefault();
-    this.props.onCancel();
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input value={this.state.inputValue} onChange={this.handleChange} />
-        <button>{this.props.buttonValue || 'Save'}</button>
-        {this.props.onCancel && (
-          <a href="#" onClick={this.handleCancel}>
-            cancel
-          </a>
-        )}
-      </form>
-    );
-  }
-}
+```js
+...
 
 function Container() {
   //   state = {
@@ -298,20 +282,10 @@ function Container() {
   );
 }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Container />
-      </div>
-    );
-  }
-}
 
-ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-#### Using useState (cleaned up without commented out code)
+#### Items App using Hooks
 
 ```js
 function ID() {
@@ -336,84 +310,71 @@ const initialItems = [
   new Item(ID(), 'Third Item')
 ];
 
-class List extends React.Component {
-  state = {
-    editingItem: null
+function List({ items, onRemove, onUpdate }) {
+  const [editingItem, setEditingItem] = React.useState(null);
+
+  const handleEditClick = item => {
+    setEditingItem(item);
   };
 
-  handleEditClick = item => {
-    this.setState({ editingItem: item });
+  const handleCancel = () => {
+    setEditingItem(null);
   };
 
-  handleCancel = item => {
-    this.setState({ editingItem: null });
-  };
-
-  render() {
-    const { items, onRemove, onUpdate } = this.props;
-    return (
-      <ul>
-        {items.map(item => (
-          <li key={item.id}>
-            {item === this.state.editingItem ? (
-              <Form
-                item={item}
-                onSubmit={onUpdate}
-                onCancel={this.handleCancel}
-              />
-            ) : (
-              <p>
-                <span>{item.name}</span>
-                <button onClick={() => this.handleEditClick(item)}>Edit</button>
-                <button onClick={() => onRemove(item)}>Remove</button>
-              </p>
-            )}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>
+          {item === editingItem ? (
+            <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
+          ) : (
+            <p>
+              <span>{item.name}</span>
+              <button onClick={() => handleEditClick(item)}>Edit</button>
+              <button onClick={() => onRemove(item)}>Remove</button>
+            </p>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-class Form extends React.Component {
-  state = {
-    inputValue: this.props.item.name || ''
+function Form({ item, onSubmit, onCancel, buttonValue }) {
+  const [inputValue, setInputValue] = React.useState(item.name || '');
+
+  const handleChange = event => {
+    event.preventDefault();
+    setInputValue(event.target.value);
   };
 
-  handleChange = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    this.setState({ inputValue: event.target.value });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    const item = {
-      id: this.props.item ? this.props.item.id : ID(),
-      name: this.state.inputValue
+    const submittedItem = {
+      id: item ? item.id : ID(),
+      name: inputValue
     };
 
-    this.props.onSubmit(item);
-    this.setState({ inputValue: '' });
+    onSubmit(submittedItem);
+    setInputValue('');
   };
 
-  handleCancel = event => {
+  const handleCancel = event => {
     event.preventDefault();
-    this.props.onCancel();
+    onCancel();
   };
 
-  render() {
-    return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input value={this.state.inputValue} onChange={this.handleChange} />
-        <button>{this.props.buttonValue || 'Save'}</button>
-        {this.props.onCancel && (
-          <a href="#" onClick={this.handleCancel}>
-            cancel
-          </a>
-        )}
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <input value={inputValue} onChange={handleChange} />
+      <button>{buttonValue || 'Save'}</button>
+      {onCancel && (
+        <a href="#" onClick={handleCancel}>
+          cancel
+        </a>
+      )}
+    </form>
+  );
 }
 
 function Container() {
@@ -445,22 +406,22 @@ function Container() {
   );
 }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Container />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <Container />
+    </div>
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
 ```
 
-## useEffect
 
-### useEffect Demo
+
+
+### Items App with Hooks and HTTP
 
 ```js
 function ID() {
@@ -475,6 +436,42 @@ function ID() {
   );
 }
 
+function translateStatusToErrorMessage(status) {
+  switch (status) {
+    case 401:
+      return 'Please login again.';
+    case 403:
+      return 'You do not have permission to view the items.';
+    default:
+      return 'There was an error retrieving the items. Please try again.';
+  }
+}
+
+//pass translate in to make this more flexible
+function checkStatus(response) {
+  if (response.ok) {
+    return response;
+  } else {
+    const httpErrorInfo = {
+      status: response.status,
+      statusText: response.statusText,
+      url: response.url
+    };
+    console.log(
+      `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
+    );
+
+    let errorMessage = ItemAPI.translateStatusToErrorMessage(
+      httpErrorInfo.status
+    );
+    throw new Error(errorMessage);
+  }
+}
+
+function parseJSON(response) {
+  return response.json();
+}
+
 class Item {
   constructor(id, name) {
     this.id = id;
@@ -483,267 +480,225 @@ class Item {
 }
 
 const baseUrl = 'http://localhost:3000';
+const url = `${baseUrl}/items`;
 
-class ItemAPI {
-  url = `${baseUrl}/items`;
-
-  constructor() {}
-
+// API ----------
+const itemAPI = {
   getAll(page = 1, limit = 100) {
-    return fetch(`${this.url}?_page=${page}&_limit=${limit}`)
-      .then(this.checkStatus)
-      .then(this.parseJSON);
-  }
+    return fetch(`${url}?_page=${page}&_limit=${limit}`)
+      .then(checkStatus)
+      .then(parseJSON);
+  },
 
   add(item) {
-    return fetch(`${this.url}`, {
+    return fetch(`${url}`, {
       method: 'POST',
       body: JSON.stringify(item),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then(this.checkStatus)
-      .then(this.parseJSON);
-  }
+      .then(checkStatus)
+      .then(parseJSON);
+  },
 
   update(item) {
-    return fetch(`${this.url}/${item.id}`, {
+    return fetch(`${url}/${item.id}`, {
       method: 'PUT',
       body: JSON.stringify(item),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then(this.checkStatus)
-      .then(this.parseJSON);
-  }
+      .then(checkStatus)
+      .then(parseJSON);
+  },
 
   delete(id) {
-    return fetch(`${this.url}/${id}`, {
+    return fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then(this.checkStatus)
-      .then(this.parseJSON);
+      .then(checkStatus)
+      .then(parseJSON);
   }
+};
 
-  static translateStatusToErrorMessage(status) {
-    switch (status) {
-      case 401:
-        return 'Please login again.';
-      case 403:
-        return 'You do not have permission to view the items.';
-      default:
-        return 'There was an error retrieving the items. Please try again.';
-    }
-  }
+function List(props) {
+  const { items, onRemove, onUpdate, loading, error } = props;
+  const [editingItem, setEditingItem] = React.useState(null);
 
-  //pass translate in to make this more flexible
-  checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      const httpErrorInfo = {
-        status: response.status,
-        statusText: response.statusText,
-        url: response.url
-      };
-      console.log(
-        `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
-      );
-
-      let errorMessage = ItemAPI.translateStatusToErrorMessage(
-        httpErrorInfo.status
-      );
-      throw new Error(errorMessage);
-    }
-  }
-
-  parseJSON(response) {
-    return response.json();
-  }
-}
-
-class List extends React.Component {
-  state = {
-    editingItem: null
+  const handleEditClick = item => {
+    setEditingItem(item);
   };
 
-  handleEditClick = item => {
-    this.setState({ editingItem: item });
+  const handleCancel = () => {
+    setEditingItem(null);
   };
 
-  handleCancel = item => {
-    this.setState({ editingItem: null });
-  };
-
-  render() {
-    const { items, onRemove, onUpdate, loading, error } = this.props;
-
-    if (loading) {
-      return <div>Loading...</div>;
-    } else if (error) {
-      return <div>{error}</div>;
-    } else {
-      return (
-        <ul>
-          {items.map(item => (
-            <li key={item.id}>
-              {item === this.state.editingItem ? (
-                <Form
-                  item={item}
-                  onSubmit={onUpdate}
-                  onCancel={this.handleCancel}
-                />
-              ) : (
-                <p>
-                  <span>{item.name}</span>
-                  <button onClick={() => this.handleEditClick(item)}>
-                    Edit
-                  </button>
-                  <button onClick={() => onRemove(item)}>Remove</button>
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-  }
-}
-
-class Form extends React.Component {
-  state = {
-    inputValue: this.props.item.name || ''
-  };
-
-  handleChange = event => {
-    event.preventDefault();
-    this.setState({ inputValue: event.target.value });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    const item = {
-      id: this.props.item ? this.props.item.id : ID(),
-      name: this.state.inputValue
-    };
-
-    this.props.onSubmit(item);
-    this.setState({ inputValue: '' });
-  };
-
-  handleCancel = event => {
-    event.preventDefault();
-    this.props.onCancel();
-  };
-
-  render() {
+  if (loading) {
+    return <div>Loading...</div>;
+  } else if (error) {
+    return <div>{error}</div>;
+  } else {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input value={this.state.inputValue} onChange={this.handleChange} />
-        <button>{this.props.buttonValue || 'Save'}</button>
-        {this.props.onCancel && (
-          <a href="#" onClick={this.handleCancel}>
-            cancel
-          </a>
-        )}
-      </form>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            {item === editingItem ? (
+              <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
+            ) : (
+              <p>
+                <span>{item.name}</span>
+                <button onClick={() => handleEditClick(item)}>Edit</button>
+                <button onClick={() => onRemove(item)}>Remove</button>
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
     );
   }
+}
+
+function Form({ item, onSubmit, onCancel, buttonValue }) {
+  const [inputValue, setInputValue] = React.useState(item.name || '');
+
+  const handleChange = event => {
+    event.preventDefault();
+    setInputValue(event.target.value);
+  };
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    const submittedItem = {
+      id: item ? item.id : ID(),
+      name: inputValue
+    };
+
+    onSubmit(submittedItem);
+    setInputValue('');
+  };
+
+  const handleCancel = event => {
+    event.preventDefault();
+    onCancel();
+  };
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <input value={inputValue} onChange={handleChange} />
+      <button>{buttonValue || 'Save'}</button>
+      {onCancel && (
+        <a href="#" onClick={handleCancel}>
+          cancel
+        </a>
+      )}
+    </form>
+  );
 }
 
 function Container() {
   const [items, setItems] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
-
-  // componentDidMount() {
-  //   this.setState({ items: [], loading: true });
-  //   let itemAPI = new ItemAPI();
-  //   itemAPI
-  //     .getAll(1)
-  //     .then(data => {
-  //       this.setState({ items: data, loading: false });
-  //     })
-  //     .catch(error => {
-  //       this.setState({ error: error.message, loading: false });
-  //     });
-  // }
+  const [error, setError] = React.useState(undefined);
 
   React.useEffect(() => {
     setLoading(true);
-    let itemAPI = new ItemAPI();
     itemAPI
       .getAll(1)
       .then(data => {
-        setLoading(false);
         setItems(data);
+        setLoading(false);
       })
       .catch(error => {
-        setLoading(false);
         setError(error.message);
+        setLoading(false);
       });
   }, []);
 
   const addItem = item => {
-    setItems([...items, item]);
+    itemAPI
+      .add(item)
+      .then(newItem => {
+        setItems([...items, newItem]);
+      })
+      .catch(error => {
+        setError(error.message);
+      });
   };
 
   const updateItem = updatedItem => {
-    let updatedItems = items.map(item => {
-      return item.id === updatedItem.id
-        ? Object.assign({}, item, updatedItem)
-        : item;
-    });
-    return setItems(updatedItems);
+    itemAPI
+      .update(updatedItem)
+      .then(data => {
+        let updatedItems = items.map(item => {
+          return item.id === updatedItem.id
+            ? Object.assign({}, item, data)
+            : item;
+        });
+        setItems(updatedItems);
+      })
+      .catch(error => {
+        setError(error.message);
+      });
   };
 
   const removeItem = removeThisItem => {
-    const filteredItems = items.filter(item => item.id != removeThisItem.id);
-    setItems(filteredItems);
+    itemAPI
+      .delete(removeThisItem.id)
+      .then(() => {
+        const filteredItems = items.filter(
+          item => item.id != removeThisItem.id
+        );
+        setItems(filteredItems);
+      })
+      .catch(error => {
+        setError(error.message);
+      });
   };
 
   return (
-    <React.Fragment>
+    <div>
       <Form item="" onSubmit={addItem} buttonValue="Add" />
       <List
         loading={loading}
+        error={error}
         items={items}
         onRemove={removeItem}
         onUpdate={updateItem}
-        error={error}
       />
-    </React.Fragment>
+    </div>
   );
 }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Container />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <Container />
+    </div>
+  );
 }
-
 ReactDOM.render(<App />, document.getElementById('root'));
+
 ```
+
+
+
 
 ## Custom Hooks
 
 Building your own Hooks lets you extract component logic into reusable functions.
 
-- In Classes => With Hooks
-- Higher-Order Components, Render Props => Custom Hooks
+| In Classes                            | With Hooks   |
+| ------------------------------------- | ------------ |
+| Higher-Order Components, Render Props | Custom Hooks |
 
-Traditionally in React, we’ve had two popular ways to share stateful logic between components: render props and higher-order components. We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
+Traditionally in React, we’ve had two popular ways to share stateful logic between components: render props and higher-order components.  Hooks solve many of the same problems without forcing you to add more components to the tree.
 
-https://usehooks.com/useTheme/
+<!-- https://usehooks.com/useTheme/ -->
 
 ## Rules of Hooks
 
@@ -757,5 +712,6 @@ https://usehooks.com/useTheme/
 
 - [Hooks Documentation](https://reactjs.org/docs/hooks-overview.html)
 - [Hooks Introduction](https://academind.com/learn/react/react-hooks-introduction/)
+- [Hooks Reference](https://reactjs.org/docs/hooks-reference.html)
 - [Custom Hooks Documentation](https://reactjs.org/docs/hooks-custom.html)
-- [Hook Examples/Recipes](https://usehooks.com/)
+- [Custom Hook Examples/Recipes](https://usehooks.com/)
