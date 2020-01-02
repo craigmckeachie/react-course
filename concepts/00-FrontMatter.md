@@ -66,12 +66,13 @@ information storage and retrieval systems, without permission from the author.
 - Advanced Topics (optional/ FAQ)
 
   - [Styling](A9-Styling.md)
+  - [Security](A16-Security.md)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [HTTP Advanced](A15-AdvancedHTTP.md)
 
 <!--
 - Future
-  - Type checking With PropTypes
+
   - Debugging Tips & Tricks
   - Animations (using ReactTransitionGroup)
   - Functional Programming -->
