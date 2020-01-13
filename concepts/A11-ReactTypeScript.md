@@ -11,13 +11,14 @@
       - [`src\Hello.tsx`](#srchellotsx-1)
   - [State](#state)
       - [`src\Hello.tsx`](#srchellotsx-2)
+      - [`src\App.tsx`](#srcapptsx-2)
   - [Event Handlers](#event-handlers)
       - [`src\Hello.tsx`](#srchellotsx-3)
   - [Resources](#resources)
 
 ## Installation
 
-- See the section `Create New TypeScript Project` in `Chapter 20: Project Setup`.
+- See the section `Create New TypeScript Project` in `Appendix A6: Project Setup`.
 
 - We will use the `my-app` project we created with TypeScript enabled using `Create React App`.
 
@@ -193,8 +194,12 @@ interface State {
 class Hello extends React.Component<Props, State> {
   state = { currentEnthusiasm: this.props.enthusiasmLevel || 1 };
 
-  onIncrement = () => this.updateEnthusiasm(this.state.currentEnthusiasm + 1);
-  onDecrement = () => this.updateEnthusiasm(this.state.currentEnthusiasm - 1);
+  onIncrement = () => {
+    this.updateEnthusiasm(1);
+  };
+  onDecrement = () => {
+    this.updateEnthusiasm(-1);
+  };
 
   render() {
     const { name } = this.props;
@@ -214,8 +219,10 @@ class Hello extends React.Component<Props, State> {
     );
   }
 
-  updateEnthusiasm(currentEnthusiasm: number) {
-    this.setState({ currentEnthusiasm });
+  updateEnthusiasm(change: number) {
+    this.setState(currentState => {
+      return { currentEnthusiasm: currentState.currentEnthusiasm + change };
+    });
   }
 }
 
@@ -225,6 +232,8 @@ function getExclamationMarks(numChars: number) {
   return Array(numChars + 1).join('!');
 }
 ```
+
+
 
 2. Notice that `state` is the second type parameter being passed when the class is constructed.
 
@@ -239,7 +248,29 @@ function getExclamationMarks(numChars: number) {
 - `class Hello extends React.Component<any, State>`
 - `class Hello extends React.Component<{}, State>`
 
-3. Verify the component is working.
+3. Set `enthusiasmLevel` as a `prop`.
+
+#### `src\App.tsx`
+```diff
+import React from 'react';
+import './App.css';
+import Hello from './Hello';
+
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <Hello name="Evis" 
++      enthusiasmLevel={2}
+      ></Hello>
+    </div>
+  );
+};
+
+export default App;
+
+```
+
+4. Verify the component is working.
 
 ## Event Handlers
 
@@ -266,11 +297,11 @@ class Hello extends React.Component<Props, State> {
 
   onIncrement = (event: SyntheticEvent) => {
     console.log(event);
-    this.updateEnthusiasm(this.state.currentEnthusiasm + 1);
+    this.updateEnthusiasm(1);
   };
   onDecrement = (event: SyntheticEvent) => {
     console.log(event.target);
-    this.updateEnthusiasm(this.state.currentEnthusiasm - 1);
+    this.updateEnthusiasm(-1);
   };
 
   render() {
@@ -291,8 +322,10 @@ class Hello extends React.Component<Props, State> {
     );
   }
 
-  updateEnthusiasm(currentEnthusiasm: number) {
-    this.setState({ currentEnthusiasm });
+  updateEnthusiasm(change: number) {
+    this.setState(currentState => {
+      return { currentEnthusiasm: currentState.currentEnthusiasm + change };
+    });
   }
 }
 
