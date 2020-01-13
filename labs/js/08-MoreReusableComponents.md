@@ -58,7 +58,7 @@
    ```diff
    import React from 'react';
    import { Project } from './Project';
-   import ProjectCard from './ProjectCard';
+   + import ProjectCard from './ProjectCard';
 
    interface ProjectListProps {
      projects: Project[];
