@@ -331,22 +331,6 @@ function Movies(props) {
 
 4. Add a Route to go to the `Movies` component
 
-```js
-function MovieDetail(props) {
-  const path = props.match.path;
-  const movieId = Number(props.match.params.id);
-  const movie = movies.find(movie => movie.id === movieId);
-
-  return (
-    <div>
-      <h2>Movie Detail</h2>
-      <h3>{movie.name}</h3>
-      <p>{movie.description}</p>
-    </div>
-  );
-}
-```
-
 > Notice how we pass props to a the `Movies` component which is rendered by the React Router
 
 - You might have been tempted to try one of these approaches:
@@ -396,7 +380,7 @@ function MovieDetail(props) {
 />
 ```
 
-1. Add a NavLink to navigate to the `Movies` component
+1. Add a NavLink to navigate to the `Movies` component.
 
 ```diff
 <ul>
@@ -410,9 +394,25 @@ function MovieDetail(props) {
 </ul>
 ```
 
-6. Create a `MovieDetail` component to show the detail about a particular movie
+6. Create a `MovieDetail` component to show the detail about a particular movie.
 
-8) Add a Route to go to the `MovieDetail` component
+```js
+function MovieDetail(props) {
+  const path = props.match.path;
+  const movieId = Number(props.match.params.id);
+  const movie = movies.find(movie => movie.id === movieId);
+
+  return (
+    <div>
+      <h2>Movie Detail</h2>
+      <h3>{movie.name}</h3>
+      <p>{movie.description}</p>
+    </div>
+  );
+}
+```
+
+8. Add a Route to go to the `MovieDetail` component.
 
 ```diff
 <div className="container">
