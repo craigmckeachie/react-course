@@ -45,17 +45,35 @@
 
 1.  Code:
 
-```js
-class Person {
-  constructor(first, last) {
-    this.first = first;
-    this.last = last;
-  }
-}
+    #### JavaScript
 
-let person = new Person('Ron', 'Swanson');
-console.log(person.first + ' ' + person.last);
-```
+    ```js
+    class Person {
+      constructor(first, last) {
+        this.first = first;
+        this.last = last;
+      }
+    }
+
+    let person = new Person('Ron', 'Swanson');
+    console.log(person.first + ' ' + person.last);
+    ```
+
+    #### TypeScript
+
+    ```ts
+    class Person {
+      first;
+      last;
+      constructor(first, last) {
+        this.first = first;
+        this.last = last;
+      }
+    }
+
+    let person = new Person('Ron', 'Swanson');
+    console.log(person.first + ' ' + person.last);
+    ```
 
 2.  Result:
 
