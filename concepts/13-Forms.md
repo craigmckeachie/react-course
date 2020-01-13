@@ -320,7 +320,7 @@ These have all been standardized to be set using the value property when using R
 
 To help you decide whether a library would be helpful in your use case, it can be helpful to manually implement form validation at first in your React application.
 
-Below is an example of simply validation implemented in our Contact Us form.
+Below is an example of some basic validation implemented in our Contact Us form.
 
 ```js
 class ContactUsForm extends React.Component {
