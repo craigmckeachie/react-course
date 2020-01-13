@@ -11,8 +11,6 @@
   - [Classes](#classes)
     - [Constructors](#constructors)
     - [Methods](#methods)
-      - [If using `Babel` compiler:](#if-using-babel-compiler)
-      - [If using TypeScript (`tsc`) compiler:](#if-using-typescript-tsc-compiler)
     - [Class Fields](#class-fields)
   - [Scope (var, let, const)](#scope-var-let-const)
     - [var](#var)
@@ -45,7 +43,7 @@
 
 1.  Code:
 
-    #### JavaScript
+    #### If using `Babel` compiler:
 
     ```js
     class Person {
@@ -59,7 +57,7 @@
     console.log(person.first + ' ' + person.last);
     ```
 
-    #### TypeScript
+    #### If using TypeScript (`tsc`) compiler:
 
     ```ts
     class Person {
@@ -85,41 +83,41 @@ Ron Swanson
 
 1.  Code:
 
-#### If using `Babel` compiler:
+    #### If using `Babel` compiler:
 
-```js
-class Person {
-  constructor(first, last) {
-    this.first = first;
-    this.last = last;
-  }
-  getFullName() {
-    return this.first + ' ' + this.last;
-  }
-}
+    ```js
+    class Person {
+      constructor(first, last) {
+        this.first = first;
+        this.last = last;
+      }
+      getFullName() {
+        return this.first + ' ' + this.last;
+      }
+    }
 
-let person = new Person('Ron', 'Swanson');
-console.log(person.getFullName());
-```
+    let person = new Person('Ron', 'Swanson');
+    console.log(person.getFullName());
+    ```
 
-#### If using TypeScript (`tsc`) compiler:
+    #### If using TypeScript (`tsc`) compiler:
 
-```ts
-class Person {
-  first;
-  last;
-  constructor(first, last) {
-    this.first = first;
-    this.last = last;
-  }
-  getFullName() {
-    return this.first + ' ' + this.last;
-  }
-}
+    ```ts
+    class Person {
+      first;
+      last;
+      constructor(first, last) {
+        this.first = first;
+        this.last = last;
+      }
+      getFullName() {
+        return this.first + ' ' + this.last;
+      }
+    }
 
-let person = new Person('Ron', 'Swanson');
-console.log(person.getFullName());
-```
+    let person = new Person('Ron', 'Swanson');
+    console.log(person.getFullName());
+    ```
 
 1.  Result:
 
