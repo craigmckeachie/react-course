@@ -26,13 +26,12 @@
 
    ```diff
    ...
-   <p>
      <p>Budget : {project.budget.toLocaleString()}</p>
    +  <button className=" bordered">
    +    <span className="icon-edit "></span>
    +    Edit
    +  </button>
-   </p>
+
    ```
 
 3. **Verify** the **button** **displays** in your browser.
