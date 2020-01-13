@@ -11,8 +11,8 @@
   - [Classes](#classes)
     - [Constructors](#constructors)
     - [Methods](#methods)
-      - [If using Babel compiler:](#if-using-babel-compiler)
-      - [If using TypeScript (tsc) compiler:](#if-using-typescript-tsc-compiler)
+      - [If using `Babel` compiler:](#if-using-babel-compiler)
+      - [If using TypeScript (`tsc`) compiler:](#if-using-typescript-tsc-compiler)
     - [Class Fields](#class-fields)
   - [Scope (var, let, const)](#scope-var-let-const)
     - [var](#var)
@@ -405,22 +405,23 @@ true
 1.  Code
 
 ```js
-function print(...theArguments) {
+function printArguments(a, b, ...theArguments) {
+  console.log('a:', a);
+  console.log('b:', b);
   for (let argument of theArguments) {
     console.log(argument);
   }
 }
 
-print('a', 'b', 'c', 'd');
+printArguments('a', 'b', 'c', 'd');
 ```
 
 2.  Result
 
 ```
-a
-b
+a: a
+b: b
 c
-d
 ```
 
 <div style="page-break-after: always;"></div>
@@ -628,6 +629,8 @@ const user1 = {
 
 console.log('user1 ', user.name);
 ```
+
+> [More Information on why export is necessary when using TypeScript](https://stackoverflow.com/questions/40900791/cannot-redeclare-block-scoped-variable-in-unrelated-files)
 
 2.  Result
 
