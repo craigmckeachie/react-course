@@ -3,11 +3,12 @@
 ## Extensions
 
 ### Install the following extensions:
-   1. **Click** the **link** below.
-       - [Prettier- Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&ssr=false#overview)
-       - [HTML to JSX](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx)
-      -  [Jest Snippets](https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets)
-   1. **Click** the **Install** button. 
+
+1.  **Click** the **link** below.
+    - [Prettier- Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&ssr=false#overview)
+    - [HTML to JSX](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx)
+    - [Jest Snippets](https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets)
+1.  **Click** the **Install** button.
 
 ## Configure settings
 
@@ -20,21 +21,22 @@
 If you have existing `USER SETTINGS` you will want to **add** the following settings below your current settings. Otherwise, you can replace the contents of the file with the JSON below.
 
 `settings.json`
- ```json
- {
-    "files.autoSave": "afterDelay",
-    "editor.fontFamily": "Fira Code iScript, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontLigatures": true,
-    "prettier.singleQuote": true,
-    "prettier.printWidth": 80,
-    "editor.multiCursorModifier": "alt",
-    "editor.formatOnSave": true,
-    "workbench.iconTheme": "material-icon-theme",
-    "emmet.includeLanguages": {
-        "typescript": "html"
-    }
+
+```json
+{
+  "files.autoSave": "afterDelay",
+  "editor.fontFamily": "Fira Code iScript, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.multiCursorModifier": "alt",
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "emmet.includeLanguages": {
+    "typescript": "html"
+  }
 }
- ```
+```
+
+6. Create a `code` directory (as a sibling to the `docs` directory) where you will write code during the course and copy [prettier.config.js](./concepts/snippets/prettier.config.js) into it.
 
 ## Install a font for programming (optional)
 
@@ -47,11 +49,9 @@ If you are interested in trying a new font designed for programming.
 
 2. Close and reopen VS Code to see the new font.
 
-
 ## Reference
 
 - [VS Code ReactJS Tutorial](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial)
-
 
 #### Other Extensions (not required)
 
