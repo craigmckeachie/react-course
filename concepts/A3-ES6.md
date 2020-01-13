@@ -11,8 +11,8 @@
   - [Classes](#classes)
     - [Constructors](#constructors)
     - [Methods](#methods)
-      - [If using `Babel` compiler:](#if-using-babel-compiler)
-      - [If using TypeScript (`tsc`) compiler:](#if-using-typescript-tsc-compiler)
+      - [If using Babel compiler:](#if-using-babel-compiler)
+      - [If using TypeScript (tsc) compiler:](#if-using-typescript-tsc-compiler)
     - [Class Fields](#class-fields)
   - [Scope (var, let, const)](#scope-var-let-const)
     - [var](#var)
@@ -38,7 +38,6 @@
   - [Resources](#resources)
 
 <div style="page-break-after: always;"></div>
-
 
 ## Classes
 
@@ -69,7 +68,8 @@ Ron Swanson
 1.  Code:
 
 #### If using `Babel` compiler:
-```js 
+
+```js
 class Person {
   constructor(first, last) {
     this.first = first;
@@ -85,6 +85,7 @@ console.log(person.getFullName());
 ```
 
 #### If using TypeScript (`tsc`) compiler:
+
 ```ts
 class Person {
   first;
@@ -118,20 +119,19 @@ The proposed feature of class fields is commonly used in React projects and is i
 
 > [Class field declarations for JavaScript](https://github.com/tc39/proposal-class-fields)
 
+1. This propsed feature is available in TypeScript without any additional configuration but **if you are using Babel** as your compiler you will need to 1. Install the plugin below.
 
-
-1. This propsed feature is available in TypeScript without any additional configuration but **if you are using Babel** as your compiler you will need to    1. Install the plugin below.
-
-    ```
-    npm install --save-dev @babel/plugin-proposal-class-properties
-    ```
+   ```
+   npm install --save-dev @babel/plugin-proposal-class-properties
+   ```
 
 2. Configure the plugin
-    ```
-    plugins: ["@babel/plugin-proposal-class-properties"]
-    ```
 
-1.  Code:
+   ```
+   plugins: ["@babel/plugin-proposal-class-properties"]
+   ```
+
+3. Code:
 
 ```js
 class Person {
@@ -572,6 +572,7 @@ Craig D. McKeachie
 ## Object.assign()
 
 1.  **If** you are **using** the **TypeScript** compiler (`tsc`), you will need to update your TypeScript configuration as shown below before doing this excercise.
+
 ```diff
 {
   "compilerOptions": {
@@ -581,11 +582,12 @@ Craig D. McKeachie
 +    "lib": [
 +      "dom",
 +      "es2015"
-    ] 
+    ]
     ...
   }
 ```
-> The `es2015` adds `.assign` on the base JavaScript type of `object`. The `dom` also has to be added to use `console.log` which worked previously because is the default lab included with TypeScript.  
+
+> The `es2015` adds `.assign` on the base JavaScript type of `object`. The `dom` also has to be added to use `console.log` which worked previously because is the default lab included with TypeScript.
 
 2.  Code
 
@@ -611,6 +613,7 @@ console.log(obj);
 1.  Code
 
 ```js
+export {}; //this line only necessary when using TypeScript
 const name = 'Leslie';
 
 const user = {
