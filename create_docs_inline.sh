@@ -2,6 +2,7 @@
 
 # Generate Personal Access Token on GitHub
 # Set Personal Access Token in the script below
+# Update course version number
 # Run Script Ex. ./create_docs_inline.sh -d ./
 
 
@@ -9,7 +10,7 @@ export ROOTDIR=$(pwd)
 
 convertMarkDownToHTML(){
     echo 'converting'
-  for f in *.md; do grip --export $f  --user=craigdmckeachie@gmail.com --pass=[Generate Personal Access Token on GitHub]; done
+  for f in *.md; do grip --export $f  --user=craigdmckeachie@gmail.com --pass=[Insert Git Personal Access Token Here]; done
   for f in *.html; do sed -i '' "s/.md\"/.html\"/g" $f; done
 }
 
@@ -53,4 +54,4 @@ rsync -zarv  --prune-empty-dirs --include "*/"  --include="*.html" --include="*.
 rsync -zarv  "./concepts/snippets" "./docs/concepts"
 rsync -zarv  "./labs/js/snippets" "./docs/labs/js"
 rsync -zarv  "./labs/ts/snippets" "./docs/labs/ts"
-zip -r ReactReduxManual16.10.zip docs -q -X -x "*.DS_Store"
+zip -r ReactReduxManual16.14.zip docs -q -X -x "*.DS_Store"
