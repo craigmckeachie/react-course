@@ -341,7 +341,7 @@ form {
 4. Create a Container Component
    - the Container should hold the items in it's local component state
    - set the initialItems into state in componentDidMount
-   - return the <Container /> instead of `hello world` inside the App Component created in the last step
+   - return the `<Container />` component instead of `hello world` inside the App Component created in the last step
    - display the items in JSX using {JSON.stringify(this.state.items)}
    - remove the JSX to display the items in the Container before continuing to the next step
 5. Display a list of items
@@ -531,7 +531,8 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
-<!-- 
+
+<!--
 ## Demo 2: GitHub API Example
 
 ### Card Component
