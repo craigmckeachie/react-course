@@ -209,7 +209,7 @@ saveProject = (project) => {
 
 +   this.setState(previousState => {
 +        let projects = previousState.projects.map(p => {
-+          return p.id === project.id ? Object.assign({}, p, project) : p;
++          return p.id === project.id ? Object.assign(new Project(), p, project) : p;
 +        });
 +       return { projects };
 +   });

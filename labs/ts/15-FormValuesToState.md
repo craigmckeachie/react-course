@@ -224,7 +224,7 @@
    -    console.log('Saving project: ', project);
    +    this.setState((previousState: ProjectsPageState) => {
    +      let projects = previousState.projects.map((p: Project) => {
-   +        return p.id === project.id ? Object.assign({}, p, project) : p;
+   +        return p.id === project.id ? Object.assign(new Project(), p, project) : p;
    +      });
    +      return { projects };
    +    });
