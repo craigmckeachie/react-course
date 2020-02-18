@@ -11,10 +11,10 @@
       - [`src\math.test.js`](#srcmathtestjs)
   - [Mocking](#mocking)
     - [Mocking Modules](#mocking-modules)
-      - [`src\__mocks__\math.js`](#src__mocks__mathjs)
+      - [`src\__mocks__\math.js`](#src_mocks_mathjs)
       - [`src\math.test.js`](#srcmathtestjs-1)
     - [Mocking Functions](#mocking-functions)
-      - [`src\__mocks__\math.js`](#src__mocks__mathjs-1)
+      - [`src\__mocks__\math.js`](#src_mocks_mathjs-1)
       - [`src\math.test.js`](#srcmathtestjs-2)
       - [`src\math.test.js`](#srcmathtestjs-3)
       - [`src\math.test.js`](#srcmathtestjs-4)
@@ -128,7 +128,7 @@ Features:
 
 ## JavaScript Tests
 
-1. Open the `my-app` project from the ProjectSetup lab.
+1. Open the `my-app` project from the ProjectSetup demo.
 2. Create the file `src\math.js`.
 3. Add the following code
 
@@ -404,7 +404,7 @@ Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debu
 
 ### Running One Test
 
- If your test name is unique, you can enter `t` while in watch mode and enter the name of the test you'd like to run.
+If your test name is unique, you can enter `t` while in watch mode and enter the name of the test you'd like to run.
 
 ### Excluding Tests
 
