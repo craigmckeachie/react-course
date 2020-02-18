@@ -59,39 +59,40 @@
    import React from 'react';
    import { Project } from './Project';
    + import ProjectCard from './ProjectCard';
-
-   interface ProjectListProps {
-     projects: Project[];
-   }
-
-   class ProjectList extends React.Component{
-     render() {
-       const { projects } = this.props;
-       const items = projects.map(project => (
-         <div key={project.id} className="cols-sm">
-   -       <section className="section dark">
-   -         <h5 className="strong">
-   -           <strong>{project.name}</strong>
-   -         </h5>
-   -         <p>{project.description}</p>
-   -        <p>Budget : {project.budget.toLocaleString()}</p>
-   -       </section>
-   +      <ProjectCard project={project} />
-         </div>
-       ));
-       return <div className="row">{items}</div>;
-     }
-   }
-
-   export default ProjectList;
    ```
+
+class ProjectList extends React.Component{
+render() {
+const { projects } = this.props;
+const items = projects.map(project => (
+<div key={project.id} className="cols-sm">
+
+-       <section className="section dark">
+-         <h5 className="strong">
+-           <strong>{project.name}</strong>
+-         </h5>
+-         <p>{project.description}</p>
+-        <p>Budget : {project.budget.toLocaleString()}</p>
+-       </section>
+
+*      <ProjectCard project={project} />
+        </div>
+      ));
+      return <div className="row">{items}</div>;
+  }
+  }
+
+export default ProjectList;
+
+```
 
 1. **Verify** the **project** **data** **displays** correctly (_it should still look the same as it did in the last lab_) in the browser.
 
-   ![image](https://user-images.githubusercontent.com/1474579/64892497-89d2f400-d642-11e9-84b2-ee9463c6192f.png)
+![image](https://user-images.githubusercontent.com/1474579/64892497-89d2f400-d642-11e9-84b2-ee9463c6192f.png)
 
 >
 
 ---
 
 ### &#10004; You have completed Lab 8
+```
