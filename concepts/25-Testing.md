@@ -585,7 +585,3 @@ Snapshot testing requires you to install the `react-test-renderer` which we alre
 - [Jest Mocking & Spies](https://jestjs.io/docs/en/mock-functions)
 - [Handling Async in Jest](https://jestjs.io/docs/en/asynchronous)
 - [What is the difference between jest.fn() and jest.spyOn() methods in jest?](https://stackoverflow.com/questions/57643808/what-is-the-difference-between-jest-fn-and-jest-spyon-methods-in-jest)
-
-```
-
-```

@@ -286,6 +286,5 @@ function FruitList(props) {
 
 ## Resources
 
-[Lists & Keys](https://reactjs.org/docs/lists-and-keys.html)
-
-[Understanding unique keys for array children in React.js](https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js)
+- [Lists & Keys](https://reactjs.org/docs/lists-and-keys.html)
+- [Understanding unique keys for array children in React.js](https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js)

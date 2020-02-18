@@ -15,7 +15,7 @@
         - [if](#if-1)
         - [if else](#if-else)
       - [? (inline)](#-inline)
-      - [&& (inline)](#-inline)
+      - [&& (inline)](#-inline-1)
   - [Resources](#resources)
 
 Just use the features in the JavaScript language.
@@ -356,8 +356,6 @@ return condition && <div>true</div>;
 
 ## Resources
 
-[Conditional Rendering: Official Documentation](https://reactjs.org/docs/conditional-rendering.html)
-
-[All React Conditional Rendering Techniques](https://www.robinwieruch.de/conditional-rendering-react/)
-
-[AirBnb Styleguide: Conditional Rendering (Discussion: no rule yet)](https://github.com/airbnb/javascript/issues/520)
+- [Conditional Rendering: Official Documentation](https://reactjs.org/docs/conditional-rendering.html)
+- [All React Conditional Rendering Techniques](https://www.robinwieruch.de/conditional-rendering-react/)
+- [AirBnb Styleguide: Conditional Rendering (Discussion: no rule yet)](https://github.com/airbnb/javascript/issues/520)

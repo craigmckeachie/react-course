@@ -241,8 +241,7 @@ Often you will start with a function component and eventually need state for tha
 
 ## Reference
 
-[State and Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
-
-[Glossary Definition: State](https://reactjs.org/docs/glossary.html#state)
+- [State and Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
+- [Glossary Definition: State](https://reactjs.org/docs/glossary.html#state)
 
 <!-- ## StopWatch -->
