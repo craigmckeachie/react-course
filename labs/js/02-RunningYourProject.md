@@ -28,7 +28,7 @@
 
 1.  **Add** some additional text (exclamation points) in the `render` method of the `App` component as shown below.
 
-    #### `src\App.tsx`
+    #### `src\App.jsx`
 
     ```diff
     function App() {
