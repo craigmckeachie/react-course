@@ -219,8 +219,8 @@ saveProject = (project) => {
   <Fragment>
   <h1>Projects</h1>
 
-+  <ProjectList onSave={this.saveProject} projects={MOCK_PROJECTS} />
--  <ProjectList onSave={this.saveProject} projects={this.state.projects} />
+-  <ProjectList onSave={this.saveProject} projects={MOCK_PROJECTS} />
++  <ProjectList onSave={this.saveProject} projects={this.state.projects} />
   </Fragment>
   );
   }
