@@ -36,7 +36,7 @@ If you have existing `USER SETTINGS` you will want to **add** the following sett
 }
 ```
 
-6. Create a `code` directory (as a sibling to the `docs` directory) where you will write code during the course and copy [prettier.config.js](./concepts/snippets/prettier.config.js) into it.
+6. Create a new directory named `code` (it is recommended to make `code` a sibling to the `docs` directory) where you will write code during the course and copy [prettier.config.js](./concepts/snippets/prettier.config.js) into it.
 
 ## Install a font for programming (optional)
 
@@ -52,8 +52,10 @@ If you are interested in trying a new font designed for programming.
 ## Reference
 
 - [VS Code ReactJS Tutorial](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial)
+- [Vs Code can do that?!](https://vscodecandothat.com/)
 
 #### Other Extensions (not required)
 
 - [React & JS Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) OR [Simple React Snippets](https://marketplace.visualstudio.com/items?itemName=burkeholland.simple-react-snippets)
 - [React Documentation Extension](https://marketplace.visualstudio.com/items?itemName=avraammavridis.vsc-react-documentation)
+- [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
