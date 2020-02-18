@@ -59,8 +59,6 @@
 
 #### `src\projects\ProjectList.js`
 
-
-
 ```diff
 ProjectList.propTypes = {
   projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
@@ -142,8 +140,7 @@ ProjectList.propTypes = {
    2. **Open** the Chrome DevTools to the `console` (`F12` or `fn+F12` on laptop).
    3. **Click** the **edit** button for a project.
    4. **Click** the **save** button on the form.
-   5. **Verify** the `<ProjectForm/>` is removed and replaced by the `<ProjectCard />`.
-   6. **Verify** the updated project is logged to the Chrome DevTools `console`.
+   5. **Verify** the updated project is logged to the Chrome DevTools `console`.
       > Note that the `ProjectCard` info will not be updated at this point.
 
    ![image](https://user-images.githubusercontent.com/1474579/64926834-66d64a80-d7d0-11e9-8dd9-7501589c6d08.png)
