@@ -24,6 +24,8 @@
     #### `src\projects\projectAPI.ts`
 
     ```ts
+    import { Project } from './Project';
+
     const baseUrl = 'http://localhost:4000';
     const url = `${baseUrl}/projects`;
 
