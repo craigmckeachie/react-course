@@ -58,7 +58,7 @@
 
    componentDidMount() {
    -  this.loadProjects(this.state.page);
-   +  this.loadProjects(this.props.page);
+   +  this.loadProjects(1);
    }
 
    handleMoreClick = () => {
@@ -175,10 +175,7 @@
      onSave: saveProject
    };
 
-   export default connect(
-     mapStateToProps,
-     mapDispatchToProps
-   )(ProjectsPage);
+   export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPage);
    ```
 
    > Be sure to `import connect` from `react-redux` NOT `http2`, `net`, or `tls`.
