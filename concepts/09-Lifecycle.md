@@ -72,8 +72,7 @@ ReactDOM.render(<Clock />, document.getElementById('root'));
 
 ## Reference
 
-[React Lifecycle Methods Diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
-
-[Glossary: Lifecycle Methods](https://reactjs.org/docs/glossary.html#lifecycle-methods)
-
-[What is Mounting?](https://stackoverflow.com/questions/31556450/what-is-mounting-in-react-js/31559566#31559566)
+- [React Lifecycle Methods Diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+- [Glossary: Lifecycle Methods](https://reactjs.org/docs/glossary.html#lifecycle-methods)
+- [What is Mounting?](https://stackoverflow.com/questions/31556450/what-is-mounting-in-react-js/31559566#31559566)
+- [Deprecated Lifecycle Methods](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)
