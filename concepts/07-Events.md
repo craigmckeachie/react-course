@@ -494,8 +494,8 @@ A `SyntheticEvent` is a cross-browser wrapper around the browser’s native even
 
 ## Reference
 
-https://reactjs.org/docs/handling-events.html
-https://reactjs.org/docs/faq-functions.html
+[React Documentation: Handling Events](https://reactjs.org/docs/handling-events.html)
+[React Documentation: Passing Functions to Components](https://reactjs.org/docs/faq-functions.html)
 
 ```
 
