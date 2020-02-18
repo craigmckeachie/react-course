@@ -1,6 +1,5 @@
 # Chapter 2: Elements
 
-
 - [Chapter 2: Elements](#chapter-2-elements)
   - [Part 1 - Hello World in JavaScript](#part-1---hello-world-in-javascript)
   - [Part 2 - Hello World in React](#part-2---hello-world-in-react)
@@ -65,7 +64,7 @@ One might confuse elements with a more widely known concept of “components”.
     ```diff
     <body>
     <div id="root"></div>
-    <script type="text/javascript" src="/main.jsx"></script>
+    + <script type="text/javascript" src="/main.jsx"></script>
     </body>
     ```
 7.  Create a new file `demos/main.jsx`
@@ -125,14 +124,13 @@ One might confuse elements with a more widely known concept of “components”.
     }
     ```
 
-
-12. Run the web server
+12) Run the web server
     ```sh
     npm start
     ```
-13. Open `http://localhost:5000/` in your Chrome browser
+13) Open `http://localhost:5000/` in your Chrome browser
 
-14) Verify the page displays:
+14. Verify the page displays:
 
     ```
 
@@ -249,5 +247,3 @@ These objects are called `React elements`. You can think of them as descriptions
 - [Elements vs Components](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
 - [React Supported HTML Attributes](https://reactjs.org/docs/dom-elements.html#all-supported-html-attributes)
 - [Glossary: Elements](https://reactjs.org/docs/glossary.html#elements)
-
-

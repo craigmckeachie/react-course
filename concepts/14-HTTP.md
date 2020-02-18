@@ -51,9 +51,9 @@ Before making HTTP calls we need to [setup a backend following these directions]
    <body>
        <div id="root"></div>
        ...
-       <script src="node_modules/@babel/standalone/babel.min.js"></script>
-   +   <script src="node_modules/axios/dist/axios.js"></script>
-       <script type="text/babel" src="main.jsx"></script>
+       <script src="/node_modules/@babel/standalone/babel.min.js"></script>
+   +   <script src="/node_modules/axios/dist/axios.js"></script>
+       <script type="text/babel" src="/main.jsx"></script>
    </body>
    </html>
    ```
