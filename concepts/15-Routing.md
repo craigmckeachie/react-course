@@ -239,7 +239,7 @@ function NotFound() {
 4. Add a route for it with **no path**
 
 ```diff
-    <Route path="/"  component={Home} />
+    <Route path="/" exact  component={Home} />
     <Route path="/about/" component={About} />
     <Route path="/contact/" component={Contact} />
 +   <Route component={NotFound} />
@@ -250,7 +250,7 @@ function NotFound() {
 
 ```diff
 + <Switch>
-    <Route path="/" component={Home} />
+    <Route path="/" exact component={Home} />
     <Route path="/about/" component={About} />
     <Route path="/contact/" component={Contact} />
     <Route component={NotFound} />
@@ -258,6 +258,9 @@ function NotFound() {
 ```
 
 7. Navigate to the various routes again and notice that only when you manually go to a route that doesn't exist like: `/noroute` the `NotFound` component renders.
+
+> - The attribute `exact` on a `<Route>` controls what is displayed into the page.
+> - The attribute `exact` on a `<NavLink>` controls what is active (highlighed) in the navigation.
 
 ## Parameters
 
