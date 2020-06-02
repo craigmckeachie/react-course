@@ -6,7 +6,7 @@
 
 - [Using JavaScript Package Managers (npm/Yarn)](./concepts/A1-PackageManager.md)
 - [Compiler Setup (Babel)](./concepts/A2-CompilerSetup.md#setup-babel)
-- [Compiler Setup (TypeScript)](./concepts/A2-CompilerSetup.md#setup-typescript)
+- [Compiler Setup (TypeScript)\*](./concepts/A2-CompilerSetup.md#setup-typescript)
 - [ES6 & Beyond](./concepts/A3-ES6.md)
   - [Classes](./concepts/A3-ES6.md#classes)
   - [Arrow Functions](./concepts/A3-ES6.md#arrow-functions)
@@ -19,7 +19,7 @@
   - [Destructuring](./concepts/A3-ES6.md#destructuring)
   - [Optional Parameters](./concepts/A3-ES6.md#optional-parameters)
   - [Object Initializer Syntax](./concepts/A3-ES6.md#object-initializer)
-- [Introduction to TypeScript](<(./concepts/A4-TypeScript.md)>)
+- [Introduction to TypeScript \*](<(./concepts/A4-TypeScript.md)>)
   - [How TypeScript relates to JavaScript](./concepts/A4-TypeScript.md#diagram)
   - [How TypeScript Works](./concepts/A4-TypeScript.md#how-typescript-works)
   - [Who is Behind TypeScript?](./concepts/A4-TypeScript.md#who-is-behind-typescript)
@@ -45,8 +45,8 @@
 - [Props](./concepts/06-Props.md)
 - [Events](./concepts/07-Events.md)
 - [State](./concepts/08-State.md)
-- [PropTypes\*](./concepts/A10-PropTypes.md)
-- [React with TypeScript\*\*](./concepts/A11-ReactTypeScript.md)
+- [PropTypes\*\*](./concepts/A10-PropTypes.md)
+- [React with TypeScript\*](./concepts/A11-ReactTypeScript.md)
 - [Conditional Rendering](./concepts/10-ConditionalRendering.md)
 - [Lists](./concepts/11-Lists.md)
 
@@ -72,7 +72,7 @@
 - [Using Redux with React (React Redux Library)](./concepts/22-ReactRedux.md)
 - [Asynchronous Actions (Redux Thunk)](./concepts/23-ReduxThunk.md)
 - [Putting It All Together (React & Redux & Thunk)](./concepts/24-ReactReduxThunk.md)
-- [Redux with TypeScript\*\*](./concepts/A12-ReduxTypeScript.md)
+- [Redux with TypeScript\*](./concepts/A12-ReduxTypeScript.md)
 
 # Unit Testing React
 
@@ -87,6 +87,6 @@
 
 ### Footnotes
 
-> \*Only applicable when using JavaScript
+> \*Only applicable when using TypeScript
 
-> \*\* Only applicable when using TypeScript
+> \*\* Only applicable when using JavaScript
