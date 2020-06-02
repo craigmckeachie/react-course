@@ -26,18 +26,17 @@
 
 ### Duration: 2 Days
 
-- [Project Setup (Create React App)](./concepts/A6-ProjectSetup.md)
 - [React Overview & Architecture](./concepts/01-React.md)
 - [Comparing React, Angular, & Vue](./concepts/01-React.md#angular-react-compared)
 - [Elements](./concepts/02-Elements.md)
 - [JSX](./concepts/03-JSX.md)
 - [Virtual DOM](./concepts/04-VirtualDOM.md)
+- [Project Setup (Create React App)](./concepts/A6-ProjectSetup.md)
 - [Components](./concepts/05-Components.md)
 - [Props](./concepts/06-Props.md)
 - [Events](./concepts/07-Events.md)
 - [State](./concepts/08-State.md)
 - [PropTypes](./concepts/A10-PropTypes.md)
-- [Lifecycle](./concepts/09-Lifecycle.md)
 - [Conditional Rendering](./concepts/10-ConditionalRendering.md)
 - [Lists](./concepts/11-Lists.md)
 
@@ -49,9 +48,10 @@
 - [Best Practices (Code Organization & Conventions)](./concepts/A8-BestPractices.md)
 - [Forms](./concepts/13-Forms.md)
 - [HTTP](./concepts/14-HTTP.md)
-- [Routing (using React Router)](./concepts/15-Routing.md)
+- [Lifecycle](./concepts/09-Lifecycle.md)
 - [Hooks](./concepts/16-Hooks.md)
 - [Build & Deploy](./concepts/17-BuildDeploy.md)
+- [Routing (using React Router)](./concepts/15-Routing.md)
 - [Security](./concepts/A16-Security.md)
 
 # Redux with React

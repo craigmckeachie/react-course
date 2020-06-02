@@ -1,8 +1,8 @@
 # React Online Curriculum using TypeScript
 
-# Modern JavaScript
+# Modern JavaScript & TypeScript
 
-### Duration: 1/2 Day
+### Duration: 1 Day
 
 - [Using JavaScript Package Managers (npm/Yarn)](./concepts/A1-PackageManager.md)
 - [Compiler Setup (Babel)](./concepts/A2-CompilerSetup.md#setup-babel)
@@ -19,40 +19,34 @@
   - [Destructuring](./concepts/A3-ES6.md#destructuring)
   - [Optional Parameters](./concepts/A3-ES6.md#optional-parameters)
   - [Object Initializer Syntax](./concepts/A3-ES6.md#object-initializer)
-  - JavaScript Debugging
-
-# Introduction to TypeScript
-
-### Duration: 1/2 Day
-
-- [How TypeScript relates to JavaScript](./concepts/A4-TypeScript.md#diagram)
-- [How TypeScript Works](./concepts/A4-TypeScript.md#how-typescript-works)
-- [Who is Behind TypeScript?](./concepts/A4-TypeScript.md#who-is-behind-typescript)
-- [Type Annotations](./concepts/A4-TypeScript.md#type-annotations)
-- [Classes (Field Members, Paramater Properties, Member visibility)](./concepts/A4-TypeScript.md#classes)
-- [Automatically Import Modules](./concepts/A4-TypeScript.md#automatically-import-modules)
-- [Nullable Parameters](./concepts/A4-TypeScript.md#nullable-parameters)
-- [Interfaces](./concepts/A4-TypeScript.md#interfaces)
-- [Other Language Features](./concepts/A4-TypeScript.md#other-language-features)
-- TypeScript Debugging
+- [Introduction to TypeScript](<(./concepts/A4-TypeScript.md)>)
+  - [How TypeScript relates to JavaScript](./concepts/A4-TypeScript.md#diagram)
+  - [How TypeScript Works](./concepts/A4-TypeScript.md#how-typescript-works)
+  - [Who is Behind TypeScript?](./concepts/A4-TypeScript.md#who-is-behind-typescript)
+  - [Type Annotations](./concepts/A4-TypeScript.md#type-annotations)
+  - [Classes (Field Members, Paramater Properties, Member visibility)](./concepts/A4-TypeScript.md#classes)
+  - [Automatically Import Modules](./concepts/A4-TypeScript.md#automatically-import-modules)
+  - [Nullable Parameters](./concepts/A4-TypeScript.md#nullable-parameters)
+  - [Interfaces](./concepts/A4-TypeScript.md#interfaces)
+  - [Other Language Features](./concepts/A4-TypeScript.md#other-language-features)
+- Debugging
 
 # Introduction to React
 
 ### Duration: 2 Days
 
-- [Project Setup (Create React App)](./concepts/A6-ProjectSetup.md)
 - [React Overview & Architecture](./concepts/01-React.md)
 - [Comparing React, Angular, & Vue](./concepts/01-React.md#angular-react-compared)
 - [Elements](./concepts/02-Elements.md)
 - [JSX](./concepts/03-JSX.md)
 - [Virtual DOM](./concepts/04-VirtualDOM.md)
+- [Project Setup (Create React App)](./concepts/A6-ProjectSetup.md)
 - [Components](./concepts/05-Components.md)
 - [Props](./concepts/06-Props.md)
 - [Events](./concepts/07-Events.md)
 - [State](./concepts/08-State.md)
 - [PropTypes\*](./concepts/A10-PropTypes.md)
 - [React with TypeScript\*\*](./concepts/A11-ReactTypeScript.md)
-- [Lifecycle](./concepts/09-Lifecycle.md)
 - [Conditional Rendering](./concepts/10-ConditionalRendering.md)
 - [Lists](./concepts/11-Lists.md)
 
@@ -64,9 +58,10 @@
 - [Best Practices (Code Organization & Conventions)](./concepts/A8-BestPractices.md)
 - [Forms](./concepts/13-Forms.md)
 - [HTTP](./concepts/14-HTTP.md)
-- [Routing (using React Router)](./concepts/15-Routing.md)
-- [Hooks](./concepts/16-Hooks.md)
+- [Lifecycle](./concepts/09-Lifecycle.md)
 - [Build & Deploy](./concepts/17-BuildDeploy.md)
+- [Hooks](./concepts/16-Hooks.md)
+- [Routing (using React Router)](./concepts/15-Routing.md)
 - [Security](./concepts/A16-Security.md)
 
 # Redux with React
