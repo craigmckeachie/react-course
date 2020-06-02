@@ -1,4 +1,4 @@
-# React Online Curriculum using TypeScript
+# React Online Curriculum
 
 # Modern JavaScript & TypeScript
 
