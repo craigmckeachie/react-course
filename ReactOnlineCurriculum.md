@@ -5,7 +5,7 @@
 ### Duration: 1 Day
 
 - [Using JavaScript Package Managers (npm/Yarn)](./concepts/A1-PackageManager.md)
-- [Compiler Setup (Babel)](./concepts/A2-CompilerSetup.md#setup-babel)
+- [Compiler Setup (Babel)\*\*](./concepts/A2-CompilerSetup.md#setup-babel)
 - [Compiler Setup (TypeScript)\*](./concepts/A2-CompilerSetup.md#setup-typescript)
 - [ES6 & Beyond](./concepts/A3-ES6.md)
   - [Classes](./concepts/A3-ES6.md#classes)
