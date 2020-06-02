@@ -2,6 +2,22 @@
 
 Promises are a foundational technology in JavaScript.
 
+<div style="page-break-after: always;"></div>
+
+## Contents
+
+- [Appendixes A5:Promise](#appendixes-a5promise)
+- [Contents](#contents)
+  - [Asynchronous vs Synchronous](#asynchronous-vs-synchronous)
+    - [Analogy](#analogy)
+  - [Callback vs Promise](#callback-vs-promise)
+    - [Callback Example](#callback-example)
+    - [Promise Example](#promise-example)
+      - [How Promises Improve on Callbacks](#how-promises-improve-on-callbacks)
+    - [Common Issues/Mistakes:](#common-issuesmistakes)
+- [Async/Await](#asyncawait)
+- [Resources](#resources)
+
 ### Asynchronous vs Synchronous
 
 _Synchronous_ execution means the execution happens in a single series. A->B->C->D. If you are calling those routines, A will run, then finish, then B will start, then finish, then C will start, etc.

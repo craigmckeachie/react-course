@@ -6,6 +6,14 @@
 - [TypeScript Labs](./labs/ts/00-FrontMatter.md)
 - [Prerequisite Concepts for Labs](./PrerequisiteConceptsForLabs.md)
 
+## Online Curriculum
+
+Funny Ant courseware broken down into smaller classes to better facilitate online/remote training (simplified outlines using topics only).
+
+- [React Curriculum using JavaScript](ReactOnlineCurriculumUsingJavaScript.md)
+- [React Curriculum using TypeScript](ReactOnlineCurriculumUsingTypeScript.md)
+
+
 ## License
 
 Copyright © 2019-2021
