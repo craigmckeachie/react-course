@@ -50,7 +50,8 @@
 - [Props](./concepts/06-Props.md)
 - [Events](./concepts/07-Events.md)
 - [State](./concepts/08-State.md)
-- [React with TypeScript](./concepts/A11-ReactTypeScript.md)
+- [PropTypes\*](./concepts/A10-PropTypes.md)
+- [React with TypeScript\*\*](./concepts/A11-ReactTypeScript.md)
 - [Lifecycle](./concepts/09-Lifecycle.md)
 - [Conditional Rendering](./concepts/10-ConditionalRendering.md)
 - [Lists](./concepts/11-Lists.md)
@@ -76,7 +77,7 @@
 - [Using Redux with React (React Redux Library)](./concepts/22-ReactRedux.md)
 - [Asynchronous Actions (Redux Thunk)](./concepts/23-ReduxThunk.md)
 - [Putting It All Together (React & Redux & Thunk)](./concepts/24-ReactReduxThunk.md)
-- [Redux with TypeScript](./concepts/A12-ReduxTypeScript.md)
+- [Redux with TypeScript\*\*](./concepts/A12-ReduxTypeScript.md)
 
 # Unit Testing React
 
@@ -88,3 +89,9 @@
 - [Mocking](./concepts/25-Testing.md#mocking)
 - [Debugging Tests](./concepts/25-Testing.md#debugging-tests)
 - [Component Tests (Shallow, Full, Snapshot)](./concepts/25-Testing.md#components-tests)
+
+### Footnotes
+
+> \*Only applicable when using JavaScript
+
+> \*\* Only applicable when using TypeScript
