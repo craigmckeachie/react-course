@@ -8,7 +8,7 @@
 2. **Node.js** installed, a recent **10.x or 12.x LTS** version.
 
    - **Visit** [http://nodejs.org/](http://nodejs.org/).
-   - **Click** the `12.13.[x] LTS Recommended For Most Users` (or similar) **green button on the left** to **download** the **installer** file.
+   - **Click** the `12.18.[x] LTS Recommended For Most Users` (or similar) **green button on the left** to **download** the **installer** file.
    - **Run** the **installer**, accepting all _default_ _settings_.
    - After installation, **confirm** that the `Path` environment variable on your computer has been modified to include the path for `node` and `npm` by following these steps.
      - **Open** a `command prompt` (Windows) or `terminal` (Mac).
@@ -19,7 +19,7 @@
        npm -v
        ```
      - **Verify** the **version** of each program is **returned**.
-   -  Please **DO NOT use** `Node 8.x` or `11.x` or `13.x` for this class.
+   - Please **DO NOT use** `Node 8.x` or `11.x` or `13.x` for this class.
 
 3. **Install** **Create React App** and **verify** a project can be created.
 
@@ -51,7 +51,7 @@
      - It is **free**, **cross-platform** has a **small** download, and is a **quick** install.
      - **Visit** [https://code.visualstudio.com/](https://code.visualstudio.com/) to **install**.
        > Don't confuse Visual Studio Code with the heavier Visual Studio IDE used for .NET development.
-      - [Follow these directions](VisualStudioCodeSetup.md) to configure Visual Studio Code for the course.
+     - [Follow these directions](VisualStudioCodeSetup.md) to configure Visual Studio Code for the course.
    - **WebStorm** or **IntelliJ IDEA Ultimate** both made by `JetBrains` are also great choices.
 
      - In summary, these IDEs are heavier but have more features built-in.
@@ -68,7 +68,7 @@
      > Any recent version will work for the class.
    - Also, any other browsers that you plan to support
 6. **Internet access in the classroom is required** because attendees will download additional software packages and material from github.com as part of the class. This can be confirmed by following these steps.
-   - **Visit** https://github.com/facebook/react/.
+   - **Visit**:  https://github.com/facebook/react/
    - **Verify** the **page** **loads** successfully on your company's network.
 
 ---
