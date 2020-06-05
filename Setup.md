@@ -68,7 +68,7 @@
      > Any recent version will work for the class.
    - Also, any other browsers that you plan to support
 6. **Internet access in the classroom is required** because attendees will download additional software packages and material from github.com as part of the class. This can be confirmed by following these steps.
-   - **Visit**:  https://github.com/facebook/react/
+   - **Visit**: https://github.com/facebook/react/
    - **Verify** the **page** **loads** successfully on your company's network.
 
 ---
