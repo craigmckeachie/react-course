@@ -3,8 +3,8 @@
 - [Chapter 12: Component Architecture](#chapter-12-component-architecture)
   - [Reuse](#reuse)
   - [Component Communication](#component-communication)
-      - [Common Communication Patterns](#common-communication-patterns)
-      - [Additional Communication Patterns](#additional-communication-patterns)
+    - [Common Communication Patterns](#common-communication-patterns)
+    - [Additional Communication Patterns](#additional-communication-patterns)
 - [Design Patterns](#design-patterns)
   - [Lifting State Up](#lifting-state-up)
   - [Container and Presentation Components](#container-and-presentation-components)
@@ -67,7 +67,7 @@ function App() {
 
 class Parent extends React.Component {
   state = {
-    words: ''
+    words: '',
   };
 
   handleClick = () => {
@@ -105,7 +105,7 @@ function App() {
 }
 
 function Parent() {
-  const handleRequest = request => {
+  const handleRequest = (request) => {
     if (request.includes('car')) {
       alert('No');
     }
@@ -165,18 +165,18 @@ class Button extends React.Component {
   }
 }
 
-const Result = props => {
+const Result = (props) => {
   return <div>Result: {props.value}</div>;
 };
 
 class App extends React.Component {
   state = {
-    counter: 0
+    counter: 0,
   };
 
   incrementCounter = () => {
-    this.setState(prevState => ({
-      counter: prevState.counter + 1
+    this.setState((prevState) => ({
+      counter: prevState.counter + 1,
     }));
   };
 
@@ -280,12 +280,7 @@ function ID() {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
-  return (
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 class Item {
@@ -298,7 +293,7 @@ class Item {
 const initialItems = [
   new Item(ID(), 'First Item'),
   new Item(ID(), 'Second Item'),
-  new Item(ID(), 'Third Item')
+  new Item(ID(), 'Third Item'),
 ];
 ```
 
@@ -352,6 +347,130 @@ form {
 6. Implement the feature to remove an item from the list
    - Add a remove button next to each item on the list
    - handle the remove button click by calling a function on the container to remove the item from state
+
+See the finished solution code up to these requirements.
+
+```js
+function ID() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+class Item {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+const initialItems = [
+  new Item(ID(), 'First Item'),
+  new Item(ID(), 'Second Item'),
+  new Item(ID(), 'Third Item'),
+];
+
+class List extends React.Component {
+  state = {
+    editingItem: null,
+  };
+
+  handleEditClick = (item) => {
+    this.setState({ editingItem: item });
+  };
+
+  handleCancel = (item) => {
+    this.setState({ editingItem: null });
+  };
+
+  render() {
+    const { items, onRemove } = this.props;
+    return (
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item === this.state.editingItem ? (
+              <Form item={item} onCancel={this.handleCancel} />
+            ) : (
+              <p>
+                <span>{item.name}</span>
+                <button onClick={() => this.handleEditClick(item)}>Edit</button>
+                <button onClick={() => onRemove(item)}>Remove</button>
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+class Form extends React.Component {
+  state = {
+    inputValue: this.props.item.name || '',
+  };
+
+  handleChange = (event) => {
+    event.preventDefault();
+    this.setState({ inputValue: event.target.value });
+  };
+
+  handleCancel = (event) => {
+    event.preventDefault();
+    this.props.onCancel();
+  };
+
+  render() {
+    return (
+      <form>
+        <input value={this.state.inputValue} />
+        <button>Save</button>
+        {this.props.onCancel && (
+          <a href="#" onClick={this.handleCancel}>
+            cancel
+          </a>
+        )}
+      </form>
+    );
+  }
+}
+
+class Container extends React.Component {
+  state = {
+    items: [],
+  };
+
+  componentDidMount() {
+    this.setState({ items: initialItems });
+  }
+
+  removeItem = (removeThisItem) => {
+    this.setState((state) => {
+      const items = state.items.filter((item) => item.id != removeThisItem.id);
+      return { items };
+    });
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <List items={this.state.items} onRemove={this.removeItem} />
+      </React.Fragment>
+    );
+  }
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Container />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
 7. Implement the feature to add an item
    - create a Form component
    - Add a text input and button to it
@@ -373,12 +492,7 @@ function ID() {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
-  return (
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 class Item {
@@ -391,19 +505,19 @@ class Item {
 const initialItems = [
   new Item(ID(), 'First Item'),
   new Item(ID(), 'Second Item'),
-  new Item(ID(), 'Third Item')
+  new Item(ID(), 'Third Item'),
 ];
 
 class List extends React.Component {
   state = {
-    editingItem: null
+    editingItem: null,
   };
 
-  handleEditClick = item => {
+  handleEditClick = (item) => {
     this.setState({ editingItem: item });
   };
 
-  handleCancel = item => {
+  handleCancel = (item) => {
     this.setState({ editingItem: null });
   };
 
@@ -411,7 +525,7 @@ class List extends React.Component {
     const { items, onRemove, onUpdate } = this.props;
     return (
       <ul>
-        {items.map(item => (
+        {items.map((item) => (
           <li key={item.id}>
             {item === this.state.editingItem ? (
               <Form
@@ -435,26 +549,26 @@ class List extends React.Component {
 
 class Form extends React.Component {
   state = {
-    inputValue: this.props.item.name || ''
+    inputValue: this.props.item.name || '',
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     event.preventDefault();
     this.setState({ inputValue: event.target.value });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     const item = {
       id: this.props.item ? this.props.item.id : ID(),
-      name: this.state.inputValue
+      name: this.state.inputValue,
     };
 
     this.props.onSubmit(item);
     this.setState({ inputValue: '' });
   };
 
-  handleCancel = event => {
+  handleCancel = (event) => {
     event.preventDefault();
     this.props.onCancel();
   };
@@ -476,20 +590,20 @@ class Form extends React.Component {
 
 class Container extends React.Component {
   state = {
-    items: []
+    items: [],
   };
 
   componentDidMount() {
     this.setState({ items: initialItems });
   }
 
-  addItem = item => {
-    this.setState(state => ({ items: [...state.items, item] }));
+  addItem = (item) => {
+    this.setState((state) => ({ items: [...state.items, item] }));
   };
 
-  updateItem = updatedItem => {
-    this.setState(state => {
-      let items = state.items.map(item => {
+  updateItem = (updatedItem) => {
+    this.setState((state) => {
+      let items = state.items.map((item) => {
         return item.id === updatedItem.id
           ? Object.assign({}, item, updatedItem)
           : item;
@@ -498,9 +612,9 @@ class Container extends React.Component {
     });
   };
 
-  removeItem = removeThisItem => {
-    this.setState(state => {
-      const items = state.items.filter(item => item.id != removeThisItem.id);
+  removeItem = (removeThisItem) => {
+    this.setState((state) => {
+      const items = state.items.filter((item) => item.id != removeThisItem.id);
       return { items };
     });
   };
