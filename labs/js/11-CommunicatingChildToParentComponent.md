@@ -27,12 +27,12 @@
    #### `src\projects\ProjectCard.js`
 
    ```diff
-    function ProjectCard(props: ProjectCardProps) {
+    function ProjectCard(props) {
       const { project,
    +         onEdit
        } = props;
 
-      const handleEditClick = (projectBeingEdited: Project) => {
+      const handleEditClick = (projectBeingEdited) => {
    +    onEdit(projectBeingEdited);
    -    console.log(projectBeingEdited);
       };
