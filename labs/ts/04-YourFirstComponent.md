@@ -16,17 +16,18 @@
    ```html
    <h1>Projects</h1>
    ```
+
    > The solution code for the component appears next. Challenge yourself to write it from scratch before looking at it.
+
    ### Solution
 
    #### `src\projects\ProjectsPage.tsx`
 
    ```tsx
    import React from 'react';
-   class ProjectsPage extends React.Component {
-     render() {
-       return <h1>Projects</h1>;
-     }
+
+   function ProjectsPage() {
+     return <h1>Projects</h1>;
    }
 
    export default ProjectsPage;

@@ -16,15 +16,7 @@
    + import { Project } from './Project';
    ...
 
-   + function toProject(object) {
-   +   return new Project(object);
-   + }
-
    const projectAPI = {
-     get(...){
-       ...
-     }
-   + ,
    ...
 
    +  put(project) {
@@ -37,7 +29,6 @@
    +    })
    +      .then(checkStatus)
    +      .then(parseJSON)
-   +      .then(toProject) // make sure there is no s on toProject
    +      .catch((error) => {
    +        console.log('log client error ' + error);
    +        throw new Error(
@@ -54,41 +45,35 @@
    #### `src\projects\ProjectsPage.js`
 
    ```diff
-   class ProjectsPage extends React.Component d{
-     state = {
-       projects: [],
-       loading: false,
-       error: undefined
-     };
-
    ...
+   function ProjectsPage() {
+     ...
 
-   saveProject = (project) => {
-   -    this.setState((previousState) => {
-   -      let projects = previousState.projects.map((p) => {
-   -        return p.id === project.id ? project : p;
-   -      });
-   -      return { projects };
+     const saveProject = (project) => {
+   -    let updatedProjects = projects.map((p) => {
+   -      return p.id === project.id ? project : p;
    -    });
+   -    setProjects(updatedProjects);
 
-   +    projectAPI
-   +      .put(project)
-   +      .then(data => {
-   +        this.setState(state => {
-   +          let projects = state.projects.map(p => {
-   +            return p.id === project.id ? project : p;
-   +          });
-   +          return { projects };
-   +        });
-   +      })
-   +      .catch(error => {
-   +        this.setState({ error: error.message });
-   +      });
+   +   projectAPI
+   +     .put(project)
+   +     .then((updatedProject) => {
+   +       let updatedProjects = projects.map((p) => {
+   +         return p.id === project.id ? project : p;
+   +       });
+   +       setProjects(updatedProjects);
+   +     })
+   +     .catch((e) => {
+   +       setError(e.message);
+   +     });
      };
 
+     return (
+       ...
+     );
    }
 
-   export default ProjectsContainer;
+   export default ProjectsPage;
    ```
 
 1. Verify the application is working by following these steps.

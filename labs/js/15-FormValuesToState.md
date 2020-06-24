@@ -192,43 +192,36 @@
 
    #### `src\projects\ProjectsPage.js`
 
-```diff
-import React, { Fragment } from 'react';
-import { MOCK_PROJECTS } from './MockProjects';
-import ProjectList from './ProjectList';
-+ import { Project } from './Project';
+   ```diff
+   import React, { Fragment,
+   + useState } from 'react';
+   import { MOCK_PROJECTS } from './MockProjects';
+   import ProjectList from './ProjectList';
 
-class ProjectsPage extends React.Component {
+   function ProjectsPage() {
+   +  const [projects, setProjects] = useState(MOCK_PROJECTS);
 
-+ state = {
-+ projects: MOCK_PROJECTS
-+ };
-saveProject = (project) => {
+   const saveProject = (project) => {
+   -   console.log('Saving project: ', project);
+   +    let updatedProjects = projects.map((p) => {
+   +      return p.id === project.id ? project : p;
+   +    });
+   +    setProjects(updatedProjects);
+   };
 
-- console.log('Saving project: ', project);
+   return (
+      <Fragment>
+         <h1>Projects</h1>
+   -      <ProjectList onSave={saveProject} projects={MOCK_PROJECTS} />
+   +      <ProjectList onSave={saveProject} projects={projects} />
+      </Fragment>
+   );
+   }
 
-+   this.setState(previousState => {
-+        let projects = previousState.projects.map(p => {
-+          return p.id === project.id ? Object.assign(new Project(), p, project) : p;
-+        });
-+       return { projects };
-+   });
-};
-  render() {
-  return (
-  <Fragment>
-  <h1>Projects</h1>
+   export default ProjectsPage;
+   ```
 
--  <ProjectList onSave={this.saveProject} projects={MOCK_PROJECTS} />
-+  <ProjectList onSave={this.saveProject} projects={this.state.projects} />
-  </Fragment>
-  );
-  }
-  }
-
-```
-
-4. **Verify** the application is working by following these **steps** in your browser.
+4) **Verify** the application is working by following these **steps** in your browser.
    1. **Click** the **edit** button for a project.
    1. **Change** the **project name** in the form.
    1. **Click** **save** on the form.

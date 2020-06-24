@@ -45,41 +45,35 @@
    #### `src\projects\ProjectsPage.ts`
 
    ```diff
-   class ProjectsPage extends React.Component<any, ProjectsContainerState> {
-     state = {
-       projects: [],
-       loading: false,
-       error: undefined
-     };
-
    ...
+   function ProjectsPage() {
+     ...
 
-   saveProject = (project: Project) => {
-   -    this.setState((previousState: ProjectsPageState) => {
-   -      let projects = previousState.projects.map((p: Project) => {
-   -        return p.id === project.id ? project : p;
-   -      });
-   -      return { projects };
+     const saveProject = (project: Project) => {
+   -    let updatedProjects = projects.map((p: Project) => {
+   -      return p.id === project.id ? project : p;
    -    });
+   -    setProjects(updatedProjects);
 
-   +    projectAPI
-   +      .put(project)
-   +      .then(data => {
-   +        this.setState(state => {
-   +          let projects = state.projects.map(p => {
-   +            return p.id === project.id ? project : p;
-   +          });
-   +          return { projects };
-   +        });
-   +      })
-   +      .catch(error => {
-   +        this.setState({ error: error.message });
-   +      });
+   +   projectAPI
+   +     .put(project)
+   +     .then((updatedProject) => {
+   +       let updatedProjects = projects.map((p: Project) => {
+   +         return p.id === project.id ? project : p;
+   +       });
+   +       setProjects(updatedProjects);
+   +     })
+   +     .catch((e) => {
+   +       setError(e.message);
+   +     });
      };
 
+     return (
+       ...
+     );
    }
 
-   export default ProjectsContainer;
+   export default ProjectsPage;
    ```
 
 1. Verify the application is working by following these steps.
@@ -95,5 +89,3 @@
 ---
 
 ### &#10004; You have completed Lab 19
-
-

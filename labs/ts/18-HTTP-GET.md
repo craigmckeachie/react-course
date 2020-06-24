@@ -11,8 +11,8 @@
 ### Create an API object that loads data from an REST API
 
 1.  Create the file `src\projects\projectAPI.ts`.
-2.  Create a `projectAPI` object and export it from the file.
-3.  Implement a `get` method that requires `page` and `limit` parameters and sets the default to `page = 1` and `limit=20`.
+1.  Create a `projectAPI` object and export it from the file.
+1.  Implement a `get` method that requires `page` and `limit` parameters and sets the default to `page = 1` and `limit=20`.
     The projects should be sorted by name.
 
     > [json-server ](https://github.com/typicode/json-server/blob/master/README.md) supports sorting and paging using the following syntax.
@@ -47,7 +47,7 @@
         const httpErrorInfo = {
           status: response.status,
           statusText: response.statusText,
-          url: response.url
+          url: response.url,
         };
         console.log(`log server http error: ${JSON.stringify(httpErrorInfo)}`);
 
@@ -62,8 +62,8 @@
 
     // eslint-disable-next-line
     function delay(ms: number) {
-      return function(x: any): Promise<any> {
-        return new Promise(resolve => setTimeout(() => resolve(x), ms));
+      return function (x: any): Promise<any> {
+        return new Promise((resolve) => setTimeout(() => resolve(x), ms));
       };
     }
 
@@ -79,7 +79,7 @@
               'There was an error retrieving the projects. Please try again.'
             );
           });
-      }
+      },
     };
 
     export { projectAPI };
@@ -87,44 +87,38 @@
 
 ### Update a component to use the API object
 
-5. **Open** the file `src\projects\ProjectsPage.tsx`.
-6. **Update** the `ProjectPageState` **interface** to have two additonal properties `loading` and `error`.
+1. **Open** the file `src\projects\ProjectsPage.tsx`.
+1. **Use** the `useState` function to create two additonal state variables `loading` and `error`.
 
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
    ...
-   interface ProjectsPageState {
-     projects: Project[];
-   +  loading: boolean;
-   +  error: string | undefined
-   }
+    function ProjectsPage() {
+      const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+   +  const [loading, setLoading] = useState(false);
+   +  const [error, setError] = useState(undefined);
    ...
+   }
    ```
 
-7) **Initialize** the component **state** as follows:
-
-   1. `projects` should be an empty array `[]` **(be sure to remove the mock data)**
-   2. `loading` should be `false`
-   3. `error` should be `undefined`
+1. **Change** the `projects` **state** to be an empty array `[]` **(be sure to remove the mock data)**:
 
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
    - import { MOCK_PROJECTS } from './MockProjects';
    ...
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
-     state = {
-   -    projects: MOCK_PROJECTS
-   +    projects: [],
-   +    loading: false,
-   +    error: undefined
-     };
-     ...
+    function ProjectsPage() {
+   -  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+   +  const [projects, setProjects] = useState<Project[]>([]);
+      const [loading, setLoading] = useState(false);
+      const [error, setError] = useState(undefined);
+   ...
    }
    ```
 
-8. **Implement** the loading of the data from the API after the component has been added to the DOM `(componentDidMount`) following these specifications.
+1. **Implement** the loading of the data from the API after the component has been added to the DOM `(componentDidMount`) following these specifications.
 
    1. **Set** state of `loading` to `true`
    2. Call the API: `projectAPI.get(1)`.
@@ -134,26 +128,32 @@
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-   ...
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
-     state = {
-       projects: [],
-       loading: false,
-       error: undefined
-     };
+   import React, { Fragment, useState,
+   + useEffect } from 'react';
 
-   +  componentDidMount() {
-   +    this.setState({ loading: true });
+   function ProjectsPage() {
+     const [projects, setProjects] = useState<Project[]>([]);
+     const [loading, setLoading] = useState(false);
+     const [error, setError] = useState(undefined);
+
+   +  useEffect(() => {
+   +    setLoading(true);
    +    projectAPI
    +      .get(1)
-   +      .then(data => this.setState({ projects: data, loading: false }))
-   +      .catch(error => this.setState({ error: error.message, loading: false }));
-   +  }
-     ...
+   +      .then((data) => {
+   +        setLoading(false);
+   +        setProjects(data);
+   +      })
+   +      .catch((e) => {
+   +        setLoading(false);
+   +        setError(e.message);
+   +      });
+   +  }, []);
+   ...
    }
    ```
 
-9) **Display** the **loading** indicator **below** the `<ProjectList />`. Only display the indicator when `loading=true`.
+1. **Display** the **loading** indicator **below** the `<ProjectList />`. Only display the indicator when `loading=true`.
 
    > If you want to try it yourself first before looking at the solution code use the `HTML` snippet below to format the loading indicator.
 
@@ -167,36 +167,46 @@
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
-   ...
-     render() {
-       return (
-         <Fragment>
-           <h1>Projects</h1>
+   function ProjectsPage() {
+     const [projects, setProjects] = useState<Project[]>([]);
+     const [loading, setLoading] = useState(false);
+     const [error, setError] = useState(undefined);
 
-           <ProjectList onSave={this.saveProject} projects={this.state.projects} />
+     ...
 
-   +        {this.state.loading && (
-   +          <div className="center-page">
-   +            <span className="spinner primary"></span>
-   +            <p>Loading...</p>
-   +          </div>
-   +        )}
+     return (
+       <Fragment>
+         <h1>Projects</h1>
 
-         </Fragment>
-       );
-     }
+         <ProjectList onSave={saveProject} projects={projects} />
+
+   +      {loading && (
+   +        <div className="center-page">
+   +          <span className="spinner primary"></span>
+   +          <p>Loading...</p>
+   +        </div>
+   +      )}
+       </Fragment>
+     );
    }
 
    export default ProjectsPage;
    ```
 
-   2. Add these `CSS` styles to center the loading indicator on the page.
+   1. Add these `CSS` styles to center the loading indicator on the page.
 
       #### `src\index.css`
 
       ```tsx
-      ... //add below existing styles and import
+      ... //add below existing styles
+
+      html,
+      body,
+      #root,
+      .container,
+      .center-page {
+        height: 100%;
+      }
 
       .center-page {
         display: flex;
@@ -205,110 +215,113 @@
       }
       ```
 
-9. We are using a `delay` function in `projectAPI.get()` to delay the returning of data so it is easier to see the loading indicator. You can remove the `delay` at this point.
+1. **Display** the **error** message **above** the `<ProjectList />` using the `HTML` snippet below. Only display the indicator when `error` is defined.
 
-   #### `src\projects\projectAPI.ts`
+   > If you want to try it yourself first before looking at the solution code use the `HTML` snippet below to format the error.
 
-   ```diff
-   return fetch(`${url}?_page=${page}&_limit=${limit}&_sort=name`)
-   - .then(delay(600))
-     .then(checkStatus)
-     .then(parseJSON);
+   ```html
+   <div class="row">
+     <div class="card large error">
+       <section>
+         <p>
+           <span class="icon-alert inverse "></span>
+           {error}
+         </p>
+       </section>
+     </div>
+   </div>
    ```
 
-10. **Display** the **error** message **above** the `<ProjectList />` using the `HTML` snippet below. Only display the indicator when `error` is defined.
+   #### `src\projects\ProjectsPage.tsx`
 
-    > If you want to try it yourself first before looking at the solution code use the `HTML` snippet below to format the error.
+   ```diff
+   function ProjectsPage() {
+     const [projects, setProjects] = useState<Project[]>([]);
+     const [loading, setLoading] = useState(false);
+     const [error, setError] = useState(undefined);
 
-    ```html
-    <div class="row">
-      <div class="card large error">
-        <section>
-          <p>
-            <span class="icon-alert inverse "></span>
-            {this.state.error}
-          </p>
-        </section>
-      </div>
-    </div>
-    ```
+     ...
 
-    #### `src\projects\ProjectsPage.tsx`
+     return (
+     <Fragment>
+         <h1>Projects</h1>
 
-    ```diff
-    class ProjectsPage extends React.Component<any, ProjectsPageState> {
-    ...
-      render() {
-        return (
-          <Fragment>
-            <h1>Projects</h1>
-    +        {this.state.error && (
-    +          <div className="row">
-    +            <div className="card large error">
-    +              <section>
-    +                <p>
-    +                  <span className="icon-alert inverse "></span>
-    +                  {this.state.error}
-    +                </p>
-    +              </section>
-    +            </div>
-    +          </div>
-    +        )}
+   +      {error && (
+   +        <div className="row">
+   +          <div className="card large error">
+   +            <section>
+   +              <p>
+   +                <span className="icon-alert inverse "></span>
+   +                {error}
+   +              </p>
+   +            </section>
+   +          </div>
+   +        </div>
+   +      )}
 
-            <ProjectList onSave={this.saveProject} projects={this.state.projects} />
+         <ProjectList onSave={saveProject} projects={projects} />
 
-            {this.state.loading && (
-              <div className="center-page">
-                <span className="spinner primary"></span>
-                <p>Loading...</p>
-              </div>
-            )}
+         {loading && (
+           <div className="center-page">
+             <span className="spinner primary"></span>
+             <p>Loading...</p>
+           </div>
+         )}
+       </Fragment>
+     );
+   }
 
-          </Fragment>
-        );
-      }
-    }
+   export default ProjectsPage;
+   ```
 
-    export default ProjectsPage;
-    ```
+1. **Verify** the application is working by **following these steps** in your `Chrome` **browser**.
 
-11. **Verify** the application is working by **following these steps** in your `Chrome` **browser**.
+   1. **Open** `Chrome DevTools`.
+   2. **Refresh** the page.
+   3. For a brief second, a **loading indicator** should **appear**.
+      ![image](https://user-images.githubusercontent.com/1474579/65072299-9a46df80-d95e-11e9-9c74-8fd89814bbe2.png)
 
-    1. **Open** `Chrome DevTools`.
-    2. **Refresh** the page.
-    3. For a brief second, a **loading indicator** should **appear**.
-       ![image](https://user-images.githubusercontent.com/1474579/65072299-9a46df80-d95e-11e9-9c74-8fd89814bbe2.png)
+   4. Then, a list of **projects** should **appear**.
+   5. **Click** on the `Chrome DevTools` `Network` tab.
+   6. **Verify** the **request** to `/projects?_page=1&_limit=20&_sort=name` is happening.
+      ![image](https://user-images.githubusercontent.com/1474579/65073227-6ff62180-d960-11e9-8073-51597f20cda2.png)
 
-    4. Then, a list of **projects** should **appear**.
-    5. **Click** on the `Chrome DevTools` `Network` tab.
-    6. **Verify** the **request** to `/projects?_page=1&_limit=20&_sort=name` is happening.
-       ![image](https://user-images.githubusercontent.com/1474579/65073227-6ff62180-d960-11e9-8073-51597f20cda2.png)
+   7. We are using a `delay` function in `projectAPI.get()` to delay the returning of data so it is easier to see the loading indicator. You can remove the `delay` at this point.
 
-    7. **Change** the **URL** so the API endpoint cannot be reached.
+      #### `src\projects\projectAPI.ts`
 
-       #### `src\projects\projectAPI.tsx`
+      ```diff
+      return fetch(`${url}?_page=${page}&_limit=${limit}&_sort=name`)
+      - .then(delay(600))
+        .then(checkStatus)
+        .then(parseJSON);
+      ```
 
-       ```diff
-       const baseUrl = 'http://localhost:4000';
-       - const url = `${baseUrl}/projects`;
-       + const url = `${baseUrl}/fail`;
-       ...
-       ```
+   8. **Change** the **URL** so the API endpoint cannot be reached.
 
-    8. In your browser, you should see the following **error message** **displayed**.
-       ![image](https://user-images.githubusercontent.com/1474579/65073355-b51a5380-d960-11e9-9d62-d26616574d83.png)
+   #### `src\projects\projectAPI.tsx`
 
-    9. **Fix** the **URL** to the backend API before continuing to the next lab.
+   ```diff
+   const baseUrl = 'http://localhost:4000';
+   - const url = `${baseUrl}/projects`;
+   + const url = `${baseUrl}/fail`;
+   ...
+   ```
 
-       #### `src\projects\projectAPI.tsx`
+   9. In your browser, you should see the following **error message** **displayed**.
+      ![image](https://user-images.githubusercontent.com/1474579/65073355-b51a5380-d960-11e9-9d62-d26616574d83.png)
 
-       ```diff
-       ...
-       const baseUrl = 'http://localhost:4000';
-       + const url = `${baseUrl}/projects`;
-       - const url = `${baseUrl}/fail`;
-       ...
-       ```
+   10. **Fix** the **URL** to the backend API before continuing to the next lab.
+
+   #### `src\projects\projectAPI.tsx`
+
+   ```diff
+   ...
+   const baseUrl = 'http://localhost:4000';
+   + const url = `${baseUrl}/projects`;
+   - const url = `${baseUrl}/fail`;
+   ...
+   ```
 
 ---
 
@@ -320,163 +333,137 @@
 
 > This part of the lab is optional and can be safely skipped for now if time is tight.
 
-6. **Update** the `ProjectPageState` `interface` to hold a `page` property.
+1. **Use** the `useState` function to create an additonal state variable `currentPage`.
+
+   #### `src\projects\ProjectsPage.tsx`
+
+```diff
+...
+function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(undefined);
++ const [currentPage, setCurrentPage] = useState(1);
+  ...
+}
+```
+
+1. **Update** the `useEffect` method to make `currentPage` a dependency and use it when fetching the data.
+
+   #### `src\projects\ProjectsPage.tsx`
+
+```diff
+...
+function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setLoading(true);
+    projectAPI
+-      .get(1)
++      .get(currentPage)
+      .then((data) => {
+        setLoading(false);
+-        setProjects(data);
++        if (currentPage === 1) {
++          setProjects(data);
++        } else {
++          setProjects((projects) => [...projects, ...data]);
++        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setError(e.message);
+      });
+- }, []);
++ }, [currentPage]);
+  ...
+}
+```
+
+1. **Implement** a `handleMoreClick` event handler and increment the page and then call `loadProjects`.
 
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
    ...
-   interface ProjectsPageState {
-     projects: Project[];
-     loading: boolean;
-     error: string | undefined;
-   +  page: number
-   }
-   ...
-   ```
+   function ProjectsPage() {
+     ...
+     const [currentPage, setCurrentPage] = useState(1);
+     ...
 
-7. **Initialize** the `page` property of **state** as follows:
-
-   #### `src\projects\ProjectsPage.tsx`
-
-   ```diff
-   ....
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
-     state = {
-       projects: [],
-       loading: false,
-       error: undefined,
-   +    page: 1
-     };
+   +  const handleMoreClick = () => {
+   +    setCurrentPage((currentPage) => currentPage + 1);
+   +  };
      ...
    }
    ```
 
-8. **Implement** a `loadProjects` method and call it from `componentDidMount`.
+1. Add a `More...` button below the `<ProjectList />` . Display the `More...` button only when not `loading` and there is not an `error` and handle the `More...` button's `click` event and call `handleMoreClick`.
 
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-   class ProjectsPage extends React.Component<any, ProjectsPageState> {
+   ...
+   function ProjectsPage() {
    ...
 
-   +  loadProjects(page: number) {
-   +    this.setState({ loading: true });
-   +    projectAPI
-   +      .get(page)
-   +      .then(data => {
-   +        if(page === 1){
-   +          this.setState({ projects: data, loading: false, page });
-   +        }else{
-   +          this.setState((previousState)=>{
-   +             return { projects: [...previousState.projects, ...data], loading: false, page}
-   +          });
-   +        }
-   +
-   +       })
-   +      .catch(error => this.setState({ error: error.message, loading: false }));
-   +  }
+     return (
+       <Fragment>
+         <h1>Projects</h1>
+         {error && (
+           <div className="row">
+             <div className="card large error">
+               <section>
+                 <p>
+                   <span className="icon-alert inverse "></span>
+                   {error}
+                 </p>
+               </section>
+             </div>
+           </div>
+         )}
+         <ProjectList onSave={saveProject} projects={projects} />
 
-     componentDidMount() {
-   -    this.setState({ loading: true });
-   -    projectAPI.get(1)...
-   +    this.loadProjects(this.state.page);
-     }
+   +      {!loading && !error && (
+   +        <div className="row">
+   +          <div className="col-sm-12">
+   +            <div className="button-group fluid">
+   +              <button className="button default" onClick={handleMoreClick}>
+   +                More...
+   +              </button>
+   +            </div>
+   +          </div>
+   +        </div>
+   +      )}
 
+         {loading && (
+           <div className="center-page">
+             <span className="spinner primary"></span>
+             <p>Loading...</p>
+           </div>
+         )}
+       </Fragment>
+     );
    }
+
+   export default ProjectsPage;
    ```
 
-10) **Implement** a `handleMoreClick` event handler and increment the page and then call `loadProjects`.
+1. **Verify** the application is working by **following these steps** in your **browser**.
 
-    #### `src\projects\ProjectsPage.tsx`
+   1. **Refresh** the page.
+   2. A list of **projects** should **appear**.
+   3. **Click** on the`More...` **button**.
+   4. **Verify** that 20 additional projects are appended to the end of the list.
+   5. **Click** on the`More...` **button** again.
+   6. **Verify** that another 20 projects are appended to the end of the list.
 
-    ```diff
-    class ProjectsPage extends React.Component<any, ProjectsPageState> {
-      ...
-    +  handleMoreClick = () => {
-    +    const nextPage = this.state.page + 1;
-    +    this.loadProjects(nextPage);
-    +  };
-    }
-    ```
-
-11) Add a `More...` button below the `<ProjectList />` using the `HTML` snippet below.
-    ```html
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="button-group fluid">
-          <button class="button default">
-            More...
-          </button>
-        </div>
-      </div>
-    </div>
-    ```
-    > Don't forget that JSX and HTML are not the same exact syntax.
-12) Display the `More...` button only when not `loading` and there is not an `error` and handle the `More...` button's `click` event and call `handleMoreClick`.
-
-    #### `src\projects\ProjectsPage.tsx`
-
-    ```diff
-    class ProjectsPage extends React.Component<any, ProjectsPageState> {
-      ...
-      render() {
-        return (
-          <Fragment>
-            <h1>Projects</h1>
-            {this.state.error && (
-              <div className="row">
-                <div className="card large error">
-                  <section>
-                    <p>
-                      <span className="icon-alert inverse "></span>
-                      {this.state.error}
-                    </p>
-                  </section>
-                </div>
-              </div>
-            )}
-
-            <ProjectList onSave={this.saveProject} projects={this.state.projects} />
-
-    +       {!this.state.loading && !this.state.error && (
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="button-group fluid">
-                  <button
-                    className="button default"
-    +                 onClick={this.handleMoreClick}
-                  >
-                    More...
-                  </button>
-                </div>
-              </div>
-            </div>
-    +       )}
-
-            {this.state.loading && (
-              <div className="center-page">
-                <span className="spinner primary"></span>
-                <p>Loading...</p>
-              </div>
-            )}
-          </Fragment>
-        );
-      }
-    }
-    ```
-
-12. **Verify** the application is working by **following these steps** in your **browser**.
-
-    1.  **Refresh** the page.
-    2.  A list of **projects** should **appear**.
-    3.  **Click** on the`More...` **button**.
-    4.  **Verify** that 20 additional projects are appended to the end of the list.
-    5.  **Click** on the`More...` **button** again.
-    6.  **Verify** that another 20 projects are appended to the end of the list.
-
-    ![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)
-    <kbd>![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)</kbd>
+   ![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)
+   <kbd>![More](https://user-images.githubusercontent.com/1474579/65072105-391f0c00-d95e-11e9-9e22-922fd0154b2a.png)</kbd>
 
 ---
 

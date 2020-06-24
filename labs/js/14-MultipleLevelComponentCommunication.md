@@ -108,27 +108,26 @@ ProjectList.propTypes = {
    1. **Add** a `saveProject`**event handler** that takes a `project` to `ProjectPage` and `console.log`'s the project out.
    2. **Wire** up the **onSave** **event** of the `<ProjectList />` component rendered in the `ProjectPage` to the `saveProject` event handler.
 
-   #### `src\projects\ProjectPage.js`
+   #### `src\projects\ProjectPage.tsx`
 
    ```diff
    import React, { Fragment } from 'react';
    import { MOCK_PROJECTS } from './MockProjects';
    import ProjectList from './ProjectList';
 
-   class ProjectsPage extends React.Component {
-   +  saveProject = (project) => {
+   function ProjectsPage() {
+   +  const saveProject = (project) => {
    +    console.log('Saving project: ', project);
    +  };
-   render() {
-       return (
-       <Fragment>
+
+     return (
+        <Fragment>
            <h1>Projects</h1>
            <ProjectList
-   +         onSave={this.saveProject}
-           projects={MOCK_PROJECTS} />
-       </Fragment>
-       );
-   }
+   +         onSave={saveProject}
+             projects={MOCK_PROJECTS} />
+        </Fragment>
+     );
    }
 
    export default ProjectsPage;
