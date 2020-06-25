@@ -6,6 +6,8 @@
   - [Submitting](#submitting)
   - [Controlling other Types of HTML Form Elements](#controlling-other-types-of-html-form-elements)
   - [Validation](#validation)
+    - [styles.css](#stylescss)
+    - [main.jsx](#mainjsx)
   - [Uncontrolled Components](#uncontrolled-components)
     - [Refs](#refs)
     - [Setting defaultValue](#setting-defaultvalue)
@@ -30,10 +32,10 @@ Below is an example.
 ```js
 class ExampleForm extends React.Component {
   state = {
-    value: ''
+    value: '',
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ value: event.target.value });
   };
 
@@ -93,10 +95,10 @@ If we have multiple inputs you can implement one onChange event handler function
 class LoginForm extends React.Component {
   state = {
     username: '',
-    password: ''
+    password: '',
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const target = event.target;
     const name = target.name;
     const value = target.value;
@@ -238,16 +240,16 @@ class ContactUsForm extends React.Component {
   state = {
     department: '',
     message: '',
-    agreedToTerms: false
+    agreedToTerms: false,
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { type, name, value, checked } = event.target;
     const updatedValue = type === 'checkbox' ? checked : value;
     this.setState({ [name]: updatedValue });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
   };
@@ -322,42 +324,68 @@ To help you decide whether a library would be helpful in your use case, it can b
 
 Below is an example of some basic validation implemented in our Contact Us form.
 
+#### styles.css
+
+```css
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  width: 50%;
+}
+```
+
+#### main.jsx
+
 ```js
 class ContactUsForm extends React.Component {
   state = {
     department: '',
     message: '',
     agreedToTerms: false,
-    departmentValidationMessage: '',
-    messageValidationMessage: '',
-    agreedToTermsValidationMessage: ''
+    departmentValidationMessage: null,
+    messageValidationMessage: null,
+    agreedToTermsValidationMessage: null,
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { type, name, value, checked } = event.target;
     const updatedValue = type === 'checkbox' ? checked : value;
     this.setState({ [name]: updatedValue });
   };
 
-  handleBlur = event => {
+  handleBlur = (event) => {
     this.validate();
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.validate();
-    if (this.state.errors) {
+    if (!this.isValid()) {
       return;
     }
     console.log(this.state);
   };
 
+  isValid = () => {
+    const {
+      departmentValidationMessage,
+      messageValidationMessage,
+      agreedToTermsValidationMessage,
+    } = this.state;
+    return (
+      departmentValidationMessage === null &&
+      messageValidationMessage === null &&
+      agreedToTermsValidationMessage === null
+    );
+  };
+
   validate() {
     const { department, message, agreedToTerms } = this.state;
     this.setState({
-      departmentValidationMessage: '',
-      messageValidationMessage: '',
-      agreedToTermsValidationMessage: ''
+      departmentValidationMessage: null,
+      messageValidationMessage: null,
+      agreedToTermsValidationMessage: null,
     });
     if (!department) {
       this.setState({ departmentValidationMessage: 'Department is required.' });
@@ -368,7 +396,7 @@ class ContactUsForm extends React.Component {
     if (agreedToTerms === false) {
       this.setState({
         agreedToTermsValidationMessage:
-          'You must agree to the terms and conditions.'
+          'You must agree to the terms and conditions.',
       });
     }
   }
@@ -389,7 +417,7 @@ class ContactUsForm extends React.Component {
         </select>
         <br />
         {this.state.departmentValidationMessage && (
-          <p>{this.state.departmentValidationMessage}</p>
+          <p className="alert">{this.state.departmentValidationMessage}</p>
         )}
         <br />
         <textarea
@@ -402,7 +430,7 @@ class ContactUsForm extends React.Component {
         />
         <br />
         {this.state.messageValidationMessage && (
-          <p>{this.state.messageValidationMessage}</p>
+          <p className="alert">{this.state.messageValidationMessage}</p>
         )}
         <input
           type="checkbox"
@@ -414,7 +442,7 @@ class ContactUsForm extends React.Component {
         I agree to the terms and conditions.
         <br />
         {this.state.agreedToTermsValidationMessage && (
-          <p>{this.state.agreedToTermsValidationMessage}</p>
+          <p className="alert">{this.state.agreedToTermsValidationMessage}</p>
         )}
         <button>Send</button>
         <pre>{JSON.stringify(this.state, null, ' ')}</pre>
@@ -448,7 +476,7 @@ When writing an `uncontrolled component` you use a `ref` to get form values from
 class ExampleForm extends React.Component {
   input = React.createRef();
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.input.current);
     console.log(this.input.current.value);
