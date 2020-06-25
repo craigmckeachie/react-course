@@ -211,8 +211,18 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 ## Resources
 
+- [Performance Tools](https://reactjs.org/docs/perf.html)
+- [Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html)
+- [Profiling Components with Chrome](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab)
 - [React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
 - [Why is immutability so important (or needed) in JavaScript?](https://stackoverflow.com/questions/34385243/why-is-immutability-so-important-or-needed-in-javascript)
 - [The DAO of Immutability](https://medium.com/javascript-scene/the-dao-of-immutability-9f91a70c88cd)
-- (Why Did You Render)[https://github.com/welldone-software/why-did-you-render]
-- (Why Did You Render Blog Post)[https://medium.com/welldone-software/why-did-you-render-mr-big-pure-react-component-2a36dd86996f]
+- [Why Did You Render](https://github.com/welldone-software/why-did-you-render)
+- [Why Did You Render Blog Post](https://medium.com/welldone-software/why-did-you-render-mr-big-pure-react-component-2a36dd86996f)
+- [React Component Renders Too Often](https://medium.com/@Osterberg/react-component-renders-too-often-2917daabcf5)
+- [Flame Chart](https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html#flame-chart)
+- [React Rendering Misconception](https://thoughtbot.com/blog/react-rendering-misconception)
+- [You Probably Don't Need Derived State](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+- [When to Re-Render a Component](https://lucybain.com/blog/2017/react-js-when-to-rerender/)
+- [How to Update a Component's Props in React](https://www.freecodecamp.org/news/how-to-update-a-components-prop-in-react-js-oh-yes-it-s-possible-f9d26f1c4c6d/)
+- [How to force a React component to re-render](https://www.educative.io/edpresso/how-to-force-a-react-component-to-re-render)
