@@ -125,6 +125,8 @@ ReactDOM.render(<Example />, document.getElementById('root'));
 
 ## useEffect
 
+The `useEffect` hook was covered earlier in the course in the **Lifecycle & Side Effects** chapter. The examples below are just to review the concepts if needed.
+
 This Hook should be used for any side-effects you’re executing in your render cycle.
 
 `useEffect()` _takes_ a `function` as an input and _returns_ `nothing`.

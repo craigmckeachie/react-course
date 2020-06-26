@@ -1,10 +1,14 @@
-# Chapter 9: Lifecycle Methods
-
-- [Chapter 9: Lifecycle Methods](#chapter-9-lifecycle-methods)
+# Chapter 9: Lifecycle & Side Effects
+# Lifecycle
+- [Chapter 9: Lifecycle & Side Effects](#chapter-9-lifecycle--side-effects)
+- [Lifecycle](#lifecycle)
   - [What are Lifecycle Methods](#what-are-lifecycle-methods)
       - [React Lifecycle Methods Diagram: Common Methods](#react-lifecycle-methods-diagram-common-methods)
   - [Using LifeCycle Methods](#using-lifecycle-methods)
-  - [Reference](#reference)
+  - [Lifecycle Reference](#lifecycle-reference)
+- [Side Effects](#side-effects)
+  - [useEffect](#useeffect)
+    - [useEffect Simple Demo](#useeffect-simple-demo)
 
 ## What are Lifecycle Methods
 
@@ -34,10 +38,10 @@ We also want to clear that timer whenever the DOM produced by the Clock is remov
 
 We can declare special methods on the component class to run some code - when a component mounts : - set up a timer to refresh the clock every second - when a component unmounts: - tear down the timer when the component is removed to prevent a memory leak
 
-```diff
+```js
 class Clock extends React.Component {
   state = {
-    time: new Date().toLocaleTimeString()
+    time: new Date().toLocaleTimeString(),
   };
 
   refresh = () => {
@@ -48,19 +52,17 @@ class Clock extends React.Component {
     return (
       <div>
         <p>{this.state.time}</p>
--        <button onClick={this.refresh}>Refresh</button>
       </div>
     );
   }
 
-+  componentDidMount() {
-+    this.timerID = setInterval(this.refresh, 1000);
-+  }
+  componentDidMount() {
+    this.timerID = setInterval(this.refresh, 1000);
+  }
 
-+  componentWillUnmount() {
-+    clearInterval(this.timerID);
-+  }
-
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 }
 
 ReactDOM.render(<Clock />, document.getElementById('root'));
@@ -70,10 +72,60 @@ ReactDOM.render(<Clock />, document.getElementById('root'));
 
 ![React Lifecycle Methods Diagram: All](./assets/React_lifecycle_methods_diagram-all.png) -->
 
-## Reference
+## Lifecycle Reference
 
 - [React Lifecycle Methods Diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 - [Glossary: Lifecycle Methods](https://reactjs.org/docs/glossary.html#lifecycle-methods)
 - [What is Mounting?](https://stackoverflow.com/questions/31556450/what-is-mounting-in-react-js/31559566#31559566)
 - [componentDidUpdate Examples](https://stackoverflow.com/questions/38759703/when-to-use-react-componentdidupdate-method#:~:text=The%20componentDidUpdate%20is%20particularly%20useful,last%20thing%20to%20be%20executed.)
 - [Deprecated Lifecycle Methods](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)
+
+# Side Effects
+
+## useEffect
+
+This Hook should be used for any side-effects you’re executing in your render cycle.
+
+`useEffect()` _takes_ a `function` as an input and _returns_ `nothing`.
+
+The function it takes will be executed for you:
+
+- after the render cycle
+- after _every_ render cycle
+
+| Lifecycle Methods     | Hook                                                                       | Renders                                                                      |
+| --------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| componentDidMount     | `useEffect(()=>{ ... }`, [ ])                                              | after first render only                                                      |
+| componentDidUpdate    | `useEffect(()=>{... }, [dependency1, dependency2])`                        | after first render AND subsequent renders caused by a change in a dependency |
+| componentWillUnmount  | `useEffect(() => { ... return ()=> {...cleanup}})`                         |
+| shouldComponentUpdate | no comparable hook, instead, wrap function component in `React.memo(List)` | renders only if a prop changes                                               |
+| componentWillMount    | deprecated so no comparable hook                                           |
+| componentWillUpdate   | deprecated so no comparable hook                                           |
+
+### useEffect Simple Demo
+
+```js
+function Clock() {
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+  React.useEffect(() => {
+    const timerID = setInterval(refresh, 1000);
+    return () => {
+      clearInterval(timerID);
+    };
+  }, []);
+
+  const refresh = () => {
+    setTime(new Date().toLocaleTimeString());
+  };
+
+  return (
+    <div>
+      <p>{time}</p>
+    </div>
+  );
+}
+
+ReactDOM.render(<Clock />, document.getElementById('root'));
+
+```
