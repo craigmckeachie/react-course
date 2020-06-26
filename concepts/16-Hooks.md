@@ -10,8 +10,8 @@
     - [Simple Function Component](#simple-function-component)
   - [useEffect](#useeffect)
     - [useEffect Simple Demo](#useeffect-simple-demo)
-    - [Items App](#items-app)
-      - [Items App Modifying Container to `useState`](#items-app-modifying-container-to-usestate)
+    - [Items App with Hooks](#items-app-with-hooks)
+      - [Items App Modifying Container to `useState` and `useEffect`](#items-app-modifying-container-to-usestate-and-useeffect)
         - [Steps](#steps)
       - [Items App using Hooks](#items-app-using-hooks)
     - [Items App with Hooks and HTTP](#items-app-with-hooks-and-http)
@@ -104,8 +104,6 @@ ReactDOM.render(<Example />, document.getElementById('root'));
 ### Simple Function Component
 
 To take the class component above and translate it into a function component it would look as follows
-
-
 
 ```js
 function Example() {
@@ -204,11 +202,17 @@ function Post() {
 ReactDOM.render(<Post />, document.getElementById('root'));
 ```
 
-### Items App
+### Items App with Hooks
 
-#### Items App Modifying Container to `useState`
+#### Items App Modifying Container to `useState` and `useEffect`
 
 We will start with the component architecture demo from earlier in the course and refactor the `Container` component to use `hooks`.
+
+We have commented out the class code and replaced it with the hooks so you can see the syntax differences.
+
+At this point, we are not calling an API yet we are just working with in-memory data.
+
+_Note: This is not intended to be a full code example To get this example running, we would need to start with the code from the component architecture demo and replace just the `Container` component implementation._
 
 ##### Steps
 
@@ -227,11 +231,13 @@ function Container() {
   //   state = {
   //     items: []
   //   };
-  const [items, setItems] = React.useState(initialItems);
+    const [items, setItems] = React.useState([]);
 
   //   componentDidMount() {
   //     this.setState({ items: initialItems });
   //   }
+
+  React.useEffect(() => setItems(initialItems), []);
 
   const addItem = item => {
     setItems([...items, item]);
@@ -276,6 +282,12 @@ function Container() {
 ```
 
 #### Items App using Hooks
+
+In this section, we expand our use of `hooks` by migrating all class components to function components using hooks.
+
+At this point, we are not calling an API yet we are just working with in-memory data but we will get to that next.
+
+This is a complete demonstration that can be run in `main.jsx`.
 
 ```js
 function ID() {
@@ -363,7 +375,9 @@ function Form({ item, onSubmit, onCancel, buttonValue }) {
 }
 
 function Container() {
-  const [items, setItems] = React.useState(initialItems);
+  const [items, setItems] = React.useState([]);
+
+  React.useEffect(() => setItems(initialItems), []);
 
   const addItem = (item) => {
     setItems([...items, item]);
