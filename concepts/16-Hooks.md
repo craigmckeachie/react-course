@@ -307,10 +307,20 @@ const initialItems = [
   new Item(ID(), 'Third Item'),
 ];
 
+function ListItem({ item, onEdit, onRemove }) {
+  return (
+    <p>
+      <span>{item.name}</span>
+      <button onClick={() => onEdit(item)}>Edit</button>
+      <button onClick={() => onRemove(item)}>Remove</button>
+    </p>
+  );
+}
+
 function List({ items, onRemove, onUpdate }) {
   const [editingItem, setEditingItem] = React.useState(null);
 
-  const handleEditClick = (item) => {
+  const handleEdit = (item) => {
     setEditingItem(item);
   };
 
@@ -325,11 +335,7 @@ function List({ items, onRemove, onUpdate }) {
           {item === editingItem ? (
             <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
           ) : (
-            <p>
-              <span>{item.name}</span>
-              <button onClick={() => handleEditClick(item)}>Edit</button>
-              <button onClick={() => onRemove(item)}>Remove</button>
-            </p>
+            <ListItem item={item} onEdit={handleEdit} onRemove={onRemove} />
           )}
         </li>
       ))}
