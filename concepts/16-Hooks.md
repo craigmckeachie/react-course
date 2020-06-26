@@ -8,18 +8,16 @@
   - [useState](#usestate)
     - [Simple Class Component](#simple-class-component)
     - [Simple Function Component](#simple-function-component)
-        - [Array destructuring](#array-destructuring)
   - [useEffect](#useeffect)
     - [useEffect Simple Demo](#useeffect-simple-demo)
     - [Items App](#items-app)
-      - [Items App Modifying Container to useState](#items-app-modifying-container-to-usestate)
+      - [Items App Modifying Container to `useState`](#items-app-modifying-container-to-usestate)
         - [Steps](#steps)
       - [Items App using Hooks](#items-app-using-hooks)
     - [Items App with Hooks and HTTP](#items-app-with-hooks-and-http)
   - [Custom Hooks](#custom-hooks)
   - [Rules of Hooks](#rules-of-hooks)
   - [Reference](#reference)
-
 
 ## Defined
 
@@ -65,8 +63,6 @@ Before we continue, note that Hooks are:
 
 Hooks provide a more direct API to the React concepts you already know: props, **state**, context, refs, and **lifecycle**.
 
-
-
 | In Classes                            | With Hooks   |
 | ------------------------------------- | ------------ |
 | this.setState                         | useState     |
@@ -74,6 +70,8 @@ Hooks provide a more direct API to the React concepts you already know: props, *
 | Higher-Order Components, Render Props | Custom Hooks |
 
 ## useState
+
+The `useState` hook was covered earlier in the course in the **State** chapter. The examples below are just to review the concepts if needed.
 
 To understand the useState hook let's start at a class component that renders a counter.
 
@@ -84,7 +82,7 @@ class Example extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      count: 0,
     };
   }
 
@@ -107,9 +105,7 @@ ReactDOM.render(<Example />, document.getElementById('root'));
 
 To take the class component above and translate it into a function component it would look as follows
 
-##### Array destructuring
 
-The syntax for useEffect is confusing at first because it uses Array destructuring to return a pair.
 
 ```js
 function Example() {
@@ -127,34 +123,25 @@ function Example() {
 ReactDOM.render(<Example />, document.getElementById('root'));
 ```
 
-
-
-
-
-
-
 ## useEffect
 
 This Hook should be used for any side-effects you’re executing in your render cycle.
 
-`useEffect()` *takes* a `function` as an input and *returns* `nothing`. 
+`useEffect()` _takes_ a `function` as an input and _returns_ `nothing`.
 
 The function it takes will be executed for you:
-  - after the render cycle
-  - after *every* render cycle
 
+- after the render cycle
+- after _every_ render cycle
 
-
-
-| Lifecycle Methods     	| Hook                                                                   	| Renders                       |
-|-----------------------	|------------------------------------------------------------------------	|-------------------------------|
-| componentDidMount     	| `useEffect(()=>{ ... }`, [ ])                                              | after first render only
-| componentDidUpdate    	| `useEffect(()=>{... }, [dependency1, dependency2])`                       | after first render AND subsequent renders caused by a change in a dependency 	|
-| componentWillUnmount  	| `useEffect(() => { ...  return ()=> {...cleanup}})`                      | 
-| shouldComponentUpdate 	| no comparable hook, instead, wrap function component in `React.memo(List)`  | renders only if a prop changes	|
-| componentWillMount    	| deprecated so no comparable hook                                       	|
-| componentWillUpdate   	| deprecated so no comparable hook                                       	|
-
+| Lifecycle Methods     | Hook                                                                       | Renders                                                                      |
+| --------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| componentDidMount     | `useEffect(()=>{ ... }`, [ ])                                              | after first render only                                                      |
+| componentDidUpdate    | `useEffect(()=>{... }, [dependency1, dependency2])`                        | after first render AND subsequent renders caused by a change in a dependency |
+| componentWillUnmount  | `useEffect(() => { ... return ()=> {...cleanup}})`                         |
+| shouldComponentUpdate | no comparable hook, instead, wrap function component in `React.memo(List)` | renders only if a prop changes                                               |
+| componentWillMount    | deprecated so no comparable hook                                           |
+| componentWillUpdate   | deprecated so no comparable hook                                           |
 
 ### useEffect Simple Demo
 
@@ -213,16 +200,17 @@ function Post() {
 }
 
 ReactDOM.render(<Post />, document.getElementById('root'));
-
 ```
+
 ### Items App
 
-#### Items App Modifying Container to `useState` 
+#### Items App Modifying Container to `useState`
 
 We will start with the component architecture demo from earlier in the course and refactor the `Container` component to use `hooks`.
 
 ##### Steps
-- change class to function 
+
+- change class to function
 - remove render method keep implementation
 - comment out state
 - replace with useState
@@ -289,12 +277,7 @@ function Container() {
 
 ```js
 function ID() {
-  return (
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 class Item {
@@ -307,13 +290,13 @@ class Item {
 const initialItems = [
   new Item(ID(), 'First Item'),
   new Item(ID(), 'Second Item'),
-  new Item(ID(), 'Third Item')
+  new Item(ID(), 'Third Item'),
 ];
 
 function List({ items, onRemove, onUpdate }) {
   const [editingItem, setEditingItem] = React.useState(null);
 
-  const handleEditClick = item => {
+  const handleEditClick = (item) => {
     setEditingItem(item);
   };
 
@@ -323,7 +306,7 @@ function List({ items, onRemove, onUpdate }) {
 
   return (
     <ul>
-      {items.map(item => (
+      {items.map((item) => (
         <li key={item.id}>
           {item === editingItem ? (
             <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
@@ -343,23 +326,23 @@ function List({ items, onRemove, onUpdate }) {
 function Form({ item, onSubmit, onCancel, buttonValue }) {
   const [inputValue, setInputValue] = React.useState(item.name || '');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.preventDefault();
     setInputValue(event.target.value);
   };
 
-  const handleFormSubmit = event => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
     const submittedItem = {
       id: item ? item.id : ID(),
-      name: inputValue
+      name: inputValue,
     };
 
     onSubmit(submittedItem);
     setInputValue('');
   };
 
-  const handleCancel = event => {
+  const handleCancel = (event) => {
     event.preventDefault();
     onCancel();
   };
@@ -380,12 +363,12 @@ function Form({ item, onSubmit, onCancel, buttonValue }) {
 function Container() {
   const [items, setItems] = React.useState(initialItems);
 
-  const addItem = item => {
+  const addItem = (item) => {
     setItems([...items, item]);
   };
 
-  const updateItem = updatedItem => {
-    let updatedItems = items.map(item => {
+  const updateItem = (updatedItem) => {
+    let updatedItems = items.map((item) => {
       return item.id === updatedItem.id
         ? Object.assign({}, item, updatedItem)
         : item;
@@ -393,8 +376,8 @@ function Container() {
     return setItems(updatedItems);
   };
 
-  const removeItem = removeThisItem => {
-    const filteredItems = items.filter(item => item.id != removeThisItem.id);
+  const removeItem = (removeThisItem) => {
+    const filteredItems = items.filter((item) => item.id != removeThisItem.id);
     setItems(filteredItems);
   };
 
@@ -415,11 +398,7 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
 ```
-
-
-
 
 ### Items App with Hooks and HTTP
 
@@ -428,12 +407,7 @@ function ID() {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
-  return (
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function translateStatusToErrorMessage(status) {
@@ -455,7 +429,7 @@ function checkStatus(response) {
     const httpErrorInfo = {
       status: response.status,
       statusText: response.statusText,
-      url: response.url
+      url: response.url,
     };
     console.log(
       `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
@@ -495,8 +469,8 @@ const itemAPI = {
       method: 'POST',
       body: JSON.stringify(item),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
@@ -507,8 +481,8 @@ const itemAPI = {
       method: 'PUT',
       body: JSON.stringify(item),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
@@ -518,19 +492,19 @@ const itemAPI = {
     return fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
-  }
+  },
 };
 
 function List(props) {
   const { items, onRemove, onUpdate, loading, error } = props;
   const [editingItem, setEditingItem] = React.useState(null);
 
-  const handleEditClick = item => {
+  const handleEditClick = (item) => {
     setEditingItem(item);
   };
 
@@ -545,7 +519,7 @@ function List(props) {
   } else {
     return (
       <ul>
-        {items.map(item => (
+        {items.map((item) => (
           <li key={item.id}>
             {item === editingItem ? (
               <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
@@ -566,23 +540,23 @@ function List(props) {
 function Form({ item, onSubmit, onCancel, buttonValue }) {
   const [inputValue, setInputValue] = React.useState(item.name || '');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.preventDefault();
     setInputValue(event.target.value);
   };
 
-  const handleFormSubmit = event => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
     const submittedItem = {
       id: item ? item.id : ID(),
-      name: inputValue
+      name: inputValue,
     };
 
     onSubmit(submittedItem);
     setInputValue('');
   };
 
-  const handleCancel = event => {
+  const handleCancel = (event) => {
     event.preventDefault();
     onCancel();
   };
@@ -609,53 +583,53 @@ function Container() {
     setLoading(true);
     itemAPI
       .getAll(1)
-      .then(data => {
+      .then((data) => {
         setItems(data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         setLoading(false);
       });
   }, []);
 
-  const addItem = item => {
+  const addItem = (item) => {
     itemAPI
       .add(item)
-      .then(newItem => {
+      .then((newItem) => {
         setItems([...items, newItem]);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
       });
   };
 
-  const updateItem = updatedItem => {
+  const updateItem = (updatedItem) => {
     itemAPI
       .update(updatedItem)
-      .then(data => {
-        let updatedItems = items.map(item => {
+      .then((data) => {
+        let updatedItems = items.map((item) => {
           return item.id === updatedItem.id
             ? Object.assign({}, item, data)
             : item;
         });
         setItems(updatedItems);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
       });
   };
 
-  const removeItem = removeThisItem => {
+  const removeItem = (removeThisItem) => {
     itemAPI
       .delete(removeThisItem.id)
       .then(() => {
         const filteredItems = items.filter(
-          item => item.id != removeThisItem.id
+          (item) => item.id != removeThisItem.id
         );
         setItems(filteredItems);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
       });
   };
@@ -682,11 +656,7 @@ function App() {
   );
 }
 ReactDOM.render(<App />, document.getElementById('root'));
-
 ```
-
-
-
 
 ## Custom Hooks
 
@@ -696,7 +666,7 @@ Building your own Hooks lets you extract component logic into reusable functions
 | ------------------------------------- | ------------ |
 | Higher-Order Components, Render Props | Custom Hooks |
 
-Traditionally in React, we’ve had two popular ways to share stateful logic between components: render props and higher-order components.  Hooks solve many of the same problems without forcing you to add more components to the tree.
+Traditionally in React, we’ve had two popular ways to share stateful logic between components: render props and higher-order components. Hooks solve many of the same problems without forcing you to add more components to the tree.
 
 <!-- https://usehooks.com/useTheme/ -->
 
