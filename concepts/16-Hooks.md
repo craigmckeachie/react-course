@@ -17,11 +17,12 @@
     - [Items App with Hooks and HTTP](#items-app-with-hooks-and-http)
   - [Custom Hooks](#custom-hooks)
   - [Rules of Hooks](#rules-of-hooks)
+  - [Labs](#labs)
   - [Reference](#reference)
 
 ## Defined
 
-> Hooks are a new addition in React 16.8. They let you use state and other React features (Lifecycle Methods) without writing a class.
+> Hooks are a new addition in React 16.8. They let you use `state` and other React features including `Lifecycle Methods` without writing a class.
 
 ## Why Hooks?
 
@@ -699,6 +700,14 @@ Traditionally in React, we’ve had two popular ways to share stateful logic bet
 - Only call hooks from React Functions
   - call hooks from React function components
   - call hooks from other custom hooks
+
+## Labs
+
+The labs in this course use a **mix** of **class** and **function** **components** with a **heavier weight** towards **function components with hooks** which are now considered a best practice in the React community.
+
+> If you would like to see the lab code using all function components review the `hooks` branch in the lab solution repository.
+>
+> _Note: This branch is currently only available in the TypeScript version of the code and not the JavaScript version._
 
 ## Reference
 
