@@ -3,8 +3,8 @@
 - [Chapter 12: Component Architecture](#chapter-12-component-architecture)
   - [Reuse](#reuse)
   - [Component Communication](#component-communication)
-    - [Common Communication Patterns](#common-communication-patterns)
-    - [Additional Communication Patterns](#additional-communication-patterns)
+      - [Common Communication Patterns](#common-communication-patterns)
+      - [Additional Communication Patterns](#additional-communication-patterns)
 - [Design Patterns](#design-patterns)
   - [Lifting State Up](#lifting-state-up)
   - [Container and Presentation Components](#container-and-presentation-components)
@@ -13,7 +13,7 @@
     - [Reference](#reference)
   - [Composition vs Inheritance](#composition-vs-inheritance)
   - [Thinking in React](#thinking-in-react)
-  - [Demo 1: Items (CRUD)](#demo-1-items-crud)
+  - [Items (CRUD) Demo](#items-crud-demo)
   - [Reference](#reference-1)
 
 ## Reuse
@@ -265,7 +265,7 @@ Here are some steps you might find useful as you learn to **Think in React**
 
 See the section [Thinking in React](https://reactjs.org/docs/thinking-in-react.html in the documentation for more information.
 
-## Demo 1: Items (CRUD)
+## Items (CRUD) Demo
 
 Below is an example of a simple application that creates, reads, updates, and deletes (CRUD) items.
 
@@ -489,9 +489,6 @@ See the finished solution code below:
 
 ```js
 function ID() {
-  // Math.random should be unique because of its seeding algorithm.
-  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-  // after the decimal.
   return '_' + Math.random().toString(36).substr(2, 9);
 }
 
@@ -508,6 +505,18 @@ const initialItems = [
   new Item(ID(), 'Third Item'),
 ];
 
+class ListItem extends React.Component {
+  render() {
+    const { item, onEdit, onRemove } = this.props;
+    return (
+      <p>
+        <span>{item.name}</span>
+        <button onClick={() => onEdit(item)}>Edit</button>
+        <button onClick={() => onRemove(item)}>Remove</button>
+      </p>
+    );
+  }
+}
 class List extends React.Component {
   state = {
     editingItem: null,
@@ -534,11 +543,11 @@ class List extends React.Component {
                 onCancel={this.handleCancel}
               />
             ) : (
-              <p>
-                <span>{item.name}</span>
-                <button onClick={() => this.handleEditClick(item)}>Edit</button>
-                <button onClick={() => onRemove(item)}>Remove</button>
-              </p>
+              <ListItem
+                item={item}
+                onEdit={this.handleEditClick}
+                onRemove={onRemove}
+              />
             )}
           </li>
         ))}
@@ -644,6 +653,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
 ```
 
 <!--
