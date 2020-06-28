@@ -1,3 +1,7 @@
+<!-- TODO:
+Cleanup Item CRUD examples in Component Arch chapter, by steps or just finished. Is it really an activity
+-->
+
 git checkout -b t-lab04
 git add -A
 git commit -m 't-lab04'

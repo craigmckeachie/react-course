@@ -1,8 +1,21 @@
 # Appendix 23: Performance
 
-<!-- TODO: update steps to reference <LastUpdated/> component on screen instead of console.  Update the function component example to use <LastUpdated />
-Cleanup Item CRUD examples in Component Arch chapter, by steps or just finished. Is it really an activity
--->
+- [Appendix 23: Performance](#appendix-23-performance)
+  - [Premature Optimization](#premature-optimization)
+  - [What causes a component to `render` in React?](#what-causes-a-component-to-render-in-react)
+  - [Wasted Renders](#wasted-renders)
+    - [`React.PureComponent`](#reactpurecomponent)
+    - [`React.memo`](#reactmemo)
+  - [`React.memo` Demo](#reactmemo-demo)
+      - [styles.css](#stylescss)
+  - [`React.PureComponent` Demo](#reactpurecomponent-demo)
+    - [FAQs](#faqs)
+  - [Resources](#resources)
+  - [Component Render Demo (optional)](#component-render-demo-optional)
+      - [styles.css](#stylescss-1)
+      - [main.jsx](#mainjsx)
+
+## Premature Optimization
 
 > Premature optimization is the root of all evil -- DonaldKnuth
 
@@ -95,6 +108,17 @@ Run the demo below and open the console to observe some wasted renders.
 
 Steps:
 
+1. Before beginning the demos in this chapter add the following css class if it doesn't already exist.
+
+   #### styles.css
+
+   ```css
+   .box {
+     border: 1px dashed;
+     padding: 30px;
+   }
+   ```
+
 1. **Paste** the **code** below into `main.jsx`
 1. **Open** the application in a **browser**.
 1. **Open** Chrome DevTools and switch to the `console`.
@@ -126,26 +150,36 @@ const initialItems = [
   new Item(ID(), 'Third Item'),
 ];
 
+class LastRendered extends React.Component {
+  render() {
+    return <p>Last Rendered: {new Date().toLocaleTimeString()}</p>;
+  }
+}
+
 function ListItem({ item, onEdit, onRemove }) {
-  console.log('ListItem');
   return (
-    <p>
-      <span>{item.name}</span>
-      <button onClick={() => onEdit(item)}>Edit</button>
-      <button onClick={() => onRemove(item)}>Remove</button>
-    </p>
+    <div className="box">
+      <LastRendered />
+      <p>
+        <span>{item.name}</span>
+        <button onClick={() => onEdit(item)}>Edit</button>
+        <button onClick={() => onRemove(item)}>Remove</button>
+      </p>
+    </div>
   );
 }
 
 // const ListItem = React.memo(
 //   function ListItem({ item, onEdit, onRemove }) {
-//     console.log('ListItem');
 //     return (
-//       <p>
-//         <span>{item.name}</span>
-//         <button onClick={() => onEdit(item)}>Edit</button>
-//         <button onClick={() => onRemove(item)}>Remove</button>
-//       </p>
+//       <div className="box">
+//         <LastRendered />
+//         <p>
+//           <span>{item.name}</span>
+//           <button onClick={() => onEdit(item)}>Edit</button>
+//           <button onClick={() => onRemove(item)}>Remove</button>
+//         </p>
+//       </div>
 //     );
 //   },
 //   (previous, next) => previous.item === next.item
@@ -162,19 +196,21 @@ function List({ items, onRemove, onUpdate }) {
     setEditingItem(null);
   };
 
-  console.log('List');
   return (
-    <ul>
-      {items.map((item) => (
-        <li key={item.id}>
-          {item === editingItem ? (
-            <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
-          ) : (
-            <ListItem item={item} onEdit={handleEdit} onRemove={onRemove} />
-          )}
-        </li>
-      ))}
-    </ul>
+    <div className="box">
+      <LastRendered />
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item === editingItem ? (
+              <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
+            ) : (
+              <ListItem item={item} onEdit={handleEdit} onRemove={onRemove} />
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -201,17 +237,19 @@ function Form({ item, onSubmit, onCancel, buttonValue }) {
     onCancel();
   };
 
-  console.log('Form');
   return (
-    <form onSubmit={handleFormSubmit}>
-      <input value={inputValue} onChange={handleChange} />
-      <button>{buttonValue || 'Save'}</button>
-      {onCancel && (
-        <a href="#" onClick={handleCancel}>
-          cancel
-        </a>
-      )}
-    </form>
+    <div className="box">
+      <LastRendered />
+      <form onSubmit={handleFormSubmit}>
+        <input value={inputValue} onChange={handleChange} />
+        <button>{buttonValue || 'Save'}</button>
+        {onCancel && (
+          <a href="#" onClick={handleCancel}>
+            cancel
+          </a>
+        )}
+      </form>
+    </div>
   );
 }
 
@@ -240,10 +278,11 @@ function Container() {
 
   console.log('Container');
   return (
-    <React.Fragment>
+    <div className="box">
+      <LastRendered />
       <Form item="" onSubmit={addItem} buttonValue="Add" />
       <List items={items} onRemove={removeItem} onUpdate={updateItem} />
-    </React.Fragment>
+    </div>
   );
 }
 
@@ -259,7 +298,7 @@ function App() {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-## React.PureComponent Demo
+## `React.PureComponent` Demo
 
 Run the demo below and open the console to observe some wasted renders.
 
@@ -270,13 +309,21 @@ Steps:
 1. **Open** Chrome DevTools and switch to the `console`.
 1. Type in the add textbox to add an item and then click the add button.
 1. Notice that every item in the list re-renders even though you only added one item.
-1. Commment out the `ListItem` component.
-1. Uncomment the `ListItem` component below the which extends `React.PureComponent` function.
+1. Commment out the `ListItem` component (version labeled a).
+1. Uncomment the `ListItem` component below the which extends `React.PureComponent` function (version b).
+1. Notice that the anonymous callback functions in the `onClick` event handlers where changed to use `bind` so that the same version of the function would be passed as a prop every time instead of a new instance.
+   ```diff
+   -  <button onClick={() => onEdit(item)}>Edit</button>
+   -  <button onClick={() => onRemove(item)}>Remove</button>
+   +  <button onClick={onEdit.bind(this, item)}>Edit</button>
+   +  <button onClick={onRemove.bind(this, item)}>Remove</button>
+   ```
 1. Refresh your browser.
 1. Once again type in the add textbox to add an item and then click the add button.
 1. Notice that only one item in the list re-renders since the other `ListItem`'s are the same. You have successfully eliminated a wasted render.
+1. Try version c) of the component which uses the `shouldComponentUpdate` lifecyle method to control whether the component updates and only focuses on the `item` prop and ignores the `onEdit` and `onRemove` callbacks.
 
-   > The same issue of every item re-rendering actually existing when editing or removing an item. We have now fixed all of these wasted renders. If time permits feel free to change back to the nonpure implemention of `ListItem` to see the wasted renders.
+> The same issue of every item re-rendering actually existing when editing or removing an item. We have now fixed all of these wasted renders. If time permits feel free to change back to the nonpure implemention of `ListItem` to see the wasted renders.
 
 ```js
 function ID() {
@@ -302,7 +349,8 @@ class LastRendered extends React.Component {
   }
 }
 
-class ListItem extends React.PureComponent {
+//a) wasted renders
+class ListItem extends React.Component {
   render() {
     const { item, onEdit, onRemove } = this.props;
     return (
@@ -310,15 +358,37 @@ class ListItem extends React.PureComponent {
         <LastRendered />
         <p>
           <span>{item.name}</span>
-          <button onClick={onEdit.bind(this, item)}>Edit</button>
-          <button onClick={onRemove.bind(this, item)}>Remove</button>
+          <button onClick={() => onEdit(item)}>Edit</button>
+          <button onClick={() => onRemove(item)}>Remove</button>
         </p>
       </div>
     );
   }
 }
 
+//b) pure component
+// class ListItem extends React.PureComponent {
+//   render() {
+//     const { item, onEdit, onRemove } = this.props;
+//     return (
+//       <div className="box">
+//         <LastRendered />
+//         <p>
+//           <span>{item.name}</span>
+//           <button onClick={onEdit.bind(this, item)}>Edit</button>
+//           <button onClick={onRemove.bind(this, item)}>Remove</button>
+//         </p>
+//       </div>
+//     );
+//   }
+// }
+
+//c) shouldComponentUpdate
 // class ListItem extends React.Component {
+//   shouldComponentUpdate(previousProps) {
+//     return previousProps.item !== this.props.item;
+//   }
+
 //   render() {
 //     const { item, onEdit, onRemove } = this.props;
 //     return (
@@ -333,6 +403,7 @@ class ListItem extends React.PureComponent {
 //     );
 //   }
 // }
+
 class List extends React.Component {
   state = {
     editingItem: null,
@@ -350,6 +421,7 @@ class List extends React.Component {
     const { items, onRemove, onUpdate } = this.props;
     return (
       <div className="box">
+        <LastRendered />
         <ul>
           {items.map((item) => (
             <li key={item.id}>
@@ -503,7 +575,7 @@ In computing, memoization or memoisation is an optimization technique used prima
 - [How to force a React component to re-render](https://www.educative.io/edpresso/how-to-force-a-react-component-to-re-render)
 - [Pluralsight: Optimize Performance for React (payment required)](https://www.pluralsight.com/courses/optimize-performance-react)
 
-## Component Render Demo
+## Component Render Demo (optional)
 
 #### styles.css
 
