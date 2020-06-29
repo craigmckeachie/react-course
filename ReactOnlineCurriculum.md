@@ -29,7 +29,7 @@
   - [Nullable Parameters](./concepts/A4-TypeScript.md#nullable-parameters)
   - [Interfaces](./concepts/A4-TypeScript.md#interfaces)
   - [Other Language Features](./concepts/A4-TypeScript.md#other-language-features)
-- Debugging
+- [Debugging JavaScript/TypeScript](./concepts/A22-Debugging.md)
 
 # Introduction to React
 

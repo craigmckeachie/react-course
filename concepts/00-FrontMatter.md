@@ -27,6 +27,7 @@ information storage and retrieval systems, without permission from the author.
   - [TypeScript](A4-TypeScript.md) (if applicable)
   - [Project Setup (Create React App)](A6-ProjectSetup.md)
   - [Best Practices (Code Organization & Conventions)](A8-BestPractices.md)
+  - [Debugging JavaScript/TypeScript](A22-Debugging.md)
 
 * React
 
@@ -52,23 +53,23 @@ information storage and retrieval systems, without permission from the author.
   - [Hooks (new)](16-Hooks.md)
   - [Build & Deploy](17-BuildDeploy.md)
 
-* Redux
+<!-- * Redux
 
   - [Redux (Store, State, Reducers, Actions, Action Creators)](21-Redux.md)
   - [Using Redux with React (React Redux Library)](22-ReactRedux.md)
   - [Asynchronous Actions (Redux Thunk)](23-ReduxThunk.md)
   - [Putting It All Together (React & Redux & Thunk)](24-ReactReduxThunk.md)
-  - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable)
+  - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable) -->
 
-* [Testing](25-Testing.md)
-* [Resources](A20-Resources.md)
+- [Resources](A20-Resources.md)
 
-- Advanced Topics (optional/ FAQ)
+* Advanced Topics (optional/ FAQ)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [Performance](A23-Performance.md)
   - [Styling](A9-Styling.md)
   - [Security](A16-Security.md)
   - [HTTP Advanced](A15-AdvancedHTTP.md)
+  - [Testing](25-Testing.md)
 
 <!--
 - Future
