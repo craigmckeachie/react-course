@@ -62,6 +62,7 @@
 - [Build & Deploy](./concepts/17-BuildDeploy.md)
 - [Hooks](./concepts/16-Hooks.md)
 - [Routing (using React Router)](./concepts/15-Routing.md)
+- [Performance](./concepts/A23-Performance.md)
 - [Security](./concepts/A16-Security.md)
 
 # Redux with React
