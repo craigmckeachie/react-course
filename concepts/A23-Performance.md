@@ -13,6 +13,7 @@
       - [styles.css](#stylescss-1)
   - [`React.PureComponent` Demo](#reactpurecomponent-demo)
     - [FAQs](#faqs)
+      - [index.js](#indexjs)
   - [Resources](#resources)
 
 ## Premature Optimization
@@ -672,6 +673,22 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 In computing, memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
 
+**Why is my component rendering twice?**
+
+Remove the `<React.StrictMode>` tag as shown below and this behavior will go away however you may not want to remove it as it doesn't happen in production. For more information, see the [Strict Mode Documentation](https://reactjs.org/docs/strict-mode.html) or this stackoverflow question: [Strict Mode Rendering Twice](https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode).
+
+#### index.js
+
+```diff
+ReactDOM.render(
+-  <React.StrictMode>
+    {app}
+-  </React.StrictMode>
+,
+  document.getElementById('root')
+);
+```
+
 ## Resources
 
 - [React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
@@ -691,6 +708,8 @@ In computing, memoization or memoisation is an optimization technique used prima
 - [How to Update a Component's Props in React](https://www.freecodecamp.org/news/how-to-update-a-components-prop-in-react-js-oh-yes-it-s-possible-f9d26f1c4c6d/)
 - [How to force a React component to re-render](https://www.educative.io/edpresso/how-to-force-a-react-component-to-re-render)
 - [Pluralsight: Optimize Performance for React (payment required)](https://www.pluralsight.com/courses/optimize-performance-react)
+- [Strict Mode Documentation](https://reactjs.org/docs/strict-mode.html)
+- [Strict Mode Rendering Twice](https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode)
 
 <!-- ## Unused Examples
 
