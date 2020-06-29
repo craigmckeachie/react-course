@@ -3,17 +3,17 @@
 - [Appendix 23: Performance](#appendix-23-performance)
   - [Premature Optimization](#premature-optimization)
   - [What causes a component to `render` in React?](#what-causes-a-component-to-render-in-react)
+    - [Component Render Demo (optional)](#component-render-demo-optional)
+      - [styles.css](#stylescss)
+      - [main.jsx](#mainjsx)
   - [Wasted Renders](#wasted-renders)
     - [`React.PureComponent`](#reactpurecomponent)
     - [`React.memo`](#reactmemo)
   - [`React.memo` Demo](#reactmemo-demo)
-      - [styles.css](#stylescss)
+      - [styles.css](#stylescss-1)
   - [`React.PureComponent` Demo](#reactpurecomponent-demo)
     - [FAQs](#faqs)
   - [Resources](#resources)
-  - [Component Render Demo (optional)](#component-render-demo-optional)
-      - [styles.css](#stylescss-1)
-      - [main.jsx](#mainjsx)
 
 ## Premature Optimization
 
@@ -28,6 +28,123 @@ Premature Optimization is optimizing before we know that we need to do it.
 A re-render can only be triggered if a component’s state has changed. The state can change from a `props` change, or from a call to `setState` or a `useState` update state function. The component gets the updated state and React decides if it should re-render the component. Unfortunately, by default React is incredibly simplistic and basically re-renders everything all the time.
 
 Component changed? Re-render. Parent changed? Re-render. Section of props that doesn't actually impact the view changed? Re-render.
+
+### Component Render Demo (optional)
+
+#### styles.css
+
+```css
+.box {
+  border: 1px dashed;
+  padding: 30px;
+}
+```
+
+#### main.jsx
+
+```js
+const { Component, PureComponent } = React;
+
+class LastRendered extends Component {
+  render() {
+    return <p>Last Rendered: {new Date().toLocaleTimeString()}</p>;
+  }
+}
+
+class GrandchildA extends Component {
+  state = { value: false };
+  handleClick = () => {
+    this.setState({ value: true });
+  };
+  render() {
+    return (
+      <div className="box">
+        <h3>Grandchild A</h3>
+        <LastRendered />
+        <button onClick={this.handleClick}>Change State</button>
+      </div>
+    );
+  }
+}
+
+class ChildA extends PureComponent {
+  state = { value: false };
+  handleClick = () => {
+    this.setState({ value: false });
+  };
+  // shouldComponentUpdate(nextProps) {
+  //   // return true;
+  //   const hasChanged = this.props.value !== nextProps.value;
+  //   return hasChanged;
+  // }
+  render() {
+    return (
+      <div className="box">
+        <h2>Child A</h2>
+        <LastRendered />
+        <button onClick={this.handleClick}>Change State</button>
+        <GrandchildA></GrandchildA>
+      </div>
+    );
+  }
+}
+class ChildB extends Component {
+  state = { value: false };
+  handleClick = () => {
+    this.setState({ value: true });
+  };
+  render() {
+    return (
+      <div className="box">
+        <h2>Child B</h2>
+        <LastRendered />
+        <button onClick={this.handleClick}>Change State</button>
+      </div>
+    );
+  }
+}
+
+class Parent extends Component {
+  state = { value: false };
+  handleStateClick = () => {
+    this.setState({ value: true });
+  };
+  render() {
+    return (
+      <div className="box">
+        <h1>Parent</h1>
+        <LastRendered />
+        <button onClick={this.handleStateClick}>Change State</button>
+        <ChildA value={this.state.value} />
+        <br />
+        <ChildB />
+      </div>
+    );
+  }
+}
+
+class App extends Component {
+  state = {};
+  render() {
+    return (
+      <div className="box">
+        <h1>App</h1>
+        <LastRendered />
+        <Parent />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// Default Behavior: Changing state results in that component and all descendants being re-rendered.
+// Default Behavior: Changing state that updates a prop in a child results in that component and all descendants being re-rendered.
+// Override shouldComponentUpdate: return true results in that component and all descendants being re-rendered.
+// Override shouldComponentUpdate: return false results in no re-renders (current component and all descendants).
+// Override shouldComponentUpdate: see if props changed and only then return true. Change value prop in Parent and child will re-render first time (when value changes) but not subsequent times because value prop remains the same (true).
+// PureComponent: comment out shouldComponentUpdate and make ChildA a PureComponent. Change value prop in Parent and child will re-render first time (when value changes) but not subsequent times because value prop remains the same (true).
+```
 
 ## Wasted Renders
 
@@ -574,123 +691,6 @@ In computing, memoization or memoisation is an optimization technique used prima
 - [How to Update a Component's Props in React](https://www.freecodecamp.org/news/how-to-update-a-components-prop-in-react-js-oh-yes-it-s-possible-f9d26f1c4c6d/)
 - [How to force a React component to re-render](https://www.educative.io/edpresso/how-to-force-a-react-component-to-re-render)
 - [Pluralsight: Optimize Performance for React (payment required)](https://www.pluralsight.com/courses/optimize-performance-react)
-
-## Component Render Demo (optional)
-
-#### styles.css
-
-```css
-.box {
-  border: 1px dashed;
-  padding: 30px;
-}
-```
-
-#### main.jsx
-
-```js
-const { Component, PureComponent } = React;
-
-class LastRendered extends Component {
-  render() {
-    return <p>Last Rendered: {new Date().toLocaleTimeString()}</p>;
-  }
-}
-
-class GrandchildA extends Component {
-  state = { value: false };
-  handleClick = () => {
-    this.setState({ value: true });
-  };
-  render() {
-    return (
-      <div className="box">
-        <h3>Grandchild A</h3>
-        <LastRendered />
-        <button onClick={this.handleClick}>Change State</button>
-      </div>
-    );
-  }
-}
-
-class ChildA extends PureComponent {
-  state = { value: false };
-  handleClick = () => {
-    this.setState({ value: false });
-  };
-  // shouldComponentUpdate(nextProps) {
-  //   // return true;
-  //   const hasChanged = this.props.value !== nextProps.value;
-  //   return hasChanged;
-  // }
-  render() {
-    return (
-      <div className="box">
-        <h2>Child A</h2>
-        <LastRendered />
-        <button onClick={this.handleClick}>Change State</button>
-        <GrandchildA></GrandchildA>
-      </div>
-    );
-  }
-}
-class ChildB extends Component {
-  state = { value: false };
-  handleClick = () => {
-    this.setState({ value: true });
-  };
-  render() {
-    return (
-      <div className="box">
-        <h2>Child B</h2>
-        <LastRendered />
-        <button onClick={this.handleClick}>Change State</button>
-      </div>
-    );
-  }
-}
-
-class Parent extends Component {
-  state = { value: false };
-  handleStateClick = () => {
-    this.setState({ value: true });
-  };
-  render() {
-    return (
-      <div className="box">
-        <h1>Parent</h1>
-        <LastRendered />
-        <button onClick={this.handleStateClick}>Change State</button>
-        <ChildA value={this.state.value} />
-        <br />
-        <ChildB />
-      </div>
-    );
-  }
-}
-
-class App extends Component {
-  state = {};
-  render() {
-    return (
-      <div className="box">
-        <h1>App</h1>
-        <LastRendered />
-        <Parent />
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// Default Behavior: Changing state results in that component and all descendants being re-rendered.
-// Default Behavior: Changing state that updates a prop in a child results in that component and all descendants being re-rendered.
-// Override shouldComponentUpdate: return true results in that component and all descendants being re-rendered.
-// Override shouldComponentUpdate: return false results in no re-renders (current component and all descendants).
-// Override shouldComponentUpdate: see if props changed and only then return true. Change value prop in Parent and child will re-render first time (when value changes) but not subsequent times because value prop remains the same (true).
-// PureComponent: comment out shouldComponentUpdate and make ChildA a PureComponent. Change value prop in Parent and child will re-render first time (when value changes) but not subsequent times because value prop remains the same (true).
-```
 
 <!-- ## Unused Examples
 

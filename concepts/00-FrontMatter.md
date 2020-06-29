@@ -64,10 +64,10 @@ information storage and retrieval systems, without permission from the author.
 * [Resources](A20-Resources.md)
 
 - Advanced Topics (optional/ FAQ)
-
+  - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
+  - [Performance](A23-Performance.md)
   - [Styling](A9-Styling.md)
   - [Security](A16-Security.md)
-  - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [HTTP Advanced](A15-AdvancedHTTP.md)
 
 <!--
