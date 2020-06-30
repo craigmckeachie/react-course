@@ -11,8 +11,6 @@
 - [Outline](Outline.md)
 
 &nbsp;  
-&nbsp;  
-&nbsp;  
 &nbsp;
 
 ---
