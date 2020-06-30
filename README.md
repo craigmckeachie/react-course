@@ -13,15 +13,13 @@
 &nbsp;  
 &nbsp;
 
----
-
-#### License
-
 <sub><sup>
 Copyright © 2019-2021  
 Funny Ant, LLC  
 All rights reserved.  
 </sup></sub>
+&nbsp;
+&nbsp;
 
 <sub><sup>
 No part of this book may be reproduced in any form or by any electronic or mechanical means including
