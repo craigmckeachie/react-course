@@ -1,4 +1,4 @@
-# React Online Curriculum
+# Outline
 
 # Modern JavaScript & TypeScript
 

@@ -11,7 +11,7 @@ Funny Ant, LLC
 All rights reserved.
 
 No part of this book may be reproduced in any form or by any electronic or mechanical means including
-information storage and retrieval systems, without permission from the author.
+information storage and retrieval systems, without permission from the author. Contact the author by visiting [funnyant.com](https://www.funnyant.com/contact).
 
 <div style="page-break-after: always;"></div>
 
@@ -53,17 +53,8 @@ information storage and retrieval systems, without permission from the author.
   - [Hooks (new)](16-Hooks.md)
   - [Build & Deploy](17-BuildDeploy.md)
 
-<!-- * Redux
-
-  - [Redux (Store, State, Reducers, Actions, Action Creators)](21-Redux.md)
-  - [Using Redux with React (React Redux Library)](22-ReactRedux.md)
-  - [Asynchronous Actions (Redux Thunk)](23-ReduxThunk.md)
-  - [Putting It All Together (React & Redux & Thunk)](24-ReactReduxThunk.md)
-  - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable) -->
-
-- [Resources](A20-Resources.md)
-
 * Advanced Topics (optional/ FAQ)
+
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [Performance](A23-Performance.md)
   - [Styling](A9-Styling.md)
@@ -71,9 +62,18 @@ information storage and retrieval systems, without permission from the author.
   - [HTTP Advanced](A15-AdvancedHTTP.md)
   - [Testing](25-Testing.md)
 
+* Redux (if applicable)
+
+  - [Redux (Store, State, Reducers, Actions, Action Creators)](21-Redux.md)
+  - [Using Redux with React (React Redux Library)](22-ReactRedux.md)
+  - [Asynchronous Actions (Redux Thunk)](23-ReduxThunk.md)
+  - [Putting It All Together (React & Redux & Thunk)](24-ReactReduxThunk.md)
+  - [Redux with TypeScript](A12-ReduxTypeScript.md) (if applicable)
+
+- [Resources](A20-Resources.md)
+
 <!--
 - Future
 
-  - Debugging Tips & Tricks
   - Animations (using ReactTransitionGroup)
   - Functional Programming -->
