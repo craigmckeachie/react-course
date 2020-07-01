@@ -31,8 +31,9 @@
     #### `src\projects\ProjectsPage.tsx`
 
     ```diff
-    import React, { Fragment } from 'react';
-    import { MOCK_PROJECTS } from './MockProjects';
+    - import React from 'react';
+    + import React, { Fragment } from 'react';
+    + import { MOCK_PROJECTS } from './MockProjects';
 
     function ProjectsPage() {
       return (
