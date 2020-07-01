@@ -17,6 +17,7 @@
    1. Takes a `project` object as a `prop`.
       > Define the type of the object using the `prop-types` library.
    1. Cut the `<div className="card">...</div>` from the `ProjectList` component and use it as the JSX for the `ProjectCard` component.
+   1. Add a function to format the description to 60 characters and call it when rendering the description.
 
    #### `src\projects\ProjectCard.js`
 
@@ -24,6 +25,10 @@
    import { Project } from './Project';
    import React from 'react';
    import PropTypes from 'prop-types';
+
+   function formatDescription(description: string): string {
+     return description.substring(0, 60) + '...';
+   }
 
    function ProjectCard(props) {
      const { project } = props;
@@ -34,7 +39,7 @@
            <h5 className="strong">
              <strong>{project.name}</strong>
            </h5>
-           <p>{project.description}</p>
+           <p>{formatDescription(project.description)}</p>
            <p>Budget : {project.budget.toLocaleString()}</p>
          </section>
        </div>
@@ -65,7 +70,7 @@
    const { projects } = this.props;
    const items = projects.map(project => (
    <div key={project.id} className="cols-sm">
-
+   -   <img src={project.imageUrl} alt={project.name} />
    -   <section className="section dark">
    -         <h5 className="strong">
    -           <strong>{project.name}</strong>
@@ -87,7 +92,7 @@
 
 1. **Verify** the **project** **data** **displays** correctly (_it should still look the same as it did in the last lab_) in the browser.
 
-![image](https://user-images.githubusercontent.com/1474579/64892497-89d2f400-d642-11e9-84b2-ee9463c6192f.png)
+   ![image](https://user-images.githubusercontent.com/1474579/86285065-f8714600-bbb1-11ea-93f2-1ea2548f6d17.png)
 
 >
 
