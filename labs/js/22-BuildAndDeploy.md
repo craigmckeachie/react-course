@@ -11,6 +11,10 @@
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
 1. Change the **current directory** to `working\keeptrack`.
+1. **Run** the following command to install the node.js web server named `serve`:
+   ```shell
+   npm install -g serve
+   ```
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell

@@ -25,7 +25,7 @@
    };
    ```
 
-2. Copy the files `snippets\lab21\[ProjectPage.js and ProjectDetail.js]` into the `src\projects` directory.
+2. **Copy** the files `snippets\lab21\[ProjectPage.js and ProjectDetail.js]` into the `src\projects` directory.
    > These files contain some pre-built components we will use in this lab. Take a moment to review the code in them.
 3. Add a route to display the `ProjectPage` (notice that we now have a `ProjectPage` and a `ProjectsPage` so be careful you are in the correct file).
 
