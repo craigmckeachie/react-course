@@ -59,7 +59,9 @@ This material is available for private, non-commercial use under the [GPL versio
 
 ### Solutions
 
-[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r16-ts)
+[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r-ts)
+
+<!-- [Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r16-ts) -->
 
 > There is a separate branch with the finished code after each lab.
 
