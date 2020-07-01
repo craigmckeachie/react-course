@@ -31,7 +31,7 @@
    class ProjectList extends React.Component<
      ProjectListProps,
    +  ProjectListState
-   > {
+     > {
    +  state = {
    +    editingProject: {}
    +  };

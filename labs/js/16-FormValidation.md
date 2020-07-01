@@ -222,7 +222,6 @@ ProjectForm.propTypes = {
 1. **Verify** the application is working by **following these steps**.
    1. **Click** the **edit** **button** on any project.
    2. **Delete** the contents of the **project name** textbox.
-      <!-- 3. Cause the input field to **lose** **focus** by tabbing out of it or clicking on another input field. -->
    3. **Verify** the **error message** displays.
    4. **Test** the **other** validation rules.
 

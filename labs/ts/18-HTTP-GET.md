@@ -130,6 +130,7 @@
    ```diff
    import React, { Fragment, useState,
    + useEffect } from 'react';
+   + import { projectAPI } from './projectAPI';
 
    function ProjectsPage() {
      const [projects, setProjects] = useState<Project[]>([]);

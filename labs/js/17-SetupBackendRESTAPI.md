@@ -39,7 +39,7 @@
     },
    }
    ```
-2. Copy the directory `labs\js\snippets\lab17\api` into the `working\keeptrack` directory.
+2. **Copy** the directory `labs\js\snippets\lab17\api` into the `working\keeptrack` directory.
 
 ### Start the REST API server
 
