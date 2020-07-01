@@ -68,7 +68,7 @@
 
    ```diff
    ...
-   class ProjectList extends React.Component<ProjectListProps> {
+   class ProjectList extends React.Component {
      render() {
        const { projects } = this.props;
    -   const items = projects.map(project => (

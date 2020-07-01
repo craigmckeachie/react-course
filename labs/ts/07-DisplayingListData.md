@@ -24,21 +24,22 @@
 
    #### `src\projects\ProjectList.tsx`
 
-   ```tsx
+   ```diff
    ...
    class ProjectList extends React.Component<ProjectListProps> {
      render() {
-       const { projects } = this.props;
-       const items = projects.map(project => (
-         <li key={project.id}>{project.name}</li>
-       ));
-       return <ul>{items}</ul>;
+   -    return <pre>{JSON.stringify(projects, null, '
+   +     const { projects } = this.props;
+   +     const items = projects.map(project => (
+   +       <li key={project.id}>{project.name}</li>
+   +     ));
+   +     return <ul>{items}</ul>;
      }
    }
    export default ProjectList;
    ```
 
-2) Verify the project names display correctly in the browser.
+2. Verify the project names display correctly in the browser.
 
 ### Format the list data as cards
 
@@ -70,7 +71,10 @@
    class ProjectList extends React.Component<ProjectListProps> {
      render() {
        const { projects } = this.props;
-   -    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+   -   const items = projects.map((project) => (
+   -    <li key={project.id}>{project.name}</li>
+   -   ));
+   -   return <ul>{items}</ul>;
    +    const items = projects.map(project => (
    +      <div key={project.id} className="cols-sm">
    +        <div className="card">
@@ -108,4 +112,3 @@
 ---
 
 ### &#10004; You have completed Lab 7
-
