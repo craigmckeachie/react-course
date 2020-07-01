@@ -92,7 +92,7 @@
 
 1. **Verify** the **project** **data** **displays** correctly (_it should still look the same as it did in the last lab_) in the browser.
 
-   ![image](https://user-images.githubusercontent.com/1474579/86285065-f8714600-bbb1-11ea-93f2-1ea2548f6d17.png)
+   ![image](https://user-images.githubusercontent.com/1474579/86286042-c06b0280-bbb3-11ea-859f-ce7703689037.png)
 
 >
 
