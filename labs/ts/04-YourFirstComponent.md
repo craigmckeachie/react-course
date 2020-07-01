@@ -11,7 +11,7 @@
 
 1. **Create** the directory `src\projects`.
 2. **Create** the file `src\projects\ProjectsPage.tsx`
-3. In the file, **create** a **class** **component** that returns the following html:
+3. In the file, **create** a **function** **component** that returns the following html:
 
    ```html
    <h1>Projects</h1>
@@ -41,7 +41,7 @@
 
    ```diff
    ...
-   import ProjectsPage from './projects/ProjectsPage';
+   + import ProjectsPage from './projects/ProjectsPage';
 
    const App: React.FC = () => {
    return (

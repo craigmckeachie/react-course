@@ -20,13 +20,13 @@
    #### npx
 
    ```bash
-   npx create-react-app keeptrack --typescript --use-npm
+   npx create-react-app keeptrack --template typescript --use-npm
    ```
 
    #### npm
 
    ```bash
-   npm init react-app keeptrack --typescript --use-npm
+   npm init react-app keeptrack --template typescript --use-npm
    ```
 
    > `npm init <initializer>` is available in npm 6+
@@ -34,7 +34,7 @@
    #### Yarn
 
    ```bash
-   yarn create react-app keeptrack --typescript
+   yarn create react-app keeptrack --template typescript
    ```
 
    > `yarn create` is available in Yarn 0.25+

@@ -52,12 +52,41 @@
 
 1. **Open** and **delete** the contents of `app.css`
 2. Open the file `app.tsx`.
-3. Delete the `JSX` returned and replace with the `HTML` below.
-   ```html
-   <blockquote cite="Benjamin Franklin">
-     Tell me and I forget, teach me and I may remember, involve me and I learn.
-   </blockquote>
+3. Delete the `JSX` returned and replace with the `HTML` as shown below.
+
+   #### src\App.tsx
+
+   ```diff
+   import React from 'react';
+   - import logo from './logo.svg';
+   import './App.css';
+
+   function App() {
+     return (
+   -     <div className="App">
+   -      <header className="App-header">
+   -        <img src={logo} className="App-logo" alt="logo" />
+   -        <p>
+   -          Edit <code>src/App.tsx</code> and save to reload.
+   -        </p>
+   -        <a
+   -          className="App-link"
+   -          href="https://reactjs.org"
+   -          target="_blank"
+   -          rel="noopener noreferrer"
+   -        >
+   -          Learn React!!
+   -        </a>
+   -      </header>
+   -    </div>
+
+   +    <blockquote cite="Benjamin Franklin">
+   +      Tell me and I forget, teach me and I may remember, involve me +and I learn.
+   +    </blockquote>
+     );
+   }
    ```
+
 4. Open the file `src\index.css`
 5. Delete the current contents of the file.
 6. Import the stylesheet you installed.
