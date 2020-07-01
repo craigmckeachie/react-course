@@ -3,20 +3,27 @@
 ![React Logo](https://user-images.githubusercontent.com/1474579/64926660-1362fd00-d7ce-11e9-9772-46e38f600614.png)
 <br />
 
-Copyright © 2019-2021
+<sub><sup>
+Copyright © 2019-2021  
+Funny Ant, LLC  
+All rights reserved.  
+</sup></sub>
+&nbsp;
+&nbsp;
 
-Funny Ant, LLC
-
-All rights reserved.
-
+<sub><sup>
 No part of this book may be reproduced in any form or by any electronic or mechanical means including
-information storage and retrieval systems, without permission from the author.
+information storage and retrieval systems, without permission from the author.  
+This material is available for private, non-commercial use under the [GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html). If you would like to use this material to conduct your own training or workshop, please contact us at [funnyant.com](https://www.funnyant.com/contact).
+</sup></sub>
 
 <div style="page-break-after: always;"></div>
 
 ---
 
 ## Table of Contents
+
+### Fundamentals
 
 - [Lab 1: Creating a New Project](01-CreatingNewProject.md)
 - [Lab 2: Running Your Project](02-RunningYourProject.md)
@@ -40,11 +47,30 @@ information storage and retrieval systems, without permission from the author.
 - [Lab 20: Router Basics](20-RouterBasics.md)
 - [Lab 21: Route Parameters](21-RouteParameters.md)
 - [Lab 22: Build & Deploy](22-BuildAndDeploy.md)
+
+### Snippets
+
+- [Snippets](./snippets/)
+
+### Appendices
+
+- [How to Skip Labs](A1-SkippingLabs.md)
+- [Format Description (optional lab)](A3-FormatDescription.md)
+
+### Solutions
+
+[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r16-js)
+
+> There is a separate branch with the finished code after each lab.
+
+### Redux
+
 - [Lab 23: Redux Install](23-ReduxInstall.md)
 - [Lab 24: Redux Actions & Reducer](24-ReduxActionsReducer.md)
 - [Lab 25: Redux with React](25-ReduxWithReact.md)
-- [Appendix 1: How to Skip Labs](A1-SkippingLabs.md)
-- [Appendix 2: Format Description (optional lab)](A2-FormatDescription.md)
+
+### Testing
+
 - [Unit Testing Lab 1: Shallow Rendering with Enzyme](testing/T1-ShallowRendering.md)
 - [Unit Testing Lab 2: Snapshot Tests](testing/T2-SnapshotTests.md)
 - [Unit Testing Lab 3: Testing Props](testing/T3-TestingProps.md)
@@ -54,12 +80,3 @@ information storage and retrieval systems, without permission from the author.
 - [Unit Testing Lab 7: Action Tests](testing/T7-ActionTests.md)
 - [Unit Testing Lab 8: Reducer Tests](testing/T8-ReducerTests.md)
 - [Unit Testing Lab 9: API Tests](testing/T9-APITests.md)
-
-## Snippets
-- [Snippets](./snippets/)
-
-## Solutions
-
-[Finished solution code for each of the above labs is available in this repository.](https://github.com/craigmckeachie/keeptrack-r16-js)
-
-> There is a separate branch with the finished code after each lab.
