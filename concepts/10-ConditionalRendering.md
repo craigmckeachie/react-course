@@ -4,6 +4,8 @@
   - [if](#if)
     - [Component](#component)
     - [Element](#element)
+      - [Function Component Example (using hooks)](#function-component-example-using-hooks)
+      - [Class Component Example](#class-component-example)
     - [Null](#null)
   - [Preventing Components from Rendering](#preventing-components-from-rendering)
     - [Summary (if)](#summary-if)
@@ -67,14 +69,47 @@ Here is an example of how to add or remove a part of a component (element) using
 
 You can't use an `if` in a `return` statement in JavaScript. **Element variables** allow you to capture and store an element(s) in a variable to later be rendered.
 
+#### Function Component Example (using hooks)
+
+```js
+function DropdownMenu() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setIsOpen((currentIsOpen) => !currentIsOpen);
+  };
+
+  let menu;
+  if (isOpen) {
+    menu = (
+      <ul>
+        <li>Edit</li>
+        <li>Remove</li>
+        <li>Archive</li>
+      </ul>
+    );
+  }
+  return (
+    <div>
+      <button onClick={handleClick}>Actions</button>
+      {menu}
+    </div>
+  );
+}
+
+ReactDOM.render(<DropdownMenu />, document.getElementById('root'));
+```
+
+#### Class Component Example
+
 ```js
 class DropdownMenu extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   handleClick = () => {
-    this.setState(state => {
+    this.setState((state) => {
       return { isOpen: !state.isOpen };
     });
   };
@@ -161,8 +196,8 @@ class Page extends React.Component {
   }
 
   handleToggleClick() {
-    this.setState(state => ({
-      showWarning: !state.showWarning
+    this.setState((state) => ({
+      showWarning: !state.showWarning,
     }));
   }
 
@@ -238,11 +273,11 @@ Why?
 ```js
 class DropdownMenu extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   handleClick = () => {
-    this.setState(state => {
+    this.setState((state) => {
       return { isOpen: !state.isOpen };
     });
   };
@@ -275,11 +310,11 @@ When there isn't an `else` condition, using a logical `&&` operator can make the
 ```js
 class DropdownMenu extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   handleClick = () => {
-    this.setState(state => {
+    this.setState((state) => {
       return { isOpen: !state.isOpen };
     });
   };
