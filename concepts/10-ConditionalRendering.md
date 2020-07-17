@@ -13,11 +13,11 @@
     - [Simple](#simple)
     - [Complicated](#complicated)
   - [Logical && Operator](#logical--operator)
-  - [Syntax Summary](#syntax-summary)
-        - [if](#if-1)
-        - [if else](#if-else)
-      - [? (inline)](#-inline)
-      - [&& (inline)](#-inline-1)
+    - [Function Component Example (with hooks)](#function-component-example-with-hooks)
+    - [Class Component Example](#class-component-example-1)
+  - [Syntax Summary](#syntax-summary) - [if](#if-1) - [if else](#if-else)
+    - [? (inline)](#-inline)
+    - [&& (inline)](#-inline-1)
   - [Resources](#resources)
 
 Just use the features in the JavaScript language.
@@ -304,6 +304,32 @@ When there isn't an `else` condition, the return of `null` becomes awkward and d
 ## Logical && Operator
 
 When there isn't an `else` condition, using a logical `&&` operator can make the conditional rendering logic more readable.
+
+#### Function Component Example (with hooks)
+
+```js
+function DropdownMenu() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleClick = () => {
+    setIsOpen((currentIsOpen) => !currentIsOpen);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Actions</button>
+      {isOpen && (
+        <ul>
+          <li>Edit</li>
+          <li>Remove</li>
+          <li>Archive</li>
+        </ul>
+      )}
+    </div>
+  );
+}
+```
+
+#### Class Component Example
 
 ```js
 class DropdownMenu extends React.Component {
