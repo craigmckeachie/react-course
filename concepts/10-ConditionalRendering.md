@@ -7,7 +7,7 @@
       - [Function Component Example (using hooks)](#function-component-example-using-hooks)
       - [Class Component Example](#class-component-example)
     - [Null](#null)
-  - [Preventing Components from Rendering](#preventing-components-from-rendering)
+    - [Preventing Components from Rendering](#preventing-components-from-rendering)
     - [Summary (if)](#summary-if)
   - [Conditional Operator ? true : false](#conditional-operator--true--false)
     - [Simple](#simple)
@@ -144,8 +144,6 @@ The above example renders nothing when `menu` is `null` or `undefined`. Understa
 An element that is null or undefined will render nothing.
 
 ```js
-
-
 function Example(){
     const elementVariable;
 
@@ -175,7 +173,7 @@ function Example(){
 
 Returning null can be used to prevent a component from rendering at all. We will explore how to do this in the next section.
 
-## Preventing Components from Rendering
+### Preventing Components from Rendering
 
 In rare cases you might want a component to hide itself even though it was rendered by another component. This can be achieved by returning `null` instead of its render output.
 
