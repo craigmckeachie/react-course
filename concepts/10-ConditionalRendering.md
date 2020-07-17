@@ -13,8 +13,8 @@
     - [Simple](#simple)
     - [Complicated](#complicated)
   - [Logical && Operator](#logical--operator)
-    - [Function Component Example (with hooks)](#function-component-example-with-hooks)
     - [Class Component Example](#class-component-example-1)
+    - [Function Component Example (with hooks)](#function-component-example-with-hooks)
   - [Syntax Summary](#syntax-summary) - [if](#if-1) - [if else](#if-else)
     - [? (inline)](#-inline)
     - [&& (inline)](#-inline-1)
@@ -305,30 +305,6 @@ When there isn't an `else` condition, the return of `null` becomes awkward and d
 
 When there isn't an `else` condition, using a logical `&&` operator can make the conditional rendering logic more readable.
 
-#### Function Component Example (with hooks)
-
-```js
-function DropdownMenu() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const handleClick = () => {
-    setIsOpen((currentIsOpen) => !currentIsOpen);
-  };
-
-  return (
-    <div>
-      <button onClick={handleClick}>Actions</button>
-      {isOpen && (
-        <ul>
-          <li>Edit</li>
-          <li>Remove</li>
-          <li>Archive</li>
-        </ul>
-      )}
-    </div>
-  );
-}
-```
-
 #### Class Component Example
 
 ```js
@@ -360,6 +336,30 @@ class DropdownMenu extends React.Component {
 }
 
 ReactDOM.render(<DropdownMenu />, document.getElementById('root'));
+```
+
+#### Function Component Example (with hooks)
+
+```js
+function DropdownMenu() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleClick = () => {
+    setIsOpen((currentIsOpen) => !currentIsOpen);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Actions</button>
+      {isOpen && (
+        <ul>
+          <li>Edit</li>
+          <li>Remove</li>
+          <li>Archive</li>
+        </ul>
+      )}
+    </div>
+  );
+}
 ```
 
 It works because in JavaScript, true && expression always evaluates to expression, and false && expression always evaluates to false.
