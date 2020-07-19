@@ -3,8 +3,8 @@
 - [Chapter 12: Component Architecture](#chapter-12-component-architecture)
   - [Reuse](#reuse)
   - [Component Communication](#component-communication)
-    - [Common Communication Patterns](#common-communication-patterns)
-    - [Additional Communication Patterns](#additional-communication-patterns)
+      - [Common Communication Patterns](#common-communication-patterns)
+      - [Additional Communication Patterns](#additional-communication-patterns)
 - [Design Patterns](#design-patterns)
   - [Lifting State Up](#lifting-state-up)
   - [Container and Presentation Components](#container-and-presentation-components)
@@ -14,8 +14,8 @@
   - [Composition vs Inheritance](#composition-vs-inheritance)
   - [Thinking in React](#thinking-in-react)
   - [Items (CRUD) Demo](#items-crud-demo)
-    - [styles.css](#stylescss)
-    - [main.jsx](#mainjsx)
+      - [styles.css](#stylescss)
+      - [main.jsx](#mainjsx)
     - [Requirements](#requirements)
   - [Reference](#reference-1)
 
@@ -381,17 +381,16 @@ The requirements are as follows:
 ### Requirements
 
 1. In the container component
-   1. The Container should hold the items in it's local component state
-   1. Set the initialItems into state in componentDidMount
-   1. Display the items in JSX using {JSON.stringify(this.state.items)}
+   1. The `Container` should hold the items in it's local component state
+   1. Set the `initialItems` into state in `componentDidMount`
+   1. Display the items in JSX using `{JSON.stringify(this.state.items)}`
    1. Before continuing to the next step, remove the JSX from the last step to display the items in the `Container`
 1. Display a list of items
-   1. Create a List Component that takes an Items prop
-   2. Pass the items from the Container's state into the list component to be rendered
-   3. Render a ListItem component for each item in the items prop
-1. Display the item in the ListItem component
-   1. Pass the item as a prop to ListItem
-   1. Render the item name
+   1. Pass the items from the Container's state into the list component as an `items` prop
+   1. Render a `ListItem` component for each item in the items prop
+1. Display the `item` in the `ListItem` component
+   1. Pass the item as a prop to `ListItem`
+   1. Render the `item.name`
 1. Implement the feature to remove an item from the list
    1. Add a remove button next to each item on the list
    1. Handle the remove button click by calling a function on the container to remove the item from state
