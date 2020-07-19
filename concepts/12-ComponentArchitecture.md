@@ -3,8 +3,8 @@
 - [Chapter 12: Component Architecture](#chapter-12-component-architecture)
   - [Reuse](#reuse)
   - [Component Communication](#component-communication)
-      - [Common Communication Patterns](#common-communication-patterns)
-      - [Additional Communication Patterns](#additional-communication-patterns)
+    - [Common Communication Patterns](#common-communication-patterns)
+    - [Additional Communication Patterns](#additional-communication-patterns)
 - [Design Patterns](#design-patterns)
   - [Lifting State Up](#lifting-state-up)
   - [Container and Presentation Components](#container-and-presentation-components)
@@ -149,10 +149,6 @@ Essentially, **communication doesn't skip generations** so if it is going to hap
 
 # Design Patterns
 
-- App
-  - Container
-    - List
-
 ## Lifting State Up
 
 Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor.
@@ -240,9 +236,6 @@ See the section [Composition vs Inheritance](https://reactjs.org/docs/compositio
 
 > We use React in thousands of components, and we haven’t found any use cases where we would recommend creating component inheritance hierarchies. - Facebook
 
-- Items example everything is stateful class component by the end
-- Github API
-
 ## Thinking in React
 
 Here are some steps you might find useful as you learn to **Think in React**
@@ -264,13 +257,20 @@ Here are some steps you might find useful as you learn to **Think in React**
    - Rendering the screen initially involves props and state flowing down the hierarchy
    - Inverse data flow refers to components deep in the hierarchy responding to user actions (clicking a button, hovering, typing) and then updating the state in the higher container component(s)
 
-See the section [Thinking in React](https://reactjs.org/docs/thinking-in-react.htm)l in the documentation for more information.
+See the section [Thinking in React](https://reactjs.org/docs/thinking-in-react.htm) in the documentation for more information.
 
 ## Items (CRUD) Demo
 
 Below is an example of a simple application that lists and deletes (CRUD) items.
 
 It puts into practice all the ideas we discussed in this Component Architecture section.
+
+```
+- App
+  - Container
+    - List
+      - Item
+```
 
 - Add the following styles to `styles.css` so you can focus on learning React.
 
