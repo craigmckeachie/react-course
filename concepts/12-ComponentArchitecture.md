@@ -269,7 +269,7 @@ It puts into practice all the ideas we discussed in this Component Architecture 
 - App
   - Container
     - List
-      - Item
+      - ListItem
 ```
 
 - Add the following styles to `styles.css` so you can focus on learning React.
