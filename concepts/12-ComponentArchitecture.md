@@ -14,6 +14,8 @@
   - [Composition vs Inheritance](#composition-vs-inheritance)
   - [Thinking in React](#thinking-in-react)
   - [Items (CRUD) Demo](#items-crud-demo)
+    - [styles.css](#stylescss)
+    - [main.jsx](#mainjsx)
     - [Requirements](#requirements)
   - [Reference](#reference-1)
 
@@ -272,11 +274,11 @@ It puts into practice all the ideas we discussed in this Component Architecture 
       - ListItem
 ```
 
-- Add the following styles to `styles.css` so you can focus on learning React.
+Add the following styles to `styles.css` so you can focus on learning React.
+
+#### styles.css
 
 ```css
-/* styles.css */
-
 body,
 button,
 input,
@@ -306,26 +308,93 @@ form {
 }
 ```
 
+Start with the following static mockup of a component hierarchy and then implement the requirements listed in the next section.
+
+#### main.jsx
+
+```js
+function ID() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+class Item {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+const initialItems = [
+  new Item(ID(), 'First Item'),
+  new Item(ID(), 'Second Item'),
+  new Item(ID(), 'Third Item'),
+];
+
+class ListItem extends React.Component {
+  render() {
+    return (
+      <p>
+        <span>Item Name</span>
+        <button>Remove</button>
+      </p>
+    );
+  }
+}
+class List extends React.Component {
+  render() {
+    return (
+      <ul>
+        <ListItem />
+        <ListItem />
+        <ListItem />
+        <ListItem />
+      </ul>
+    );
+  }
+}
+
+class Container extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <List />
+      </React.Fragment>
+    );
+  }
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Container />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
 The requirements are as follows:
 
 ### Requirements
 
-1. Create an `App` Component
-   - start by having it return 'hello world'
-1. Create a Container Component
-   - the Container should hold the items in it's local component state
-   - set the initialItems into state in componentDidMount
-   - return the `<Container />` component instead of `hello world` inside the App Component created in the last step
-   - display the items in JSX using {JSON.stringify(this.state.items)}
-   - remove the JSX to display the items in the Container before continuing to the next step
+1. In the container component
+   1. The Container should hold the items in it's local component state
+   1. Set the initialItems into state in componentDidMount
+   1. Display the items in JSX using {JSON.stringify(this.state.items)}
+   1. Before continuing to the next step, remove the JSX from the last step to display the items in the `Container`
 1. Display a list of items
-   1. create a List Component that takes an Items prop
-   2. pass the items from the Container's state into the List Component to be rendered
-   3. render the items from props as an unordered list using JSX
-   4. render the list component from the container
+   1. Create a List Component that takes an Items prop
+   2. Pass the items from the Container's state into the list component to be rendered
+   3. Render a ListItem component for each item in the items prop
+1. Display the item in the ListItem component
+   1. Pass the item as a prop to ListItem
+   1. Render the item name
 1. Implement the feature to remove an item from the list
-   - Add a remove button next to each item on the list
-   - handle the remove button click by calling a function on the container to remove the item from state
+   1. Add a remove button next to each item on the list
+   1. Handle the remove button click by calling a function on the container to remove the item from state
 
 See the finished solution code below up to these requirements.
 
@@ -363,16 +432,8 @@ class List extends React.Component {
     editingItem: null,
   };
 
-  handleEditClick = (item) => {
-    this.setState({ editingItem: item });
-  };
-
-  handleCancel = (item) => {
-    this.setState({ editingItem: null });
-  };
-
   render() {
-    const { items, onRemove, onUpdate } = this.props;
+    const { items, onRemove } = this.props;
     return (
       <ul>
         {items.map((item) => (
