@@ -1,46 +1,136 @@
 # Chapter 22: React Redux
 
 - [Chapter 22: React Redux](#chapter-22-react-redux)
+  - [Overview](#overview)
+    - [React bindings for Redux](#react-bindings-for-redux)
+    - [`connect` is used in Class Components](#connect-is-used-in-class-components)
+    - [`useSelector` and `useDispatch` Hooks are used in Function Components](#useselector-and-usedispatch-hooks-are-used-in-function-components)
+    - [`Provider` gets you access to the `Store`](#provider-gets-you-access-to-the-store)
+  - [Hooks provided by the React Redux library : `useSelector` and `useDispatch`](#hooks-provided-by-the-react-redux-library--useselector-and-usedispatch)
+    - [`useSelector`](#useselector)
+    - [`useDispatch`](#usedispatch)
+    - [Example](#example)
   - [The `connect` function](#the-connect-function)
     - [What it Does](#what-it-does)
     - [Using](#using)
-  - [Writing `mapState` Functions](#writing-mapstate-functions)
-  - [Writing `mapDispatch` Functions](#writing-mapdispatch-functions)
-  - [Tips](#tips)
+    - [Example](#example-1)
+    - [Writing `mapState` Functions](#writing-mapstate-functions)
+    - [Writing `mapDispatch` Functions](#writing-mapdispatch-functions)
+    - [Tips](#tips)
   - [Provider](#provider)
-    - [Why](#why)
-  - [Inside React Redux](#inside-react-redux)
-    - [Inside connect](#inside-connect)
-    - [Inside Provider](#inside-provider)
-  - [Demo](#demo)
+  - [Inside connect](#inside-connect)
+    - [Demo of How Connect Works](#demo-of-how-connect-works)
     - [Final Code](#final-code)
+    - [Inside Provider](#inside-provider)
   - [Reference](#reference)
 
-**React bindings for Redux.**
+## Overview
+
+### React bindings for Redux
 
 Redux can be used with any UI layer (such as Angular, Vue, or plain JS), but is most commonly used with React.
 
 `React-Redux` provides bindings between React and Redux.
 
+### `connect` is used in Class Components
+
 The `connect` function generates wrapper **"container"** components that subscribe to the store, so you don't have to write store subscription code for every component that needs to talk to the store.
 
 Any component in your application can be wrapped with `connect` and "connected" to the store. Connecting more components is usually better for performance.
 
+### `useSelector` and `useDispatch` Hooks are used in Function Components
+
+These hooks provide access to the data in the `Store` and the ability to dispatch actions to the `Store` to change the data.
+
+### `Provider` gets you access to the `Store`
+
+`Provider` gets you access to the store from anywhere in the component hierarchy.
+
 Putting a `<Provider>` component around your root component makes the store accessible to all connected components.
 
-Action Creators:
+<!-- #### Action Creators:
 
 - loadItems
 - addItem
 - removeItem
 
+#### Hierarchy
+
 - App
   - Provider: store
     - ConnectedContainer
-      - Container: componentDidMount(props.onLoad> loadItems), render(<List ...this.props>)
+      - Container:
+        - componentDidMount(props.onLoad> loadItems),
+        - render(<List ...this.props>)
         - List
-        - Form: handleSubmit: props.onAdd> addItem
-        - Detail
+          - Form: handleSubmit: props.onAdd> addItem
+          - Detail -->
+
+## Hooks provided by the React Redux library : `useSelector` and `useDispatch`
+
+### `useSelector`
+
+Allows you to `select` (think SQL) slices of state from the Redux `Store`.
+
+- `useState` manages Local Component State
+- `useSelector` manages Redux Store State
+
+The `useSelector` hook gets state (data) directly from the Redux `Store` so you there is no need to pass the state from the Redux store in as a `prop` to the component.
+
+Serves a similar purpose to `mapStateToProps` when using class-based components and `connect`.
+
+### `useDispatch`
+
+Gives you a reference to the dispatch function so you can dispatch actions and change the data (`state`) in the `Store`.
+
+### Example
+
+```js
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+
+function increment() {
+  return { type: INCREMENT };
+}
+function decrement() {
+  return { type: DECREMENT };
+}
+
+function reducer(state = 5, action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+    case DECREMENT:
+      return state - 1;
+    default:
+      return state;
+  }
+}
+var store = Redux.createStore(reducer);
+
+function Counter() {
+  const count = ReactRedux.useSelector((state) => state);
+  const dispatch = ReactRedux.useDispatch();
+  return (
+    <React.Fragment>
+      <div>Count: {count}</div>
+      <button onClick={() => dispatch(increment())}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
+    </React.Fragment>
+  );
+}
+
+const element = (
+  <div>
+    <ReactRedux.Provider store={store}>
+      <Counter />
+    </ReactRedux.Provider>
+  </div>
+);
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(element, rootElement);
+```
 
 ## The `connect` function
 
@@ -71,34 +161,99 @@ import { increment } from './counterActions';
 function mapStateToProps(state) {
   return {
     // The "counter" field in this object becomes props.counter
-    counter: state.counter
+    counter: state.counter,
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     // The "increment" field in this object becomes props.increment
-    increment: () => dispatch(increment())
+    increment: () => dispatch(increment()),
   };
 }
 
-const Counter = props => (
+const Counter = (props) => (
   <div>
     <div>Counter value: {props.counter}</div>,
     <button onClick={props.increment}>Increment</button>
   </div>
 );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 // Expanded:
 // const generateWrapperComponent = connect(mapState, mapDispatch);
 // const ConnectedCounter = generateWrapperComponent(Counter);
 ```
 
-## Writing `mapState` Functions
+### Example
+
+```js
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+
+function increment() {
+  return { type: INCREMENT };
+}
+function decrement() {
+  return { type: DECREMENT };
+}
+
+function reducer(state = 5, action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+    case DECREMENT:
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+var store = Redux.createStore(reducer);
+
+// function enableDevTools() {
+//   return (
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   );
+// }
+// var store = Redux.createStore(reducer, enableDevTools());
+
+function Counter(props) {
+  return (
+    <React.Fragment>
+      <div>Count: {props.count}</div>
+      <button onClick={props.increment}>+</button>
+      <button onClick={props.decrement}>-</button>
+    </React.Fragment>
+  );
+}
+
+const mapStateToProps = (state) => {
+  return {
+    count: state,
+  };
+};
+
+const mapDispatchToProps = { increment, decrement };
+
+const WrappedCounter = ReactRedux.connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
+
+const element = (
+  <div>
+    <ReactRedux.Provider store={store}>
+      <WrappedCounter />
+    </ReactRedux.Provider>
+  </div>
+);
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(element, rootElement);
+```
+
+### Writing `mapState` Functions
 
 - `connect` will re-run your mapState function every time the store state changes
   - does shallow equality comparison between the last and current result objects
@@ -117,7 +272,7 @@ export default connect(
 // the state parameter is connect calling store.getState() and returning the result as state
 function mapStateToProps(state) {
   return {
-    counter: state.counter
+    counter: state.counter,
   };
 }
 
@@ -127,24 +282,24 @@ const mapState = ({ counter }) => ({ counter });
 // If declared with two arguments, will be called whenever
 // the state changes _and_ when incoming props change
 const mapState = (state, ownProps) => ({
-  todo: state.todos[ownProps.todoIndex]
+  todo: state.todos[ownProps.todoIndex],
 });
 
 // can contain whatever logic and data preparation
 // steps you need, not just "return state.whatever"
-const mapState = state => {
+const mapState = (state) => {
   const { basicData, otherItem } = state;
   const transformedData = transformStuff(basicData);
   const filteredData = filterStuff(transformedData);
 
   return {
     data: filteredData,
-    otherItem
+    otherItem,
   };
 };
 ```
 
-## Writing `mapDispatch` Functions
+### Writing `mapDispatch` Functions
 
 - By default, connect gives your components `props.dispatch`.
 - If you want to "bind" action creators instead, you can provide a mapDispatch function as the second argument to connect. It gets dispatch as an argument, and you can return functions that will dispatch automatically when called.
@@ -180,7 +335,7 @@ const actions = {increment, decrement};
 export default connect(mapState, actions)(MyComponent);
 ```
 
-## Tips
+### Tips
 
 - You can connect as many of your app's components as you want, not just the root component.
   - connecting more components is usually better for performance
@@ -219,14 +374,12 @@ ReactDOM.render(
 );
 ```
 
-### Why
+**Why is the Provider designed this way?**
 
 - Manually importing the `store` ties your components to that specific store instance, making it harder to test them
 - React-Redux's `<Provider>` acts as a lightweight dependency injection approach, which lets you reuse Redux-connected components and test them with a fake store if needed
 
-## Inside React Redux
-
-### Inside connect
+## Inside connect
 
 How does connect work internally or how would you manually create a container component (connected, wrapped)?
 
@@ -273,15 +426,9 @@ document.getElementById('increment').addEventListener('click', () => {
 });
 ```
 
-### Inside Provider
+### Demo of How Connect Works
 
-How does the wrapped component get access to the store?
-
-- The Provider puts it in the React context.
-
-## Demo
-
-In this demos we are going to:
+In this demo we are going to:
 
 1. Use the redux demo code from the previous concept chapter on Redux shown below:
    - commenting out the last lines that manually dispatch actions (because there is no UI yet)
@@ -345,7 +492,7 @@ class WrappedCounterManual extends React.Component {
 
   getCurrentStateFromStore() {
     return {
-      count: store.getState()
+      count: store.getState(),
     };
   }
 
@@ -444,9 +591,9 @@ ReactDOM.render(element, rootElement);
    Add this code to the bottom of the file.
 
    ```js
-   const mapStateToProps = state => {
+   const mapStateToProps = (state) => {
      return {
-       count: state
+       count: state,
      };
    };
 
@@ -505,17 +652,18 @@ function Counter(props) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    count: state
+    count: state,
   };
 };
 
 const mapDispatchToProps = { increment, decrement };
 
-const WrappedCounter = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(
-  Counter
-);
+const WrappedCounter = ReactRedux.connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
 
 //manually
 class WrappedCounterManual extends React.Component {
@@ -523,7 +671,7 @@ class WrappedCounterManual extends React.Component {
 
   getCurrentStateFromStore() {
     return {
-      count: store.getState()
+      count: store.getState(),
     };
   }
 
@@ -588,6 +736,12 @@ ReactDOM.render(element, rootElement);
 // store.dispatch({ type: 'INCREMENT' });
 // store.dispatch({ type: 'DECREMENT' });
 ```
+
+### Inside Provider
+
+How does the wrapped component get access to the store?
+
+- The Provider puts it in the React context.
 
 ## Reference
 
