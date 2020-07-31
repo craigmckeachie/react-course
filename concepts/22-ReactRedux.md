@@ -18,10 +18,11 @@
     - [Writing `mapDispatch` Functions](#writing-mapdispatch-functions)
     - [Tips](#tips)
   - [Provider](#provider)
-  - [Inside connect](#inside-connect)
-    - [Demo of How Connect Works](#demo-of-how-connect-works)
+  - [Inside React Redux (optional)](#inside-react-redux-optional)
+    - [Inside `connect`](#inside-connect)
+    - [Demo of How `connect` Works](#demo-of-how-connect-works)
     - [Final Code](#final-code)
-    - [Inside Provider](#inside-provider)
+    - [Inside `Provider`](#inside-provider)
   - [Reference](#reference)
 
 ## Overview
@@ -379,7 +380,9 @@ ReactDOM.render(
 - Manually importing the `store` ties your components to that specific store instance, making it harder to test them
 - React-Redux's `<Provider>` acts as a lightweight dependency injection approach, which lets you reuse Redux-connected components and test them with a fake store if needed
 
-## Inside connect
+## Inside React Redux (optional)
+
+### Inside `connect`
 
 How does connect work internally or how would you manually create a container component (connected, wrapped)?
 
@@ -389,9 +392,9 @@ Using Redux with any UI layer requires the same consistent set of steps:
 2. Subscribe to updates
 3. Inside the subscription callback:
 
-- Get the current store state
-- Extract the data needed by this piece of UI
-- Update the UI with the data
+   - Get the current store state
+   - Extract the data needed by this piece of UI
+   - Update the UI with the data
 
 4. If necessary, render the UI with initial state
 5. Respond to UI inputs by dispatching Redux actions
@@ -426,51 +429,52 @@ document.getElementById('increment').addEventListener('click', () => {
 });
 ```
 
-### Demo of How Connect Works
+### Demo of How `connect` Works
 
 In this demo we are going to:
 
 1. Use the redux demo code from the previous concept chapter on Redux shown below:
+
    - commenting out the last lines that manually dispatch actions (because there is no UI yet)
 
-```js
-//action types
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+   ```js
+   //action types
+   const INCREMENT = 'INCREMENT';
+   const DECREMENT = 'DECREMENT';
 
-//action creators
-function increment() {
-  return { type: INCREMENT };
-}
-function decrement() {
-  return { type: DECREMENT };
-}
+   //action creators
+   function increment() {
+     return { type: INCREMENT };
+   }
+   function decrement() {
+     return { type: DECREMENT };
+   }
 
-//reducer
-function reducer(state = 0, action) {
-  switch (action.type) {
-    case INCREMENT:
-      return state + 1;
-    case DECREMENT:
-      return state - 1;
-    default:
-      return state;
-  }
-}
+   //reducer
+   function reducer(state = 0, action) {
+     switch (action.type) {
+       case INCREMENT:
+         return state + 1;
+       case DECREMENT:
+         return state - 1;
+       default:
+         return state;
+     }
+   }
 
-//store
-var store = Redux.createStore(reducer);
+   //store
+   var store = Redux.createStore(reducer);
 
-// store.subscribe(logState);
+   // store.subscribe(logState);
 
-// store.dispatch({ type: '' });
-// store.dispatch(increment());
-// store.dispatch(increment());
-// store.dispatch(decrement());
-// store.dispatch(decrement());
-// store.dispatch(decrement());
-// store.dispatch(decrement());
-```
+   // store.dispatch({ type: '' });
+   // store.dispatch(increment());
+   // store.dispatch(increment());
+   // store.dispatch(decrement());
+   // store.dispatch(decrement());
+   // store.dispatch(decrement());
+   // store.dispatch(decrement());
+   ```
 
 2. Add a UI by creating components including manually creating the container component.
 
@@ -737,11 +741,11 @@ ReactDOM.render(element, rootElement);
 // store.dispatch({ type: 'DECREMENT' });
 ```
 
-### Inside Provider
+### Inside `Provider`
 
 How does the wrapped component get access to the store?
 
-- The Provider puts it in the React context.
+- The `Provider` puts it in the React context.
 
 ## Reference
 
