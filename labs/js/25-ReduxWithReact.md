@@ -2,185 +2,116 @@
 
 ## Objectives
 
-- [ ] Refactor the Page (container) component to be a Redux connected component
+- [ ] Refactor the Page (container) component to use React Redux Hooks
 - [ ] Refactor the Form component to be a Redux connected component
 
 ## Steps
 
-### Refactor the Page (container) component to be a Redux connected component
+### Refactor the Page (container) component to use React Redux Hooks
 
-1. Remove the Page (container) component's state.
+1. Remove the Page (container) component's local state and replace with Redux state using useSelector. Also, get a reference to the Store's dispatch function using useDispatch so we can dispatch actions.
 
    #### `src\projects\ProjectsPage.js`
 
    > Make sure you are in Project**s**Page.js not ProjectPage.js.
 
    ```diff
+   import React, { Fragment, useEffect } from 'react';
+   import ProjectList from './ProjectList';
+   import { Project } from './Project';
+   + import { useSelector, useDispatch } from 'react-redux';
+   + import { AppState } from '../state';
 
-   class ProjectsPage extends React.Component{
-   -  state = {
-   -    projects: [],
-   -    loading: false,
-   -    error: undefined,
-   -    page: 20
+   function ProjectsPage() {
+   -  const [projects, setProjects] = useState<Project[]>([]);
+   -  const [loading, setLoading] = useState(false);
+   -  const [error, setError] = useState(undefined);
+   -  const [currentPage, setCurrentPage] = useState(1);
+
+   +  const loading = useSelector(
+   +    (appState) => appState.projectState.loading
+   +  );
+   +  const projects = useSelector(
+   +    (appState) => appState.projectState.projects
+   +  );
+   +  const error = useSelector(
+   +    (appState) => appState.projectState.error
+   +  );
+   +  const currentPage = useSelector(
+   +    (appState) => appState.projectState.page
+   +  );
+   +  const dispatch = useDispatch();
+
+   ...
+   }
+   ```
+
+1. Replace state setter function calls and API calls with calls to dispatch passing action creators.
+
+   #### `src\projects\ProjectsPage.js`
+
+   ```diff
+   - import { Project } from './Project';
+   + import { loadProjects } from './state/projectActions';
+
+   function ProjectsPage() {
+     ...
+     const dispatch = useDispatch();
+
+   -  useEffect(() => {
+   -    setLoading(true);
+   -    projectAPI
+   -      .get(currentPage)
+   -      .then((data) => {
+   -        setLoading(false);
+   -        if (currentPage === 1) {
+   -          setProjects(data);
+   -        } else {
+   -          setProjects((projects) => [...projects, ...data]);
+   -        }
+   -      })
+   -      .catch((e) => {
+   -        setLoading(false);
+   -        setError(e.message);
+   -      });
+   -  }, [currentPage]);
+
+   +  useEffect(() => {
+   +    dispatch(loadProjects(1));
+   +  }, [dispatch]);
+
+     const handleMoreClick = () => {
+   -    setCurrentPage((currentPage) => currentPage + 1);
+   +    dispatch(loadProjects(currentPage + 1));
+     };
+
+   -  const saveProject = (project) => {
+   -    projectAPI
+   -      .put(project)
+   -      .then((updatedProject) => {
+   -        let updatedProjects = projects.map((p) => {
+   -          return p.id === project.id ? project : p;
+   -        });
+   -        setProjects(updatedProjects);
+   -      })
+   -      .catch((e) => {
+   -        setError(e.message);
+   -      });
    -  };
 
+     return (
+       <Fragment>
+         ...
+   -      <ProjectList onSave={saveProject} projects={projects} />
+   +      <ProjectList projects={projects} />
+         ...
+       </Fragment>
+     );
    }
-   ```
-
-2. Replace setState and API calls with calls to action creators passed in via props.
-
-   #### `src\projects\ProjectsPage.js`
-
-   ```diff
-   class ProjectsPage extends React.Component{
-
-   loadProjects(page) {
-   - this.setState({ loading: true });
-   - projectAPI
-   -   .get(page)
-   -   .then(data => {
-   -     if (page === 1) {
-   -       this.setState({ projects: data, loading: false, page });
-   -     } else {
-   -       this.setState(previousState => {
-   -         return {
-   -           projects: [...previousState.projects, ...data],
-   -           loading: false,
-   -           page
-   -         };
-   -       });
-   -     }
-   -   })
-   -   .catch(error => this.setState({ error: error.message, loading: false }));
-   +    this.props.onLoad(page);
-   }
-
-   componentDidMount() {
-   -  this.loadProjects(this.state.page);
-   +  this.loadProjects(1);
-   }
-
-   handleMoreClick = () => {
-   - const nextPage = this.state.page + 1;
-   + const nextPage = this.props.page + 1;
-   this.loadProjects(nextPage);
-   };
-
-   saveProject(project){
-   - projectAPI
-   -   .put(project)
-   -   .then(data => {
-   -     this.setState(state => {
-   -       let projects = state.projects.map(p => {
-   -         return p.id === project.id ? project : p;
-   -       });
-   -       return { projects };
-   -     });
-   -   })
-   -   .catch(error => {
-   -     this.setState({ error: error.message });
-   -   });
-   this.props.onSave(project)
-   }
-
-   }
-   ```
-
-3. In the render method, update all references to `state` to pull from `props`.
-
-   #### `src\projects\ProjectsPage.js`
-
-   ```diff
-   class ProjectsPage extends React.Component{
    ...
-
-   render(){
-       ...
-   -    {this.state.error && (
-   +     this.props.error && (
-          <div className="row">
-            <div className="card large error">
-              <section>
-                <p>
-                  <span className="icon-alert inverse "></span>
-   -              {this.state.error}
-   +              {this.props.error}
-                </p>
-              </section>
-            </div>
-          </div>
-
-        )}
-       ...
-       <ProjectList
-   -          projects={this.state.projects}
-   -          onSave={this.saveProject}
-   +          projects={this.props.projects}
-   +          onSave={this.props.onSave}
-           ></ProjectList>
-
-   -    {!this.state.loading && !this.state.error && (
-   +    {!this.props.loading && !this.props.error && (
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="button-group fluid">
-                <button
-                  className="button default"
-                  onClick={this.handleMoreClick}
-                >
-                  More...
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-   -    {this.state.loading && (
-   +     this.props.loading && (
-          <div className="center-page">
-            <span className="spinner primary"></span>
-            <p>Loading...</p>
-          </div>
-
-        )}
-
-   }
-
-   }
    ```
 
-4) Connect the Page (container) component so it has access to the Redux store's state and is able to dispatch actions in the action creator functions passed in via props.
-
-   > You will need to comment out the existing default export as shown below.
-
-   #### `src\projects\ProjectsPage.js`
-
-   ```js
-   // import { projectAPI } from './projectAPI';
-   import { loadProjects, saveProject } from './state/projectActions';
-   import { connect } from 'react-redux';
-
-   // export default ProjectsPage;
-
-   // React Redux (connect)---------------
-   function mapStateToProps(state) {
-     return {
-       ...state.projectState
-     };
-   }
-
-   const mapDispatchToProps = {
-     onLoad: loadProjects,
-     onSave: saveProject
-   };
-
-   export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPage);
-   ```
-
-   > Be sure to `import connect` from `react-redux` NOT `http2`, `net`, or `tls`.
-
-6. Provide the store.
+1. Provide the store.
 
    #### `src\App.js`
 
@@ -220,42 +151,38 @@
    export default App;
    ```
 
-7. **Verify** the application works as it did previously including loading and updating the projects.
-
 ### Refactor the Form component to be a Redux connected component
 
-1. Connect the Form component so it has access to the Redux store's state and is able to dispatch actions in the action creator functions passed in via props.
+1. Connect the Form component so it has access to the Redux store's dispatch function so we can dispatch the `saveProject` action.
 
-> You will need to comment out the existing default export as shown below.
+   #### `src\projects\ProjectForm.js`
 
-#### `src\projects\ProjectForm.js`
+   ```tsx
+   ...
+   import { saveProject } from './state/projectActions';
+   import { connect } from 'react-redux';
+   ...
 
-```js
-...
-import { saveProject } from './state/projectActions';
-import { connect } from 'react-redux';
-...
+   // export default ProjectForm;
 
-// export default ProjectForm;
+   // React Redux (connect)---------------
 
-// React Redux (connect)---------------
+   const mapDispatchToProps = {
+     onSave: saveProject
+   };
 
-const mapDispatchToProps = {
-onSave: saveProject
-};
+   export default connect(
+   null,
+   mapDispatchToProps
+   )(ProjectForm);
 
-export default connect(
-null,
-mapDispatchToProps
-)(ProjectForm);
-
-```
+   ```
 
 2. Provide the store.
 
    - This was already done in `src\App.js` because it is inherited from the parent Page component: Page =>List=>Form.
 
-3. In the `ProjectList` component, keep `onSave` in the `propTypes` but update the `render` method to not pass `onSave` to `<ProjectForm>` as it is now automatically connected to that Redux action via the `Provider`.
+3. In the `ProjectList` component, update the `render` method to not pass `onSave` to `<ProjectForm>` as it is now automatically connected to that Redux action via the `Provider`.
 
    #### `src\Projects\ProjectList.js`
 
@@ -265,7 +192,7 @@ mapDispatchToProps
      state = {
        editingProject: {}
      };
-     handleEdit = (project) => {
+     handleEdit = (project: Project) => {
        this.setState({ editingProject: project });
      };
 
@@ -277,8 +204,8 @@ mapDispatchToProps
    -   const { projects, onSave } = this.props;
    +    const { projects } = this.props;
 
-       let item;
-       const items = projects.map((project) => {
+       let item: JSX.Element;
+       const items = projects.map((project: Project) => {
          if (project !== this.state.editingProject) {
            item = (
              <div key={project.id} className="cols-sm">
@@ -307,11 +234,6 @@ mapDispatchToProps
        return <div className="row">{items}</div>;
      }
    }
-
-   ProjectList.propTypes = {
-     projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
-     onSave: PropTypes.func.isRequired
-   };
    ```
 
 4. **Verify** the application still works including loading and updating the projects.

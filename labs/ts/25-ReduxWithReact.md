@@ -15,104 +15,101 @@
 
    > Make sure you are in Project**s**Page.tsx not ProjectPage.tsx.
 
-```diff
-import React, { Fragment, useEffect } from 'react';
-import ProjectList from './ProjectList';
-import { Project } from './Project';
-+ import { useSelector, useDispatch } from 'react-redux';
-+ import { AppState } from '../state';
+   ```diff
+   import React, { Fragment, useEffect } from 'react';
+   import ProjectList from './ProjectList';
+   import { Project } from './Project';
+   + import { useSelector, useDispatch } from 'react-redux';
+   + import { AppState } from '../state';
 
-function ProjectsPage() {
--  const [projects, setProjects] = useState<Project[]>([]);
--  const [loading, setLoading] = useState(false);
--  const [error, setError] = useState(undefined);
--  const [currentPage, setCurrentPage] = useState(1);
+   function ProjectsPage() {
+   -  const [projects, setProjects] = useState<Project[]>([]);
+   -  const [loading, setLoading] = useState(false);
+   -  const [error, setError] = useState(undefined);
+   -  const [currentPage, setCurrentPage] = useState(1);
 
-+  const loading = useSelector(
-+    (appState: AppState) => appState.projectState.loading
-+  );
-+  const projects = useSelector(
-+    (appState: AppState) => appState.projectState.projects
-+  );
-+  const error = useSelector(
-+    (appState: AppState) => appState.projectState.error
-+  );
-+  const currentPage = useSelector(
-+    (appState: AppState) => appState.projectState.page
-+  );
-+  const dispatch = useDispatch();
+   +  const loading = useSelector(
+   +    (appState: AppState) => appState.projectState.loading
+   +  );
+   +  const projects = useSelector(
+   +    (appState: AppState) => appState.projectState.projects
+   +  );
+   +  const error = useSelector(
+   +    (appState: AppState) => appState.projectState.error
+   +  );
+   +  const currentPage = useSelector(
+   +    (appState: AppState) => appState.projectState.page
+   +  );
+   +  const dispatch = useDispatch();
 
-...
-}
-```
+   ...
+   }
+   ```
 
 1. Replace state setter function calls and API calls with calls to dispatch passing action creators.
 
-#### `src\projects\ProjectsPage.tsx`
+   #### `src\projects\ProjectsPage.tsx`
 
-```diff
-- import { Project } from './Project';
-+ import { loadProjects } from './state/projectActions';
+   ```diff
+   - import { Project } from './Project';
+   + import { loadProjects } from './state/projectActions';
 
-function ProjectsPage() {
-  ...
-  const dispatch = useDispatch();
+   function ProjectsPage() {
+     ...
+     const dispatch = useDispatch();
 
+   -  useEffect(() => {
+   -    setLoading(true);
+   -    projectAPI
+   -      .get(currentPage)
+   -      .then((data) => {
+   -        setLoading(false);
+   -        if (currentPage === 1) {
+   -          setProjects(data);
+   -        } else {
+   -          setProjects((projects) => [...projects, ...data]);
+   -        }
+   -      })
+   -      .catch((e) => {
+   -        setLoading(false);
+   -        setError(e.message);
+   -      });
+   -  }, [currentPage]);
 
--  useEffect(() => {
--    setLoading(true);
--    projectAPI
--      .get(currentPage)
--      .then((data) => {
--        setLoading(false);
--        if (currentPage === 1) {
--          setProjects(data);
--        } else {
--          setProjects((projects) => [...projects, ...data]);
--        }
--      })
--      .catch((e) => {
--        setLoading(false);
--        setError(e.message);
--      });
--  }, [currentPage]);
+   +  useEffect(() => {
+   +    dispatch(loadProjects(1));
+   +  }, [dispatch]);
 
-+  useEffect(() => {
-+    dispatch(loadProjects(1));
-+  }, [dispatch]);
+     const handleMoreClick = () => {
+   -    setCurrentPage((currentPage) => currentPage + 1);
+   +    dispatch(loadProjects(currentPage + 1));
+     };
 
-  const handleMoreClick = () => {
--    setCurrentPage((currentPage) => currentPage + 1);
-+    dispatch(loadProjects(currentPage + 1));
-  };
+   -  const saveProject = (project: Project) => {
+   -    projectAPI
+   -      .put(project)
+   -      .then((updatedProject) => {
+   -        let updatedProjects = projects.map((p: Project) => {
+   -          return p.id === project.id ? project : p;
+   -        });
+   -        setProjects(updatedProjects);
+   -      })
+   -      .catch((e) => {
+   -        setError(e.message);
+   -      });
+   -  };
 
--  const saveProject = (project: Project) => {
--    projectAPI
--      .put(project)
--      .then((updatedProject) => {
--        let updatedProjects = projects.map((p: Project) => {
--          return p.id === project.id ? project : p;
--        });
--        setProjects(updatedProjects);
--      })
--      .catch((e) => {
--        setError(e.message);
--      });
--  };
-
-
-
-  return (
-    <Fragment>
-      ...
--      <ProjectList onSave={saveProject} projects={projects} />
-+      <ProjectList projects={projects} />
-      ...
-    </Fragment>
-  );
-}
-...
-```
+     return (
+       <Fragment>
+         ...
+   -      <ProjectList onSave={saveProject} projects={projects} />
+   +      <ProjectList projects={projects} />
+         ...
+       </Fragment>
+     );
+   }
+   ...
+   ```
 
 1. Provide the store.
 
@@ -189,63 +186,63 @@ function ProjectsPage() {
 
    #### `src\Projects\ProjectList.tsx`
 
-```diff
-interface ProjectListProps {
-  projects: Project[];
--  onSave: (project: Project) => void;
-}
+   ```diff
+   interface ProjectListProps {
+     projects: Project[];
+   -  onSave: (project: Project) => void;
+   }
 
-interface ProjectListState {
-  editingProject: Project | {};
-}
+   interface ProjectListState {
+     editingProject: Project | {};
+   }
 
-class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
-  state = {
-    editingProject: {}
-  };
-  handleEdit = (project: Project) => {
-    this.setState({ editingProject: project });
-  };
+   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
+     state = {
+       editingProject: {}
+     };
+     handleEdit = (project: Project) => {
+       this.setState({ editingProject: project });
+     };
 
-  cancelEditing = () => {
-    this.setState({ editingProject: {} });
-  };
+     cancelEditing = () => {
+       this.setState({ editingProject: {} });
+     };
 
-  render() {
--   const { projects, onSave } = this.props;
-+    const { projects } = this.props;
+     render() {
+   -   const { projects, onSave } = this.props;
+   +    const { projects } = this.props;
 
-    let item: JSX.Element;
-    const items = projects.map((project: Project) => {
-      if (project !== this.state.editingProject) {
-        item = (
-          <div key={project.id} className="cols-sm">
-            <ProjectCard
-              project={project}
-              onEdit={() => {
-                this.handleEdit(project);
-              }}
-            ></ProjectCard>
-          </div>
-        );
-      } else {
-        item = (
-          <div key={project.id} className="cols-sm">
-            <ProjectForm
-              project={project}
--             onSave={onSave}
-              onCancel={this.cancelEditing}
-            ></ProjectForm>
-          </div>
-        );
-      }
-      return item;
-    });
+       let item: JSX.Element;
+       const items = projects.map((project: Project) => {
+         if (project !== this.state.editingProject) {
+           item = (
+             <div key={project.id} className="cols-sm">
+               <ProjectCard
+                 project={project}
+                 onEdit={() => {
+                   this.handleEdit(project);
+                 }}
+               ></ProjectCard>
+             </div>
+           );
+         } else {
+           item = (
+             <div key={project.id} className="cols-sm">
+               <ProjectForm
+                 project={project}
+   -             onSave={onSave}
+                 onCancel={this.cancelEditing}
+               ></ProjectForm>
+             </div>
+           );
+         }
+         return item;
+       });
 
-    return <div className="row">{items}</div>;
-  }
-}
-```
+       return <div className="row">{items}</div>;
+     }
+   }
+   ```
 
 4. **Verify** the application still works including loading and updating the projects.
 
