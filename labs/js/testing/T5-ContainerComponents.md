@@ -5,6 +5,12 @@
 - [ ] Export the Unconnected Container Component
 - [ ] Test the Container Component
 
+## Redux Notes
+
+> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_. 
+> 
+> In addition, your component will be `<ProjectsPage ...>` instead of `<UnconnectedProjectsPage ...>`
+
 ## Steps
 
 ### Export the Unconnected Container Component

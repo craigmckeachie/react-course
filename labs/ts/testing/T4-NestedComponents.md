@@ -7,6 +7,32 @@
 - [ ] Testing `ProjectForm` Renders
 - [ ] Taking a Snapshot
 
+## Redux Notes
+
+> If you are using Redux in your application you will not have the lines shown below in the code you are testing. Accordingly, you will need to remove these lines from the code in this lab.
+
+#### `src\projects\__tests__\ProjectCardList-test.tsx`
+
+```diff
+...
+describe('<ProjectList />', () => {
+  let wrapper: ShallowWrapper;
+  let mockProjects: Project[];
+-   let handleSave: jest.Mock;
+
+  beforeEach(() => {
+    mockProjects = MOCK_PROJECTS;
+    wrapper = shallow(
+      <ProjectList projects={mockProjects}
+-     onSave={handleSave}
+      />
+    );
+  });
+
+...
+});
+```
+
 ## Steps
 
 ### Test Setup
@@ -503,5 +529,3 @@ import renderer from 'react-test-renderer';
 ---
 
 ### &#10004; You have completed Unit Testing Lab 4
-
-
