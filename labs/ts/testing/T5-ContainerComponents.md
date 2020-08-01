@@ -7,30 +7,8 @@
 
 ## Redux Notes
 
-> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_. 
+> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_.
 > In addition, your component will be `<ProjectsPage ...>` instead of `<UnconnectedProjectsPage ...>`
-
-#### `src\projects\__tests__\ProjectCardList-test.tsx`
-
-```diff
-...
-describe('<ProjectList />', () => {
-  let wrapper: ShallowWrapper;
-  let mockProjects: Project[];
--   let handleSave: jest.Mock;
-
-  beforeEach(() => {
-    mockProjects = MOCK_PROJECTS;
-    wrapper = shallow(
-      <ProjectList projects={mockProjects}
--     onSave={handleSave}
-      />
-    );
-  });
-
-...
-});
-```
 
 ## Steps
 
