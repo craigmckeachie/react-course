@@ -8,7 +8,6 @@
 ## Redux Notes
 
 > If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_. 
-> 
 > In addition, your component will be `<ProjectsPage ...>` instead of `<UnconnectedProjectsPage ...>`
 
 #### `src\projects\__tests__\ProjectCardList-test.tsx`

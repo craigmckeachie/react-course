@@ -9,11 +9,11 @@
 
 ## Redux Notes
 
-> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_. 
-> 
+> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_.
+>
 > In addition, your component will be `<ProjectsPage ...>` instead of `<UnconnectedProjectsPage ...>`
 
-#### `src\projects\__tests__\ProjectCardList-test.tsx`
+#### `src\projects\__tests__\ProjectList-test.tsx`
 
 ```diff
 ...
@@ -42,7 +42,7 @@ describe('<ProjectList />', () => {
 1. **Create** the **file** `src\projects\__tests__\ProjectList-test.js`.
 1. **Add** the **setup** code below to test the component.
 
-   #### `src\projects\__tests__\ProjectCardList-test.js`
+   #### `src\projects\__tests__\ProjectList-test.js`
 
    ```js
    import React from 'react';
@@ -530,5 +530,3 @@ import renderer from 'react-test-renderer';
 ---
 
 ### &#10004; You have completed Unit Testing Lab 4
-
-

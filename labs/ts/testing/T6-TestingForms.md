@@ -5,6 +5,32 @@
 - [ ] Export the Unconnected Form Component
 - [ ] Test the Form Component
 
+## Redux Notes
+
+> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_.
+>
+> In addition, your component will be `<ProjectForm ...>` instead of `<UnconnectedProjectForm ...>`
+
+> If you are using Redux in your application you will not have the lines shown below in the code you are testing. Accordingly, you will need to remove these lines from the code in this lab.
+
+#### `src\projects\__tests__\ProjectForm-test.tsx`
+
+```diff
+...
+-      handleSave = jest.fn();
+      handleCancel = jest.fn();
+      wrapper = shallow(
+        <UnconnectedProjectForm
+          project={project}
+-           onSave={handleSave}
+          onCancel={handleCancel}
+        />
+      );
+
+...
+});
+```
+
 ## Steps
 
 ### Export the Unconnected Form Component
@@ -62,12 +88,12 @@
          id: 1,
          name: 'Mission Impossible',
          description: 'This is really difficult',
-         budget: 100
+         budget: 100,
        });
        updatedProject = new Project({
          name: 'Ghost Protocol',
          description:
-           'Blamed for a terrorist attack on the Kremlin, Ethan Hunt (Tom Cruise) and the entire IMF agency...'
+           'Blamed for a terrorist attack on the Kremlin, Ethan Hunt (Tom Cruise) and the entire IMF agency...',
        });
        handleSave = jest.fn();
        handleCancel = jest.fn();
@@ -202,11 +228,13 @@
         expect(validationErrorWrapper.length).toBe(0);
     });
    ```
+
 1. If you haven't already, **verify** that all the above **tests pass**.
 
    ```shell
     PASS  src/projects/__tests__/ProjectForm-test.tsx
    ```
+
 ---
 
 ### &#10004; You have completed Unit Testing Lab 6

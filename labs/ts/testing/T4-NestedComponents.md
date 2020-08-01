@@ -11,7 +11,7 @@
 
 > If you are using Redux in your application you will not have the lines shown below in the code you are testing. Accordingly, you will need to remove these lines from the code in this lab.
 
-#### `src\projects\__tests__\ProjectCardList-test.tsx`
+#### `src\projects\__tests__\ProjectList-test.tsx`
 
 ```diff
 ...
@@ -40,7 +40,7 @@ describe('<ProjectList />', () => {
 1. **Create** the **file** `src\projects\__tests__\ProjectList-test.tsx`.
 1. **Add** the **setup** code below to test the component.
 
-   #### `src\projects\__tests__\ProjectCardList-test.tsx`
+   #### `src\projects\__tests__\ProjectList-test.tsx`
 
    ```ts
    import React from 'react';
