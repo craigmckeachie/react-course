@@ -1,8 +1,7 @@
 # Outline
 
-# Modern JavaScript & TypeScript
+## Modern JavaScript & TypeScript
 
-### Duration: 1 Day
 
 - [Using JavaScript Package Managers (npm/Yarn)](./concepts/A1-PackageManager.md)
 - [Compiler Setup (Babel)\*\*](./concepts/A2-CompilerSetup.md#setup-babel)
@@ -31,9 +30,8 @@
   - [Other Language Features](./concepts/A4-TypeScript.md#other-language-features)
 - [Debugging JavaScript/TypeScript](./concepts/A22-Debugging.md)
 
-# Introduction to React
+## Introduction to React
 
-### Duration: 2 Days
 
 - [React Overview & Architecture](./concepts/01-React.md)
 - [Comparing React, Angular, & Vue](./concepts/01-React.md#angular-react-compared)
@@ -50,9 +48,8 @@
 - [Conditional Rendering](./concepts/10-ConditionalRendering.md)
 - [Lists](./concepts/11-Lists.md)
 
-# Advanced React
+## Advanced React
 
-### Duration: 2 Days
 
 - [Component Architecture](./concepts/12-ComponentArchitecture.md)
 - [Best Practices (Code Organization & Conventions)](./concepts/A8-BestPractices.md)
@@ -65,9 +62,8 @@
 - [Performance](./concepts/A23-Performance.md)
 - [Security](./concepts/A16-Security.md)
 
-# Redux with React
+## Redux with React
 
-### Duration: 1 Day
 
 - [Redux](./concepts/21-Redux.md)
 - [Using Redux with React (React Redux Library)](./concepts/22-ReactRedux.md)
@@ -75,9 +71,7 @@
 - [Putting It All Together (React & Redux & Thunk)](./concepts/24-ReactReduxThunk.md)
 - [Redux with TypeScript\*](./concepts/A12-ReduxTypeScript.md)
 
-# Unit Testing React
-
-### Duration: 1 Day
+## Unit Testing React
 
 - [Tools (Jest, Jasmine, JSDOM)](./concepts/25-Testing.md#tools)
 - [Syntax](./concepts/25-Testing.md#syntax)
