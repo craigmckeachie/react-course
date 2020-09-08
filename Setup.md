@@ -19,7 +19,15 @@
        npm -v
        ```
      - **Verify** the **version** of each program is **returned**.
-   - Please **DO NOT use** `Node 8.x` or `11.x` or `13.x` for this class.
+   - Please **DO NOT use** `Node 8.x` or `11.x`, `13.x` or `14.x` for this class.
+   - If you one of the older or experimental versions of `Node.js` listed above uninstall it and reinstall a recent **LTS** version.
+     - [How to remove Node.js from Windows](https://stackoverflow.com/a/20711410/48175)
+     ```
+     tldr;
+     1. Uninstall from Programs & Features with the uninstaller.
+     2. Reboot (or you probably can get away with killing all node-related processes from Task Manager).
+     ```
+     - [How to Remove Node.js from Mac OSX](https://stackabuse.com/how-to-uninstall-node-js-from-mac-osx/)
 
 3. **Install** **Create React App** and **verify** a project can be created.
 
