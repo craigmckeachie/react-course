@@ -20,7 +20,7 @@
        ```
      - **Verify** the **version** of each program is **returned**.
    - Please **DO NOT use** `Node 8.x` or `11.x`, `13.x` or `14.x` for this class.
-   - If you one of the older or experimental versions of `Node.js` listed above uninstall it and reinstall a recent **LTS** version.
+   - If you are using one of the older or experimental versions of `Node.js` listed above, uninstall it and reinstall a recent **LTS** version.
      - [How to remove Node.js from Windows](https://stackoverflow.com/a/20711410/48175)
      ```
      tldr;
