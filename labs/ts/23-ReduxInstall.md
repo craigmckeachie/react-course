@@ -43,10 +43,10 @@
      const middlewareEnhancer = applyMiddleware(...middlewares);
 
      //Thunk is middleware
-     //DevTools is an enchancer (actually changes Redux)
+     //DevTools is an enhancer (actually changes Redux)
      //applyMiddleware wraps middleware and returns an enhancer
 
-     // to use only thunk middlewar
+     // to use only thunk middleware
      // const enhancer = compose(middlewareEnhancer);
 
      //to use thunk & devTools
