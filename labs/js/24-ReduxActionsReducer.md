@@ -12,7 +12,7 @@
 ### Define types: actions types, action interfaces, and state
 
 1. **Create** the **directory** `src\projects\state`.
-2. **Create** the **file** `src\projects\projectActions.js`.
+2. **Create** the **file** `src\projects\state\projectActions.js`.
 3. **Define** the **project** `actions types`.
 
    #### `src\projects\state\projectActions.js`
@@ -45,31 +45,31 @@
 
    //action creators
    export function loadProjects(page) {
-     return dispatch => {
+     return (dispatch) => {
        dispatch({ type: LOAD_PROJECTS_REQUEST });
        return projectAPI
          .get(page)
-         .then(data => {
+         .then((data) => {
            dispatch({
              type: LOAD_PROJECTS_SUCCESS,
-             payload: { projects: data, page }
+             payload: { projects: data, page },
            });
          })
-         .catch(error => {
+         .catch((error) => {
            dispatch({ type: LOAD_PROJECTS_FAILURE, payload: error });
          });
      };
    }
 
    export function saveProject(project) {
-     return dispatch => {
+     return (dispatch) => {
        dispatch({ type: SAVE_PROJECT_REQUEST });
        return projectAPI
          .put(project)
-         .then(data => {
+         .then((data) => {
            dispatch({ type: SAVE_PROJECT_SUCCESS, payload: data });
          })
-         .catch(error => {
+         .catch((error) => {
            dispatch({ type: SAVE_PROJECT_FAILURE, payload: error });
          });
      };
@@ -93,7 +93,7 @@
      DELETE_PROJECT_FAILURE,
      SAVE_PROJECT_REQUEST,
      SAVE_PROJECT_SUCCESS,
-     SAVE_PROJECT_FAILURE
+     SAVE_PROJECT_FAILURE,
    } from './projectActions';
    import { Project } from '../Project';
 
@@ -101,7 +101,7 @@
      projects: [],
      loading: false,
      error: undefined,
-     page: 1
+     page: 1,
    };
 
    export function projectReducer(state = initialProjectState, action) {
@@ -121,7 +121,7 @@
            loading: false,
            page,
            projects,
-           error: ''
+           error: '',
          };
        case LOAD_PROJECTS_FAILURE:
          return { ...state, loading: false, error: action.payload.message };
@@ -131,16 +131,16 @@
          if (action.payload.isNew) {
            return {
              ...state,
-             projects: [...state.projects, action.payload]
+             projects: [...state.projects, action.payload],
            };
          } else {
            return {
              ...state,
-             projects: state.projects.map(project => {
+             projects: state.projects.map((project) => {
                return project.id === action.payload.id
                  ? Object.assign(new Project(), project, action.payload)
                  : project;
-             })
+             }),
            };
          }
 
@@ -152,8 +152,8 @@
          return {
            ...state,
            projects: state.projects.filter(
-             project => project.id !== action.payload.id
-           )
+             (project) => project.id !== action.payload.id
+           ),
          };
        case DELETE_PROJECT_FAILURE:
          return { ...state, error: action.payload.message };
@@ -175,10 +175,10 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { combineReducers } from 'redux';
-+ import {
-+   projectReducer,
-+   initialProjectState
-+ } from './projects/state/projectReducer';
+
++ import { ProjectState } from './projects/state/projectTypes';
++ import { initialProjectState } from './projects/state/projectReducer';
++ import { projectReducer } from './projects/state/projectReducer';
 
 const reducer = combineReducers({
 +  projectState: projectReducer
