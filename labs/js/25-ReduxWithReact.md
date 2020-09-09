@@ -52,7 +52,10 @@
 
    ```diff
    - import { Project } from './Project';
-   + import { loadProjects } from './state/projectActions';
+   - import { projectAPI } from './projectAPI';
+
+   - import React, { Fragment, useState, useEffect } from 'react';
+   + import React, { Fragment, useEffect } from 'react';
 
    function ProjectsPage() {
      ...

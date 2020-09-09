@@ -52,6 +52,11 @@
 
    ```diff
    - import { Project } from './Project';
+   - import { projectAPI } from './projectAPI';
+
+   - import React, { Fragment, useState, useEffect } from 'react';
+   + import React, { Fragment, useEffect } from 'react';
+
    + import { loadProjects } from './state/projectActions';
 
    function ProjectsPage() {
