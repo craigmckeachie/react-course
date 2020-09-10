@@ -117,8 +117,8 @@ const ProjectCardSkeleton = (props: any) => (
     height={404}
     width={330}
     speed={3}
-    backgroundColor="#bababa"
-    foregroundColor="#8f8f8f"
+    backgroundColor="#e0e0e0"
+    foregroundColor="#c7c7c7"
     {...props}
   >
     <rect x="6" y="3" rx="10" ry="10" width="330" height="192" />
@@ -132,95 +132,66 @@ const ProjectCardSkeleton = (props: any) => (
 export default ProjectCardSkeleton;
 ```
 
-4. Pass the `ProjectsPage` component's `loading` state into `ProjectList` as a `prop` and remove the current `div` that displays the loading spinner.
+> Use the [Create React Content Loader (skeletonreact.com)](https://skeletonreact.com/) site to create your own skeleton. Note that if you scroll down there are lots of examples.
+
+4. Create the `ProjectListSkeleton` component by listing multiple `ProjectCardSkeleton` components.
+
+#### `src\projects\ProjectListSkeleton.tsx`
+
+```ts
+import React from 'react';
+import ProjectCardSkeleton from './ProjectCardSkeleton';
+
+const ProjectListSkeleton = () => {
+  const numberOfItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const items = numberOfItems.map((item) => <ProjectCardSkeleton key={item} />);
+  return <div className="row">{items}</div>;
+};
+
+export default ProjectListSkeleton;
+```
+
+5. Use the `ProjectsPage` component's `loading` state to determine when to display the `ProjectListSkeleton`. Also, remove the current loading spinner.
 
 #### `src\projects\ProjectsPage.tsx`
 
 ```diff
 ...
-- <ProjectList projects={projects}></ProjectList>
-+ <ProjectList projects={projects} loading={loading}></ProjectList>
++ import ProjectListSkeleton from './ProjectListSkeleton';
 
+function ProjectsPage() {
 ...
+  return (
+    <Fragment>
+      <h1>Projects</h1>
+      ...
 
-- {loading && (
--   <div className="center-page">
--     <span className="spinner primary"></span>
--     <p>Loading...</p>
--   </div>
-- )}
++   {loading && <ProjectListSkeleton />}
+    <ProjectList projects={projects}></ProjectList>
+    ...
 
-```
+  - {loading && (
+  -   <div className="center-page">
+  -     <span className="spinner primary"></span>
+  -     <p>Loading...</p>
+  -   </div>
+  - )}
+  </Fragment>
 
-5. Use the `ProjectList` component's `loading` prop to render either the `ProjectCardSkeleton` or the `ProjectCard`.
-
-#### `src\projects\ProjectList.tsx`
-
-```diff
-...
-+ import ProjectCardSkeleton from './ProjectCardSkeleton';
-
-interface ProjectListProps {
-  projects: Project[];
-+  loading: boolean;
+  );
 }
+export default ProjectsPage;
 
-...
-
-class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
-  ...
-
-  render() {
--    const { projects } = this.props;
-+    const { projects, loading } = this.props;
-
-    let item: JSX.Element;
-    const items = projects.map((project: Project) => {
-      if (project !== this.state.editingProject) {
-        item = (
-          <div key={project.id} className="cols-sm">
--            <ProjectCard
--              project={project}
--              onEdit={() => {
--                this.handleEdit(project);
--              }}
--            ></ProjectCard>
-
-+            {loading && <ProjectCardSkeleton />}
-+            {!loading && (
-+              <ProjectCard
-+                project={project}
-+                onEdit={() => {
-+                  this.handleEdit(project);
-+                }}
-+              ></ProjectCard>
-+            )}
-          </div>
-        );
-      } else {
-        item = (
-          <div key={project.id} className="cols-sm">
-            <ProjectForm project={project} onCancel={this.cancelEditing} />
-          </div>
-        );
-      }
-      return item;
-    });
-
-    return <div className="row">{items}</div>;
-  }
-}
-
-export default ProjectList;
 ```
 
 6. Verify the application displays the skeleton screen as shown below.
 
    a.
-   ![image](https://user-images.githubusercontent.com/1474579/92786562-579fc380-f376-11ea-932f-3f966c5445ef.png)
 
-   b.
-   ![image](https://user-images.githubusercontent.com/1474579/92786648-6be3c080-f376-11ea-92f7-92e188cedc10.png)
+![image](https://user-images.githubusercontent.com/1474579/92809324-832ca900-f38a-11ea-9fe6-c1dcb5a6b9e1.png)
+
+b.
+![image](https://user-images.githubusercontent.com/1474579/92786648-6be3c080-f376-11ea-92f7-92e188cedc10.png)
 
 7. Remove the delay from the API call.
 
