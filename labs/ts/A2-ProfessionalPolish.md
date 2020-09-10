@@ -225,7 +225,7 @@ const projectAPI = {
 - [CSS Skeleton Screen Generator](http://www.andy-howard.com/css-skeleton-screen-generator/)
 - [CSS Skeleton Screen Codepen Example](https://codepen.io/shahbokhari/pen/oBbmXG)
 
-## Page Transitions
+<!-- ## Page Transitions
 
 ## Alerts & Confirmations
 
@@ -233,4 +233,4 @@ const projectAPI = {
 
 ## Colors
 
-## Icons
+## Icons -->
