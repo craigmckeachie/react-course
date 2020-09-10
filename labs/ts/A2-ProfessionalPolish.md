@@ -60,7 +60,11 @@ The finished solution code for this optional lab is available in the `makeover` 
 
 - Open `Chrome DevTools` > `Network Tab` > in the dropdown at the top change `Online` to `Fast 3g` to see the splash screen more easily.
 
+![image](https://user-images.githubusercontent.com/1474579/92810015-241b6400-f38b-11ea-9115-bc2df157c754.png)
+
 > The splash-screen svg is a logo with animation to fade in and out to produce an effect like Gmail when the app first loads.
+
+
 
 ## Skeleton Screen
 
