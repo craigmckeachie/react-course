@@ -88,7 +88,7 @@ React doesn’t have opinions on how you put files into folders. That said there
    - Not creating folders can keep make smaller projects easier to navigate. This "keeps it simple."
    - Creating additional folders can result in too much nesting
 
-3. If you do create a separate folder for a compoment, should you:
+3. If you do create a separate folder for a component, should you:
 
 - name the file with the same name as the component?
 
@@ -159,11 +159,8 @@ React doesn’t have opinions on how you put files into folders. That said there
 
 4. How you should handle (where to put) container components?
    - There is no clear guidance on this but here is an approach.
-   - components/component-name
-     - css | scss | styles
+     - components/component-name
      - container
-     - redux, mobx
-     - index
        > See [File Layout that Considers Container & Redux Components](https://itnext.io/optimal-file-structure-for-react-applications-66287250b42) for more information
 5. If I use [Redux what should my file or code structure](https://redux.js.org/faq/code-structure) look like?
 
@@ -212,7 +209,8 @@ If you need to use create a static React website you should consider using [Gats
 ## Code Organization
 
 - [React Documentation: File Structure](https://reactjs.org/docs/faq-structure.html)
-  https://stackoverflow.com/questions/49276070/reactjs-code-naming-conventions
+- [Stackoverflow: React Code Naming Conventions](https://stackoverflow.com/questions/49276070/reactjs-code-naming-conventions)
+- [React Folder Structure](https://www.robinwieruch.de/react-folder-structure)
 - [Dan Abramov File Structure Comment on Twitter](https://mobile.twitter.com/dan_abramov/status/1027248875072114689)
 - [Ways to Structure React App](https://hackernoon.com/the-100-correct-way-to-structure-a-react-app-or-why-theres-no-such-thing-3ede534ef1ed)
 - [Components having own folder should have a component file with the same name](https://blog.bitsrc.io/structuring-a-react-project-a-definitive-guide-ac9a754df5eb)
