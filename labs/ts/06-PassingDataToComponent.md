@@ -43,7 +43,7 @@
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-   import React from 'react';
+   import React, { Fragment } from 'react';
    import { MOCK_PROJECTS } from './MockProjects';
    + import ProjectList from './ProjectList';
 

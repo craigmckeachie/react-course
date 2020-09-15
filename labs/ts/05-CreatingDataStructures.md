@@ -10,11 +10,11 @@
 ### Add data
 
 1. Open File Explorer (Windows) or Finder (Mac).
-1. **Copy** the `labs\snippets\lab05\assets` directory into the `keeptrack\public` directory.
+1. **Copy** the `labs\ts\snippets\lab05\assets` directory into the `keeptrack\public` directory.
 
    > You will need to clone the entire `react-course` repo (or download a zip) to your local machine to easily download all the files needed in this step and the next step.
 
-1. **Copy** the files `labs\snippets\lab05\MockProjects.ts` and `labs\snippets\lab05\Project.ts` into the `keeptrack\src\projects` directory.
+1. **Copy** the files `labs\ts\snippets\lab05\MockProjects.ts` and `labs\ts\snippets\lab05\Project.ts` into the `keeptrack\src\projects` directory.
 
 <!-- <a href=".\snippets\lab05\assets" target="_blank">assets</a> -->
 
