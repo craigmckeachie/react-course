@@ -40,17 +40,12 @@
    #### `src\App.tsx`
 
    ```diff
-   ...
-   + import ProjectsPage from './projects/ProjectsPage';
-
-   const App: React.FC = () => {
-   return (
+   function App() {
    -     <blockquote cite="Benjamin Franklin">
    -     Tell me and I forget, teach me and I may remember, involve me and I learn.
    -     </blockquote>
-   +     <ProjectsPage />
-   );
-   };
+   + return <ProjectsPage />;
+   }
    ```
 
 2. **Verify** the following is displayed in the browser:
