@@ -19,7 +19,6 @@
   - [Dependencies](#dependencies)
   - [Reference](#reference)
 
-
 ## Create New ES6 Project
 
 [Create React App](https://facebook.github.io/create-react-app/) is an officially supported way to create single-page React
@@ -52,13 +51,13 @@ yarn create react-app my-app
 ### npm
 
 ```sh
-npx create-react-app my-app --use-npm --typescript
+npx create-react-app my-app --use-npm --template typescript
 ```
 
 ### Yarn
 
 ```
-yarn create react-app my-app --typescript
+yarn create react-app my-app --template typescript
 ```
 
 1. Then open [http://localhost:3000/](http://localhost:3000/) to see your app.
