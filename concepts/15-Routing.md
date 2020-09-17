@@ -1,6 +1,7 @@
 # Chapter 15: Routing
 
 - [Chapter 15: Routing](#chapter-15-routing)
+  - [Overview](#overview)
   - [Installation](#installation)
   - [Basics](#basics)
     - [Not Found (404)](#not-found-404)
@@ -9,6 +10,16 @@
     - [URL Parameters](#url-parameters)
     - [Query Parameters](#query-parameters)
   - [Nesting](#nesting)
+
+## Overview
+
+- Similar in function to a server-side router in an MVC framework
+  - Associates a route (url) with a particular controller action
+- React Router switches between (page/container) components when a route changes
+- Back button is broken by default when page/container components change
+  - the browser's history is not updated with a new url when page/container components change
+  - React Router programmatically adds entries to the browser's history
+  - enables the back button to work in React applications
 
 There are two versions:
 
@@ -49,7 +60,7 @@ There are two versions:
      Prompt,
      Switch,
      Redirect,
-     NavLink
+     NavLink,
    } = window.ReactRouterDOM;
    ```
 
@@ -98,7 +109,7 @@ const {
   Prompt,
   Switch,
   Redirect,
-  NavLink
+  NavLink,
 } = window.ReactRouterDOM;
 
 function Home() {
@@ -310,7 +321,7 @@ const movies = [
     // tslint:disable-next-line:max-line-length
     'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire/`s world-destroying battle-station while also attempting to rescue Princess Leia from the evil Darth Vader.',
     'Action'
-  )
+  ),
 ];
 ```
 
@@ -318,7 +329,7 @@ const movies = [
 
 ```js
 function Movies(props) {
-  const movieListItems = props.movies.map(movie => (
+  const movieListItems = props.movies.map((movie) => (
     <li key={movie.id}>
       <Link to={`${props.match.url}/${movie.id}`}>{movie.name}</Link>
     </li>
@@ -358,7 +369,7 @@ function Movies(props) {
 //works but not ideal
 <Route
   path="/movies"
-  component={props => <Movies {...props} movies={movies} />}
+  component={(props) => <Movies {...props} movies={movies} />}
 />
 ```
 
@@ -366,7 +377,7 @@ function Movies(props) {
 //works but not ideal
 <Route
   path="/movies"
-  component={props => <Movies {...props} movies={movies} />}
+  component={(props) => <Movies {...props} movies={movies} />}
 />
 ```
 
@@ -379,7 +390,7 @@ function Movies(props) {
 <Route
   exact
   path="/movies"
-  render={props => <Movies {...props} movies={movies} />}
+  render={(props) => <Movies {...props} movies={movies} />}
 />
 ```
 
@@ -403,7 +414,7 @@ function Movies(props) {
 function MovieDetail(props) {
   const path = props.match.path;
   const movieId = Number(props.match.params.id);
-  const movie = movies.find(movie => movie.id === movieId);
+  const movie = movies.find((movie) => movie.id === movieId);
 
   return (
     <div>
@@ -505,11 +516,11 @@ Modify the `Movies` component to filter by movie type (genre).
      let queryParams = new URLSearchParams(location.search);
      let type = queryParams.get('type');
      if (type) {
-       movies = allMovies.filter(movie => movie.type === type);
+       movies = allMovies.filter((movie) => movie.type === type);
      } else {
        movies = allMovies;
      }
-     const movieListItems = movies.map(movie => (
+     const movieListItems = movies.map((movie) => (
        <li key={movie.id}>
          <Link to={`${match.url}/${movie.id}`}>{movie.name}</Link>
        </li>
