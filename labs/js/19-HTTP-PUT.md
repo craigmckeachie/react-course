@@ -35,7 +35,7 @@
    +          'There was an error updating the project. Please try again.'
    +        );
    +      });
-   +  }
+   +  },
 
    };
    ```
