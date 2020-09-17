@@ -1,12 +1,20 @@
 # Chapter 5: Components
 
 - [Chapter 5: Components](#chapter-5-components)
+  - [Overview](#overview)
   - [Creating an Element](#creating-an-element)
   - [Creating a Function Component](#creating-a-function-component)
   - [Rendering a Component](#rendering-a-component)
   - [Creating a Class Component](#creating-a-class-component)
   - [Composing & Reuse](#composing--reuse)
   - [Reference](#reference)
+
+## Overview
+
+Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components.
+<br/>
+
+> Use the React DevTools in Chrome to inspect the application we will build during the labs and show the component hierarchy. Use the solution code from Lab 16.
 
 ## Creating an Element
 
@@ -52,7 +60,7 @@ Function and class components are rendered the same way.
        in helloWorld
    ```
 
-1. Open the [Babel REPL](https://babeljs.io/repl)
+1. Open the [JavaScript Compiler Babel's REPL](https://babeljs.io/repl) or the [TypeScript Playground](https://www.typescriptlang.org/play?#code/Q) depending on which language you are using to build your React applications.
 1. Paste `<helloWorld />` in the left pane.
 1. The following will display in the right pane: `React.createElement("helloWorld", null);`
    > Note that `helloWorld` is a string similar to `div` compiling to `React.createElement("div", null);`
