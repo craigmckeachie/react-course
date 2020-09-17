@@ -5,6 +5,7 @@
   - [What is State?](#what-is-state)
   - [Benefits](#benefits)
     - [Benefit Checklist](#benefit-checklist)
+  - [When do you need Redux?](#when-do-you-need-redux)
   - [Principles of Redux](#principles-of-redux)
   - [Core Concepts](#core-concepts)
     - [State](#state)
@@ -13,7 +14,6 @@
     - [Store](#store)
     - [Developer Tools](#developer-tools)
   - [Complementary Packages](#complementary-packages)
-  - [When do you need Redux?](#when-do-you-need-redux)
   - [Demos](#demos)
     - [Counter Demo](#counter-demo)
     - [Debugging & Time Traveling Demo](#debugging--time-traveling-demo)
@@ -70,6 +70,17 @@
 > "Redux is not great for making simple things quickly.
 > It's great for making really hard things simple." - Jani Evakallio
 
+## When do you need Redux?
+
+- Persist state to a local storage on the client and then boot up from it, out of the box.
+- Pre-fill state on the server, send it to the client in HTML, and boot up from it, out of the box.
+- Serialize user actions and attach them, together with a state snapshot, to automated bug reports, so that the product developers can replay them to reproduce the errors.
+- Pass action objects over the network to implement collaborative environments without dramatic changes to how the code is written.
+- Maintain an undo history or implement optimistic mutations without dramatic changes to how the code is written.
+- Travel between the state history in development, and re-evaluate the current state from the action history when the code changes, a la TDD.
+- Provide full inspection and control capabilities to the development tooling so that product developers can build custom tools for their apps.
+- Provide alternative UIs while reusing most of the business logic.
+
 ## Principles of Redux
 
 1. Single source of truth
@@ -81,9 +92,9 @@
 let appState = {
   todos: [
     { text: 'Consider using Redux', completed: true },
-    { text: 'Keep all state in a single tree', completed: false }
+    { text: 'Keep all state in a single tree', completed: false },
   ],
-  visibilityFilter: 'SHOW_ALL'
+  visibilityFilter: 'SHOW_ALL',
 };
 ```
 
@@ -129,9 +140,9 @@ store.dispatch({ type: 'ADD_TODO', text: 'Learn Redux' });
   let appState = {
     todos: [
       { text: 'Consider using Redux', completed: true },
-      { text: 'Keep all state in a single tree', completed: false }
+      { text: 'Keep all state in a single tree', completed: false },
     ],
-    visibilityFilter: 'SHOW_ALL'
+    visibilityFilter: 'SHOW_ALL',
   };
   ```
 
@@ -168,7 +179,7 @@ const ADD_TODO = 'ADD_TODO'
 function addTodo(text) {
   return {
     type: ADD_TODO,
-    text
+    text,
   };
 }
 ```
@@ -215,17 +226,6 @@ Redux by itself is often not enough to build a real application. You will need t
 
 The next few chapters provide more detail on each of these commonly used complementary packages.
 
-## When do you need Redux?
-
-- Persist state to a local storage on the client and then boot up from it, out of the box.
-- Pre-fill state on the server, send it to the client in HTML, and boot up from it, out of the box.
-- Serialize user actions and attach them, together with a state snapshot, to automated bug reports, so that the product developers can replay them to reproduce the errors.
-- Pass action objects over the network to implement collaborative environments without dramatic changes to how the code is written.
-- Maintain an undo history or implement optimistic mutations without dramatic changes to how the code is written.
-- Travel between the state history in development, and re-evaluate the current state from the action history when the code changes, a la TDD.
-- Provide full inspection and control capabilities to the development tooling so that product developers can build custom tools for their apps.
-- Provide alternative UIs while reusing most of the business logic.
-
 ## Demos
 
 ### Counter Demo
@@ -240,9 +240,9 @@ npm install --save redux react-redux redux-thunk
 
 ```diff
 <script src="/node_modules/react-router-dom/umd/react-router-dom.js"></script>
-+ <script src="node_modules/redux/dist/redux.js"></script>
-+ <script src="node_modules/redux-thunk/dist/redux-thunk.js"></script>
-+ <script src="node_modules/react-redux/dist/react-redux.js"></script>
++ <script src="/node_modules/redux/dist/redux.js"></script>
++ <script src="/node_modules/redux-thunk/dist/redux-thunk.js"></script>
++ <script src="/node_modules/react-redux/dist/react-redux.js"></script>
 ...
 ```
 
