@@ -45,6 +45,8 @@ There are two versions:
        <script type="text/babel" src="/main.jsx"></script>
    ```
 
+   > ! Be sure that the `main.jsx` script tag's src attribute starts with a `/` or the router will not work properly when you refresh the page.
+
 3. Log the `RouterRouterDOM` to verify it is installed properly
 
    - Also export the common components so they are easier to use

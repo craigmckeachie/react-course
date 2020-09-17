@@ -61,12 +61,16 @@ One might confuse elements with a more widely known concept of “components”.
     > If your editor supports `Emmet` you can use the code snippet `div#root`
 
 6.  Add the following script tag to reference a JavaScript file that we will create in the next step.
+
     ```diff
     <body>
     <div id="root"></div>
     + <script type="text/javascript" src="/main.jsx"></script>
     </body>
     ```
+
+    > ! Be sure that the `main.jsx` script tag's src attribute starts with a `/` or the later router examples will not work properly when you refresh the page.
+
 7.  Create a new file `demos/main.jsx`
 8.  Add the following code to `demos/main.jsx`
 
@@ -88,7 +92,6 @@ One might confuse elements with a more widely known concept of “components”.
     > --yes : tells npm says yes to accepting all the default values in the npm config file
 
 10. Install a web server
-
 
     ```sh
     npm install serve
@@ -168,7 +171,7 @@ Hello World in JavaScript is not that different than it is in React. Let's updat
    const element = React.createElement(
      'div',
      {
-       className: 'container'
+       className: 'container',
      },
      'Hello World'
    );
@@ -233,8 +236,8 @@ const element = {
   type: 'div',
   props: {
     className: 'container',
-    children: 'Hello World'
-  }
+    children: 'Hello World',
+  },
 };
 ```
 
