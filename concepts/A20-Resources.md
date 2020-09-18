@@ -6,6 +6,7 @@
 
 ## Example Application:
 
+- [Examples of Production Grade Open Source React Apps](https://maxrozen.com/examples-of-large-production-grade-open-source-react-apps/)
 - [Color Picker: Microsoft Community Content](https://github.com/microsoft/TechnicalCommunityContent/tree/master/Web%20Frameworks/React/Session%203%20-%20Hands%20On)
 - [Medium Blog Clone: Thinkster](https://github.com/gothinkster/react-redux-realworld-example-app)
 - [Learning React & Redux OReilly Book](https://github.com/MoonHighway/learning-react)
