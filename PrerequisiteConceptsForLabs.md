@@ -20,7 +20,6 @@
 - JSX
 - Virtual DOM
 
- 
 ## Part 3
 
 #### Concepts
@@ -107,25 +106,24 @@
 
 #### Concepts
 
-- Build & Deploy
-
-#### Labs
-
-- Lab 22: Build & Deploy
-
-
-# Advanced (Days 4 & 5)
-
-## Part 10
-
-#### Concepts
-
 - Routing (using React Router)
 
 #### Labs
 
 - Lab 20: Router Basics
 - Lab 21: Route Parameters
+
+## Part 10
+
+#### Concepts
+
+- Build & Deploy
+
+#### Labs
+
+- Lab 22: Build & Deploy
+
+# Advanced (Days 4 & 5)
 
 ## Part 11
 
@@ -144,14 +142,14 @@
 - Lab 24: Redux Actions & Reducer
 - Lab 25: Redux with React
 
-
 ## Part 12
 
 #### Concepts
 
 - Testing
-  
+
 #### Labs
+
 - Unit Testing Lab 1: Shallow Rendering with Enzyme
 - Unit Testing Lab 2: Snapshot Tests
 - Unit Testing Lab 3: Testing Props
