@@ -36,7 +36,8 @@ If you have existing `USER SETTINGS` you will want to **add** the following sett
 }
 ```
 
-6. Create a new directory named `code` (it is recommended to make `code` a sibling to the `docs` directory) where you will write code during the course and copy [prettier.config.js](./concepts/snippets/prettier.config.js) into it.
+6. Create a directory (somewhere on your computer that you would easily remember) named `code` where you will write code during the course.
+7. Copy [prettier.config.js](./concepts/snippets/prettier.config.js) into the `code` directory.
 
 ## Install a font for programming (optional)
 

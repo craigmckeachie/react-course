@@ -18,8 +18,8 @@ Labs can be skipped by attendees who:
 
 ### Backup your current code
 
-1. Close any editor(s) and command prompt(s) or terminal(s) related to your working copy of the course labs in the directory `working\keeptrack`.
-1. Rename `working\keeptrack` to `working\keeptrack_bkup1` or something similar.
+1. Close any editor(s) and command prompt(s) or terminal(s) related to your working copy of the course labs in the directory `code\keeptrack`.
+1. Rename `code\keeptrack` to `code\keeptrack_bkup1` or something similar.
 
 ### Download code
 
@@ -59,12 +59,12 @@ Download the completed code for the lab **before** the one you would like to wor
 + keeptrack.zip
 ```
 
-4.  Copy `keeptrack.zip` into `working\keeptrack.zip`.
+4.  Copy `keeptrack.zip` into `code\keeptrack.zip`.
 5.  Unzip the file.
 
 ### Install dependencies
 
-1. Open a command prompt (Windows) or terminal (Mac) in `working\keeptrack`.
+1. Open a command prompt (Windows) or terminal (Mac) in `code\keeptrack`.
 1. Run the command.
    ```shell
    npm install
@@ -73,7 +73,7 @@ Download the completed code for the lab **before** the one you would like to wor
    ```shell
    npm start
    ```
-1. If you are working a lab which requires the backend api (lab 17 or later). Open another command-line or terminal. Run the command.
+1. If you are working on a lab which requires the backend api (lab 17 or later). Open another command-line or terminal. Run the command.
    ```shell
    npm run api
    ```
