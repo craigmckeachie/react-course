@@ -2,7 +2,7 @@
 
 ## Comparisons
 
-[Chart comparing React UI Component Projects](https://www.npmtrends.com/@material-ui/core-vs-react-bootstrap-vs-antd-vs-reactstrap-vs-material-ui-vs-@atlaskit/theme-vs-grommet-vs-@fluentui/react-vs-gestalt)
+[Chart comparing React UI Component Projects](https://www.npmtrends.com/@material-ui/core-vs-react-bootstrap-vs-antd-vs-reactstrap-vs-@atlaskit/theme-vs-grommet-vs-@fluentui/react-vs-gestalt)
 
 - Google: [Material UI](https://material-ui.com/)
 - Twitter: [React Bootstrap](https://react-bootstrap.github.io/)
@@ -17,7 +17,6 @@
 react-bootstrap
 antd
 reactstrap
-material-ui
 @atlaskit/theme
 grommet
 @fluentui/react -->
