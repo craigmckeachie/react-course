@@ -6,6 +6,7 @@
   - [CSS in JS](#css-in-js)
       - [What is CSS-in-JS?](#what-is-css-in-js)
       - [CSS-in-JS Libraries](#css-in-js-libraries)
+  - [Classnames Library](#classnames-library)
   - [Reference](#reference)
 
 Components can be styled using CSS classes or inline styles as you would in when using plain HTML and CSS without React.
@@ -162,6 +163,14 @@ _Note that this functionality is not a part of React, but provided by third-part
 - [emotion](https://emotion.sh)
 
 Read a comparison of CSS-in-JS libraries [here](https://github.com/MicheleBertoli/css-in-js).
+
+## Classnames Library
+
+A simple JavaScript utility for conditionally joining className(s) together.
+
+This library used to be part of React and has been pulled out into a library that can be extremely helpful.
+
+- [Adding and Removing CSS Classes Library](https://www.npmjs.com/package/classnames#usage-with-reactjs)
 
 ## Reference
 

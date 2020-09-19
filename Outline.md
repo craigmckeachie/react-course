@@ -2,7 +2,6 @@
 
 ## Modern JavaScript & TypeScript
 
-
 - [Using JavaScript Package Managers (npm/Yarn)](./concepts/A1-PackageManager.md)
 - [Compiler Setup (Babel)\*\*](./concepts/A2-CompilerSetup.md#setup-babel)
 - [Compiler Setup (TypeScript)\*](./concepts/A2-CompilerSetup.md#setup-typescript)
@@ -32,7 +31,6 @@
 
 ## Introduction to React
 
-
 - [React Overview & Architecture](./concepts/01-React.md)
 - [Comparing React, Angular, & Vue](./concepts/01-React.md#angular-react-compared)
 - [Elements](./concepts/02-Elements.md)
@@ -50,7 +48,6 @@
 
 ## Advanced React
 
-
 - [Component Architecture](./concepts/12-ComponentArchitecture.md)
 - [Best Practices (Code Organization & Conventions)](./concepts/A8-BestPractices.md)
 - [Forms](./concepts/13-Forms.md)
@@ -61,9 +58,9 @@
 - [Routing (using React Router)](./concepts/15-Routing.md)
 - [Performance](./concepts/A23-Performance.md)
 - [Security](./concepts/A16-Security.md)
+- [UI Components](./concepts/A24-UIComponents.md)
 
 ## Redux with React
-
 
 - [Redux](./concepts/21-Redux.md)
 - [Using Redux with React (React Redux Library)](./concepts/22-ReactRedux.md)

@@ -165,4 +165,5 @@
 - Best Practices (Code Organization & Conventions)
 - Appendix A: How to Skip Labs
 - Styling
-- Hooks (new)
+- Hooks
+- UI Components
