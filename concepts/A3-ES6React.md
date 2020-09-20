@@ -29,6 +29,8 @@
    [Done] exited with code=0 in 0.053 seconds
    ```
 
+> If you do not have `Visual Studio Code` installed and would prefer not to install it. Click this link to use [jsbin](https://jsbin.com/fijebuxudi/edit?js,console). Change the JavaScript panel language dropdown to `ES6/Babel` since we will be using newer JavaScript language features.
+
 ## Scope (var, let, const)
 
 ### var
@@ -61,10 +63,11 @@ at end: 4
 
 1.  Code
 
-```js
+```diff
 let numbers = [1, 2, 3, 4];
 
-for (let counter = 0; counter < numbers.length; counter++) {
+- for (var counter = 0; counter < numbers.length; counter++) {
++ for (let counter = 0; counter < numbers.length; counter++) {
   console.log(numbers[counter]);
 }
 
@@ -92,7 +95,7 @@ a = 2;
 2.  Result
 
 ```zsh
-Error: "a" is read-only
+TypeError: Assignment to constant variable.
 ```
 
 <div style="page-break-after: always;"></div>
@@ -264,26 +267,6 @@ console.log(c);
 3
 ```
 
-If you don't need an item just skip that item in the assignment.
-
-1.  Code
-
-```js
-let numbers = [1, 2, 3];
-
-let [, b, c] = numbers;
-// console.log(a);
-console.log(b);
-console.log(c);
-```
-
-2.  Result
-
-```
-2
-3
-```
-
 <div style="page-break-after: always;"></div>
 
 ## Classes
@@ -380,21 +363,11 @@ Ron Swanson
 
 Class Fields are only a stage-3 proposal so you need to install an additional [plugin](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) to use them.
 
-The proposed feature of class fields is commonly used in React projects and is included in `Create React App`'s default configuration.
-
 > [Class field declarations for JavaScript](https://github.com/tc39/proposal-class-fields)
 
-1. This propsed feature is available in TypeScript without any additional configuration but **if you are using Babel** as your compiler you will need to 1. Install the plugin below.
+The proposed feature of class fields is commonly used in React projects and is included in `Create React App`'s default configuration as well as the `Run Code` extension we are using to run these examples.
 
-   ```
-   npm install --save-dev @babel/plugin-proposal-class-properties
-   ```
-
-2. Configure the plugin
-
-   ```
-   plugins: ["@babel/plugin-proposal-class-properties"]
-   ```
+This propsed feature is available in TypeScript without any additional configuration.
 
 3. Code:
 
@@ -423,8 +396,8 @@ Craig McKeachie
 
 ### First Module
 
-1.  Create file `src\my-module.[js|ts]`
-2.  Add the following code to `src\my-module.[js|ts]`
+1.  Create file `src\my-module.js`
+2.  Add the following code to `src\my-module.js`
 
 ```js
 export function myFunction() {
@@ -432,7 +405,7 @@ export function myFunction() {
 }
 ```
 
-3.  Code in `program.[js|ts]`
+3.  Code in `program.[js]`
 
 - Auto import doesn't work in JavaScript, you need to use TypeScript
 
@@ -531,3 +504,11 @@ console.log(add(...[1, 2, 3]));
 ```
 
 <div style="page-break-after: always;"></div>
+
+## TODO
+
+- QA
+- Use class example in modules
+- Show class inheritence
+- Better spread example
+- https://codeburst.io/essential-javascript-features-for-react-82a6bf6855c2
