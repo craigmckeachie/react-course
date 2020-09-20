@@ -82,3 +82,9 @@
 ---
 
 ### &#10004; You have completed the computer setup.
+
+## FAQ
+
+- If you need to configure npm to use a corporate proxy server the following article may be helpful but it will likely be more helpful to ask a co-worker that has already done it within your organization.
+  - [Using NPM Install Behind A Corporate Proxy Server
+    ](https://medium.com/@ogbemudiatimothy/using-npm-install-behind-a-corporate-proxy-server-db150c128899)
