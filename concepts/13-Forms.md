@@ -9,6 +9,8 @@
   - [Validation](#validation)
     - [styles.css](#stylescss)
     - [main.jsx](#mainjsx)
+    - [Validation (with Function Component & Hooks)](#validation-with-function-component--hooks)
+      - [main.jsx](#mainjsx-1)
   - [Uncontrolled Components](#uncontrolled-components)
     - [Refs](#refs)
     - [Setting defaultValue](#setting-defaultvalue)
@@ -489,6 +491,142 @@ Some things to notice in the code above:
 - An onBlur event handler is created and the validation is called there as well so users get feedback as soon as they leave a given form control.
 - The && operator is used to conditionally display the error messages.
   - The && operator is ideal in this case since there is no else case.
+
+### Validation (with Function Component & Hooks)
+
+#### main.jsx
+
+```js
+function ContactUsForm() {
+  const [department, setDepartment] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [agreedToTerms, setAgreedToTerms] = React.useState(false);
+  const [
+    departmentValidationMessage,
+    setDepartmentValidationMessage,
+  ] = React.useState(null);
+  const [
+    messageValidationMessage,
+    setMessageValidationMessage,
+  ] = React.useState(null);
+  const [
+    agreedToTermsValidationMessage,
+    setAgreedToTermsValidationMessage,
+  ] = React.useState(null);
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  const handleChange = (event) => {
+    const { type, name, value, checked } = event.target;
+    const updatedValue = type === 'checkbox' ? checked : value;
+    // ? setState({ [name]: updatedValue });
+    // let function = ["set" + capitalizeFirstLetter(name)];
+    // function(updatedValue);
+  };
+
+  const handleBlur = (event) => {
+    validate();
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    validate();
+    if (!isValid()) {
+      return;
+    }
+  };
+
+  const validate = () => {
+    setDepartmentValidationMessage(null);
+    setMessageValidationMessage(null);
+    setAgreedToTermsValidationMessage(null);
+
+    if (!department) {
+      setDepartmentValidationMessage('Department is required.');
+    }
+    if (!message) {
+      setMessageValidationMessage('A message is required.');
+    }
+    if (agreedToTerms === false) {
+      setAgreedToTermsValidationMessage(
+        'You must agree to the terms and conditions.'
+      );
+    }
+  };
+
+  const isValid = () => {
+    return (
+      departmentValidationMessage === null &&
+      messageValidationMessage === null &&
+      agreedToTermsValidationMessage === null
+    );
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <select
+        name="department"
+        value={department}
+        onChange={(e) => setDepartment(e.target.value)}
+        onBlur={handleBlur}
+      >
+        <option value="">Select...</option>
+        <option value="hr">Human Resources</option>
+        <option value="pr">Public Relations</option>
+        <option value="support">Support</option>
+      </select>
+      <br />
+      {departmentValidationMessage && (
+        <p className="alert">{departmentValidationMessage}</p>
+      )}
+      <br />
+      <textarea
+        name="message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        onBlur={handleBlur}
+        cols="30"
+        rows="10"
+      />
+      <br />
+      {messageValidationMessage && (
+        <p className="alert">{messageValidationMessage}</p>
+      )}
+      <input
+        type="checkbox"
+        name="agreedToTerms"
+        checked={agreedToTerms}
+        onChange={(e) => setAgreedToTerms(e.target.checked)}
+        onBlur={handleBlur}
+      />
+      I agree to the terms and conditions.
+      <br />
+      {agreedToTermsValidationMessage && (
+        <p className="alert">{agreedToTermsValidationMessage}</p>
+      )}
+      <button>Send</button>
+      <pre>
+        {JSON.stringify(
+          {
+            department,
+            message,
+            agreedToTerms,
+            departmentValidationMessage,
+            messageValidationMessage,
+            agreedToTermsValidationMessage,
+          },
+          null,
+          ' '
+        )}
+      </pre>
+    </form>
+  );
+}
+
+ReactDOM.render(<ContactUsForm />, document.getElementById('root'));
+```
 
 ## Uncontrolled Components
 
