@@ -2,12 +2,13 @@
 
 - [Chapter 13: Forms](#chapter-13-forms)
   - [Controlled Components](#controlled-components)
+    - [Controlled **Function** Components](#controlled-function-components)
   - [Reuse of Change Logic across Multiple Inputs](#reuse-of-change-logic-across-multiple-inputs)
   - [Submitting](#submitting)
   - [Controlling other Types of HTML Form Elements](#controlling-other-types-of-html-form-elements)
   - [Validation](#validation)
-      - [styles.css](#stylescss)
-      - [main.jsx](#mainjsx)
+    - [styles.css](#stylescss)
+    - [main.jsx](#mainjsx)
   - [Uncontrolled Components](#uncontrolled-components)
     - [Refs](#refs)
     - [Setting defaultValue](#setting-defaultvalue)
@@ -85,6 +86,29 @@ ReactDOM.render(<ExampleForm />, document.getElementById('root'));
 ```
 
 12. Uncomment the `handleChange` implementation and verify it is working again.
+
+### Controlled **Function** Components
+
+Below is an example of what a controlled component would look like in a function component.
+
+```js
+function ExampleForm() {
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value.toUpperCase());
+  };
+
+  return (
+    <form>
+      <input type="text" value={value} onChange={handleChange} />
+      <pre>{JSON.stringify(value)}</pre>
+    </form>
+  );
+}
+
+ReactDOM.render(<ExampleForm />, document.getElementById('root'));
+```
 
 ## Reuse of Change Logic across Multiple Inputs
 
