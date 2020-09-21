@@ -18,15 +18,15 @@
 ## How It Works
 
 - TypeScript or Babel provides a compiler:
-  -  `tsc` (TypeScript compiler)
-  -  `babel`  (Babel compiler)
--  Compiles 
-   - newer language features written in TypeScript or `ES2015` and beyond 
-   -  to earlier versions of JavaScript (commonly `ES5`) that are supported in web browsers (where the application will be running)
+  - `tsc` (TypeScript compiler)
+  - `babel` (Babel compiler)
+- Compiles
+  - newer language features written in TypeScript or `ES2015` and beyond
+  - to earlier versions of JavaScript (commonly `ES5`) that are supported in web browsers (where the application will be running)
 - The compilation is often more specificaly referred to as **transpilation**.
-  - Transpilation refers to a specific kind of compilation, source code to source code. 
-  - We traditionally think about compilers as transforming source code to bytecode.
 
+  - Transpilation refers to a specific kind of compilation, source code to source code.
+  - We traditionally think about compilers as transforming source code to bytecode.
 
 - To see this in action:
   - Visit: [Babel REPL](https://babeljs.io/repl)
@@ -51,7 +51,7 @@ code . //opens Visual Studio Code
 
    ```
    npm init -y
-   npm install --save-dev @babel/core @babel/cli @babel/preset-env
+   npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/plugin-proposal-class-properties
    npm install --save @babel/polyfill core-js@3
    ```
 
@@ -70,7 +70,8 @@ code . //opens Visual Studio Code
            }
          }
        ]
-     ]
+     ],
+     "plugins": ["@babel/plugin-proposal-class-properties"]
    }
    ```
 

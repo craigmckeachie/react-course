@@ -135,19 +135,11 @@ The proposed feature of class fields is commonly used in React projects and is i
 
 > [Class field declarations for JavaScript](https://github.com/tc39/proposal-class-fields)
 
-1. This propsed feature is available in TypeScript without any additional configuration but **if you are using Babel** as your compiler you will need to 1. Install the plugin below.
+> We have already configured an additional `Babel` plugin to allow this syntax.
 
-   ```
-   npm install --save-dev @babel/plugin-proposal-class-properties
-   ```
+> This proposed feature is available in `TypeScript` without any additional configuration.
 
-2. Configure the plugin
-
-   ```
-   plugins: ["@babel/plugin-proposal-class-properties"]
-   ```
-
-3. Code:
+1. Code:
 
 ```js
 class Person {
@@ -247,7 +239,7 @@ Error: "a" is read-only
 ```js
 let numbers = [1, 2, 3, 4];
 //verbose
-numbers.forEach(function(n) {
+numbers.forEach(function (n) {
   console.log(n);
 });
 ```
@@ -267,7 +259,7 @@ numbers.forEach(function(n) {
 
 ```js
 let numbers = [1, 2, 3, 4];
-numbers.forEach(n => console.log(n));
+numbers.forEach((n) => console.log(n));
 ```
 
 2.  Result
@@ -327,9 +319,9 @@ function myPrivateFunction() {
 
 let myObject = {
   myName: "I can access myObject's name",
-  myMethod: function() {
+  myMethod: function () {
     return 'myMethod on myObject is running.';
-  }
+  },
 };
 
 export { myObject };
@@ -474,7 +466,7 @@ let person = {
   first: 'Thomas',
   last: 'Edison',
   age: 5,
-  twitter: '@tom'
+  twitter: '@tom',
 };
 
 let { first, last } = person;
@@ -500,7 +492,7 @@ let person = {
   first: 'Thomas',
   last: 'Edison',
   age: 5,
-  twitter: '@tom'
+  twitter: '@tom',
 };
 
 let { first: firstName, last: lastName } = person;
@@ -634,13 +626,13 @@ export {}; //this line only necessary when using TypeScript
 const name = 'Leslie';
 
 const user = {
-  name: name
+  name: name,
 };
 
 console.log('user ', user.name);
 
 const user1 = {
-  name
+  name,
 };
 
 console.log('user1 ', user.name);
