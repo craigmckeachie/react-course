@@ -1,7 +1,7 @@
 # Chapter 7: Events
 
 - [Chapter 7: Events](#chapter-7-events)
-  - [Listening/Subscribing/Wiring to an Event](#listeningsubscribingwiring-to-an-event)
+  - [Subscribing (an Event Handler)](#subscribing-an-event-handler)
     - [In Vanilla JavaScript](#in-vanilla-javascript)
       - [Setup](#setup)
       - [Steps](#steps)
@@ -13,19 +13,19 @@
       - [Steps](#steps-2)
   - [Binding (the Event Handler)](#binding-the-event-handler)
     - [Why Binding is Necessary?](#why-binding-is-necessary)
-    - [Class Method](#class-method)
-    - [Arrow Function](#arrow-function)
+    - [Binding Examples](#binding-examples)
   - [Passing Parameters](#passing-parameters)
     - [Using Arrow Functions](#using-arrow-functions)
     - [Using Bind](#using-bind)
     - [Reference](#reference)
-  - [Handling Events](#handling-events)
+  - [Accessing Event Information](#accessing-event-information)
     - [Using Arrow Functions](#using-arrow-functions-1)
     - [Using Bind](#using-bind-1)
     - [Synthetic Events](#synthetic-events)
   - [Reference](#reference-1)
+  - [Binding (the Event Handler): Other Approaches to Avoid](#binding-the-event-handler-other-approaches-to-avoid)
 
-## Listening/Subscribing/Wiring to an Event
+## Subscribing (an Event Handler)
 
 You can listen/subscribe/wire to an `Event` by attaching a event handler. An `event handler` is simply a function that will be called when the event is raised/fired/emitted.
 
@@ -83,8 +83,7 @@ Handling events with **React elements** is very similar to handling events on **
      return <button onClick={handleClick()}>Click Me!</button>;
    }
 
-   const element = <Button />;
-   ReactDOM.render(element, document.getElementById('root'));
+   ReactDOM.render(<Button />, document.getElementById('root'));
    ```
 
 2. If not already opened from the previous step, open `Chrome DevTools` switch to the `Console` tab
@@ -130,6 +129,8 @@ Handling events with **React elements** is very similar to handling events on **
        return <button onClick={this.handleClick}>Click Me!</button>;
      }
    }
+
+   ReactDOM.render(<Button />, document.getElementById('root'));
    ```
 
    > Bind? The next section discusses why binding is necessary as well as alternative syntaxes that can be used to bind the event handler including which are considering the best practice.
@@ -138,7 +139,7 @@ Handling events with **React elements** is very similar to handling events on **
 
 4. Refresh the page in your browser
 5. Click the button
-6. You should see `clicked` being logged to the console again
+6. You should see `clicked` being logged to the console again.
 
 ## Binding (the Event Handler)
 
@@ -174,31 +175,32 @@ logFn();
 
 This next section is about the different ways to do the binding.
 
-### Class Method
+### Binding Examples
 
-1. Create a method on the class
+- Example A: just creating a method on a class (DOESN'T WORK)
 
-   ```js
-   // class method: no binding
-   // logs undefined
-   class ExplainBindingsComponent extends React.Component {
-     handleClick() {
-       console.log(this);
-     }
-     render() {
-       return (
-         <button onClick={this.handleClick} type="button">
-           Click Me
-         </button>
-       );
-     }
-   }
-   const element = <ExplainBindingsComponent />;
-   ```
+  ```js
+  // class method: no binding
+  // logs undefined
+  class ExplainBindingsComponent extends React.Component {
+    handleClick() {
+      console.log(this);
+    }
+    render() {
+      return (
+        <button onClick={this.handleClick} type="button">
+          Click Me
+        </button>
+      );
+    }
+  }
+  ReactDOM.render(
+    <ExplainBindingsComponent />,
+    document.getElementById('root')
+  );
+  ```
 
-2. Bind the method
-
-- In the constructor (to an instance of the class: this)
+- Example B: binding the method in the constructor (to an instance of the class: this) (WORKS but VERBOSE so AVOID)
 
   ```js
   // class method: bind in constructor
@@ -219,7 +221,10 @@ This next section is about the different ways to do the binding.
       );
     }
   }
-  const element = <ExplainBindingsComponent />;
+  ReactDOM.render(
+    <ExplainBindingsComponent />,
+    document.getElementById('root')
+  );
   ```
 
   - Best Practice
@@ -227,63 +232,7 @@ This next section is about the different ways to do the binding.
 
     - Binding only happens once when the component is instantiated
 
-- In the render method (to an instance of the class: this)
-
-  ```js
-  // class method: bind in render
-  // logs instance of the component
-  class ExplainBindingsComponent extends React.Component {
-    handleClick() {
-      console.log(this);
-    }
-    render() {
-      return (
-        <button onClick={this.handleClick.bind(this)} type="button">
-          Click Me
-        </button>
-      );
-    }
-  }
-  const element = <ExplainBindingsComponent />;
-  ```
-
-  - Avoid
-  - Why?
-    - Binds the class method every time the render method runs, meaning every time the component updates.
-    - Eventually impact application performance (how quickly it renders).
-
-- By defining it in the constructor
-
-  ```js
-  // class method: define in constructor w/ arrow function
-  // logs instance of the component
-  class ExplainBindingsComponent extends React.Component {
-    constructor() {
-      super();
-      this.handleClick = () => {
-        console.log(this);
-      };
-    }
-
-    render() {
-      return (
-        <button onClick={this.handleClick} type="button">
-          Click Me
-        </button>
-      );
-    }
-  }
-  const element = <ExplainBindingsComponent />;
-  ```
-
-  - Avoid
-  - Why?
-    - Clutters constructor with business logic
-    - Constructor only there to instantiate your class and initialize properties
-
-### Arrow Function
-
-- Assign an arrow function to a class field
+- Example C: Assign an arrow function to a class field (WORKS: RECOMMENDED)
 
   ```js
   // arrow function: assigned to class field
@@ -301,13 +250,66 @@ This next section is about the different ways to do the binding.
       );
     }
   }
-  const element = <ExplainBindingsComponent />;
+  ReactDOM.render(
+    <ExplainBindingsComponent />,
+    document.getElementById('root')
+  );
   ```
 
   - Best Practice (emerging)
   - Why?
+
     - The binding in the constructor is repetitive and can be forgotten
     - Although arrow functions are commonly used in ES6/ES2015, this technique also uses a class field declaration which is a [Stage 3 Proposal](https://github.com/tc39/proposal-class-fields) and can require additional configuration to get setup.
+    - Class field declarations are setup/configured in a Create-React-App by default
+    - Facebook says they will support a `code-mod` (easy migration path, rewriting current syntax automatically)
+      - Facebook has thousands of React components and does not want to do this manually
+
+- Example D: In a Function Component (WORKS: RECOMMENDED)
+
+  Binding to `this` is really about being able to access a member variable (loading, message, projects) or function (handleClick, loadProjects, setState).
+
+  With function components there is no instance of a component and all member variables and functions can just be defined inside the function that creates the components so they are easily accessed without worrying about the value of `this`.
+
+  ```js
+  function ExplainBindingsComponent() {
+    const memberValue = 'test';
+    function handleClick() {
+      console.log(memberValue);
+    }
+
+    return (
+      <button onClick={handleClick} type="button">
+        Click Me
+      </button>
+    );
+  }
+  ReactDOM.render(
+    <ExplainBindingsComponent />,
+    document.getElementById('root')
+  );
+  ```
+
+  OR using an arrow function after you get comfortable with the syntax
+
+  ```js
+  function ExplainBindingsComponent() {
+    const memberValue = 'test';
+    const handleClick = () => {
+      console.log(memberValue);
+    };
+
+    return (
+      <button onClick={handleClick} type="button">
+        Click Me
+      </button>
+    );
+  }
+  ReactDOM.render(
+    <ExplainBindingsComponent />,
+    document.getElementById('root')
+  );
+  ```
 
 ## Passing Parameters
 
@@ -401,7 +403,7 @@ class Button extends React.Component {
 
 [How do I pass a parameter to an event handler or callback?](https://reactjs.org/docs/faq-functions.html#how-do-i-pass-a-parameter-to-an-event-handler-or-callback)
 
-## Handling Events
+## Accessing Event Information
 
 Handling events requires us to prevent the default browser behavior.
 
@@ -427,7 +429,7 @@ Handling events requires us to prevent the default browser behavior.
        return (
          <a
            href="#"
-           onClick={event => {
+           onClick={(event) => {
              this.handleClick(id, event);
            }}
          >
@@ -497,6 +499,58 @@ A `SyntheticEvent` is a cross-browser wrapper around the browser’s native even
 - [React Documentation: Handling Events](https://reactjs.org/docs/handling-events.html)
 - [React Documentation: Passing Functions to Components](https://reactjs.org/docs/faq-functions.html)
 
-```
+## Binding (the Event Handler): Other Approaches to Avoid
 
-```
+- In the render method (to an instance of the class: this)
+
+  ```js
+  // class method: bind in render
+  // logs instance of the component
+  class ExplainBindingsComponent extends React.Component {
+    handleClick() {
+      console.log(this);
+    }
+    render() {
+      return (
+        <button onClick={this.handleClick.bind(this)} type="button">
+          Click Me
+        </button>
+      );
+    }
+  }
+  const element = <ExplainBindingsComponent />;
+  ```
+
+  - Avoid
+  - Why?
+    - Binds the class method every time the render method runs, meaning every time the component updates.
+    - Eventually impact application performance (how quickly it renders).
+
+- By defining it in the constructor
+
+  ```js
+  // class method: define in constructor w/ arrow function
+  // logs instance of the component
+  class ExplainBindingsComponent extends React.Component {
+    constructor() {
+      super();
+      this.handleClick = () => {
+        console.log(this);
+      };
+    }
+
+    render() {
+      return (
+        <button onClick={this.handleClick} type="button">
+          Click Me
+        </button>
+      );
+    }
+  }
+  const element = <ExplainBindingsComponent />;
+  ```
+
+  - Avoid
+  - Why?
+    - Clutters constructor with business logic
+    - Constructor only there to instantiate your class and initialize properties
