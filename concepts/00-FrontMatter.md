@@ -26,12 +26,15 @@ This material is available for private, non-commercial use under the [GPL versio
 
 - Foundation
 
+  - [Essential JavaScript for React](A3-ES6React.md)
+    - Use for a quick JavaScript review instead of all the other foundation sections below.
+
+  OR
+
   - [Package Manager (npm/Yarn)](A1-PackageManager.md)
   - [Compiler Setup](A2-CompilerSetup.md)
   - [ES6/ES2015](A3-ES6.md)
   - [TypeScript](A4-TypeScript.md) (if applicable)
-  - [Project Setup (Create React App)](A6-ProjectSetup.md)
-  - [Best Practices (Code Organization & Conventions)](A8-BestPractices.md)
   - [Debugging JavaScript/TypeScript](A22-Debugging.md)
 
 * React
@@ -40,6 +43,7 @@ This material is available for private, non-commercial use under the [GPL versio
   - [Elements](02-Elements.md)
   - [JSX](03-JSX.md)
   - [Virtual DOM](04-VirtualDOM.md)
+  - [Project Setup (Create React App)](A6-ProjectSetup.md)
   - [Components](05-Components.md)
   - [Props](06-Props.md)
   - [Events](07-Events.md)
@@ -60,6 +64,7 @@ This material is available for private, non-commercial use under the [GPL versio
 
 * Advanced Topics (optional/ FAQ)
 
+  - [Best Practices (Code Organization & Conventions)](A8-BestPractices.md)
   - [Advanced Components (Render Props & Higher-Order Components & Context)](A13-AdvancedComponents.md)
   - [Performance](A23-Performance.md)
   - [Styling](A9-Styling.md)

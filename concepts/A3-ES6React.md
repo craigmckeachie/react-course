@@ -1,37 +1,71 @@
 # Essential JavaScript for React
 
+- [Essential JavaScript for React](#essential-javascript-for-react)
+  - [Setup](#setup)
+  - [Scope (var, let, const)](#scope-var-let-const)
+    - [tldr;](#tldr)
+    - [var](#var)
+    - [let](#let)
+    - [const](#const)
+  - [Arrow Functions](#arrow-functions)
+    - [Function](#function)
+    - [Arrow function](#arrow-function)
+  - [Destructuring](#destructuring)
+    - [Objects](#objects)
+    - [Arrays](#arrays)
+  - [Classes](#classes)
+    - [Constructors](#constructors)
+    - [Methods](#methods)
+    - [Class Fields](#class-fields)
+  - [Modules](#modules)
+    - [First Module](#first-module)
+    - [Another Module](#another-module)
+  - [Spread](#spread)
+  - [Array.map() method](#arraymap-method)
+    - [a. for loop](#a-for-loop)
+    - [b. #array.forEach](#b-arrayforeach)
+    - [c. #array.map](#c-arraymap)
+    - [d. #array.map with arrow function](#d-arraymap-with-arrow-function)
+
 ## Setup
 
-1. Install the [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) extension in Visual Studio Code.
+1. [Click this link](https://github.com/craigmckeachie/jsplay/archive/master.zip) to download the [JavaScript Playground](https://github.com/craigmckeachie/jsplay/archive/master.zip) repository from Github.
+2. Unzip the directory `jsplay-master`.
+3. Open the `jsplay-master` directory in your editor or choice.
+4. Open a command prompt or terminal in the `jsplay-master` directory and run the commands
 
-   1. [Click this link](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
-   2. **Click** the **green** `Install` **button**
-   3. **Click** the **button** `Open Visual Studio Code`
-   4. **Click** the **green** `Install` **button** inside Visual Studio Code
+```sh
+npm install
 
-1. Create a directory named `demos`
-1. **Open** the `demos` directory (folder) in Visual Studio Code
-1. Create the file `demos\program.js`
-1. Add the following code.
-   ```js
-   console.log('ready');
-   ```
-1. Run the code in `program.js` using one of these options:
-   - click `Run Code` button (top right looks like a Play button) in editor title menu
-   - use shortcut `Ctrl+Alt+N`
-   - right click the Text Editor and then click `Run Code` in editor context menu
-1. Verify the output.
+```
 
-   ```bash
-   [Running] node ".../program.js"
-   ready
+then
 
-   [Done] exited with code=0 in 0.053 seconds
-   ```
+```sh
+npm start
+```
 
-> If you do not have `Visual Studio Code` installed and would prefer not to install it. Click this link to use [jsbin](https://jsbin.com/fijebuxudi/edit?js,console). Change the JavaScript panel language dropdown to `ES6/Babel` since we will be using newer JavaScript language features.
+5. You should get the message.
+
+```
+Successfully compiled 1 file with Babel
+```
 
 ## Scope (var, let, const)
+
+### tldr;
+
+The following is an example of scope with a variable declared with `let`:
+
+```js
+// myLetVariable is *not* visible out here
+
+for (let myLetVariable = 0; myLetVariable < 5; myLetVariable++) {
+  // myLetVariable is only visible in here
+}
+
+// myLetVariable is *not* visible out here
+```
 
 ### var
 
@@ -142,55 +176,6 @@ numbers.forEach((n) => console.log(n));
 ```
 
 <div style="page-break-after: always;"></div>
-
-## Array.map() method
-
-### a. for loop
-
-```js
-const numbers = [1, 2, 3, 4, 5];
-const tens = [];
-
-for (let index = 0; index < numbers.length; index++) {
-  const number = numbers[index];
-  tens.push(number * 10);
-}
-
-console.log(tens);
-```
-
-### b. #array.forEach
-
-```js
-const numbers = [1, 2, 3, 4, 5];
-const tens = [];
-
-numbers.forEach(function (number) {
-  tens.push(number * 10);
-});
-
-console.log(tens);
-```
-
-### c. #array.map
-
-```js
-const numbers = [1, 2, 3, 4, 5];
-
-const tens = numbers.map(function (number) {
-  return number * 10;
-});
-
-console.log(tens);
-```
-
-### d. #array.map with arrow function
-
-```js
-const numbers = [1, 2, 3, 4, 5];
-const tens = numbers.map((number) => number * 10);
-console.log(tens);
-```
 
 ## Destructuring
 
@@ -505,10 +490,90 @@ console.log(add(...[1, 2, 3]));
 
 <div style="page-break-after: always;"></div>
 
-## TODO
+## Array.map() method
 
-- QA
+### a. for loop
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const tens = [];
+
+for (let index = 0; index < numbers.length; index++) {
+  const number = numbers[index];
+  tens.push(number * 10);
+}
+
+console.log(tens);
+```
+
+### b. #array.forEach
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const tens = [];
+
+numbers.forEach(function (number) {
+  tens.push(number * 10);
+});
+
+console.log(tens);
+```
+
+### c. #array.map
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+const tens = numbers.map(function (number) {
+  return number * 10;
+});
+
+console.log(tens);
+```
+
+### d. #array.map with arrow function
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const tens = numbers.map((number) => number * 10);
+console.log(tens);
+```
+
+<!-- ## TODO
+
+
 - Use class example in modules
 - Show class inheritence
 - Better spread example
-- https://codeburst.io/essential-javascript-features-for-react-82a6bf6855c2
+- https://codeburst.io/essential-javascript-features-for-react-82a6bf6855c2 -->
+
+<!-- ## Code Runner Setup
+
+1. Install the [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) extension in Visual Studio Code.
+
+   1. [Click this link](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
+   2. **Click** the **green** `Install` **button**
+   3. **Click** the **button** `Open Visual Studio Code`
+   4. **Click** the **green** `Install` **button** inside Visual Studio Code
+
+1. Create a directory named `demos`
+1. **Open** the `demos` directory (folder) in Visual Studio Code
+1. Create the file `demos\program.js`
+1. Add the following code.
+   ```js
+   console.log('ready');
+   ```
+1. Run the code in `program.js` using one of these options:
+   - click `Run Code` button (top right looks like a Play button) in editor title menu
+   - use shortcut `Ctrl+Alt+N`
+   - right click the Text Editor and then click `Run Code` in editor context menu
+1. Verify the output.
+
+   ```bash
+   [Running] node ".../program.js"
+   ready
+
+   [Done] exited with code=0 in 0.053 seconds
+   ```
+
+> If you do not have `Visual Studio Code` installed and would prefer not to install it. Click this link to use [jsbin](https://jsbin.com/fijebuxudi/edit?js,console). Change the JavaScript panel language dropdown to `ES6/Babel` since we will be using newer JavaScript language features. -->
