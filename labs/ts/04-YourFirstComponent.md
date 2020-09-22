@@ -40,6 +40,8 @@
    #### `src\App.tsx`
 
    ```diff
+   + import ProjectsPage from './projects/ProjectsPage';
+
    function App() {
    -     <blockquote cite="Benjamin Franklin">
    -     Tell me and I forget, teach me and I may remember, involve me and I learn.
