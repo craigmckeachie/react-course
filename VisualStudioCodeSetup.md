@@ -8,6 +8,7 @@
     - [Prettier- Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&ssr=false#overview)
     - [HTML to JSX](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx)
     - [Jest Snippets](https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets)
+    - [Paste Clean Diff](https://marketplace.visualstudio.com/items?itemName=sivasubramanyam.paste-clean-diff)
 1.  **Click** the **Install** button.
 
 ## Configure settings
