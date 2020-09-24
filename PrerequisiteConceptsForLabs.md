@@ -51,7 +51,7 @@
 - PropTypes (if applicable)
 - React with TypeScript (if applicable)
 - Lists
-- Component Architecture
+
 
 #### Labs
 
@@ -66,6 +66,7 @@
 - Events
 - State
 - Conditional Rendering
+- Component Architecture
 
 #### Labs
 
