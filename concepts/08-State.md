@@ -3,10 +3,8 @@
 - [Chapter 8: State](#chapter-8-state)
   - [Definition](#definition)
     - [state](#state)
-  - [State in Class Components](#state-in-class-components)
-    - [Using State Correctly](#using-state-correctly)
   - [State in Function Components](#state-in-function-components)
-    - [Using the `useEffect` Hook](#using-the-useeffect-hook)
+    - [Using the `useState` Hook](#using-the-usestate-hook)
       - [Defining `state`](#defining-state)
         - [main.jsx](#mainjsx)
       - [Setting `state`](#setting-state)
@@ -19,6 +17,8 @@
       - [Should I use one or many state variables?](#should-i-use-one-or-many-state-variables)
     - [Setting `state` using the current `state` or `props`](#setting-state-using-the-current-state-or-props)
       - [Use a Functional update](#use-a-functional-update)
+  - [State in Class Components](#state-in-class-components)
+    - [Using State Correctly](#using-state-correctly)
   - [Data Flows Down](#data-flows-down)
   - [Reference](#reference)
 
@@ -35,188 +35,9 @@ Just an object that lives inside a component and stores all of the data that tha
 
 State is local to the component (encapsulated) and should not be accessed outside the component.
 
-## State in Class Components
-
-```js
-class Clock extends React.Component {
-  state = {
-    time: new Date().toLocaleTimeString(),
-  };
-
-  render() {
-    return <div>{this.state.time}</div>;
-  }
-}
-
-ReactDOM.render(<Clock />, document.getElementById('root'));
-```
-
-In React, you don’t manipulate the DOM directly, instead you simply update data (state) and let React react by updating the UI in all the needed places.
-
-```js
-class Clock extends React.Component {
-  state = {
-    time: new Date().toLocaleTimeString(),
-  };
-
-  refresh = () => {
-    this.setState({ time: new Date().toLocaleTimeString() });
-  };
-
-  render() {
-    return (
-      <div>
-        <p>{this.state.time}</p>
-        <button onClick={this.refresh}>Refresh</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Clock />, document.getElementById('root'));
-```
-
-To make it easier to read and understand, the last example uses [class field declarations](https://github.com/tc39/proposal-class-fields) which is not an official feature of JavaScript but is currently a `Stage 3 proposal`.
-
-> Read the [TC39 Process](https://tc39.github.io/process-document/) to better understanding the ECMAScript standards process and what the stages mean.
-
-The example could be rewritten as follows to be ES6/ES2015 compliant.
-
-```js
-class Clock extends React.Component {
-  // state = {
-  //   time: new Date().toLocaleTimeString()
-  // };
-
-  // refresh = () => {
-  //   this.setState({ time: new Date().toLocaleTimeString() });
-  // };
-
-  constructor() {
-    super();
-    this.state = {
-      time: new Date().toLocaleTimeString(),
-    };
-    this.refresh = this.refresh.bind(this);
-  }
-
-  refresh() {
-    this.setState({ time: new Date().toLocaleTimeString() });
-  }
-
-  render() {
-    return (
-      <div>
-        <p>{this.state.time}</p>
-        <button onClick={this.refresh}>Refresh</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Clock />, document.getElementById('root'));
-```
-
-### Using State Correctly
-
-There are three things you should know about setState().
-
-1. Do Not Modify State Directly
-
-   ```js
-   class Clock extends React.Component {
-     state = {
-       time: new Date().toLocaleTimeString(),
-     };
-
-     refresh = () => {
-       // don't modify state directly
-       // this.state.time = new Date().toLocaleTimeString();
-
-       //instead call setState, React calls render after setState
-       this.setState({ time: new Date().toLocaleTimeString() });
-     };
-
-     render() {
-       return (
-         <div>
-           <p>{this.state.time}</p>
-           <button onClick={this.refresh}>Refresh</button>
-         </div>
-       );
-     }
-   }
-
-   ReactDOM.render(<Clock />, document.getElementById('root'));
-   ```
-
-2. State Updates are Merged
-
-   - `setState` could be named please update these **parts** of state
-   - In the example below, the button label is still **Refresh** even after clicking the button that causes state to be set (but doesn't set the `buttonLabel`).
-
-   ```js
-   class Clock extends React.Component {
-     state = {
-       time: new Date().toLocaleTimeString(),
-       buttonLabel: 'Refresh',
-     };
-
-     refresh = () => {
-       this.setState({ time: new Date().toLocaleTimeString() });
-     };
-
-     render() {
-       return (
-         <div>
-           <p>{this.state.time}</p>
-           <button onClick={this.refresh}>{this.state.buttonLabel}</button>
-         </div>
-       );
-     }
-   }
-
-   ReactDOM.render(<Clock />, document.getElementById('root'));
-   ```
-
-3. State Updates May Be Asynchronous
-
-   - React may batch multiple setState() calls into a single update for performance.
-
-   - Because `this.props` and `this.state` may be updated asynchronously (after an http request or a user action like clicking a button ), you should not rely on their values for calculating the next state.
-
-   For example, this code may fail to update the counter:
-
-   ```js
-   // Wrong
-   this.setState({
-     counter: this.state.counter + this.props.increment,
-   });
-   ```
-
-   To fix it, use a second form of `setState()` that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
-
-   ```js
-   // Correct
-   this.setState((state, props) => ({
-     counter: state.counter + props.increment,
-   }));
-   ```
-
-   We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) above, but it also works with regular functions:
-
-   ```js
-   // Correct
-   this.setState(function (state, props) {
-     return {
-       counter: state.counter + props.increment,
-     };
-   });
-   ```
-
 ## State in Function Components
 
-### Using the `useEffect` Hook
+### Using the `useState` Hook
 
 #### Defining `state`
 
@@ -414,6 +235,185 @@ function Counter({ initialCount }) {
 The ”Increment” and ”Decrement” buttons use the functional form, because the updated value is based on the previous value. But the “Reset” button uses the normal form, because it always sets the count back to the initial value.
 
 If your update function returns the exact same value as the current state, the subsequent rerender will be skipped completely.
+
+## State in Class Components
+
+```js
+class Clock extends React.Component {
+  state = {
+    time: new Date().toLocaleTimeString(),
+  };
+
+  render() {
+    return <div>{this.state.time}</div>;
+  }
+}
+
+ReactDOM.render(<Clock />, document.getElementById('root'));
+```
+
+In React, you don’t manipulate the DOM directly, instead you simply update data (state) and let React react by updating the UI in all the needed places.
+
+```js
+class Clock extends React.Component {
+  state = {
+    time: new Date().toLocaleTimeString(),
+  };
+
+  refresh = () => {
+    this.setState({ time: new Date().toLocaleTimeString() });
+  };
+
+  render() {
+    return (
+      <div>
+        <p>{this.state.time}</p>
+        <button onClick={this.refresh}>Refresh</button>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Clock />, document.getElementById('root'));
+```
+
+To make it easier to read and understand, the last example uses [class field declarations](https://github.com/tc39/proposal-class-fields) which is not an official feature of JavaScript but is currently a `Stage 3 proposal`.
+
+> Read the [TC39 Process](https://tc39.github.io/process-document/) to better understanding the ECMAScript standards process and what the stages mean.
+
+The example could be rewritten as follows to be ES6/ES2015 compliant.
+
+```js
+class Clock extends React.Component {
+  // state = {
+  //   time: new Date().toLocaleTimeString()
+  // };
+
+  // refresh = () => {
+  //   this.setState({ time: new Date().toLocaleTimeString() });
+  // };
+
+  constructor() {
+    super();
+    this.state = {
+      time: new Date().toLocaleTimeString(),
+    };
+    this.refresh = this.refresh.bind(this);
+  }
+
+  refresh() {
+    this.setState({ time: new Date().toLocaleTimeString() });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>{this.state.time}</p>
+        <button onClick={this.refresh}>Refresh</button>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Clock />, document.getElementById('root'));
+```
+
+### Using State Correctly
+
+There are three things you should know about setState().
+
+1. Do Not Modify State Directly
+
+   ```js
+   class Clock extends React.Component {
+     state = {
+       time: new Date().toLocaleTimeString(),
+     };
+
+     refresh = () => {
+       // don't modify state directly
+       // this.state.time = new Date().toLocaleTimeString();
+
+       //instead call setState, React calls render after setState
+       this.setState({ time: new Date().toLocaleTimeString() });
+     };
+
+     render() {
+       return (
+         <div>
+           <p>{this.state.time}</p>
+           <button onClick={this.refresh}>Refresh</button>
+         </div>
+       );
+     }
+   }
+
+   ReactDOM.render(<Clock />, document.getElementById('root'));
+   ```
+
+2. State Updates are Merged
+
+   - `setState` could be named please update these **parts** of state
+   - In the example below, the button label is still **Refresh** even after clicking the button that causes state to be set (but doesn't set the `buttonLabel`).
+
+   ```js
+   class Clock extends React.Component {
+     state = {
+       time: new Date().toLocaleTimeString(),
+       buttonLabel: 'Refresh',
+     };
+
+     refresh = () => {
+       this.setState({ time: new Date().toLocaleTimeString() });
+     };
+
+     render() {
+       return (
+         <div>
+           <p>{this.state.time}</p>
+           <button onClick={this.refresh}>{this.state.buttonLabel}</button>
+         </div>
+       );
+     }
+   }
+
+   ReactDOM.render(<Clock />, document.getElementById('root'));
+   ```
+
+3. State Updates May Be Asynchronous
+
+   - React may batch multiple setState() calls into a single update for performance.
+
+   - Because `this.props` and `this.state` may be updated asynchronously (after an http request or a user action like clicking a button ), you should not rely on their values for calculating the next state.
+
+   For example, this code may fail to update the counter:
+
+   ```js
+   // Wrong
+   this.setState({
+     counter: this.state.counter + this.props.increment,
+   });
+   ```
+
+   To fix it, use a second form of `setState()` that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
+
+   ```js
+   // Correct
+   this.setState((state, props) => ({
+     counter: state.counter + props.increment,
+   }));
+   ```
+
+   We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) above, but it also works with regular functions:
+
+   ```js
+   // Correct
+   this.setState(function (state, props) {
+     return {
+       counter: state.counter + props.increment,
+     };
+   });
+   ```
 
 ## Data Flows Down
 
