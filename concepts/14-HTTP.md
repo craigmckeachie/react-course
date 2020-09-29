@@ -16,7 +16,17 @@
       - [POST with Fetch](#post-with-fetch)
   - [PUT](#put)
   - [DELETE](#delete)
-  - [Item CRUD Implemented](#item-crud-implemented)
+  - [Items Demo App (CRUD) using HTTP](#items-demo-app-crud-using-http)
+    - [Function Component Example](#function-component-example)
+      - [`api\db.json`](#apidbjson)
+      - [styles.css](#stylescss)
+      - [index.html](#indexhtml)
+      - [main.jsx](#mainjsx)
+    - [Class Component Example](#class-component-example)
+      - [`api\db.json`](#apidbjson-1)
+      - [styles.css](#stylescss-1)
+      - [index.html](#indexhtml-1)
+      - [main.jsx](#mainjsx-1)
 - [Resources](#resources)
 
 The ability to make HTTP calls is not built-in to React.
@@ -69,8 +79,8 @@ Before making HTTP calls we need to [setup a backend following these directions]
 
    axios
      .get(okUrl)
-     .then(response => response.data)
-     .then(data => console.log(data));
+     .then((response) => response.data)
+     .then((data) => console.log(data));
    ```
 
 4. Open the Chrome DevTools console and you should see the data being logged.
@@ -117,7 +127,7 @@ The `Fetch API` is now standard in modern browsers and does not require an addit
 
    ```js
    // const urls here
-   fetch(okUrl).then(response => console.log(response));
+   fetch(okUrl).then((response) => console.log(response));
    ```
 
 1. Open the Chrome DevTools console and you should see the response object being logged. Notice that the body property is a readable stream object but you can't yet see the data.
@@ -127,12 +137,12 @@ The `Fetch API` is now standard in modern browsers and does not require an addit
    // const urls here
 
    fetch(okUrl)
-     .then(response => {
+     .then((response) => {
        console.log(response);
        return response;
      })
-     .then(response => response.json())
-     .then(data => console.log(data));
+     .then((response) => response.json())
+     .then((data) => console.log(data));
    ```
 
 1. In the console you will see the response as well as the data (parsed body) begin logged.
@@ -296,7 +306,7 @@ If the data is returned successfully, we can use what we learned in the list sec
       state = {
         loading: false,
         photos: [],
-        error: undefined
+        error: undefined,
       };
 
       componentDidMount() {
@@ -304,15 +314,15 @@ If the data is returned successfully, we can use what we learned in the list sec
 
         fetch(notFoundErrorUrl)
           // fetch(okUrl)
-          .then(response => {
+          .then((response) => {
             if (!response.ok) throw new Error(response.statusText);
             return response;
           })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             this.setState({ photos: data, loading: false });
           })
-          .catch(error => {
+          .catch((error) => {
             const userError = this.toUserError(error);
             this.setState({ error: userError, loading: false });
           });
@@ -332,7 +342,7 @@ If the data is returned successfully, we can use what we learned in the list sec
         } else {
           return (
             <ul>
-              {photos.map(photo => {
+              {photos.map((photo) => {
                 return (
                   <li key={photo.id}>
                     <img src={photo.thumbnailUrl} alt={photo.title} />
@@ -412,7 +422,7 @@ function checkStatus(response) {
     const httpErrorInfo = {
       status: response.status,
       statusText: response.statusText,
-      url: response.url
+      url: response.url,
     };
     console.log(
       `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
@@ -430,8 +440,8 @@ function parseJSON(response) {
 }
 
 function delay(ms) {
-  return function(x) {
-    return new Promise(resolve => setTimeout(() => resolve(x), ms));
+  return function (x) {
+    return new Promise((resolve) => setTimeout(() => resolve(x), ms));
   };
 }
 
@@ -450,8 +460,8 @@ const photoAPI = {
       method: 'POST',
       body: JSON.stringify(photo),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
@@ -462,8 +472,8 @@ const photoAPI = {
       method: 'PUT',
       body: JSON.stringify(photo),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
@@ -473,19 +483,19 @@ const photoAPI = {
     return fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
-  }
+  },
 };
 
 class PhotoList extends React.Component {
   state = {
     loading: false,
     photos: [],
-    error: undefined
+    error: undefined,
   };
 
   componentDidMount() {
@@ -493,10 +503,10 @@ class PhotoList extends React.Component {
 
     photoAPI
       .getAll(2)
-      .then(data => {
+      .then((data) => {
         this.setState({ photos: data, loading: false });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error: error.message, loading: false });
       });
   }
@@ -510,7 +520,7 @@ class PhotoList extends React.Component {
     } else {
       return (
         <ul>
-          {photos.map(photo => {
+          {photos.map((photo) => {
             return (
               <li key={photo.id}>
                 <img src={photo.thumbnailUrl} alt={photo.title} />
@@ -539,12 +549,12 @@ axios({
     albumId: 1,
     title: 'New Photo',
     url: 'https://via.placeholder.com/600/b0f7cc',
-    thumbnailUrl: 'https://via.placeholder.com/150/b0f7cc'
-  }
+    thumbnailUrl: 'https://via.placeholder.com/150/b0f7cc',
+  },
 })
-  .then(response => response.data)
-  .then(photo => console.log(photo))
-  .catch(error => console.log(error));
+  .then((response) => response.data)
+  .then((photo) => console.log(photo))
+  .catch((error) => console.log(error));
 ```
 
 #### POST with Fetch
@@ -555,27 +565,27 @@ var data = {
   albumId: 1,
   title: 'Another Photo',
   url: 'https://via.placeholder.com/600/b0f7cc',
-  thumbnailUrl: 'https://via.placeholder.com/150/b0f7cc'
+  thumbnailUrl: 'https://via.placeholder.com/150/b0f7cc',
 };
 
 fetch(url, {
   method: 'POST',
   body: JSON.stringify(data),
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 })
-  .then(response => {
+  .then((response) => {
     console.log(response);
     return response;
   })
-  .then(response => {
+  .then((response) => {
     if (!response.ok) throw new Error(response.statusText);
     return response;
   })
-  .then(response => response.json())
-  .then(response => console.log('Success:', JSON.stringify(response)))
-  .catch(error => console.error('Error:', error));
+  .then((response) => response.json())
+  .then((response) => console.log('Success:', JSON.stringify(response)))
+  .catch((error) => console.error('Error:', error));
 ```
 
 ## PUT
@@ -585,23 +595,23 @@ var okUrl = 'http://localhost:3000/photos/5001';
 const notFoundErrorUrl = 'http://localhost:3000/photos/10000000';
 
 var data = {
-  title: 'Another Updated Photo'
+  title: 'Another Updated Photo',
 };
 
 fetch(notFoundErrorUrl, {
   method: 'PUT',
   body: JSON.stringify(data),
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 })
-  .then(response => {
+  .then((response) => {
     if (!response.ok) throw new Error(response.statusText);
     return response;
   })
-  .then(response => response.json())
-  .then(response => console.log('Success:', JSON.stringify(response)))
-  .catch(error => console.error('Error:', error));
+  .then((response) => response.json())
+  .then((response) => console.log('Success:', JSON.stringify(response)))
+  .catch((error) => console.error('Error:', error));
 ```
 
 ## DELETE
@@ -610,24 +620,26 @@ fetch(notFoundErrorUrl, {
 var okUrl = 'http://localhost:3000/photos/5001';
 
 fetch(okUrl, {
-  method: 'DELETE'
+  method: 'DELETE',
 })
-  .then(response => {
+  .then((response) => {
     console.log(response);
     return response;
   })
-  .then(response => {
+  .then((response) => {
     if (!response.ok) throw new Error(response.statusText);
     return response;
   })
-  .then(response => response.json())
-  .then(response => console.log('Success:', JSON.stringify(response)))
-  .catch(error => console.error('Error:', error));
+  .then((response) => response.json())
+  .then((response) => console.log('Success:', JSON.stringify(response)))
+  .catch((error) => console.error('Error:', error));
 ```
 
-## Item CRUD Implemented
+## Items Demo App (CRUD) using HTTP
 
-`api\db.json`
+### Function Component Example
+
+#### `api\db.json`
 
 ```json
 ,
@@ -638,9 +650,9 @@ fetch(okUrl, {
   ]
 ```
 
-```css
-/* styles.css */
+#### styles.css
 
+```css
 body,
 button,
 input,
@@ -670,19 +682,27 @@ form {
 }
 ```
 
-```js
-//main.jsx
+#### index.html
 
+```diff
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demos</title>
++    <link rel="stylesheet" href="styles.css" />
+  </head>
+...
+```
+
+#### main.jsx
+
+```js
 function ID() {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
-  return (
-    '_' +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
+  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function translateStatusToErrorMessage(status) {
@@ -704,7 +724,7 @@ function checkStatus(response) {
     const httpErrorInfo = {
       status: response.status,
       statusText: response.statusText,
-      url: response.url
+      url: response.url,
     };
     console.log(
       `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
@@ -744,8 +764,8 @@ const itemAPI = {
       method: 'POST',
       body: JSON.stringify(item),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
@@ -756,8 +776,8 @@ const itemAPI = {
       method: 'PUT',
       body: JSON.stringify(item),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
@@ -767,24 +787,340 @@ const itemAPI = {
     return fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(checkStatus)
       .then(parseJSON);
+  },
+};
+
+function List(props) {
+  const { items, onRemove, onUpdate, loading, error } = props;
+  const [editingItem, setEditingItem] = React.useState(null);
+
+  const handleEditClick = (item) => {
+    setEditingItem(item);
+  };
+
+  const handleCancel = () => {
+    setEditingItem(null);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  } else if (error) {
+    return <div>{error}</div>;
+  } else {
+    return (
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item === editingItem ? (
+              <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
+            ) : (
+              <p>
+                <span>{item.name}</span>
+                <button onClick={() => handleEditClick(item)}>Edit</button>
+                <button onClick={() => onRemove(item)}>Remove</button>
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
   }
+}
+
+function Form({ item, onSubmit, onCancel, buttonValue }) {
+  const [inputValue, setInputValue] = React.useState(item.name || '');
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setInputValue(event.target.value);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const submittedItem = {
+      id: item ? item.id : ID(),
+      name: inputValue,
+    };
+
+    onSubmit(submittedItem);
+    setInputValue('');
+  };
+
+  const handleCancel = (event) => {
+    event.preventDefault();
+    onCancel();
+  };
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <input value={inputValue} onChange={handleChange} />
+      <button>{buttonValue || 'Save'}</button>
+      {onCancel && (
+        <a href="#" onClick={handleCancel}>
+          cancel
+        </a>
+      )}
+    </form>
+  );
+}
+
+function Container() {
+  const [items, setItems] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(undefined);
+
+  React.useEffect(() => {
+    setLoading(true);
+    itemAPI
+      .getAll(1)
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  }, []);
+
+  const addItem = (item) => {
+    itemAPI
+      .add(item)
+      .then((newItem) => {
+        setItems([...items, newItem]);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  const updateItem = (updatedItem) => {
+    itemAPI
+      .update(updatedItem)
+      .then((data) => {
+        let updatedItems = items.map((item) => {
+          return item.id === updatedItem.id
+            ? Object.assign({}, item, data)
+            : item;
+        });
+        setItems(updatedItems);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  const removeItem = (removeThisItem) => {
+    itemAPI
+      .delete(removeThisItem.id)
+      .then(() => {
+        const filteredItems = items.filter(
+          (item) => item.id != removeThisItem.id
+        );
+        setItems(filteredItems);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  return (
+    <div>
+      <Form item="" onSubmit={addItem} buttonValue="Add" />
+      <List
+        loading={loading}
+        error={error}
+        items={items}
+        onRemove={removeItem}
+        onUpdate={updateItem}
+      />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Container />
+    </div>
+  );
+}
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+### Class Component Example
+
+#### `api\db.json`
+
+```json
+,
+  "items": [
+    {"id": 1, "name": "First Item" },
+    {"id": 2, "name": "Second Item" },
+    {"id": 3, "name": "Third Item" }
+  ]
+```
+
+#### styles.css
+
+```css
+body,
+button,
+input,
+textarea,
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+}
+
+li {
+  list-style: none;
+  border-bottom: 1px solid #ddd;
+}
+
+span {
+  margin: 15px;
+}
+
+button {
+  margin: 10px;
+  padding: 5px 15px 5px 15px;
+  background: transparent;
+}
+
+form {
+  margin: 15px;
+}
+```
+
+#### index.html
+
+```diff
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demos</title>
++    <link rel="stylesheet" href="styles.css" />
+  </head>
+...
+```
+
+#### main.jsx
+
+```js
+function ID() {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function translateStatusToErrorMessage(status) {
+  switch (status) {
+    case 401:
+      return 'Please login again.';
+    case 403:
+      return 'You do not have permission to view the items.';
+    default:
+      return 'There was an error retrieving the items. Please try again.';
+  }
+}
+
+//pass translate in to make this more flexible
+function checkStatus(response) {
+  if (response.ok) {
+    return response;
+  } else {
+    const httpErrorInfo = {
+      status: response.status,
+      statusText: response.statusText,
+      url: response.url,
+    };
+    console.log(
+      `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
+    );
+
+    let errorMessage = ItemAPI.translateStatusToErrorMessage(
+      httpErrorInfo.status
+    );
+    throw new Error(errorMessage);
+  }
+}
+
+function parseJSON(response) {
+  return response.json();
+}
+
+class Item {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+const baseUrl = 'http://localhost:3000';
+const url = `${baseUrl}/items`;
+
+// API ----------
+const itemAPI = {
+  getAll(page = 1, limit = 100) {
+    return fetch(`${url}?_page=${page}&_limit=${limit}`)
+      .then(checkStatus)
+      .then(parseJSON);
+  },
+
+  add(item) {
+    return fetch(`${url}`, {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  },
+
+  update(item) {
+    return fetch(`${url}/${item.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(item),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  },
+
+  delete(id) {
+    return fetch(`${url}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  },
 };
 
 class List extends React.Component {
   state = {
-    editingItem: null
+    editingItem: null,
   };
 
-  handleEditClick = item => {
+  handleEditClick = (item) => {
     this.setState({ editingItem: item });
   };
 
-  handleCancel = item => {
+  handleCancel = (item) => {
     this.setState({ editingItem: null });
   };
 
@@ -798,7 +1134,7 @@ class List extends React.Component {
     } else {
       return (
         <ul>
-          {items.map(item => (
+          {items.map((item) => (
             <li key={item.id}>
               {item === this.state.editingItem ? (
                 <Form
@@ -825,26 +1161,26 @@ class List extends React.Component {
 
 class Form extends React.Component {
   state = {
-    inputValue: this.props.item.name || ''
+    inputValue: this.props.item.name || '',
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     event.preventDefault();
     this.setState({ inputValue: event.target.value });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     const item = {
       id: this.props.item ? this.props.item.id : ID(),
-      name: this.state.inputValue
+      name: this.state.inputValue,
     };
 
     this.props.onSubmit(item);
     this.setState({ inputValue: '' });
   };
 
-  handleCancel = event => {
+  handleCancel = (event) => {
     event.preventDefault();
     this.props.onCancel();
   };
@@ -868,40 +1204,40 @@ class Container extends React.Component {
   state = {
     loading: false,
     items: [],
-    error: undefined
+    error: undefined,
   };
 
   componentDidMount() {
     this.setState({ items: [], loading: true });
     itemAPI
       .getAll(1)
-      .then(data => {
+      .then((data) => {
         this.setState({ items: data, loading: false });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error: error.message, loading: false });
       });
   }
 
-  addItem = item => {
+  addItem = (item) => {
     itemAPI
       .add(item)
-      .then(data => {
-        this.setState(state => ({
-          items: [...state.items, item]
+      .then((data) => {
+        this.setState((state) => ({
+          items: [...state.items, item],
         }));
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error: error.message });
       });
   };
 
-  updateItem = updatedItem => {
+  updateItem = (updatedItem) => {
     itemAPI
       .update(updatedItem)
-      .then(data => {
-        this.setState(state => {
-          let items = state.items.map(item => {
+      .then((data) => {
+        this.setState((state) => {
+          let items = state.items.map((item) => {
             return item.id === updatedItem.id
               ? Object.assign({}, item, data)
               : item;
@@ -909,23 +1245,23 @@ class Container extends React.Component {
           return { items };
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error: error.message });
       });
   };
 
-  removeItem = removeThisItem => {
+  removeItem = (removeThisItem) => {
     itemAPI
       .delete(removeThisItem.id)
-      .then(data => {
-        this.setState(state => {
+      .then((data) => {
+        this.setState((state) => {
           const items = state.items.filter(
-            item => item.id != removeThisItem.id
+            (item) => item.id != removeThisItem.id
           );
           return { items };
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error: error.message });
       });
   };

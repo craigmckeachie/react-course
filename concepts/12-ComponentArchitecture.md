@@ -15,11 +15,6 @@
     - [Reference](#reference)
   - [Composition vs Inheritance](#composition-vs-inheritance)
   - [Thinking in React](#thinking-in-react)
-  - [Items (CRUD) Demo](#items-crud-demo)
-      - [styles.css](#stylescss)
-      - [index.html](#indexhtml)
-      - [main.jsx](#mainjsx)
-    - [Requirements](#requirements)
   - [Reference](#reference-1)
 
 ## Reuse
@@ -295,7 +290,7 @@ Here are some steps you might find useful as you learn to **Think in React**
 
 See the section [Thinking in React](https://reactjs.org/docs/thinking-in-react.htm) in the documentation for more information.
 
-## Items (CRUD) Demo
+<!-- ## Items (CRUD) Demo
 
 Below is an example of a simple application that lists and deletes (CRUD) items.
 
@@ -532,7 +527,7 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-We will continue to enhance this demo in the remaining chapters.
+We will continue to enhance this demo in the remaining chapters. -->
 
 <!--
 ## Demo 2: GitHub API Example
