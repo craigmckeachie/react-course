@@ -7,6 +7,8 @@
       - [Additional Communication Patterns](#additional-communication-patterns)
 - [Design Patterns](#design-patterns)
   - [Lifting State Up](#lifting-state-up)
+    - [Function Compnoent Example](#function-compnoent-example)
+    - [Class Component Example](#class-component-example)
   - [Container and Presentation Components](#container-and-presentation-components)
     - [Container (Smart) Components](#container-smart-components)
     - [Presentation Components](#presentation-components)
@@ -157,6 +159,37 @@ Essentially, **communication doesn't skip generations** so if it is going to hap
 Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor.
 
 Here is an example.
+
+### Function Compnoent Example
+
+```js
+function Button({ onClickFunction }) {
+  return <button onClick={onClickFunction}>+1</button>;
+}
+
+const Result = ({ value }) => {
+  return <div>Result: {value}</div>;
+};
+
+function App() {
+  const [counter, setCounter] = React.useState(0);
+
+  const incrementCounter = () => {
+    setCounter((previousCounter) => previousCounter + 1);
+  };
+
+  return (
+    <div>
+      <Button onClickFunction={incrementCounter} />
+      <Result value={counter} />
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+### Class Component Example
 
 ```js
 class Button extends React.Component {
