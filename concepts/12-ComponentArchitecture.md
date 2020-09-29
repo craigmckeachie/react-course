@@ -15,6 +15,7 @@
   - [Thinking in React](#thinking-in-react)
   - [Items (CRUD) Demo](#items-crud-demo)
       - [styles.css](#stylescss)
+      - [index.html](#indexhtml)
       - [main.jsx](#mainjsx)
     - [Requirements](#requirements)
   - [Reference](#reference-1)
@@ -274,8 +275,6 @@ It puts into practice all the ideas we discussed in this Component Architecture 
       - ListItem
 ```
 
-Add the following styles to `styles.css` so you can focus on learning React.
-
 #### styles.css
 
 ```css
@@ -306,6 +305,19 @@ button {
 form {
   margin: 15px;
 }
+```
+
+#### index.html
+
+```diff
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demos</title>
++    <link rel="stylesheet" href="styles.css" />
+  </head>
+...
 ```
 
 Start with the following static mockup of a component hierarchy and then implement the requirements listed in the next section.

@@ -13,8 +13,10 @@
     - [Items App with Hooks](#items-app-with-hooks)
       - [Items App Modifying Container to `useState` and `useEffect`](#items-app-modifying-container-to-usestate-and-useeffect)
         - [Steps](#steps)
-      - [Items App using Hooks](#items-app-using-hooks)
     - [Items App with Hooks and HTTP](#items-app-with-hooks-and-http)
+      - [styles.css](#stylescss)
+      - [index.html](#indexhtml)
+      - [main.jsx](#mainjsx)
   - [Custom Hooks](#custom-hooks)
   - [Rules of Hooks](#rules-of-hooks)
   - [Labs](#labs)
@@ -282,148 +284,54 @@ function Container() {
 
 ```
 
-#### Items App using Hooks
+### Items App with Hooks and HTTP
 
-In this section, we expand our use of `hooks` by migrating all class components to function components using hooks.
+#### styles.css
 
-At this point, we are not calling an API yet we are just working with in-memory data but we will get to that next.
-
-This is a complete demonstration that can be run in `main.jsx`.
-
-```js
-function ID() {
-  return '_' + Math.random().toString(36).substr(2, 9);
+```css
+body,
+button,
+input,
+textarea,
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
 }
 
-class Item {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
-  }
+li {
+  list-style: none;
+  border-bottom: 1px solid #ddd;
 }
 
-const initialItems = [
-  new Item(ID(), 'First Item'),
-  new Item(ID(), 'Second Item'),
-  new Item(ID(), 'Third Item'),
-];
-
-function ListItem({ item, onEdit, onRemove }) {
-  return (
-    <p>
-      <span>{item.name}</span>
-      <button onClick={() => onEdit(item)}>Edit</button>
-      <button onClick={() => onRemove(item)}>Remove</button>
-    </p>
-  );
+span {
+  margin: 15px;
 }
 
-function List({ items, onRemove, onUpdate }) {
-  const [editingItem, setEditingItem] = React.useState(null);
-
-  const handleEdit = (item) => {
-    setEditingItem(item);
-  };
-
-  const handleCancel = () => {
-    setEditingItem(null);
-  };
-
-  return (
-    <ul>
-      {items.map((item) => (
-        <li key={item.id}>
-          {item === editingItem ? (
-            <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
-          ) : (
-            <ListItem item={item} onEdit={handleEdit} onRemove={onRemove} />
-          )}
-        </li>
-      ))}
-    </ul>
-  );
+button {
+  margin: 10px;
+  padding: 5px 15px 5px 15px;
+  background: transparent;
 }
 
-function Form({ item, onSubmit, onCancel, buttonValue }) {
-  const [inputValue, setInputValue] = React.useState(item.name || '');
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    setInputValue(event.target.value);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    const submittedItem = {
-      id: item ? item.id : ID(),
-      name: inputValue,
-    };
-
-    onSubmit(submittedItem);
-    setInputValue('');
-  };
-
-  const handleCancel = (event) => {
-    event.preventDefault();
-    onCancel();
-  };
-
-  return (
-    <form onSubmit={handleFormSubmit}>
-      <input value={inputValue} onChange={handleChange} />
-      <button>{buttonValue || 'Save'}</button>
-      {onCancel && (
-        <a href="#" onClick={handleCancel}>
-          cancel
-        </a>
-      )}
-    </form>
-  );
+form {
+  margin: 15px;
 }
-
-function Container() {
-  const [items, setItems] = React.useState([]);
-
-  React.useEffect(() => setItems(initialItems), []);
-
-  const addItem = (item) => {
-    setItems([...items, item]);
-  };
-
-  const updateItem = (updatedItem) => {
-    let updatedItems = items.map((item) => {
-      return item.id === updatedItem.id
-        ? Object.assign({}, item, updatedItem)
-        : item;
-    });
-    return setItems(updatedItems);
-  };
-
-  const removeItem = (removeThisItem) => {
-    const filteredItems = items.filter((item) => item.id != removeThisItem.id);
-    setItems(filteredItems);
-  };
-
-  return (
-    <React.Fragment>
-      <Form item="" onSubmit={addItem} buttonValue="Add" />
-      <List items={items} onRemove={removeItem} onUpdate={updateItem} />
-    </React.Fragment>
-  );
-}
-
-function App() {
-  return (
-    <div>
-      <Container />
-    </div>
-  );
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-### Items App with Hooks and HTTP
+#### index.html
+
+```diff
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demos</title>
++    <link rel="stylesheet" href="styles.css" />
+  </head>
+...
+```
+
+#### main.jsx
 
 ```js
 function ID() {

@@ -3,20 +3,33 @@
 - [Chapter 13: Forms](#chapter-13-forms)
   - [Controlled Components](#controlled-components)
     - [Controlled **Function** Components](#controlled-function-components)
-  - [Reuse of Change Logic across Multiple Inputs](#reuse-of-change-logic-across-multiple-inputs)
+    - [Controlled **Class** Components](#controlled-class-components)
   - [Submitting](#submitting)
+    - [Function Component Example](#function-component-example)
+    - [Class Component Example](#class-component-example)
   - [Controlling other Types of HTML Form Elements](#controlling-other-types-of-html-form-elements)
   - [Validation](#validation)
-    - [styles.css](#stylescss)
-    - [main.jsx](#mainjsx)
     - [Validation (with Function Component & Hooks)](#validation-with-function-component--hooks)
+      - [styles.css](#stylescss)
+      - [main.jsx](#mainjsx)
+    - [Validation (in a Class Component)](#validation-in-a-class-component)
       - [main.jsx](#mainjsx-1)
   - [Uncontrolled Components](#uncontrolled-components)
     - [Refs](#refs)
-    - [Setting defaultValue](#setting-defaultvalue)
-    - [File Input](#file-input)
-  - [Items (CRUD) Demo (continued)](#items-crud-demo-continued)
+    - [Function Component Example](#function-component-example-1)
+      - [Setting defaultValue](#setting-defaultvalue)
+    - [Class Component Example](#class-component-example-1)
+    - [File Input Example](#file-input-example)
+  - [Items App Demo (CRUD) (continued)](#items-app-demo-crud-continued)
     - [Requirements](#requirements)
+    - [Solution (using Function Components & Hooks)](#solution-using-function-components--hooks)
+      - [styles.css](#stylescss-1)
+      - [index.html](#indexhtml)
+      - [main.jsx](#mainjsx-2)
+    - [Solution (using Class Components)](#solution-using-class-components)
+      - [styles.css](#stylescss-2)
+      - [index.html](#indexhtml-1)
+      - [main.jsx](#mainjsx-3)
   - [Reference](#reference)
 
 ## Controlled Components
@@ -29,10 +42,62 @@ In React, mutable state is typically kept in the state property of components, a
 
 We can combine the two by making the React state be the “single source of truth”. Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a **controlled component**.
 
-Below is an example.
+### Controlled **Function** Components
+
+Below is an example of what a controlled component would like like in a function component.
 
 1. Delete the current code in `main.jsx`.
 2. Add the following code to `main.jsx`
+
+```js
+function ExampleForm() {
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <form>
+      <input type="text" value={value} onChange={handleChange} />
+      <pre>{JSON.stringify(value)}</pre>
+    </form>
+  );
+}
+
+ReactDOM.render(<ExampleForm />, document.getElementById('root'));
+```
+
+3. Refresh your browser
+4. Type some text in the `input`
+5. Notice that this text immediately shows in `state` because we have written set the value and onChange properties to read and write from the parent component's surrounding state.
+6. Update `handleChange` as follows
+
+```diff
+  const handleChange = (event) => {
+    setValue(event.target.value
++    .toUpperCase()
+    );
+  };
+```
+
+7. Refresh the browser
+8. Type some text in the `input`
+9. We can now more clearly see we are controlling the value by storing it in the component's state.
+10. Remove the `toUpperCase()` call
+11. To further understand controlled components: Comment out the implementation of `handleChange` and notice that when you type in the input nothing happens.
+
+```diff
+  const handleChange = (event) => {
+-    setValue(event.target.value);
+  };
+```
+
+12. Uncomment the `handleChange` implementation and verify it is working again.
+
+### Controlled **Class** Components
+
+Below is an example of what a controlled component would look like in a class component.
 
 ```js
 class ExampleForm extends React.Component {
@@ -61,63 +126,47 @@ class ExampleForm extends React.Component {
 ReactDOM.render(<ExampleForm />, document.getElementById('root'));
 ```
 
-3. Refresh your browser
-4. Type some text in the `input`
-5. Notice that this text immediately shows in `state` because we have written set the value and onChange properties to read and write from the parent component's surrounding state.
-6. Update `onChange` as follows
+## Submitting
 
-```diff
-  handleChange = event => {
-    this.setState({
-        value: event.target.value
-+                .toUpperCase()
-    });
-  };
-```
+Handling the submission of the form using the same concepts we learning previously in the events section.
 
-7. Refresh the browser
-8. Type some text in the `input`
-9. We can now more clearly see we are controlling the value by storing it in the component's state.
-10. Remove the `toUpperCase()` call
-11. To further understand controlled components: Comment out the implementation of `handleChange` and notice that when you type in the input nothing happens.
+1. Modify the code to prevent the default browser behavior of submitting the form data to the server and instead log the form data to the `console`.
 
-```diff
-  handleChange = event => {
-+ \\ this.setState({value: event.target.value });
-};
-```
-
-12. Uncomment the `handleChange` implementation and verify it is working again.
-
-### Controlled **Function** Components
-
-Below is an example of what a controlled component would look like in a function component.
+### Function Component Example
 
 ```js
-function ExampleForm() {
-  const [value, setValue] = React.useState('');
+function LoginForm() {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-  const handleChange = (event) => {
-    setValue(event.target.value.toUpperCase());
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(username, password);
   };
 
   return (
-    <form>
-      <input type="text" value={value} onChange={handleChange} />
-      <pre>{JSON.stringify(value)}</pre>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="username"
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
+      />
+      <input
+        type="password"
+        name="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <button type="submit">Sign In</button>
     </form>
   );
 }
 
-ReactDOM.render(<ExampleForm />, document.getElementById('root'));
+ReactDOM.render(<LoginForm />, document.getElementById('root'));
 ```
 
-## Reuse of Change Logic across Multiple Inputs
-
-If we have multiple inputs you can implement one onChange event handler function to handle them all.
-
-1. Delete the current code in `main.jsx`.
-2. Add the following code to `main.jsx`
+### Class Component Example
 
 ```js
 class LoginForm extends React.Component {
@@ -127,117 +176,18 @@ class LoginForm extends React.Component {
   };
 
   handleChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    this.setState({ [name]: value });
-  };
-
-  render() {
-    return (
-      <form>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <button>Sign In</button>
-        <pre>{JSON.stringify(this.state)}</pre>
-      </form>
-    );
-  }
-}
-
-ReactDOM.render(<LoginForm />, document.getElementById('root'));
-```
-
-3. Refresh your browser
-4. Type a username and password
-5. Update the onChange event handler to use destructuring as follows:
-
-```diff
-handleChange = event => {
--    const target = event.target;
--    const name = target.name;
--    const value = target.value;
-+    const { name, value } = event.target;
-     this.setState({ [name]: value });
-  };
-```
-
-> Destructuring is a new feature of ES5/ES2015. More specifically, we are using [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in this example. You can read more about it using the link above.
-
-6. Comment out the initialization of the state properties to an empty string.
-
-```js
-class LoginForm extends React.Component {
-  state = {};
-  // state = {
-  //   username: '',
-  //   password: ''
-  // };
-  ...
-}
-```
-
-7. Refresh your browser and make sure the browsers `Console` is open
-8. Type a username
-9. You will receive the following warning:
-
-```sh
-Warning: A component is changing an uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component.
-```
-
-Specifying the value prop on a controlled component prevents the user from changing the input unless you desire so. If you’ve specified a value but the input is still editable, you may have accidentally set value to undefined or null.
-
-> Don't set a controlled input to a `null` or `undefined` value (intentionally or unintentionally).
-
-10. Uncomment the initialization of the state properties.
-
-```diff
-class LoginForm extends React.Component {
--  state = {};
-+  state = {
-+    username: '',
-+    password: ''
-+  };
-  ...
-}
-```
-
-## Submitting
-
-Handling the submission of the form using the same concepts we learning previously in the events section.
-
-1. Modify the code to prevent the default browser behavior of submitting the form data to the server and instead log the form data to the `console`.
-
-```diff
-class LoginForm extends React.Component {
-  state = {
-    username: '',
-    password: ''
-  };
-
-  handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
-+  handleSubmit = event => {
-+    event.preventDefault();
-+    console.log(this.state);
-+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
 
   render() {
     return (
-+     <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <input
           type="text"
           name="username"
@@ -352,6 +302,8 @@ To help you decide whether a library would be helpful in your use case, it can b
 
 Below is an example of some basic validation implemented in our Contact Us form.
 
+### Validation (with Function Component & Hooks)
+
 #### styles.css
 
 ```css
@@ -362,6 +314,143 @@ Below is an example of some basic validation implemented in our Contact Us form.
   width: 50%;
 }
 ```
+
+#### main.jsx
+
+```js
+function ContactUsForm() {
+  const [department, setDepartment] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [agreedToTerms, setAgreedToTerms] = React.useState(false);
+  const [
+    departmentValidationMessage,
+    setDepartmentValidationMessage,
+  ] = React.useState(null);
+  const [
+    messageValidationMessage,
+    setMessageValidationMessage,
+  ] = React.useState(null);
+  const [
+    agreedToTermsValidationMessage,
+    setAgreedToTermsValidationMessage,
+  ] = React.useState(null);
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  const handleBlur = (event) => {
+    validate();
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    validate();
+    if (!isValid()) {
+      return;
+    }
+  };
+
+  const validate = () => {
+    setDepartmentValidationMessage(null);
+    setMessageValidationMessage(null);
+    setAgreedToTermsValidationMessage(null);
+
+    if (!department) {
+      setDepartmentValidationMessage('Department is required.');
+    }
+    if (!message) {
+      setMessageValidationMessage('A message is required.');
+    }
+    if (agreedToTerms === false) {
+      setAgreedToTermsValidationMessage(
+        'You must agree to the terms and conditions.'
+      );
+    }
+  };
+
+  const isValid = () => {
+    return (
+      departmentValidationMessage === null &&
+      messageValidationMessage === null &&
+      agreedToTermsValidationMessage === null
+    );
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <select
+        name="department"
+        value={department}
+        onChange={(e) => setDepartment(e.target.value)}
+        onBlur={handleBlur}
+      >
+        <option value="">Select...</option>
+        <option value="hr">Human Resources</option>
+        <option value="pr">Public Relations</option>
+        <option value="support">Support</option>
+      </select>
+      <br />
+      {departmentValidationMessage && (
+        <p className="alert">{departmentValidationMessage}</p>
+      )}
+      <br />
+      <textarea
+        name="message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        onBlur={handleBlur}
+        cols="30"
+        rows="10"
+      />
+      <br />
+      {messageValidationMessage && (
+        <p className="alert">{messageValidationMessage}</p>
+      )}
+      <input
+        type="checkbox"
+        name="agreedToTerms"
+        checked={agreedToTerms}
+        onChange={(e) => setAgreedToTerms(e.target.checked)}
+        onBlur={handleBlur}
+      />
+      I agree to the terms and conditions.
+      <br />
+      {agreedToTermsValidationMessage && (
+        <p className="alert">{agreedToTermsValidationMessage}</p>
+      )}
+      <button>Send</button>
+      <pre>
+        {JSON.stringify(
+          {
+            department,
+            message,
+            agreedToTerms,
+            departmentValidationMessage,
+            messageValidationMessage,
+            agreedToTermsValidationMessage,
+          },
+          null,
+          ' '
+        )}
+      </pre>
+    </form>
+  );
+}
+
+ReactDOM.render(<ContactUsForm />, document.getElementById('root'));
+```
+
+Some things to notice in the code above:
+
+- Validation messages are themselves local component state.
+- A validate function was created that checks the current state which controls form fields and sets validation messages into state.
+- The validate function is called when the form is submitted.
+- An onBlur event handler is created and the validation is called there as well so users get feedback as soon as they leave a given form control.
+- The && operator is used to conditionally display the error messages.
+  - The && operator is ideal in this case since there is no else case.
+
+### Validation (in a Class Component)
 
 #### main.jsx
 
@@ -482,152 +571,6 @@ class ContactUsForm extends React.Component {
 ReactDOM.render(<ContactUsForm />, document.getElementById('root'));
 ```
 
-Some things to notice in the code above:
-
-- Validation messages are themselves local component state.
-- A validate function was created that checks the current state which controls form fields and sets validation messages into state.
-  - These validation messages could be combined into one errors object but we are choosing to keep things simple here.
-- The validate function is called when the form is submitted.
-- An onBlur event handler is created and the validation is called there as well so users get feedback as soon as they leave a given form control.
-- The && operator is used to conditionally display the error messages.
-  - The && operator is ideal in this case since there is no else case.
-
-### Validation (with Function Component & Hooks)
-
-#### main.jsx
-
-```js
-function ContactUsForm() {
-  const [department, setDepartment] = React.useState('');
-  const [message, setMessage] = React.useState('');
-  const [agreedToTerms, setAgreedToTerms] = React.useState(false);
-  const [
-    departmentValidationMessage,
-    setDepartmentValidationMessage,
-  ] = React.useState(null);
-  const [
-    messageValidationMessage,
-    setMessageValidationMessage,
-  ] = React.useState(null);
-  const [
-    agreedToTermsValidationMessage,
-    setAgreedToTermsValidationMessage,
-  ] = React.useState(null);
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  const handleChange = (event) => {
-    const { type, name, value, checked } = event.target;
-    const updatedValue = type === 'checkbox' ? checked : value;
-    // ? setState({ [name]: updatedValue });
-    // let function = ["set" + capitalizeFirstLetter(name)];
-    // function(updatedValue);
-  };
-
-  const handleBlur = (event) => {
-    validate();
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    validate();
-    if (!isValid()) {
-      return;
-    }
-  };
-
-  const validate = () => {
-    setDepartmentValidationMessage(null);
-    setMessageValidationMessage(null);
-    setAgreedToTermsValidationMessage(null);
-
-    if (!department) {
-      setDepartmentValidationMessage('Department is required.');
-    }
-    if (!message) {
-      setMessageValidationMessage('A message is required.');
-    }
-    if (agreedToTerms === false) {
-      setAgreedToTermsValidationMessage(
-        'You must agree to the terms and conditions.'
-      );
-    }
-  };
-
-  const isValid = () => {
-    return (
-      departmentValidationMessage === null &&
-      messageValidationMessage === null &&
-      agreedToTermsValidationMessage === null
-    );
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <select
-        name="department"
-        value={department}
-        onChange={(e) => setDepartment(e.target.value)}
-        onBlur={handleBlur}
-      >
-        <option value="">Select...</option>
-        <option value="hr">Human Resources</option>
-        <option value="pr">Public Relations</option>
-        <option value="support">Support</option>
-      </select>
-      <br />
-      {departmentValidationMessage && (
-        <p className="alert">{departmentValidationMessage}</p>
-      )}
-      <br />
-      <textarea
-        name="message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onBlur={handleBlur}
-        cols="30"
-        rows="10"
-      />
-      <br />
-      {messageValidationMessage && (
-        <p className="alert">{messageValidationMessage}</p>
-      )}
-      <input
-        type="checkbox"
-        name="agreedToTerms"
-        checked={agreedToTerms}
-        onChange={(e) => setAgreedToTerms(e.target.checked)}
-        onBlur={handleBlur}
-      />
-      I agree to the terms and conditions.
-      <br />
-      {agreedToTermsValidationMessage && (
-        <p className="alert">{agreedToTermsValidationMessage}</p>
-      )}
-      <button>Send</button>
-      <pre>
-        {JSON.stringify(
-          {
-            department,
-            message,
-            agreedToTerms,
-            departmentValidationMessage,
-            messageValidationMessage,
-            agreedToTermsValidationMessage,
-          },
-          null,
-          ' '
-        )}
-      </pre>
-    </form>
-  );
-}
-
-ReactDOM.render(<ContactUsForm />, document.getElementById('root'));
-```
-
 ## Uncontrolled Components
 
 In most cases, React recommends using `controlled components` to implement forms. In a controlled component, form data is handled by a React component. The alternative is `uncontrolled components`, where form data is handled by the `DOM` itself.
@@ -635,6 +578,63 @@ In most cases, React recommends using `controlled components` to implement forms
 ### Refs
 
 When writing an `uncontrolled component` you use a `ref` to get form values from the DOM directly instead of writing an event handler for every state update.
+
+### Function Component Example
+
+```js
+function ExampleForm() {
+  const input = React.useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(input.current);
+    console.log(input.current.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" ref={input} />
+      <button>Submit</button>
+    </form>
+  );
+}
+ReactDOM.render(<ExampleForm />, document.getElementById('root'));
+```
+
+#### Setting defaultValue
+
+Try initializing the value property on the input.
+
+1. Modify the code to set the `value` property
+   ```diff
+    <form onSubmit={handleSubmit}>
+        <input
+   +       value="initial value"
+          type="text" ref={input} />
+        <button>Submit</button>
+    </form>
+   ```
+2. Refresh the page
+3. This warning is displayed and the input will be read-only:
+   ```
+   Warning: Failed prop type: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
+   ```
+4. As the warning explains change the code to use defaultValue
+   ```diff
+   <form onSubmit={handleSubmit}>
+       <input
+   +       defaultValue="initial value"
+         type="text" ref={input} />
+       <button>Submit</button>
+   </form>
+   ```
+5. Refresh the page
+6. The warning goes away
+
+> - Use `defaultValue` to initialize `uncontrolled components`
+> - Use `value` to initialize `controlled components`
+
+### Class Component Example
 
 ```js
 class ExampleForm extends React.Component {
@@ -658,70 +658,7 @@ class ExampleForm extends React.Component {
 ReactDOM.render(<ExampleForm />, document.getElementById('root'));
 ```
 
-Try changing the above example to bind in the constructor instead of using `class field members`.
-
-Here is the example without using `class field members` if you need some hints or want to check your answer.
-
-```js
-class ExampleForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.input.current);
-    console.log(this.input.current.value);
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" ref={this.input} />
-        <button>Submit</button>
-      </form>
-    );
-  }
-}
-ReactDOM.render(<ExampleForm />, document.getElementById('root'));
-```
-
-### Setting defaultValue
-
-Try initializing the value property on the input.
-
-1. Modify the code to set the `value` property
-   ```diff
-    <form onSubmit={this.handleSubmit}>
-        <input
-   +       value="initial value"
-          type="text" ref={this.input} />
-        <button>Submit</button>
-    </form>
-   ```
-2. Refresh the page
-3. This warning is displayed and the input will be read-only:
-   ```
-   Warning: Failed prop type: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
-   ```
-4. As the warning explains change the code to use defaultValue
-   ```diff
-   <form onSubmit={this.handleSubmit}>
-       <input
-   +       defaultValue="initial value"
-         type="text" ref={this.input} />
-       <button>Submit</button>
-   </form>
-   ```
-5. Refresh the page
-6. The warning goes away
-
-> - Use `defaultValue` to initialize `uncontrolled components`
-> - Use `value` to initialize `controlled components`
-
-### File Input
+### File Input Example
 
 In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the File API.
 
@@ -764,11 +701,9 @@ ReactDOM.render(<FileInput />, document.getElementById('root'));
 
 See the reference links below for a more complete example of a file upload component in React.
 
-## Items (CRUD) Demo (continued)
+## Items App Demo (CRUD) (continued)
 
 Below we continue to expand on the Items (CRUD) Demo to use forms and do additional component communication. See the requirements listed below as well as the solution code.
-
-> The **hooks** chapter includes a version of this demo using function components and hooks instead of the class components used below.
 
 ### Requirements
 
@@ -786,6 +721,239 @@ Below we continue to expand on the Items (CRUD) Demo to use forms and do additio
 
 1. Add a cancel link and use it to cancel out of editing mode.
    See the finished solution code below:
+
+### Solution (using Function Components & Hooks)
+
+At this point, we are not calling an API yet we are just working with in-memory data but we will get to that next.
+
+#### styles.css
+
+```css
+body,
+button,
+input,
+textarea,
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+}
+
+li {
+  list-style: none;
+  border-bottom: 1px solid #ddd;
+}
+
+span {
+  margin: 15px;
+}
+
+button {
+  margin: 10px;
+  padding: 5px 15px 5px 15px;
+  background: transparent;
+}
+
+form {
+  margin: 15px;
+}
+```
+
+#### index.html
+
+```diff
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demos</title>
++    <link rel="stylesheet" href="styles.css" />
+  </head>
+...
+```
+
+#### main.jsx
+
+```js
+function ID() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+class Item {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+const initialItems = [
+  new Item(ID(), 'First Item'),
+  new Item(ID(), 'Second Item'),
+  new Item(ID(), 'Third Item'),
+];
+
+function ListItem({ item, onEdit, onRemove }) {
+  return (
+    <p>
+      <span>{item.name}</span>
+      <button onClick={() => onEdit(item)}>Edit</button>
+      <button onClick={() => onRemove(item)}>Remove</button>
+    </p>
+  );
+}
+
+function List({ items, onRemove, onUpdate }) {
+  const [editingItem, setEditingItem] = React.useState(null);
+
+  const handleEdit = (item) => {
+    setEditingItem(item);
+  };
+
+  const handleCancel = () => {
+    setEditingItem(null);
+  };
+
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          {item === editingItem ? (
+            <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
+          ) : (
+            <ListItem item={item} onEdit={handleEdit} onRemove={onRemove} />
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Form({ item, onSubmit, onCancel, buttonValue }) {
+  const [inputValue, setInputValue] = React.useState(item.name || '');
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setInputValue(event.target.value);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const submittedItem = {
+      id: item ? item.id : ID(),
+      name: inputValue,
+    };
+
+    onSubmit(submittedItem);
+    setInputValue('');
+  };
+
+  const handleCancel = (event) => {
+    event.preventDefault();
+    onCancel();
+  };
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <input value={inputValue} onChange={handleChange} />
+      <button>{buttonValue || 'Save'}</button>
+      {onCancel && (
+        <a href="#" onClick={handleCancel}>
+          cancel
+        </a>
+      )}
+    </form>
+  );
+}
+
+function Container() {
+  const [items, setItems] = React.useState([]);
+
+  React.useEffect(() => setItems(initialItems), []);
+
+  const addItem = (item) => {
+    setItems([...items, item]);
+  };
+
+  const updateItem = (updatedItem) => {
+    let updatedItems = items.map((item) => {
+      return item.id === updatedItem.id
+        ? Object.assign({}, item, updatedItem)
+        : item;
+    });
+    return setItems(updatedItems);
+  };
+
+  const removeItem = (removeThisItem) => {
+    const filteredItems = items.filter((item) => item.id != removeThisItem.id);
+    setItems(filteredItems);
+  };
+
+  return (
+    <React.Fragment>
+      <Form item="" onSubmit={addItem} buttonValue="Add" />
+      <List items={items} onRemove={removeItem} onUpdate={updateItem} />
+    </React.Fragment>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Container />
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+### Solution (using Class Components)
+
+#### styles.css
+
+```css
+body,
+button,
+input,
+textarea,
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+}
+
+li {
+  list-style: none;
+  border-bottom: 1px solid #ddd;
+}
+
+span {
+  margin: 15px;
+}
+
+button {
+  margin: 10px;
+  padding: 5px 15px 5px 15px;
+  background: transparent;
+}
+
+form {
+  margin: 15px;
+}
+```
+
+#### index.html
+
+```diff
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demos</title>
++    <link rel="stylesheet" href="styles.css" />
+  </head>
+...
+```
+
+#### main.jsx
 
 ```js
 function ID() {
@@ -965,3 +1133,103 @@ ReactDOM.render(<App />, document.getElementById('root'));
 - [Form Validation Example](https://www.telerik.com/blogs/up-and-running-with-react-form-validation)
 - [Form Validation Approaches](https://moduscreate.com/blog/reactjs-form-validation-approaches/)
 - [File upload](https://codeburst.io/react-image-upload-with-kittens-cc96430eaece)
+
+<!-- ## Reuse of Change Logic across Multiple Inputs
+
+If we have multiple inputs you can implement one onChange event handler function to handle them all.
+
+1. Delete the current code in `main.jsx`.
+2. Add the following code to `main.jsx`
+
+```js
+class LoginForm extends React.Component {
+  state = {
+    username: '',
+    password: '',
+  };
+
+  handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({ [name]: value });
+  };
+
+  render() {
+    return (
+      <form>
+        <input
+          type="text"
+          name="username"
+          value={this.state.username}
+          onChange={this.handleChange}
+        />
+        <input
+          type="password"
+          name="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
+        <button>Sign In</button>
+        <pre>{JSON.stringify(this.state)}</pre>
+      </form>
+    );
+  }
+}
+
+ReactDOM.render(<LoginForm />, document.getElementById('root'));
+```
+
+3. Refresh your browser
+4. Type a username and password
+5. Update the onChange event handler to use destructuring as follows:
+
+```diff
+handleChange = event => {
+-    const target = event.target;
+-    const name = target.name;
+-    const value = target.value;
++    const { name, value } = event.target;
+     this.setState({ [name]: value });
+  };
+```
+
+> Destructuring is a new feature of ES5/ES2015. More specifically, we are using [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in this example. You can read more about it using the link above.
+
+6. Comment out the initialization of the state properties to an empty string.
+
+```js
+class LoginForm extends React.Component {
+  state = {};
+  // state = {
+  //   username: '',
+  //   password: ''
+  // };
+  ...
+}
+```
+
+7. Refresh your browser and make sure the browsers `Console` is open
+8. Type a username
+9. You will receive the following warning:
+
+```sh
+Warning: A component is changing an uncontrolled input of type text to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component.
+```
+
+Specifying the value prop on a controlled component prevents the user from changing the input unless you desire so. If you’ve specified a value but the input is still editable, you may have accidentally set value to undefined or null.
+
+> Don't set a controlled input to a `null` or `undefined` value (intentionally or unintentionally).
+
+10. Uncomment the initialization of the state properties.
+
+```diff
+class LoginForm extends React.Component {
+-  state = {};
++  state = {
++    username: '',
++    password: ''
++  };
+  ...
+}
+``` -->
