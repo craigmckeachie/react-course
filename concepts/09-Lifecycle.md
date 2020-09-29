@@ -1,14 +1,75 @@
-# Chapter 9: Lifecycle & Side Effects
-# Lifecycle
-- [Chapter 9: Lifecycle & Side Effects](#chapter-9-lifecycle--side-effects)
+# Chapter 9: Side Effects & Lifecycle
+
+- [Chapter 9: Side Effects & Lifecycle](#chapter-9-side-effects--lifecycle)
+- [Side Effects](#side-effects)
+  - [useEffect](#useeffect)
+    - [What does useEffect do?](#what-does-useeffect-do)
+    - [Using useEffect](#using-useeffect)
+    - [useEffect Simple Demo](#useeffect-simple-demo)
 - [Lifecycle](#lifecycle)
   - [What are Lifecycle Methods](#what-are-lifecycle-methods)
       - [React Lifecycle Methods Diagram: Common Methods](#react-lifecycle-methods-diagram-common-methods)
   - [Using LifeCycle Methods](#using-lifecycle-methods)
   - [Lifecycle Reference](#lifecycle-reference)
-- [Side Effects](#side-effects)
-  - [useEffect](#useeffect)
-    - [useEffect Simple Demo](#useeffect-simple-demo)
+
+# Side Effects
+
+Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects. Whether or not you’re used to calling these operations “side effects” (or just “effects”), you’ve likely performed them in your components before.
+
+## useEffect
+
+This Hook should be used for any side-effects you’re executing in your render cycle.
+
+### What does useEffect do?
+
+By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we'll refer to it as our “effect”), and call it later after performing the DOM updates.
+
+### Using useEffect
+
+`useEffect()` _takes_ a `function` as an input and _returns_ `nothing`.
+
+The function it takes will be executed for you:
+
+- after the render cycle
+- after _every_ render cycle
+
+| Lifecycle Methods     | Hook                                                                       | Renders                                                                      |
+| --------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| componentDidMount     | `useEffect(()=>{ ... }`, [ ])                                              | after first render only                                                      |
+| componentDidUpdate    | `useEffect(()=>{... }, [dependency1, dependency2])`                        | after first render AND subsequent renders caused by a change in a dependency |
+| componentWillUnmount  | `useEffect(() => { ... return ()=> {...cleanup}})`                         |
+| shouldComponentUpdate | no comparable hook, instead, wrap function component in `React.memo(List)` | renders only if a prop changes                                               |
+| componentWillMount    | deprecated so no comparable hook                                           |
+| componentWillUpdate   | deprecated so no comparable hook                                           |
+
+### useEffect Simple Demo
+
+```js
+function Clock() {
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+  React.useEffect(() => {
+    const timerID = setInterval(refresh, 1000);
+    return () => {
+      clearInterval(timerID);
+    };
+  }, []);
+
+  const refresh = () => {
+    setTime(new Date().toLocaleTimeString());
+  };
+
+  return (
+    <div>
+      <p>{time}</p>
+    </div>
+  );
+}
+
+ReactDOM.render(<Clock />, document.getElementById('root'));
+```
+
+# Lifecycle
 
 ## What are Lifecycle Methods
 
@@ -79,53 +140,3 @@ ReactDOM.render(<Clock />, document.getElementById('root'));
 - [What is Mounting?](https://stackoverflow.com/questions/31556450/what-is-mounting-in-react-js/31559566#31559566)
 - [componentDidUpdate Examples](https://stackoverflow.com/questions/38759703/when-to-use-react-componentdidupdate-method#:~:text=The%20componentDidUpdate%20is%20particularly%20useful,last%20thing%20to%20be%20executed.)
 - [Deprecated Lifecycle Methods](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)
-
-# Side Effects
-
-## useEffect
-
-This Hook should be used for any side-effects you’re executing in your render cycle.
-
-`useEffect()` _takes_ a `function` as an input and _returns_ `nothing`.
-
-The function it takes will be executed for you:
-
-- after the render cycle
-- after _every_ render cycle
-
-| Lifecycle Methods     | Hook                                                                       | Renders                                                                      |
-| --------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| componentDidMount     | `useEffect(()=>{ ... }`, [ ])                                              | after first render only                                                      |
-| componentDidUpdate    | `useEffect(()=>{... }, [dependency1, dependency2])`                        | after first render AND subsequent renders caused by a change in a dependency |
-| componentWillUnmount  | `useEffect(() => { ... return ()=> {...cleanup}})`                         |
-| shouldComponentUpdate | no comparable hook, instead, wrap function component in `React.memo(List)` | renders only if a prop changes                                               |
-| componentWillMount    | deprecated so no comparable hook                                           |
-| componentWillUpdate   | deprecated so no comparable hook                                           |
-
-### useEffect Simple Demo
-
-```js
-function Clock() {
-  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
-
-  React.useEffect(() => {
-    const timerID = setInterval(refresh, 1000);
-    return () => {
-      clearInterval(timerID);
-    };
-  }, []);
-
-  const refresh = () => {
-    setTime(new Date().toLocaleTimeString());
-  };
-
-  return (
-    <div>
-      <p>{time}</p>
-    </div>
-  );
-}
-
-ReactDOM.render(<Clock />, document.getElementById('root'));
-
-```
