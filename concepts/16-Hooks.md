@@ -10,13 +10,6 @@
     - [Simple Function Component](#simple-function-component)
   - [useEffect](#useeffect)
     - [useEffect Simple Demo](#useeffect-simple-demo)
-    - [Items App with Hooks](#items-app-with-hooks)
-      - [Items App Modifying Container to `useState` and `useEffect`](#items-app-modifying-container-to-usestate-and-useeffect)
-        - [Steps](#steps)
-    - [Items App with Hooks and HTTP](#items-app-with-hooks-and-http)
-      - [styles.css](#stylescss)
-      - [index.html](#indexhtml)
-      - [main.jsx](#mainjsx)
   - [Custom Hooks](#custom-hooks)
   - [Rules of Hooks](#rules-of-hooks)
   - [Labs](#labs)
@@ -205,7 +198,7 @@ function Post() {
 ReactDOM.render(<Post />, document.getElementById('root'));
 ```
 
-### Items App with Hooks
+<!-- ### Items App with Hooks
 
 #### Items App Modifying Container to `useState` and `useEffect`
 
@@ -282,9 +275,7 @@ function Container() {
 }
 
 
-```
-
-
+``` -->
 
 ## Custom Hooks
 
