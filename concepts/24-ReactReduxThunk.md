@@ -6,7 +6,7 @@
 2. Verify the [backend API setup detailed here](./A7-BackendAPISetup.md) has been completed.
 3. Verify the [items](./14-HTTP.md#apidbjson) have been added to `db.json`.
 
-## Example Application using Class Components
+## Example Application using Function Components
 
 ```js
 function ID() {
