@@ -1,4 +1,4 @@
-e# Chapter 24: React, Redux & Thunk
+# Chapter 24: React, Redux & Thunk
 
 ## Setup
 
