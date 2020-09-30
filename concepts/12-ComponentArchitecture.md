@@ -3,11 +3,11 @@
 - [Chapter 12: Component Architecture](#chapter-12-component-architecture)
   - [Reuse](#reuse)
   - [Component Communication](#component-communication)
-      - [Common Communication Patterns](#common-communication-patterns)
-      - [Additional Communication Patterns](#additional-communication-patterns)
+    - [Common Communication Patterns](#common-communication-patterns)
+    - [Additional Communication Patterns](#additional-communication-patterns)
 - [Design Patterns](#design-patterns)
   - [Lifting State Up](#lifting-state-up)
-    - [Function Compnoent Example](#function-compnoent-example)
+    - [Function Component Example](#function-component-example)
     - [Class Component Example](#class-component-example)
   - [Container and Presentation Components](#container-and-presentation-components)
     - [Container (Smart) Components](#container-smart-components)
@@ -155,7 +155,7 @@ Often, several components need to reflect the same changing data. We recommend l
 
 Here is an example.
 
-### Function Compnoent Example
+### Function Component Example
 
 ```js
 function Button({ onClickFunction }) {
