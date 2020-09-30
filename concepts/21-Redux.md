@@ -22,6 +22,7 @@
     - [Redux](#redux)
     - [Action Creators:](#action-creators)
     - [DevTools](#devtools)
+      - [Configuring devtools & thunk](#configuring-devtools--thunk)
 
 ## What is Redux?
 
@@ -343,27 +344,26 @@ function enableDevTools() {
 
 ### Redux
 
-- Documentation: https://redux.js.org/
-- Redux creator Dan Abramov's free ["Getting Started with Redux"](https://egghead.io/courses/getting-started-with-redux) video series
+- [Documentation](https://redux.js.org/)
+- [Redux creator Dan Abramov's free "Getting Started with Redux" video series](https://egghead.io/courses/getting-started-with-redux)
 - [Examples](https://redux.js.org/introduction/getting-started#examples)
+- [You Might Not Need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)
 
 ### Action Creators:
 
-- https://decembersoft.com/posts/a-simple-naming-convention-for-action-creators-in-redux-js/
-- https://github.com/redux-utilities/flux-standard-action
-- https://redux.js.org/faq/code-structure#why-should-i-use-action-creators
+- [Simple Naming Convention for Action Creators](https://decembersoft.com/posts/a-simple-naming-convention-for-action-creators-in-redux-js/)
+- [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action)
+- [Should I use Action Creators](https://redux.js.org/faq/code-structure#why-should-i-use-action-creators)
 
 ### DevTools
 
-Should you use in production
+- [Should you use in production](https://medium.com/@zalmoxis/using-redux-devtools-in-production-4c5b56c5600f)
 
-- https://medium.com/@zalmoxis/using-redux-devtools-in-production-4c5b56c5600f
+#### Configuring devtools & thunk
 
-Configuring devtools & thunk
-
-- https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
-- https://github.com/jhen0409/react-native-debugger/issues/280#issuecomment-432298556
-- https://redux.js.org/recipes/configuring-your-store#problems-with-this-approach
+- [Advanced Store Setup](https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup)
+- [Configuring Redux Devtools using UMD Build](https://github.com/jhen0409/react-native-debugger/issues/280#issuecomment-432298556)
+- [Problems with this Approach to Configuring Your Store](https://redux.js.org/recipes/configuring-your-store#problems-with-this-approach)
 
 Repositories
 
