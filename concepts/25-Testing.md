@@ -3,18 +3,21 @@
 - [Chapter 25: Testing](#chapter-25-testing)
   - [Tools](#tools)
     - [Jest](#jest)
+    - [React Testing Library](#react-testing-library)
     - [Enzyme](#enzyme)
-      - [JSDOM](#jsdom)
+    - [Jest DOM](#jest-dom)
+    - [ReactTestUtils](#reacttestutils)
+    - [JSDOM](#jsdom)
   - [Syntax](#syntax)
   - [JavaScript Tests](#javascript-tests)
       - [`src\math.js`](#srcmathjs)
       - [`src\math.test.js`](#srcmathtestjs)
   - [Mocking](#mocking)
     - [Mocking Modules](#mocking-modules)
-      - [`src\__mocks__\math.js`](#src_mocks_mathjs)
+      - [`src\__mocks__\math.js`](#src__mocks__mathjs)
       - [`src\math.test.js`](#srcmathtestjs-1)
     - [Mocking Functions](#mocking-functions)
-      - [`src\__mocks__\math.js`](#src_mocks_mathjs-1)
+      - [`src\__mocks__\math.js`](#src__mocks__mathjs-1)
       - [`src\math.test.js`](#srcmathtestjs-2)
       - [`src\math.test.js`](#srcmathtestjs-3)
       - [`src\math.test.js`](#srcmathtestjs-4)
@@ -25,14 +28,24 @@
     - [Debugging Tests in Visual Studio Code](#debugging-tests-in-visual-studio-code)
     - [Running One Test](#running-one-test)
     - [Excluding Tests](#excluding-tests)
-  - [Components Tests](#components-tests)
+  - [Component Tests (with React Testing Library)](#component-tests-with-react-testing-library)
+      - [npm](#npm)
+      - [Yarn](#yarn)
+      - [`src/setupTests.js`](#srcsetuptestsjs)
+      - [`src/App.test.js`](#srcapptestjs)
+  - [Components Tests (with Enzyme)](#components-tests-with-enzyme)
     - [Smoke](#smoke)
     - [Shallow](#shallow)
     - [Full](#full)
-      - [`src\setupTests.js`](#srcsetuptestsjs)
-      - [`src\app.test.js`](#srcapptestjs)
-    - [Snapshot](#snapshot)
+      - [`src\setupTests.js`](#srcsetuptestsjs-1)
+      - [`src\app.test.js`](#srcapptestjs-1)
+  - [Component Snapshot Tests (with Jest)](#component-snapshot-tests-with-jest)
   - [Reference](#reference)
+    - [General](#general)
+    - [Jest](#jest-1)
+    - [React Testing Library](#react-testing-library-1)
+    - [Enzyme](#enzyme-1)
+    - [Create React App & Tests](#create-react-app--tests)
 
 ## Tools
 
@@ -55,12 +68,32 @@ Tools with similar scope include:
 - JUnit a Java testing framework
 - NUnit a .NET testing framework
 
+### React Testing Library
+
+- React Testing Library is a library for testing **React Component**
+- Resembles the way the components are used by end users
+- It works more directly with DOM nodes, and therefore it's recommended to use with jest-dom for improved assertions.
+- Created by Kent C. Dodds
+- React Testing Library and Enzyme are alternatives for doing the same thing.
+- Its primary guiding principle is:
+  > The more your tests resemble the way your software is used, the more confidence they can give you.
+- I recommend React Testing Library because of it's focus on not testing code implementation details
+
+Features:
+
+- Work with actual DOM nodes.
+- The utilities this library provides facilitate querying the DOM in the same way the user would.
+  - Finding form elements by their label text (just like a user would)
+  - Finding links and buttons from their text (like a user would).
+  - Encourages your applications to be more accessible
+
 ### Enzyme
 
-- Enzyme is a **React Component** testing library
+- Enzyme is a library for testing **React Component**
 - Provides testing utilities for React
 - Created by Airbnb
 - Enzyme uses the React Test Utilities (from the React team at Facebook) underneath, but is more convenient, readable, and powerful.
+- Enzyme and React Testing Library are alternatives for doing the same thing.
 
 Features:
 
@@ -75,13 +108,28 @@ Features:
   - similar to jQuery
 - simulates events
 
-#### JSDOM
+### Jest DOM
+
+- Custom jest **matchers** to test the state of the DOM
+- Examples: `toHaveTextContent`,`toHaveValue`,`toHaveClass`
+
+### ReactTestUtils
+
+- Is part of `react` more specifically `react-dom`
+  ```
+  import ReactTestUtils from 'react-dom/test-utils';
+  ```
+- It is the low level library that React component testing libraries like **React Testing Library** or **Enzyme** use internally
+
+### JSDOM
 
 - JavaScript implementation of the DOM (Document object model)
 - JavaScript based headless browser that can be used to create a realistic testing environment
 - Enzyme's `mount` API (full rendering) requires a DOM, JSDOM is required in order to use mount
 - While Jest provides browser globals such as window thanks to jsdom, they are only approximations of the real browser behavior.
 - Jest is intended to be used for unit tests of your logic and your components rather than the DOM quirks.
+
+---
 
 ## Syntax
 
@@ -412,7 +460,52 @@ You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily 
 
 [Reference](https://facebook.github.io/create-react-app/docs/debugging-tests)
 
-## Components Tests
+## Component Tests (with React Testing Library)
+
+1. **Install** React Testing Library
+
+   #### npm
+
+   ```shell
+   npm install --save @testing-library/react @testing-library/jest-dom
+   ```
+
+   Alternatively you may use `yarn`:
+
+   #### Yarn
+
+   ```shell
+   yarn add @testing-library/react @testing-library/jest-dom
+   ```
+
+1. Create the file `src/setupTests.js` (if it doesn't already exist)
+
+1. Add the following code:
+
+   #### `src/setupTests.js`
+
+   ```js
+   // this adds jest-dom's custom assertions
+   import '@testing-library/jest-dom/extend-expect';
+   ```
+
+1. Stop `npm test` using `Ctrl+C`
+1. Run the command `npm test` so it configures the adapter
+1. Add the following test
+
+   #### `src/App.test.js`
+
+   ```diff
+   ...
+   + import { render } from '@testing-library/react';
+
+   + it('renders welcome message', () => {
+   +   const { getByText } = render(<App />);
+   +   expect(getByText('Learn React')).toBeInTheDocument();
+   + });
+   ```
+
+## Components Tests (with Enzyme)
 
 Different ways to test:
 
@@ -436,26 +529,25 @@ This requires the [`shallow()` rendering API](https://airbnb.io/enzyme/docs/api/
    npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
    ```
 
+   Alternatively you may use `yarn`:
 
-    Alternatively you may use `yarn`:
-
-    ```sh
-    yarn add enzyme enzyme-adapter-react-16 react-test-renderer
-    ```
+   ```sh
+   yarn add enzyme enzyme-adapter-react-16 react-test-renderer
+   ```
 
 2. Also install the types:
 
-```sh
-npm install @types/enzyme @types/react-test-renderer --save-dev
-```
+   ```sh
+   npm install @types/enzyme @types/react-test-renderer --save-dev
+   ```
 
-As of Enzyme 3, you will need to install Enzyme along with an Adapter corresponding to the version of React you are using. (The examples above use the adapter for React 16.)
+   As of Enzyme 3, you will need to install Enzyme along with an Adapter corresponding to the version of React you are using. (The examples above use the adapter for React 16.)
 
-The adapter will also need to be configured in your [global setup file]:
+   The adapter will also need to be configured in your [global setup file]:
 
-1. Create the file `src/setupTests.js`
+3. Create the file `src/setupTests.js`
 
-2. Add the following code:
+4. Add the following code:
 
    ```js
    // src/setupTests.js
@@ -465,22 +557,22 @@ The adapter will also need to be configured in your [global setup file]:
    configure({ adapter: new Adapter() });
    ```
 
-3. Stop `npm test` using `Ctrl+C`
-4. Run the command `npm test` so it configures the adapter
-5. Add the following test
+5. Stop `npm test` using `Ctrl+C`
+6. Run the command `npm test` so it configures the adapter
+7. Add the following test
 
-```js
-// src/App.test.js
-...
+   ```js
+   // src/App.test.js
+   ...
 
-//shallow
-import { shallow } from 'enzyme';
-test('shallow renders without crashing', () => {
-  shallow(<App />);
-});
-```
+   //shallow
+   import { shallow } from 'enzyme';
+   test('shallow renders without crashing', () => {
+     shallow(<App />);
+   });
+   ```
 
-6. You should see an additional test passing.
+8. You should see an additional test passing.
 
 ### Full
 
@@ -514,20 +606,20 @@ It works more directly with DOM nodes, and therefore it's recommended to use wit
 
 3. Add a test using `react-testing-library` and `jest-dom` for testing that the `<App />` component renders "Learn React".
 
-#### `src\app.test.js`
+   #### `src\app.test.js`
 
-```js
-//full
+   ```js
+   //full
 
-import { render } from '@testing-library/react';
+   import { render } from '@testing-library/react';
 
-it('renders welcome message', () => {
-  const { getByText } = render(<App />);
-  expect(getByText('Learn React').textContent).toEqual('Learn React');
-});
-```
+   it('renders welcome message', () => {
+     const { getByText } = render(<App />);
+     expect(getByText('Learn React').textContent).toEqual('Learn React');
+   });
+   ```
 
-### Snapshot
+## Component Snapshot Tests (with Jest)
 
 Snapshot testing is a feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output. [Read more about snapshot testing](https://jestjs.io/blog/2016/07/27/jest-14.html).
 
@@ -573,15 +665,32 @@ Snapshot testing requires you to install the `react-test-renderer` which we alre
 
 ## Reference
 
-- [Jest: JavaScript Testing Framework](https://jestjs.io/)
-- [Enzyme: JavaScript Testing Utilities for React](https://airbnb.io/enzyme/)
-- [Difference Between Jest & Enzyme](https://stackoverflow.com/questions/42616576/what-is-the-difference-between-jest-and-enzyme)
-- [Create React App Docs: Running Tests](https://facebook.github.io/create-react-app/docs/running-tests)
-- [Create React App Docs: Debugging Tests](https://facebook.github.io/create-react-app/docs/debugging-tests)
-- [Create React App Docs: Code Coverage](https://facebook.github.io/create-react-app/docs/running-tests#coverage-reporting)
-- [Jest Matchers](https://jestjs.io/docs/en/expect.html)
-- [Testing React Apps (with Jest)](https://jestjs.io/docs/en/tutorial-react)
+### General
+
 - [React Documentation: Test Utilities](https://reactjs.org/docs/test-utils.html)
+
+### Jest
+
+- [Jest: JavaScript Testing Framework](https://jestjs.io/)
 - [Jest Mocking & Spies](https://jestjs.io/docs/en/mock-functions)
 - [Handling Async in Jest](https://jestjs.io/docs/en/asynchronous)
 - [What is the difference between jest.fn() and jest.spyOn() methods in jest?](https://stackoverflow.com/questions/57643808/what-is-the-difference-between-jest-fn-and-jest-spyon-methods-in-jest)
+- [Jest Matchers](https://jestjs.io/docs/en/expect.html)
+- [Jest DOM: Jest Matchers for the DOM](https://github.com/testing-library/jest-dom)
+- [Testing React Apps (with Jest)](https://jestjs.io/docs/en/tutorial-react)
+
+### React Testing Library
+
+- [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro)
+- [Confident React – Kent C. Dodds on Frontend Visual Testing](https://applitools.com/blog/react-kent-c-dodds-frontend-visual-testing/)
+
+### Enzyme
+
+- [Enzyme: JavaScript Testing Utilities for React](https://airbnb.io/enzyme/)
+- [Difference Between Jest & Enzyme](https://stackoverflow.com/questions/42616576/what-is-the-difference-between-jest-and-enzyme)
+
+### Create React App & Tests
+
+- [Create React App Docs: Running Tests](https://facebook.github.io/create-react-app/docs/running-tests)
+- [Create React App Docs: Debugging Tests](https://facebook.github.io/create-react-app/docs/debugging-tests)
+- [Create React App Docs: Code Coverage](https://facebook.github.io/create-react-app/docs/running-tests#coverage-reporting)
