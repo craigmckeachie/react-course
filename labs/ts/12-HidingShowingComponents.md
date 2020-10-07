@@ -9,13 +9,13 @@
 
 ### Add state to a component
 
-1. Create a `ProjectListState` interface to strongly type the state.
-2. Add it to the class declaration and add a `state` property `editingProject` to hold the project currently being edited.
+1. Add a state variable `projectBeingEdited` to hold which project is currently being edited. And update `handleEdit` to set the `projectBeingEdited` variable.
 
-   #### src\projects\ProjectList.tsx
+   #### `src\projects\ProjectList.tsx`
 
    ```diff
-   import React from 'react';
+   - import React from 'react';
+   + import React, { useState } from 'react';
    import { Project } from './Project';
    import ProjectCard from './ProjectCard';
    import ProjectForm from './ProjectForm';
@@ -24,109 +24,58 @@
      projects: Project[];
    }
 
-   + interface ProjectListState {
-   +   editingProject: Project | {};
-   + }
+   function ProjectList({ projects }: ProjectListProps) {
+   + const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
-   class ProjectList extends React.Component<
-     ProjectListProps,
-   +  ProjectListState
-     > {
-   +  state = {
-   +    editingProject: {}
-   +  };
-   }
-   ```
-
-3. Update `handleEdit` to set the `editingProject` property in `state`.
-
-   #### src\projects\ProjectList.tsx
-
-   ```diff
-   class ProjectList extends React.Component<ProjectListProps,ProjectListState> {
-     state = {
-       editingProject: {}
-     };
-     handleEdit = (project: Project) => {
-   -   console.log(project);
-   +   this.setState({ editingProject: project });
-     };
-   }
-   ```
-
-### Hide and show a component
-
-1. Modify the `render` method to show the `ProjectCard` for every `project` except for the currently `editingProject` which should display the `ProjectForm`.
-
-   > Hint: create a variable to store the item (Card or Form) to make this more readable.
-
-   ```tsx
-   let item: JSX.Element;
-   ```
-
-   > Refer to your manual **Chapter 12: Hiding and Showing Components** or the solution to the lab to get the correct syntax.
-
-   #### src\projects\ProjectList.tsx
-
-   ```tsx
-   import React from 'react';
-   import { Project } from './Project';
-   import ProjectCard from './ProjectCard';
-   import ProjectForm from './ProjectForm';
-
-   interface ProjectListProps {
-     projects: Project[];
-   }
-
-   interface ProjectListState {
-     editingProject: Project | {};
-   }
-
-   class ProjectList extends React.Component<
-     ProjectListProps,
-     ProjectListState
-   > {
-     state = {
-       editingProject: {}
-     };
-     handleEdit = (editingProject: Project) => {
-       this.setState({ editingProject: editingProject });
+     const handleEdit = (project: Project) => {
+   -    console.log(project);
+   +    setProjectBeingEdited(project);
      };
 
-     render() {
-       const { projects } = this.props;
-
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
-         if (project !== this.state.editingProject) {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectCard
-                 project={project}
-                 onEdit={() => {
-                   this.handleEdit(project);
-                 }}
-               ></ProjectCard>
-             </div>
-           );
-         } else {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectForm></ProjectForm>
-             </div>
-           );
-         }
-         return item;
-       });
-
-       return <div className="row">{items}</div>;
-     }
+     return (
+       ...
+     );
    }
 
    export default ProjectList;
    ```
 
-2) **Verify** the application is **working** by _following these steps_:
+### Hide and show a component
+
+1. Conditionally render the `ProjectForm` when the projectBeingEdited equals the current project in the list, otherwise display a `ProjectCard` .
+
+   #### src\projects\ProjectList.tsx
+
+```diff
+...
+
+function ProjectList({ projects }: ProjectListProps) {
+  const [projectBeingEdited, setProjectBeingEdited] = useState({});
+  const handleEdit = (project: Project) => {
+    setProjectBeingEdited(project);
+  };
+
+  return (
+    <div className="row">
+      {projects.map((project) => (
+        <div key={project.id} className="cols-sm">
+-          <ProjectCard project={project} onEdit={handleEdit} />
+-          <ProjectForm />
++          {project === projectBeingEdited ? (
++            <ProjectForm />
++          ) : (
++            <ProjectCard project={project} onEdit=+{handleEdit} />
++          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default ProjectList;
+```
+
+2. **Verify** the application is **working** by _following these steps_:
 
    1. **Open** the application in your browser and refresh the page.
    2. **Click** the **edit** button for a project.
@@ -141,57 +90,3 @@
 ---
 
 ### &#10004; You have completed Lab 12
-
-<br/>
-<br/>
-
-> If you are curious, below is an alternate syntax for the hide and show a component part of the lab.
-> Please **DO NOT UPDATE the code** as shown below -- it is simply here to illustrate the alternative syntax.
-
-#### src\projects\ProjectList.tsx
-
-```ts
-import React from 'react';
-import { Project } from './Project';
-import ProjectCard from './ProjectCard';
-import ProjectForm from './ProjectForm';
-
-interface ProjectListProps {
-  projects: Project[];
-}
-
-interface ProjectListState {
-  editingProject: Project | {};
-}
-
-class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
-  state = {
-    editingProject: {}
-  };
-  handleEdit = (editingProject: Project) => {
-    this.setState({ editingProject: editingProject });
-  };
-  render() {
-    const { projects } = this.props;
-    const items = projects.map(project => (
-      <div key={project.id} className="cols-sm">
-        {project !== this.state.editingProject ? (
-          <div key={project.id} className="cols-sm">
-            <ProjectCard
-              project={project}
-              onEdit={(project: Project) => {
-                this.handleEdit(project);
-              }}
-            ></ProjectCard>
-          </div>
-        ) : (
-          <div key={project.id} className="cols-sm">
-            <ProjectForm></ProjectForm>
-          </div>
-        )}
-      </div>
-    ));
-    return <div className="row">{items}</div>;
-  }
-}
-```

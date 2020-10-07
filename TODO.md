@@ -1,3 +1,14 @@
+labs 10,11 missing
+
+#### `src\index.css`
+
+```css
+form {
+  min-width: 300px;
++   max-height: 370px;
+}
+```
+
 <!-- TODO:
 Cleanup Item CRUD examples in Component Arch chapter, by steps or just finished. Is it really an activity
 -->

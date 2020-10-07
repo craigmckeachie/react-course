@@ -26,33 +26,48 @@
    ...
    ```
 
-3. Create an event handler function `handleSubmit` to handle the submission of the form. The function should prevent the default behavior of the browser to post to the server and then invoke the function passed into the `onSave` `prop` and pass a new `Project` that you create inline for now with just a name as shown below.
+3. Create an event handler function `handleSubmit` to handle the submission of the form.
+
+   > The function should prevent the default behavior of the browser to post to the server and then invoke the function passed into the `onSave` `prop` and pass a new `Project` that you create inline for now with just a name as shown below.
+
+   Update the `<form>` tag in the `render` method to invoke handleSubmit and pass the SyntheticEvent object representing the DOM submit event.
 
    #### `src\projects\ProjectForm.tsx`
 
    ```diff
-   + import React, { SyntheticEvent } from 'react';
-   import { Project } from './Project';
-   ...
+   - function ProjectForm({ onSave, onCancel }: ProjectFormProps) {
+   + function ProjectForm({ onCancel }: ProjectFormProps) {
 
-   class ProjectForm extends React.Component<ProjectFormProps> {
-   +  handleSubmit = (event: SyntheticEvent) => {
+   +  const handleSubmit = (event: SyntheticEvent) => {
    +    event.preventDefault();
-   +    this.props.onSave(new Project({ name: 'Updated Project' }));
+   +    onSave(new Project({ name: 'Updated Project' }));
    +  };
-   ...
+
+   return (
+
+      <form className="input-group vertical"
+   +    onSubmit={handleSubmit}
+      >
+         <label htmlFor="name">Project Name</label>
+         <input type="text" name="name" placeholder="enter name" />
+         <label htmlFor="description">Project Description</label>
+         <textarea name="description" placeholder="enter description" />
+         <label htmlFor="budget">Project Budget</label>
+         <input type="number" name="budget" placeholder="enter budget" />
+         <label htmlFor="isActive">Active?</label>
+         <input type="checkbox" name="isActive" />
+         <div className="input-group">
+         <button className="primary bordered medium">Save</button>
+         <span />
+         <button type="button" className="bordered medium" onClick={onCancel}>
+            cancel
+         </button>
+         </div>
+      </form>
+   );
    }
-   ```
 
-4. Update the `<form>` tag in the `render` method to invoke handleSubmit and pass the SyntheticEvent object representing the DOM submit event.
-
-   #### `src\projects\ProjectForm.tsx`
-
-   ```diff
-   <form
-   className="input-group vertical"
-   +  onSubmit={this.handleSubmit}
-   >
+   export default ProjectForm;
    ```
 
 ### At the next level in the component hierarchy, accept a function as a prop and invoke it
@@ -62,8 +77,8 @@
    #### `src\projects\ProjectList.tsx`
    ```diff
    interface ProjectListProps {
-   projects: Project[];
-   +  onSave: (project: Project) => void;
+     projects: Project[];
+   + onSave: (project: Project) => void;
    }
    ```
 3. **Update** the `<ProjectForm>` component tag to **handle** a `onSave` event and have it **invoke** the function passed into the `onSave` `prop`.
@@ -71,34 +86,41 @@
    #### `src\projects\ProjectList.tsx`
 
    ```diff
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
-   ...
-   render() {
-       const { projects,
-   +            onSave
-               } = this.props;
+   interface ProjectListProps {
+   projects: Project[];
+   onSave: (project: Project) => void;
+   }
 
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
-       if (project !== this.state.editingProject) {
-           ...
-           );
-       } else {
-           item = (
-           <div key={project.id} className="cols-sm">
+   - function ProjectList({ projects }: ProjectListProps) {
+   + function ProjectList({ projects, onSave }: ProjectListProps) {
+   const [projectBeingEdited, setProjectBeingEdited] = useState({});
+
+   const handleEdit = (project: Project) => {
+      setProjectBeingEdited(project);
+   };
+
+   const cancelEditing = () => {
+      setProjectBeingEdited({});
+   };
+
+   return (
+      <div className="row">
+         {projects.map((project) => (
+         <div key={project.id} className="cols-sm">
+            {project === projectBeingEdited ? (
                <ProjectForm
-   +              onSave={onSave}
-                  onCancel={this.cancelEditing}
-               ></ProjectForm>
-           </div>
-           );
-       }
-       return item;
-       });
+   +            onSave={onSave}
+               onCancel={cancelEditing} />
+            ) : (
+               <ProjectCard project={project} onEdit={handleEdit} />
+            )}
+         </div>
+         ))}
+      </div>
+   );
+   }
 
-       return <div className="row">{items}</div>;
-   }
-   }
+   export default ProjectList;
    ```
 
 ### In a parent component, implement a function and pass it as a prop to a child component

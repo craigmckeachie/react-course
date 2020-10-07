@@ -73,6 +73,7 @@
        const { projects } = this.props;
        const items = projects.map(project => (
          <div key={project.id} className="cols-sm">
+   -      <div className="card">
    -      <img src={project.imageUrl} alt={project.name} />
    -       <section className="section dark">
    -         <h5 className="strong">
@@ -81,6 +82,7 @@
    -         <p>{project.description}</p>
    -        <p>Budget : {project.budget.toLocaleString()}</p>
    -       </section>
+   -     </div>
    +      <ProjectCard project={project}></ProjectCard>
          </div>
        ));

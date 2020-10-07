@@ -19,6 +19,8 @@
 
    > The solution code for the component appears next. Challenge yourself to write it from scratch before looking at it.
 
+   > In VS Code, you could use this extension [VS Code ES7 React/Redux/React-Native/JS snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) that you installed as part of the setup for the course and then type `rfce` then `tab`.
+
    ### Solution
 
    #### `src\projects\ProjectsPage.tsx`
@@ -43,9 +45,11 @@
    + import ProjectsPage from './projects/ProjectsPage';
 
    function App() {
-   -     <blockquote cite="Benjamin Franklin">
-   -     Tell me and I forget, teach me and I may remember, involve me and I learn.
-   -     </blockquote>
+   -   return (
+   -      <blockquote cite="Benjamin Franklin">
+   -         Tell me and I forget, teach me and I may remember, involve me and I learn.
+   -      </blockquote>
+   -   );
    + return <ProjectsPage />;
    }
    ```

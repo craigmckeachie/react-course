@@ -43,8 +43,10 @@
 
 ### In a parent component, implement a function and pass it as a prop to a child component
 
-1. **Add** a `handleEdit`**event handler** to`ProjectList`that takes a`project`as an argument and **logs** it to the`console`.
+1. **Add** a `handleEdit`**event handler** to`ProjectList`that takes a `project` as an argument and **logs** it to the `console`.
 2. **Wire** up the **onEdit** **event** of the `ProjectCard` component to the `handleEdit` event handler.
+
+   > In VS Code, the code snippet `nfn` can help create the `handleEdit` event handler.
 
    #### `src\projects\ProjectList.tsx`
 

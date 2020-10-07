@@ -10,12 +10,16 @@
 ### Create a form component
 
 1. Add the following CSS style to to set the width of the form.
+
    #### `src\index.css`
+
    ```css
    form {
      min-width: 300px;
+     max-height: 370px;
    }
    ```
+
 2. Create the file `src\projects\ProjectForm.tsx`.
 3. Implement a `ProjectForm` **class** component that meets the following specifications:
 
@@ -53,28 +57,26 @@
      ```tsx
      import React from 'react';
 
-     class ProjectForm extends React.Component {
-       render() {
-         return (
-           <form className="input-group vertical">
-             <label htmlFor="name">Project Name</label>
-             <input type="text" name="name" placeholder="enter name" />
-             <label htmlFor="description">Project Description</label>
-             <textarea name="description" placeholder="enter description" />
-             <label htmlFor="budget">Project Budget</label>
-             <input type="number" name="budget" placeholder="enter budget" />
-             <label htmlFor="isActive">Active?</label>
-             <input type="checkbox" name="isActive" />
-             <div className="input-group">
-               <button className="primary bordered medium">Save</button>
-               <span />
-               <button type="button" className="bordered medium">
-                 cancel
-               </button>
-             </div>
-           </form>
-         );
-       }
+     function ProjectForm() {
+       return (
+         <form className="input-group vertical">
+           <label htmlFor="name">Project Name</label>
+           <input type="text" name="name" placeholder="enter name" />
+           <label htmlFor="description">Project Description</label>
+           <textarea name="description" placeholder="enter description" />
+           <label htmlFor="budget">Project Budget</label>
+           <input type="number" name="budget" placeholder="enter budget" />
+           <label htmlFor="isActive">Active?</label>
+           <input type="checkbox" name="isActive" />
+           <div className="input-group">
+             <button className="primary bordered medium">Save</button>
+             <span />
+             <button type="button" className="bordered medium">
+               cancel
+             </button>
+           </div>
+         </form>
+       );
      }
 
      export default ProjectForm;
@@ -105,10 +107,14 @@
    }
    ```
 
-3. **Verify** a **form** **renders** under each card in the application.
+3. **Verify** a **form** **renders** under each card in the application. Note, you may need to reload the application a few times to see the changes on this step.
 
    ![image](https://user-images.githubusercontent.com/1474579/64896991-c8bb7680-d64f-11e9-913c-b3e8521a74e3.png)
 
 ---
 
 ### &#10004; You have completed Lab 10
+
+```
+
+```

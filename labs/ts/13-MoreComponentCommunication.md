@@ -10,48 +10,43 @@
 ### In a child component, accept a function as a prop and invoke it
 
 1. **Open** the **file** `src\projects\ProjectForm.tsx`.
-2. **If** using **TypeScript**, on the `ProjectFormProps` interface, **add** an `onCancel` **event handler** that takes no parameters and returns `void`.
-3. Update the `cancel` button and add a click event to invoke the function passed into the `onCancel` `prop`.
+2. In the `ProjectFormProps` interface, **add** an `onCancel` **event handler** that takes no parameters and returns `void`.
+3. Update the `cancel` button and add a `click` event to invoke the function passed into the `onCancel` `prop`.
 
-   #### src\projects\ProjectForm.tsx
+   #### `src\projects\ProjectForm.tsx`
 
    ```diff
    import React from 'react';
 
    + interface ProjectFormProps {
-   +  onCancel: () => void;
+   +   onCancel: () => void;
    + }
 
-   class ProjectForm extends  React.Component<
-   +ProjectFormProps
-   > {
-     render() {
-   +   const { onCancel } = this.props;
-       return (
-         <form className="input-group vertical">
-           <label htmlFor="name">Project Name</label>
-           <input type="text" name="name" placeholder="enter name" />
-           <label htmlFor="description">Project Description</label>
-
-           <textarea name="description" placeholder="enter description"></textarea>
-           <label htmlFor="budget">Project Budget</label>
-
-           <input type="number" name="budget" placeholder="enter budget" />
-           <label htmlFor="isActive">Active?</label>
-           <input type="checkbox" name="isActive" />
-
-           <div className="input-group">
-             <button className="primary bordered medium">Save</button>
-             <span></span>
-             <button type="button" className="bordered medium"
-   +          onClick={onCancel}>
-               cancel
-             </button>
-           </div>
-         </form>
-       );
-     }
+   - function ProjectForm() {
+   + function ProjectForm({ onCancel }: ProjectFormProps) {
+     return (
+       <form className="input-group vertical">
+         <label htmlFor="name">Project Name</label>
+         <input type="text" name="name" placeholder="enter name" />
+         <label htmlFor="description">Project Description</label>
+         <textarea name="description" placeholder="enter description" />
+         <label htmlFor="budget">Project Budget</label>
+         <input type="number" name="budget" placeholder="enter budget" />
+         <label htmlFor="isActive">Active?</label>
+         <input type="checkbox" name="isActive" />
+         <div className="input-group">
+           <button className="primary bordered medium">Save</button>
+           <span />
+           <button type="button" className="bordered medium"
+   +        onClick={onCancel}
+           >
+             cancel
+           </button>
+         </div>
+       </form>
+     );
    }
+
    export default ProjectForm;
    ```
 
@@ -60,58 +55,42 @@
 1. In `src\projects\ProjectList.tsx` **add** a `cancelEditing`**event handler** to`ProjectList`that sets the state of the component so that `editingProject` is an empty object `{}`.
 2. **Wire** up the **onCancel** **event** of the `<ProjectForm />` component rendered in the `ProjectList` to the `cancelEditing` event handler.
 
-   #### src\projects\ProjectList.tsx
+   #### `src\projects\ProjectList.tsx`
 
-   ```diff
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
-     state = {
-       editingProject: {}
-     };
+```diff
+...
+function ProjectList({ projects }: ProjectListProps) {
+  const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
-     handleEdit = (editingProject: Project) => {
-       this.setState({ editingProject: editingProject });
-     };
+  const handleEdit = (project: Project) => {
+    setProjectBeingEdited(project);
+  };
 
-   +  cancelEditing = () => {
-   +    this.setState({ editingProject: {} });
-   +  };
++  const cancelEditing = () => {
++    setProjectBeingEdited({});
++  };
 
-     render() {
-       const { projects } = this.props;
+  return (
+    <div className="row">
+      {projects.map((project) => (
+        <div key={project.id} className="cols-sm">
+          {project === projectBeingEdited ? (
+            <ProjectForm
++              onCancel={cancelEditing}
+            />
+          ) : (
+            <ProjectCard project={project} onEdit={handleEdit} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
 
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
-         if (project !== this.state.editingProject) {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectCard
-                 project={project}
-                 onEdit={() => {
-                   this.handleEdit(project);
-                 }}
-               ></ProjectCard>
-             </div>
-           );
-         } else {
-           item = (
-             <div key={project.id} className="cols-sm">
-             <ProjectForm
-   +           onCancel={this.cancelEditing}>
-             </ProjectForm>
-             </div>
-           );
-         }
-         return item;
-       });
+export default ProjectList;
+```
 
-       return <div className="row">{items}</div>;
-     }
-   }
-
-   export default ProjectList;
-   ```
-
-3) **Verify** the application is **working** by _following these steps_:
+3. **Verify** the application is **working** by _following these steps_:
    1. **Open** the application in your browser and refresh the page.
    2. **Click** the **edit** button for a project.
    3. **Verify** the `<ProjectCard />` is removed and replaced by the `<ProjectForm/>`.

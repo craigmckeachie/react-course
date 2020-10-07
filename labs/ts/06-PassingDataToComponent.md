@@ -26,11 +26,8 @@
      projects: Project[];
    }
 
-   class ProjectList extends React.Component<ProjectListProps> {
-     render() {
-       const { projects } = this.props;
-       return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-     }
+   function ProjectList({ projects }: ProjectListProps) {
+     return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
    }
 
    export default ProjectList;
@@ -43,21 +40,22 @@
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-   import React, { Fragment } from 'react';
+   import React from 'react';
    import { MOCK_PROJECTS } from './MockProjects';
    + import ProjectList from './ProjectList';
 
    function ProjectsPage() {
      return (
-      <Fragment>
-        <h1>Projects</h1>
-   -        <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
-   +        <ProjectList projects={MOCK_PROJECTS}></ProjectList>
-      </Fragment>
+       <>
+         <h1>Projects</h1>
+   -     <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
+   +     <ProjectList projects={MOCK_PROJECTS} />
+       </>
      );
    }
 
    export default ProjectsPage;
+
    ```
 
 2. **Verify** the application is **displaying** the **projects** as it was in the last lab.

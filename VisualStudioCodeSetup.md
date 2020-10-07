@@ -4,12 +4,17 @@
 
 ### Install the following extensions:
 
-1.  **Click** the **link** below.
+1.  **Click** each **link** below.
     - [Prettier- Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode&ssr=false#overview)
     - [HTML to JSX](https://marketplace.visualstudio.com/items?itemName=riazxrazor.html-to-jsx)
     - [Jest Snippets](https://marketplace.visualstudio.com/items?itemName=andys8.jest-snippets)
     - [Paste Clean Diff](https://marketplace.visualstudio.com/items?itemName=sivasubramanyam.paste-clean-diff)
-1.  **Click** the **Install** button.
+    - [VS Code ES7 React/Redux/React-Native/JS snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+1.  And then follow these steps:
+
+- **Click** the `Install` button
+- **Click** the `Open Visual Studio Code` button
+- **Click** the `Install` button in VS Code
 
 ## Configure settings
 

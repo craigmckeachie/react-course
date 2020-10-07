@@ -22,22 +22,24 @@
 
    > Be sure to set a key for each list item.
 
-   #### `src\projects\ProjectList.tsx`
+#### `src\projects\ProjectList.tsx`
 
-   ```diff
-   ...
-   class ProjectList extends React.Component<ProjectListProps> {
-     render() {
-   -    return <pre>{JSON.stringify(projects, null, '
-   +     const { projects } = this.props;
-   +     const items = projects.map(project => (
-   +       <li key={project.id}>{project.name}</li>
-   +     ));
-   +     return <ul>{items}</ul>;
-     }
-   }
-   export default ProjectList;
-   ```
+```diff
+...
+
+function ProjectList({ projects }: ProjectListProps) {
+-  return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
++  return (
++    <ul className="row">
++      {projects.map((project) => (
++        <li key={project.id}>{project.name}</li>
++      ))}
++    </ul>
++  );
+}
+
+export default ProjectList;
+```
 
 2. Verify the project names display correctly in the browser.
 
@@ -68,31 +70,44 @@
 
    ```diff
    ...
-   class ProjectList extends React.Component<ProjectListProps> {
-     render() {
-       const { projects } = this.props;
-   -   const items = projects.map((project) => (
-   -    <li key={project.id}>{project.name}</li>
-   -   ));
-   -   return <ul>{items}</ul>;
-   +    const items = projects.map(project => (
-   +      <div key={project.id} className="cols-sm">
-   +        <div className="card">
-   +          <img src={project.imageUrl} alt={project.name} />
-   +          <section className="section dark">
-   +            <h5 className="strong">
-   +              <strong>{project.name}</strong>
-   +            </h5>
-   +            <p>{project.description}</p>
-   +            <p>Budget : {project.budget.toLocaleString()}</p>
-   +          </section>
-   +        </div>
-   +      </div>
-   +    ));
-   +    return <div className="row">{items}</div>;
-     }
+
+   function ProjectList({ projects }: ProjectListProps) {
+   -  return (
+   -    <ul className="row">
+   -      {projects.map((project) => (
+   -        <li key={project.id}>{project.name}</li>
+   -      ))}
+   -    </ul>
+   -  );
    }
+
+   export default ProjectList;
+   ```
+
+   ```diff
    ...
+   function ProjectList({ projects }: ProjectListProps) {
+   +  return (
+   +    <div className="row">
+   +      {projects.map((project) => (
+   +        <div key={project.id} className="cols-sm">
+   +          <div className="card">
+   +            <img src={project.imageUrl} alt={project.name} />
+   +            <section className="section dark">
+   +              <h5 className="strong">
+   +                <strong>{project.name}</strong>
+   +              </h5>
+   +              <p>{project.description}</p>
+   +              <p>Budget : {project.budget.toLocaleString()}</p>
+   +            </section>
+   +          </div>
+   +        </div>
+   +      ))}
+   +    </div>
+   +  );
+   }
+
+   export default ProjectList;
    ```
 
 1. **Verify** the **project** **data** **displays** correctly in the browser.
