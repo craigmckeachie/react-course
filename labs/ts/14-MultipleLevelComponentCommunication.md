@@ -125,12 +125,12 @@
 
 ### In a parent component, implement a function and pass it as a prop to a child component
 
-1. In the file `src\projects\ProjectPage.tsx`:
+1. In the file `src\projects\ProjectsPage.tsx`:
 
    1. **Add** a `saveProject`**event handler** that takes a `project` to `ProjectPage` and `console.log`'s the project out.
    2. **Wire** up the **onSave** **event** of the `<ProjectList />` component rendered in the `ProjectPage` to the `saveProject` event handler.
 
-   #### `src\projects\ProjectPage.tsx`
+   #### `src\projects\ProjectsPage.tsx`
 
    ```diff
    import React, { Fragment } from 'react';

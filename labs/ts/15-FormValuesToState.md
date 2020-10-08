@@ -18,37 +18,29 @@
    ```diff
    interface ProjectFormProps {
    + project: Project;
-   onSave: (project: Project) => void;
-   onCancel: () => void;
+     onSave: (project: Project) => void;
+     onCancel: () => void;
    }
    ```
 
-1. Create a `ProjectFormState` **interface** and add the `project` prop to it. Then add it as the second `Type` to the `React.Component<ProjectFormProps, ProjectFormState>`.
+1. **Destructure** the `project` prop in the function component signature and **rename** it `initialProject` so that we can name our state variable `project`. Next, **create** a _state variable_ `project` using the `useState` hook.
 
    #### `src\projects\ProjectForm.tsx`
 
    ```diff
-   + interface ProjectFormState {
-   +  project: Project;
-   + }
+   function ProjectForm({
+   + project: initialProject,
+     onSave,
+     onCancel,
+   }: ProjectFormProps) {
+   +  const [project, setProject] = useState(initialProject);
 
-   class ProjectForm extends React.Component<ProjectFormProps,
-   + ProjectFormState
-   >{
+   const handleSubmit = (event: SyntheticEvent) => {
+      event.preventDefault();
+      onSave(new Project({ name: 'Updated Project' }));
+   };
+
    ...
-   }
-   ```
-
-2) **Add** a `project` object `state.project` to the `state` of the component and initialize the value to `props.project`.
-
-   #### `src\projects\ProjectForm.tsx`
-
-   ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
-   + state = {
-   +    project: this.props.project
-   + };
-      ...
    }
    ```
 
@@ -63,89 +55,94 @@
      - `<input type="number" />`
      - `<input type="checkbox" />`
      - `<textarea />`
-       > Alternatively, you could write a separate handler for each of the form field types and invoke them as appropriate.
+       > Alternatively, you could write a separate handler for each of the form field types and invoke them as appropriate but this can be tedious and more difficult to maintain.
 
      #### `src\projects\ProjectForm.tsx`
 
-     ```diff
-     class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
-       state = {
-        project: this.props.project
-       };
+```diff
+...
+function ProjectForm({
+  project: initialProject,
+  onSave,
+  onCancel,
+}: ProjectFormProps) {
+  const [project, setProject] = useState(initialProject);
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    onSave(new Project({ name: 'Updated Project' }));
+  };
 
-     +  handleChange = (event: any) => {
-     +    const { type, name, value, checked } = event.target;
-     +    let updatedValue = type === 'checkbox' ? checked : value;
-     +    if (type === 'number') {
-     +      updatedValue = +updatedValue;
-     +    }
-     +    const updatedProject = {
-     +      [name]: updatedValue
-     +    };
-     +
-     +    this.setState((previousState: ProjectFormState) => {
-     +      // Shallow clone using Object.assign while updating changed property
-     +      const project = Object.assign(
-     +        new Project(),
-     +        previousState.project,
-     +        updatedProject
-     +      );
-     +      return { project };
-     +    });
-     +  };
++  const handleChange = (event: any) => {
++    const { type, name, value, checked } = event.target;
++    // if input type is checkbox use checked
++    // otherwise it's type is text, number etc. so use value
++    let updatedValue = type === 'checkbox' ? checked : value;
++
++    //if input type is number convert the updatedValue string to a +number
++    if (type === 'number') {
++      updatedValue = Number(updatedValue);
++    }
++    const change = {
++      [name]: updatedValue,
++    };
++
++    let updatedProject: Project;
++    // need to do functional update b/c
++    // the new project state is based on the previous project state
++    // so we can keep the project properties that aren't being edited +like project.id
++    // the spread operator (...) is used to
++    // spread the previous project properties and the new change
++    setProject((p) => {
++      updatedProject = new Project({ ...p, ...change });
++      return updatedProject;
++    });
++  };
 
-      render() {
-        const { onCancel } = this.props;
-        return (
-            <form
-            className="input-group vertical"
-            onSubmit={event => {
-            this.handleSubmit(event);
-            }}
-            >
-            <label htmlFor="name">Project Name</label>
-            <input
-            type="text"
-            name="name"
-            placeholder="enter name"
-     +      value={this.state.project.name}
-     +      onChange={this.handleChange}
-            />
-            <label htmlFor="description">Project Description</label>
-            <textarea
-            name="description"
-            placeholder="enter description"
-     +      value={this.state.project.description}
-     +      onChange={this.handleChange}
-            />
-            <label htmlFor="budget">Project Budget</label>
-            <input
-            type="number"
-            name="budget"
-            placeholder="enter budget"
-     +      value={this.state.project.budget}
-     +      onChange={this.handleChange}
-            />
-            <label htmlFor="isActive">Active?</label>
-            <input
-            type="checkbox"
-            name="isActive"
-     +      checked={this.state.project.isActive}
-     +      onChange={this.handleChange}
-            />
-            <div className="input-group">
-            <button className="primary bordered medium">Save</button>
-            <span />
-            <button type="button" className="bordered medium" onClick={onCancel}>
-                  cancel
-            </button>
-            </div>
-            </form>
-      );
-      }
+  return (
+    <form className="input-group vertical" onSubmit={handleSubmit}>
+      <label htmlFor="name">Project Name</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="enter name"
++       value={project.name}
++       onChange={handleChange}
+      />
+      <label htmlFor="description">Project Description</label>
+      <textarea
+        name="description"
+        placeholder="enter description"
++       value={project.description}
++       onChange={handleChange}
+      />
+      <label htmlFor="budget">Project Budget</label>
+      <input
+        type="number"
+        name="budget"
+        placeholder="enter budget"
++       value={project.budget}
++       onChange={handleChange}
+      />
+      <label htmlFor="isActive">Active?</label>
+      <input
+        type="checkbox"
+        name="isActive"
++       checked={project.isActive}
++       onChange={handleChange}
+      />
+      <div className="input-group">
+        <button className="primary bordered medium">Save</button>
+        <span />
+        <button type="button" className="bordered medium" onClick={onCancel}>
+          cancel
+        </button>
+      </div>
+    </form>
+  );
+}
 
-     }
-     ```
+export default ProjectForm;
+```
 
 ### Handle submission of the form
 
@@ -153,53 +150,63 @@
 
    #### `src\projects\ProjectForm.tsx`
 
-   ```diff
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
-   state = {
-   project: this.props.project
-   };
-   ...
+```diff
+...
+function ProjectForm({
+  project: initialProject,
+  onSave,
+  onCancel,
+}: ProjectFormProps) {
+  const [project, setProject] = useState(initialProject);
 
-   handleSubmit = (event: SyntheticEvent) => {
-   event.preventDefault();
-   -    this.props.onSave(new Project({ name: 'Updated Project' }));
-   +    this.props.onSave(this.state.project);
-   };
-   ```
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+-   onSave(new Project({ name: 'Updated Project' }));
++   onSave(project);
+  };
+  ...
+}
 
-2. In `ProjectList` **set** the `project` **prop** on the `<ProjectForm />` in the render method of the component.
+export default ProjectForm;
+```
+
+2. In `ProjectList` **set** the `project` **prop** into the `<ProjectForm />`.
 
    #### `src\projects\ProjecList.tsx`
 
    ```diff
-   class ProjectList extends React.Component<ProjectListProps, ProjectListState> {
    ...
-   render() {
-      const { projects, onSave } = this.props;
+   function ProjectList({ projects, onSave }: ProjectListProps) {
+   const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
-      let item: JSX.Element;
-      const items = projects.map((project: Project) => {
-            if (project !== this.state.editingProject) {
-            item = (
-            ...
-            );
-            } else {
-            item = (
-            <div key={project.id} className="cols-sm">
-                  <ProjectForm
+   const handleEdit = (project: Project) => {
+      setProjectBeingEdited(project);
+   };
+
+   const cancelEditing = () => {
+      setProjectBeingEdited({});
+   };
+
+   return (
+      <div className="row">
+         {projects.map((project) => (
+         <div key={project.id} className="cols-sm">
+            {project === projectBeingEdited ? (
+               <ProjectForm
    +              project={project}
-                  onSave={onSave}
-                  onCancel={this.cancelEditing}
-                  ></ProjectForm>
-            </div>
-            );
-            }
-            return item;
-      });
+               onSave={onSave}
+               onCancel={cancelEditing}
+               />
+            ) : (
+               <ProjectCard project={project} onEdit={handleEdit} />
+            )}
+         </div>
+         ))}
+      </div>
+   );
+   }
 
-     return <div className="row">{items}</div>;
-   }
-   }
+   export default ProjectList;
    ```
 
 3. ProjectsPage update the project.
@@ -207,7 +214,7 @@
    #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-   import React, { Fragment, 
+   import React, { Fragment,
    + useState } from 'react';
    import { MOCK_PROJECTS } from './MockProjects';
    import ProjectList from './ProjectList';
