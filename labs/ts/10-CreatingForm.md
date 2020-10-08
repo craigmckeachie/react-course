@@ -16,7 +16,6 @@
    ```css
    form {
      min-width: 300px;
-     max-height: 370px;
    }
    ```
 
