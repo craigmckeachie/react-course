@@ -322,68 +322,89 @@ function ContactUsForm() {
   const [department, setDepartment] = React.useState('');
   const [message, setMessage] = React.useState('');
   const [agreedToTerms, setAgreedToTerms] = React.useState(false);
-  const [
-    departmentValidationMessage,
-    setDepartmentValidationMessage,
-  ] = React.useState(null);
-  const [
-    messageValidationMessage,
-    setMessageValidationMessage,
-  ] = React.useState(null);
-  const [
-    agreedToTermsValidationMessage,
-    setAgreedToTermsValidationMessage,
-  ] = React.useState(null);
+  const [departmentError, setDepartmentError] = React.useState(null);
+  const [messageError, setMessageError] = React.useState(null);
+  const [agreedToTermsError, setAgreedToTermsError] = React.useState(null);
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  const handleBlur = (event) => {
-    validate();
-  };
-
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
-    validate();
-    if (!isValid()) {
+    if (!validate()) {
       return;
     }
-  };
+    console.log('submitting', stateToString());
+  }
 
-  const validate = () => {
-    setDepartmentValidationMessage(null);
-    setMessageValidationMessage(null);
-    setAgreedToTermsValidationMessage(null);
+  function handleDepartmentChange(event) {
+    const { value } = event.target;
+    setDepartment(value);
+    validateDepartment(value);
+  }
 
-    if (!department) {
-      setDepartmentValidationMessage('Department is required.');
-    }
-    if (!message) {
-      setMessageValidationMessage('A message is required.');
-    }
-    if (agreedToTerms === false) {
-      setAgreedToTermsValidationMessage(
-        'You must agree to the terms and conditions.'
-      );
-    }
-  };
+  function handleMessageChange(event) {
+    const { value } = event.target;
+    setMessage(value);
+    validateMessage(value);
+  }
+  function handleAgreeToTermsChange(event) {
+    const { checked } = event.target;
+    setAgreedToTerms(checked);
+    validateAgreedToTerms(checked);
+  }
 
-  const isValid = () => {
-    return (
-      departmentValidationMessage === null &&
-      messageValidationMessage === null &&
-      agreedToTermsValidationMessage === null
+  function validate() {
+    const departmentError = validateDepartment(department);
+    const messageError = validateMessage(message);
+    const agreedToTermsError = validateAgreedToTerms(agreedToTerms);
+    return departmentError && messageError && agreedToTerms;
+  }
+
+  function validateDepartment(value) {
+    if (value === '') {
+      const error = 'Department is required.';
+      setDepartmentError(error);
+      return error;
+    } else {
+      return null;
+    }
+  }
+  function validateMessage(value) {
+    if (value === '') {
+      const error = 'Message is required.';
+      setMessageError(error);
+    } else {
+      setMessageError(null);
+    }
+  }
+  function validateAgreedToTerms(checked) {
+    if (checked) {
+      setAgreedToTermsError(null);
+    } else {
+      const error = 'You must agree to the terms and conditions.';
+      setAgreedToTermsError(error);
+    }
+  }
+
+  function stateToString() {
+    return JSON.stringify(
+      {
+        department,
+        message,
+        agreedToTerms,
+        departmentError,
+        messageError,
+        agreedToTermsError,
+      },
+      null,
+      ' '
     );
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <select
         name="department"
         value={department}
-        onChange={(e) => setDepartment(e.target.value)}
-        onBlur={handleBlur}
+        onChange={handleDepartmentChange}
       >
         <option value="">Select...</option>
         <option value="hr">Human Resources</option>
@@ -391,49 +412,28 @@ function ContactUsForm() {
         <option value="support">Support</option>
       </select>
       <br />
-      {departmentValidationMessage && (
-        <p className="alert">{departmentValidationMessage}</p>
-      )}
+      {departmentError && <p className="alert">{departmentError}</p>}
       <br />
       <textarea
         name="message"
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onBlur={handleBlur}
+        onChange={handleMessageChange}
         cols="30"
         rows="10"
       />
       <br />
-      {messageValidationMessage && (
-        <p className="alert">{messageValidationMessage}</p>
-      )}
+      {messageError && <p className="alert">{messageError}</p>}
       <input
         type="checkbox"
         name="agreedToTerms"
         checked={agreedToTerms}
-        onChange={(e) => setAgreedToTerms(e.target.checked)}
-        onBlur={handleBlur}
+        onChange={handleAgreeToTermsChange}
       />
       I agree to the terms and conditions.
       <br />
-      {agreedToTermsValidationMessage && (
-        <p className="alert">{agreedToTermsValidationMessage}</p>
-      )}
+      {agreedToTermsError && <p className="alert">{agreedToTermsError}</p>}
       <button>Send</button>
-      <pre>
-        {JSON.stringify(
-          {
-            department,
-            message,
-            agreedToTerms,
-            departmentValidationMessage,
-            messageValidationMessage,
-            agreedToTermsValidationMessage,
-          },
-          null,
-          ' '
-        )}
-      </pre>
+      {/* <pre>{stateToString()}</pre> */}
     </form>
   );
 }
@@ -444,9 +444,7 @@ ReactDOM.render(<ContactUsForm />, document.getElementById('root'));
 Some things to notice in the code above:
 
 - Validation messages are themselves local component state.
-- A validate function was created that checks the current state which controls form fields and sets validation messages into state.
-- The validate function is called when the form is submitted.
-- An onBlur event handler is created and the validation is called there as well so users get feedback as soon as they leave a given form control.
+- The validations are called when the form is submitted.
 - The && operator is used to conditionally display the error messages.
   - The && operator is ideal in this case since there is no else case.
 
