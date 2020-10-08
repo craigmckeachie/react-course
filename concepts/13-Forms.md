@@ -355,7 +355,7 @@ function ContactUsForm() {
     const departmentError = validateDepartment(department);
     const messageError = validateMessage(message);
     const agreedToTermsError = validateAgreedToTerms(agreedToTerms);
-    return departmentError && messageError && agreedToTerms;
+    return departmentError && messageError && agreedToTermsError;
   }
 
   function validateDepartment(value) {
