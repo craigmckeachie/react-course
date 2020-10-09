@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { projectAPI } from './projectAPI';
 import ProjectDetail from './ProjectDetail';
 import { Project } from './Project';
 
-interface ProjectPageState {
-  loading: boolean;
-  project: Project | undefined;
-  error: string | undefined;
-}
+function ProjectPage(props: any) {
+  const [loading, setLoading] = useState(false);
+  const [project, setProject] = useState<Project | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const id = Number(props.match.params.id);
 
-class ProjectPage extends React.Component<any, ProjectPageState> {
-  state = {
-    loading: false,
-    project: undefined,
-    error: ''
-  };
-
-  componentDidMount() {
-    const id = Number(this.props.match.params.id);
-    this.setState({ loading: true });
+  useEffect(() => {
+    setLoading(true);
     projectAPI
       .find(id)
-      .then(data => this.setState({ project: data, loading: false }))
-      .catch(e => this.setState({ error: e.message, loading: false }));
-  }
-  render() {
-    const { loading, project, error } = this.state;
-    return (
-      <React.Fragment>
+      .then((data) => {
+        setProject(data);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setError(e);
+        setLoading(false);
+      });
+  }, [id]);
+
+  return (
+    <div>
+      <>
         <h1>Project Detail</h1>
 
         {loading && (
@@ -50,9 +48,9 @@ class ProjectPage extends React.Component<any, ProjectPageState> {
         )}
 
         {project && <ProjectDetail project={project} />}
-      </React.Fragment>
-    );
-  }
+      </>
+    </div>
+  );
 }
 
 export default ProjectPage;
