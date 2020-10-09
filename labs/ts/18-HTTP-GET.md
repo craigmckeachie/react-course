@@ -126,32 +126,50 @@
 
    #### `src\projects\ProjectsPage.tsx`
 
-   ```diff
-   import React, { Fragment, useState,
-   + useEffect } from 'react';
-   + import { projectAPI } from './projectAPI';
+```diff
+import React, { Fragment, useState,
++ useEffect } from 'react';
++ import { projectAPI } from './projectAPI';
 
-   function ProjectsPage() {
-     const [projects, setProjects] = useState<Project[]>([]);
-     const [loading, setLoading] = useState(false);
-     const [error, setError] = useState(undefined);
+function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(undefined);
 
-   +  useEffect(() => {
-   +    setLoading(true);
-   +    projectAPI
-   +      .get(1)
-   +      .then((data) => {
-   +        setLoading(false);
-   +        setProjects(data);
-   +      })
-   +      .catch((e) => {
-   +        setLoading(false);
-   +        setError(e.message);
-   +      });
-   +  }, []);
-   ...
-   }
-   ```
+// Approach 1: using promise then
+//  useEffect(() => {
+//    setLoading(true);
+//    projectAPI
+//      .get(1)
+//      .then((data) => {
+//        setLoading(false);
+//        setProjects(data);
+//      })
+//      .catch((e) => {
+//        setLoading(false);
+//        setError(e.message);
+//      });
+//  }, []);
+
+ // Approach 2: using async/await
++  useEffect(() => {
++    async function loadProjects() {
++      setLoading(true);
++      try {
++        const data = await projectAPI.get(1);
++        setProjects(data);
++      } catch (e) {
++        setError(e.message);
++      } finally {
++        setLoading(false);
++      }
++    }
++    loadProjects();
++  }, []);
+
+...
+}
+```
 
 1. **Display** the **loading** indicator **below** the `<ProjectList />`. Only display the indicator when `loading=true`.
 
@@ -345,37 +363,38 @@
 
    #### `src\projects\ProjectsPage.tsx`
 
-   ```diff
-   ...
-   function ProjectsPage() {
-     const [projects, setProjects] = useState<Project[]>([]);
-     const [loading, setLoading] = useState(false);
-     const [error, setError] = useState(undefined);
-     const [currentPage, setCurrentPage] = useState(1);
+```diff
+...
+function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
 
-     useEffect(() => {
-       setLoading(true);
-       projectAPI
-   -      .get(1)
-   +      .get(currentPage)
-         .then((data) => {
-           setLoading(false);
-   -        setProjects(data);
-   +        if (currentPage === 1) {
-   +          setProjects(data);
-   +        } else {
-   +          setProjects((projects) => [...projects, ...data]);
-   +        }
-         })
-         .catch((e) => {
-           setLoading(false);
-           setError(e.message);
-         });
-   - }, []);
-   + }, [currentPage]);
-     ...
-   }
-   ```
+  useEffect(() => {
+    async function loadProjects() {
+      setLoading(true);
+      try {
+-        const data = await projectAPI.get(1);
++        const data = await projectAPI.get(currentPage);
+-        setProjects(data);
++      if (currentPage === 1) {
++          setProjects(data);
++        } else {
++          setProjects((projects) => [...projects, ...data]);
++        }
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadProjects();
+-  }, []);
++  }, [currentPage]);
+...
+}
+```
 
 1. **Implement** a `handleMoreClick` event handler and implement it by incrementing the page and then calling `loadProjects`.
 
