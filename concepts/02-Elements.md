@@ -100,7 +100,7 @@ One might confuse elements with a more widely known concept of “components”.
     > Assuming you would like to serve a static site, single page application or just a static file (no matter if on your device or on the local network), `serve` is a development web server that serves static content.
 
     > It behaves exactly like static deployments on 
-    > https://zeit.co/now
+    > https://vercel.com
     > so it's perfect for developing your static project.
 
     > For more information see:
