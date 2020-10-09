@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "imageUrl": "http://placehold.it/500x300/e4d2ba",
-    "id": 7,
+    "id": 200,
     "name": "Another Project",
     "description": "A project description . Mauris iaculis nunc vitae elit commodo lobortis. Sed dapibus, odio sit amet",
     "contractTypeId": 1,
