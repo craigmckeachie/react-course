@@ -100,7 +100,7 @@
    }
    ```
 
-1. **Change** the `projects` **state** to be an empty array `[]` **(be sure to remove the mock data)**:
+1. **Change** the `projects` **state** to be an empty array `[]` **(be sure to remove the mock data)**.
 
    #### `src\projects\ProjectsPage.tsx`
 
@@ -116,11 +116,11 @@
    }
    ```
 
-1. **Implement** the loading of the data from the API after the component has been added to the DOM `(componentDidMount`) following these specifications.
+1. **Implement** the loading of the data from the API after the intial component render in a `useEffect` hook. Follow these specifications.
 
    1. **Set** state of `loading` to `true`
    2. Call the API: `projectAPI.get(1)`.
-   3. If **successful**, **set** the returned `data` into the components `projects` state and `loading` to `false`.
+   3. If **successful**, **set** the returned `data` into the components `projects` state variable and set the `loading` state variable to `false`.
    4. If an **error occurs**, **set** the returned error's message `error.message` to the components `error` state and `loading` to `false`.
 
    #### `src\projects\ProjectsPage.tsx`
@@ -384,7 +384,7 @@
    }
    ```
 
-1. **Implement** a `handleMoreClick` event handler and increment the page and then call `loadProjects`.
+1. **Implement** a `handleMoreClick` event handler and implement it by incrementing the page and then calling `loadProjects`.
 
    #### `src\projects\ProjectsPage.tsx`
 
