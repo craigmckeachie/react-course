@@ -15,11 +15,11 @@
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell
-   npm install json-server@0.15.1
+   npm install json-server@0.16.6
    ```
    #### Yarn
    ```shell
-   yarn add json-server@0.15.1
+   yarn add json-server@0.16.2
    ```
 
 ### Create a custom npm script to run the REST API server
