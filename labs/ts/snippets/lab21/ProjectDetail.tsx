@@ -1,7 +1,10 @@
 import React from 'react';
+import { Project } from './Project';
 
-export default function ProjectDetail(props: any) {
-  const { project } = props;
+interface ProjectDetailProps {
+  project: Project;
+}
+export default function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <div className="row">
       <div className="col-sm-6">

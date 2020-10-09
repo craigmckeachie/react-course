@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { projectAPI } from './projectAPI';
 import ProjectDetail from './ProjectDetail';
 import { Project } from './Project';
+import { RouteComponentProps } from 'react-router-dom';
 
-function ProjectPage(props: any) {
+interface ProjectPageProps extends RouteComponentProps<{ id: string }> {}
+
+function ProjectPage(props: ProjectPageProps) {
   const [loading, setLoading] = useState(false);
   const [project, setProject] = useState<Project | null>(null);
   const [error, setError] = useState<string | null>(null);
