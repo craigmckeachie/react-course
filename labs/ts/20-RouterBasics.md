@@ -22,12 +22,15 @@
    export default function HomePage() {
      return <h2>Home</h2>;
    }
+
+   export default HomePage;
    ```
 
 ### Add Basic Routes (install, configure)
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
-1. Change the **current directory** to `working\keeptrack`.
+1. Change the **current directory** to `code\keeptrack`.
+   > If the top level directory you have open in VS Code is `keeptrack` and you are using the integrated terminal you will already be in this directory.
 1. **Run** _one_ of the following commands to install `React Router`:
    #### npm
    ```shell
@@ -49,18 +52,19 @@
    + import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
    + import HomePage from './home/HomePage';
 
-   const App: React.FC = () => {
-     return (
+
+   function App() {
+   - return  <ProjectsPage />
+   +  return (
    +    <Router>
-         <div className="container">
-   -        <ProjectsPage />
+   +      <div className="container">
    +        <Switch>
    +          <Route path="/" exact component={HomePage} />
    +          <Route path="/projects" exact component={ProjectsPage} />
    +        </Switch>
-         </div>
+   +      </div>
    +    </Router>
-     );
+   +  );
    };
 
    export default App;
@@ -89,7 +93,7 @@
    #### `src/app.tsx`
 
    ```diff
-   const App: React.FC = () => {
+   function App() {
      return (
        <Router>
    +      <header className="sticky">
