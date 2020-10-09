@@ -4,7 +4,7 @@
 
 - [ ] Create an API object that loads data from an REST API
 - [ ] Update a component to use the API object
-- [ ] Bonus: Add Pagination
+- [ ] Add Pagination
 
 ## Steps
 
@@ -100,6 +100,7 @@
    }
    ```
 
+1. **Delete** the file `src\projects\MockProjects.ts`.
 1. **Change** the `projects` **state** to be an empty array `[]` **(be sure to remove the mock data)**.
 
    #### `src\projects\ProjectsPage.tsx`
@@ -323,15 +324,7 @@
       ...
       ```
 
----
-
-### &#10004; You have completed Lab 18
-
----
-
-### Bonus: Add Pagination
-
-> This part of the lab is optional and can be safely skipped for now if time is tight.
+### Add Pagination
 
 1. **Use** the `useState` function to create an additonal state variable `currentPage`.
 
@@ -467,4 +460,4 @@
 
 ---
 
-### &#10004; You have completed the Lab 18 bonus exercise
+### &#10004; You have completed the Lab 18
