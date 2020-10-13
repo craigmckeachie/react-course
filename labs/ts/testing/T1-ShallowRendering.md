@@ -22,14 +22,14 @@
 
    ```shell
    npm i enzyme enzyme-adapter-react-16
-   npm i @types/enzyme --save-dev
+   npm i @types/enzyme @types/enzyme-adapter-react-16 --save-dev
    ```
 
    #### Yarn
 
    ```shell
    yarn add enzyme enzyme-adapter-react-16
-   yarn add @types/enzyme --save-dev
+   yarn add @types/enzyme @types/enzyme-adapter-react-16 --save-dev
    ```
 
 1. Create the file `src\setupTests.ts`
@@ -57,10 +57,43 @@
    ```shell
    yarn test
    ```
+
 1. Press `a` to run all tests.
-1. Verify the test created by Create React App passes.
+1. Verify the test created by Create React App fails.
 
    ```shell
+   FAIL  src/App.test.tsx
+   Unable to find an element with the text: /learn react/i.
+   ```
+
+1. Open the file `src/App.test.tsx`
+1. Remove the current test code and add the following enzyme test.
+
+   ```tsx
+   // import React from 'react';
+   // import { render } from '@testing-library/react';
+   // import App from './App';
+
+   // test('renders learn react link', () => {
+   //   const { getByText } = render(<App />);
+   //   const linkElement = getByText(/learn react/i);
+   //   expect(linkElement).toBeInTheDocument();
+   // });
+
+   import React from 'react';
+   import ReactDOM from 'react-dom';
+   import App from './App';
+
+   it('renders without crashing', () => {
+     const div = document.createElement('div');
+     ReactDOM.render(<App />, div);
+     ReactDOM.unmountComponentAtNode(div);
+   });
+   ```
+
+1. Verify the test now passes.
+
+   ```
    PASS  src/App.test.tsx
    ```
 
