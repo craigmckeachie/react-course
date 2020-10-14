@@ -505,6 +505,9 @@ You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily 
    + });
    ```
 
+   - [Which query to use for React Testing Library?](https://testing-library.com/docs/guide-which-query)
+   - [screen.debug](https://testing-library.com/docs/dom-testing-library/api-queries#screendebug)
+
 ## Components Tests (with Enzyme)
 
 Different ways to test:
@@ -623,6 +626,8 @@ It works more directly with DOM nodes, and therefore it's recommended to use wit
 
 Snapshot testing is a feature of Jest that automatically generates text snapshots of your components and saves them on the disk so if the UI output changes, you get notified without manually writing any assertions on the component output. [Read more about snapshot testing](https://jestjs.io/blog/2016/07/27/jest-14.html).
 
+> .. avoid huge snapshots and take smaller, more focused ones. While you're at it, see if you can actually change it from a snapshot to a more explicit assertion (because you probably can 😉). - Kent C Dodds
+
 Snapshot testing requires you to install the `react-test-renderer` which we already did for shallow testing.
 
 1.  Add the following test
@@ -668,6 +673,7 @@ Snapshot testing requires you to install the `react-test-renderer` which we alre
 ### General
 
 - [React Documentation: Test Utilities](https://reactjs.org/docs/test-utils.html)
+- [Unit vs Integration vs E2E](https://kentcdodds.com/blog/unit-vs-integration-vs-e2e-tests)
 
 ### Jest
 
@@ -678,6 +684,7 @@ Snapshot testing requires you to install the `react-test-renderer` which we alre
 - [Jest Matchers](https://jestjs.io/docs/en/expect.html)
 - [Jest DOM: Jest Matchers for the DOM](https://github.com/testing-library/jest-dom)
 - [Testing React Apps (with Jest)](https://jestjs.io/docs/en/tutorial-react)
+- [Effective Snapshot Testing](https://kentcdodds.com/blog/effective-snapshot-testing)
 
 ### React Testing Library
 
