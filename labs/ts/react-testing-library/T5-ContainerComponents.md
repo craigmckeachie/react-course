@@ -2,215 +2,322 @@
 
 ## Objectives
 
-- [ ] Export the Unconnected Container Component
-- [ ] Test the Container Component
-
-## Redux Notes
-
-> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_.
-> In addition, your component will be `<ProjectsPage ...>` instead of `<UnconnectedProjectsPage ...>`
+- [ ] Test Setup
+- [ ] Test the Loading Indicator Displays
+- [ ] Test the Projects Display
+- [ ] Test the More Button Displays
+- [ ] Test the Error Displays
 
 ## Steps
 
-### Export the Unconnected Container Component
-
-1. Export the container component before wrapping it.
-
-   > Be sure you working in the file Project**s**Page.tsx not ProjectPage.tsx
-
-   #### `src\projects\ProjectsPage.tsx`
-
-   ```diff
-   ...
-   class ProjectsPage extends React.Component<any> {
-   ...
-   }
-
-   // export default ProjectsPage;
-   + export { ProjectsPage as UnconnectedProjectsPage };
-
-   // React Redux (connect)---------------
-   function mapStateToProps(state: AppState): ProjectState {
-   return {
-       ...state.projectState
-   };
-   }
-
-   const mapDispatchToProps = {
-   onLoad: loadProjects,
-   onSave: saveProject
-   };
-
-   export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-   )(ProjectsPage);
-   ```
-
-### Test the Container Component
+### Test Setup
 
 1. **Create** the **file** `src\projects\__tests__\ProjectsPage-test.tsx`.
 1. **Add** the **setup** code below to test the component.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
-   ```ts
+   ```tsx
    import React from 'react';
-   import { ShallowWrapper, shallow } from 'enzyme';
-   import { UnconnectedProjectsPage } from '../ProjectsPage';
-   import { MOCK_PROJECTS } from '../MockProjects';
-   import { ProjectListProps } from '../ProjectList';
+   import { MemoryRouter } from 'react-router-dom';
+   import { Provider } from 'react-redux';
+   import { store } from '../../state';
+   import ProjectsPage from '../ProjectsPage';
+   import {
+     render,
+     screen,
+     waitForElementToBeRemoved,
+   } from '@testing-library/react';
 
-   describe('<ProjectsPage>', () => {
-     let wrapper: ShallowWrapper;
-     let onLoadMock = jest.fn();
-     beforeEach(() => {
-       wrapper = shallow(
-         <UnconnectedProjectsPage
-           onLoad={onLoadMock}
-           projects={MOCK_PROJECTS}
-           page={1}
-         />
+   describe('<ProjectsPage />', () => {
+     function renderComponent() {
+       render(
+         <Provider store={store}>
+           <MemoryRouter>
+             <ProjectsPage />
+           </MemoryRouter>
+         </Provider>
        );
-     });
+     }
 
-     test('renders without crashing', () => {
-       expect(wrapper).toBeDefined();
+     test('should render without crashing', () => {
+       renderComponent();
+       expect(screen).toBeDefined();
      });
    });
    ```
 
-1. **Verify** the intial **test passe**s.
+1. **Verify** the initial **test passed**.
    ```
    PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
-1. **Test** that `onLoad` is called with a page number when the component is created.
+
+### Test the Loading Indicator Displays
+
+1. Test that the loading indicator displays when the component initially renders.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
-
-   ```ts
-   ...
-   test('onLoad should be called with page number', () => {
-     const pageNumber = 1;
-     expect(onLoadMock).toBeCalledWith(pageNumber);
-   });
-   ```
-
-1. Verify the test passes.
-
-   ```shell
-    PASS  src/projects/__tests__/ProjectsPage-test.tsx
-   ```
-
-1. Export the `ProjectListProps` interface.
-
-   #### `src\projects\ProjectsPage.tsx`
 
    ```diff
-     ...
+   import React from 'react';
+   import { MemoryRouter } from 'react-router-dom';
+   import { Provider } from 'react-redux';
+   import { store } from '../../state';
+   import ProjectsPage from '../ProjectsPage';
+   import {
+   render,
+   screen,
+   waitForElementToBeRemoved,
+   } from '@testing-library/react';
 
-   -  interface ProjectListProps {
-   +  export interface ProjectListProps {
-       projects: Project[];
-       onSave: (project: Project) => void;
-     }
-     ...
-
-   ```
-
-1. Import the `ProjectListProps` interface and **Test** that the `ProjectList` is rendered inside the `ProjectsPage`.
-
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
-
-   ```ts
+   describe('<ProjectsPage />', () => {
+   function renderComponent() {
+      render(
+         <Provider store={store}>
+         <MemoryRouter>
+            <ProjectsPage />
+         </MemoryRouter>
+         </Provider>
+      );
+   }
    ...
-   test('renders <ProjectList />', () => {
-       let projectListWrapper = wrapper.find('ProjectList');
-       expect(projectListWrapper.length).toBe(1);
-       expect((projectListWrapper.props() as ProjectListProps).projects).toBe(
-       MOCK_PROJECTS
-       );
+
+   +  test('should display loading', () => {
+   +    renderComponent();
+   +    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+   +  });
+
+
    });
    ```
 
-1. Verify the test passes.
-
-   ```shell
-    PASS  src/projects/__tests__/ProjectsPage-test.tsx
+1. **Verify** the **test passed**.
+   ```
+   PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
-1. **Test** that an error is displayed when one occurs.
+### Test the Projects Display
+
+1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
+1. Change the **current directory** to `code\keeptrack`.
+1. **Run** _one_ of the following sets of commands to install `Mock Service Worker` to mock the HTTP requests.
+
+   ```
+   $ npm install msw --save-dev
+   # or
+   $ yarn add msw --dev
+   ```
+
+1. Export the url used in the component from the `projectAPI.ts` file.
+
+   #### `src\projects\projectAPI.ts`
+
+   ```diff
+   import { Project } from './Project';
+
+   const baseUrl = 'http://localhost:4000';
+   - const url = `${baseUrl}/projects`;
+   + export const url = `${baseUrl}/projects`;
+   ...
+   ```
+
+1. Add the setup code to mock the requests.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
-   ```ts
+   ```diff
+   import React from 'react';
+   import { MemoryRouter } from 'react-router-dom';
+   import { MOCK_PROJECTS } from '../MockProjects';
+   import { Provider } from 'react-redux';
+   import { store } from '../../state';
+   import ProjectsPage from '../ProjectsPage';
+   import {
+   render,
+   screen,
+   waitForElementToBeRemoved,
+   } from '@testing-library/react';
+   + import { rest } from 'msw';
+   + import { setupServer } from 'msw/node';
+   + import { url as projectsUrl } from '../projectAPI';
+
+   + // declare which API requests to mock
+   + const server = setupServer(
+   +   // capture "GET http://localhost:3000/projects" requests
+   +   rest.get(projectsUrl, (req, res, ctx) => {
+   +     // respond using a mocked JSON body
+   +     return res(ctx.json(MOCK_PROJECTS));
+   +   })
+   + );
+
+   describe('<ProjectsPage />', () => {
+   function renderComponent() {
+      render(
+         <Provider store={store}>
+         <MemoryRouter>
+            <ProjectsPage />
+         </MemoryRouter>
+         </Provider>
+      );
+   }
+
+   +  beforeAll(() => server.listen());
+   +  afterEach(() => server.resetHandlers());
+   +  afterAll(() => server.close());
+
+   test('should render without crashing', () => {
+      renderComponent();
+      expect(screen).toBeDefined();
+   });
+
+   test('should display loading', () => {
+      renderComponent();
+      expect(screen.getByText(/loading/i)).toBeInTheDocument();
+   });
+
+
+   });
+   ```
+
+1. Test that the projects display after the mocked data is returned.
+
+   #### `src\projects\__tests__\ProjectsPage-test.tsx`
+
+   ```diff
    ...
-   test('error displays', () => {
-       wrapper.setProps({ error: 'Fail' });
-       expect(wrapper.find('div.error').text()).toContain('Fail');
+
+   describe('<ProjectsPage />', () => {
+   function renderComponent() {
+      render(
+         <Provider store={store}>
+         <MemoryRouter>
+            <ProjectsPage />
+         </MemoryRouter>
+         </Provider>
+      );
+   }
+
+   beforeAll(() => server.listen());
+   afterEach(() => server.resetHandlers());
+   afterAll(() => server.close());
+
+   ...
+
+   +  test('should display projects', async () => {
+   +    renderComponent();
+   +    expect(await screen.findAllByRole('img')).toHaveLength(
+   +      MOCK_PROJECTS.length
+   +    );
+   +  });
+
+
    });
 
    ```
 
-1. Verify the test passes.
-
-   ```shell
-    PASS  src/projects/__tests__/ProjectsPage-test.tsx
+1. **Verify** the **test passed**.
+   ```
+   PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
-1. **Test** that the loading indicator is displayed.
+### Test the More Button Displays
+
+1. Test that the **More button** **displays** after the projects have loaded.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
-   ```ts
+   ```diff
    ...
-   test('loading indicator displays', () => {
-       wrapper.setProps({ loading: true });
-       const spinnerWrapper = wrapper.find('span.spinner');
-       expect(spinnerWrapper.exists()).toBeTruthy();
+   import {
+   render,
+   screen,
+   waitForElementToBeRemoved,
+   } from '@testing-library/react';
+   ...
+
+   describe('<ProjectsPage />', () => {
+   ...
+
+   +  test('should display more button', async () => {
+   +    renderComponent();
+   +    expect(
+   +      await screen.findByRole('button', { name: /more/i })
+   +    ).toBeInTheDocument();
+   +  });
+   +
+   +  // this tests the same as the last test but demonstrates
+   +  // what find* methods are doing
+   +  test('should display more button with get', async () => {
+   +    renderComponent();
+   +    await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
+   +    expect(screen.getByRole('button', { name: /more/i })).+toBeInTheDocument();
+   +  });
+
    });
 
    ```
 
-1. Verify the test passes.
-
-   ```shell
-    PASS  src/projects/__tests__/ProjectsPage-test.tsx
+1. **Verify** the **test passed**.
+   ```
+   PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
-1. **Test** that the pagination works.
+### Test the Error Displays
+
+1. Test that a custom **error** **displays** when a server error is returned.
 
    #### `src\projects\__tests__\ProjectsPage-test.tsx`
 
-   ```ts
+   ```diff
    ...
-   test('When clicking more records...onLoad should be called with next page number', () => {
-       const moreButton = wrapper.findWhere(
-       element => element.type() === 'button' && element.text() === 'More...'
-       );
-       expect(moreButton.exists()).toBeTruthy();
-       moreButton.simulate('click');
-       expect(onLoadMock).toBeCalledWith(2);
+   import {
+   render,
+   screen,
+   waitForElementToBeRemoved,
+   } from '@testing-library/react';
+   ...
+
+   describe('<ProjectsPage />', () => {
+   ...
+
+   +  test('should display custom error on server error', async () => {
+   +    server.use(
+   +      rest.get(projectsUrl, (req, res, ctx) => {
+   +        return res(ctx.status(500, 'Server error'));
+   +      })
+   +    );
+   +    renderComponent();
+   +
+   +    expect(
+   +      await screen.findByText(/There was an error retrieving the project(s)./i)
+   +    ).toBeInTheDocument();
+   +  });
+
    });
+
    ```
 
-1. Verify the test passes.
-
-   ```shell
-    PASS  src/projects/__tests__/ProjectsPage-test.tsx
+1. **Verify** the **test passed**.
    ```
-
-1. **Take** a snapshot.
-
-   #### `src\projects\__tests__\ProjectsPage-test.tsx`
-
-   ```ts
-   ...
-     test('snapshot', () => {
-       expect(wrapper).toMatchSnapshot();
-     });
+   PASS  src/projects/__tests__/ProjectsPage-test.tsx
    ```
 
 ---
 
-### &#10004; You have completed Unit Testing Lab 5
+### &#10004; You have completed Testing Lab 5
+
+<!--
+```
+"dependencies": {
+    "@testing-library/jest-dom": "~4.2.4",
+    "@testing-library/react": "~10.0.6",
+}
+npm install @testing-library/react
+
+```
+
+```
+https://stackoverflow.com/questions/61036156/react-typescript-testing-typeerror-mutationobserver-is-not-a-constructor
+npm i -D jest-environment-jsdom-sixteen
+"test": "react-scripts test --env=jest-environment-jsdom-sixteen"
+``` -->
