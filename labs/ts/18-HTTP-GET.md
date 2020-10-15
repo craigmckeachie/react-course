@@ -100,7 +100,8 @@
    }
    ```
 
-1. **Delete** the file `src\projects\MockProjects.ts`.
+   > **DO NOT DELETE** the file `src\projects\MockProjects.ts`. We will use it in our unit testing.
+
 1. **Change** the `projects` **state** to be an empty array `[]` **(be sure to remove the mock data)**.
 
    #### `src\projects\ProjectsPage.tsx`
