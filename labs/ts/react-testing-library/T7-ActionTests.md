@@ -23,7 +23,7 @@
    const projectAPI = {
      get(page = 1, limit = 20) {
        return Promise.resolve(MOCK_PROJECTS);
-     }
+     },
    };
 
    export { projectAPI };
@@ -38,13 +38,13 @@
    #### npm
 
    ```shell
-    npm install redux-mock-store --save-dev
+    npm install redux-mock-store @types/redux-mock-store --save-dev
    ```
 
    #### Yarn
 
    ```shell
-   yarn add redux-mock-store --save-dev
+   yarn add redux-mock-store @types/redux-mock-store --save-dev
    ```
 
 1. Create the directory `src\projects\state\__tests__`.
@@ -62,7 +62,7 @@
    import {
      LOAD_PROJECTS_REQUEST,
      LOAD_PROJECTS_SUCCESS,
-     LOAD_PROJECTS_FAILURE
+     LOAD_PROJECTS_FAILURE,
    } from '../projectTypes';
    import { projectAPI } from '../../projectAPI';
    import { MOCK_PROJECTS } from '../../MockProjects';
