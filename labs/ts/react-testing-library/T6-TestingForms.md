@@ -2,86 +2,179 @@
 
 ## Objectives
 
-- [ ] Export the Unconnected Form Component
-- [ ] Test the Form Component
-
-## Redux Notes
-
-> If you are using Redux in your application you can **skip** the first step in this lab _1. Export the Unconnected Container Component_.
->
-> In addition, your component will be `<ProjectForm ...>` instead of `<UnconnectedProjectForm ...>`
-
-> If you are using Redux in your application you will not have the lines shown below in the code you are testing. Accordingly, you will need to remove these lines from the code in this lab.
-
-#### `src\projects\__tests__\ProjectForm-test.tsx`
-
-```diff
-...
--      handleSave = jest.fn();
-      handleCancel = jest.fn();
-      wrapper = shallow(
-        <UnconnectedProjectForm
-          project={project}
--           onSave={handleSave}
-          onCancel={handleCancel}
-        />
-      );
-
-...
-});
-```
+- [ ] Update the User Event library
+- [ ] Update the Form to be more Accessible
+- [ ] Test Loading Data into the Form
+- [ ] Test Updating Form Values
+- [ ] Test Validation Rules
 
 ## Steps
 
-### Export the Unconnected Form Component
+### Update the User Event library
 
-1. **Export** the form compon**ent** before wrapping it.
+The `@testing-library/user-event` library is changing rapidly and the version that currently ships with **Create React App** is missing some methods we want to use during this lab so we are going to update the library before we begin.
+
+1. Update the `@testing-library/react` library by removing it from the `package.json`.
+
+   #### `\package.json`
+
+   ```diff
+   {
+     "name": "keeptrack",
+     "version": "0.1.0",
+     "private": true,
+     "dependencies": {
+       "@testing-library/jest-dom": "~4.2.4",
+       "@testing-library/react": "~9.5.0",
+   -    "@testing-library/user-event": "~7.2.1",
+       "@types/jest": "~24.9.1",
+       "@types/node": "~12.12.58",
+       "@types/react": "~16.9.49",
+       "@types/react-dom": "~16.9.8",
+       "react": "^16.13.1",
+       "react-dom": "^16.13.1",
+       "react-scripts": "3.4.3",
+       "typescript": "~3.7.5"
+     },
+   ```
+
+1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
+1. Change the **current directory** to `code\keeptrack`.
+1. **Run** _one_ of the following sets of commands:
+
+   #### npm
+
+   ```shell
+   npm install @testing-library/user-event
+   ```
+
+   #### Yarn
+
+   ```shell
+   yarn add @testing-library/user-event
+   ```
+
+1. Verify the `@testing-library/user-event` is greater than or equal to `12.x.x`
+
+### Update the Form to be more Accessible
+
+One of the great benefits of using React Testing Library is that it helps us build a more accessible application. The way we initially built our form HTML needs to be updated so we can more easily and realiably select various form elements and errors.
+
+1. Update the form to be more accessible.
 
    #### `src\projects\ProjectForm.tsx`
 
    ```diff
    ...
-   class ProjectForm extends React.Component<ProjectFormProps, ProjectFormState> {
-   ...
+
+   function ProjectForm({ project: initialProject, onCancel }: ProjectFormProps) {
+     ...
+
+     return (
+       <form
+         aria-label="Edit a Project"
+         name="projectForm"
+         className="input-group vertical"
+         onSubmit={handleSubmit}
+       >
+         <label htmlFor="name">Project Name</label>
+         <input
+   +        id="name"
+           type="text"
+           name="name"
+           placeholder="enter name"
+           value={project.name}
+           onChange={handleChange}
+         />
+         {errors.name.length > 0 && (
+           <div
+   +        role="alert"
+           className="card error">
+             <p>{errors.name}</p>
+           </div>
+         )}
+
+         <label htmlFor="description">Project Description</label>
+         <textarea
+   +        id="description"
+   +        aria-label="project description"
+           name="description"
+           placeholder="enter description"
+           value={project.description}
+           onChange={handleChange}
+         />
+         {errors.description.length > 0 && (
+           <div
+   +         role="alert"
+             className="card error">
+             <p>{errors.description}</p>
+           </div>
+         )}
+
+         <label htmlFor="budget">Project Budget</label>
+         <input
+   +        id="budget"
+           type="number"
+           name="budget"
+           placeholder="enter budget"
+           value={project.budget}
+           onChange={handleChange}
+         />
+         {errors.budget.length > 0 && (
+           <div
+   +         role="alert"
+           className="card error">
+             <p>{errors.budget}</p>
+           </div>
+         )}
+
+         <label htmlFor="isActive">Active?</label>
+         <input
+   +        id="isActive"
+           type="checkbox"
+           name="isActive"
+           checked={project.isActive}
+           onChange={handleChange}
+         />
+         <div className="input-group">
+           <button className="primary bordered medium">Save</button>
+           <span />
+           <button type="button" className="bordered medium" onClick={onCancel}>
+             cancel
+           </button>
+         </div>
+       </form>
+     );
    }
 
-   // export default ProjectForm;
-   + export { ProjectForm as UnconnectedProjectForm };
-
-    // React Redux (connect)---------------
-
-    const mapDispatchToProps = {
-      onSave: saveProject
-    };
-
-    export default connect(
-      null,
-      mapDispatchToProps
-    )(ProjectForm);
+   export default ProjectForm;
 
    ```
 
-### Test the Form Component
+### Test Loading Data into the Form
 
 1. **Create** the **file** `src\projects\__tests__\ProjectForm-test.tsx`.
-1. **Add** the **setup** code below to test the component.
+1. **Add** the **setup** code below to test loading data into the form.
 
    #### `src\projects\__tests__\ProjectForm-test.tsx`
 
    ```ts
    import React from 'react';
-   import { ShallowWrapper, shallow, HTMLAttributes } from 'enzyme';
-   import { UnconnectedProjectForm } from '../ProjectForm';
+   import { render, screen } from '@testing-library/react';
+   import { MemoryRouter } from 'react-router-dom';
    import { Project } from '../Project';
+   import ProjectForm from '../ProjectForm';
+   import { Provider } from 'react-redux';
+   import { store } from '../../state';
+   import userEvent from '@testing-library/user-event';
 
    describe('<ProjectForm />', () => {
-     let wrapper: ShallowWrapper;
      let project: Project;
      let updatedProject: Project;
-     let handleSave: jest.Mock;
      let handleCancel: jest.Mock;
-     let nameWrapper: ShallowWrapper<HTMLAttributes>;
-     let descriptionWrapper: ShallowWrapper<HTMLAttributes>;
+     let nameTextBox: any;
+     let descriptionTextBox: HTMLElement;
+     let budgetTextBox: HTMLElement;
 
      beforeEach(() => {
        project = new Project({
@@ -95,21 +188,37 @@
          description:
            'Blamed for a terrorist attack on the Kremlin, Ethan Hunt (Tom Cruise) and the entire IMF agency...',
        });
-       handleSave = jest.fn();
        handleCancel = jest.fn();
-       wrapper = shallow(
-         <UnconnectedProjectForm
-           project={project}
-           onSave={handleSave}
-           onCancel={handleCancel}
-         />
+       render(
+         <Provider store={store}>
+           <MemoryRouter>
+             <ProjectForm project={project} onCancel={handleCancel} />
+           </MemoryRouter>
+         </Provider>
        );
-       nameWrapper = wrapper.find('input[name="name"]');
-       descriptionWrapper = wrapper.find('textarea[name="description"]');
+
+       nameTextBox = screen.getByRole('textbox', {
+         name: /project name/i,
+       });
+       descriptionTextBox = screen.getByRole('textbox', {
+         name: /project description/i,
+       });
+       budgetTextBox = screen.getByRole('spinbutton', {
+         name: /project budget/i,
+       });
      });
 
-     test('renders without crashing', () => {
-       expect(wrapper).toBeDefined();
+     test('should load project into form', () => {
+       expect(
+         screen.getByRole('form', {
+           name: /edit a project/i,
+         })
+       ).toHaveFormValues({
+         name: project.name,
+         description: project.description,
+         budget: project.budget,
+         isActive: project.isActive,
+       });
      });
    });
    ```
@@ -120,116 +229,109 @@
     PASS  src/projects/__tests__/ProjectForm-test.tsx
    ```
 
-1. **Test** that the component **renders** the `project` **prop** properly.
+### Test Updating Form Values
+
+1. **Test**
 
    #### `src\projects\__tests__\ProjectForm-test.tsx`
 
-   ```ts
+   ```diff
    ...
-    test('renders project prop properly', () => {
-        expect(nameWrapper.props().value).toEqual(project.name);
-        expect(descriptionWrapper.props().value).toEqual(project.description);
-    });
+
+   describe('<ProjectForm />', () => {
+     let project: Project;
+     let updatedProject: Project;
+     let handleCancel: jest.Mock;
+     let nameTextBox: any;
+     let descriptionTextBox: HTMLElement;
+     let budgetTextBox: HTMLElement;
+
+     beforeEach(() => {
+       project = new Project({
+         id: 1,
+         name: 'Mission Impossible',
+         description: 'This is really difficult',
+         budget: 100,
+       });
+       updatedProject = new Project({
+         name: 'Ghost Protocol',
+         description:
+           'Blamed for a terrorist attack on the Kremlin, Ethan Hunt (Tom Cruise) and the entire IMF agency...',
+       });
+
+       ...
+       nameTextBox = screen.getByRole('textbox', {
+         name: /project name/i,
+       });
+       descriptionTextBox = screen.getByRole('textbox', {
+         name: /project description/i,
+       });
+       budgetTextBox = screen.getByRole('spinbutton', {
+         name: /project budget/i,
+       });
+     });
+
+   +  test('should accept input', () => {
+   +    userEvent.clear(nameTextBox);
+   +    userEvent.type(nameTextBox, updatedProject.name);
+   +    expect(nameTextBox).toHaveValue(updatedProject.name);
+   +
+   +    userEvent.clear(descriptionTextBox);
+   +    userEvent.type(descriptionTextBox, updatedProject.description);
+   +    expect(descriptionTextBox).toHaveValue(updatedProject.description);
+   +
+   +    userEvent.clear(budgetTextBox);
+   +    userEvent.type(budgetTextBox, updatedProject.budget.toString());
+   +    expect(budgetTextBox).toHaveValue(updatedProject.budget);
+   +  });
+
+   });
+
    ```
 
-1. **Test** that name and description **can be updated**.
+1. **Verify** the **test passes**.
+
+   ```shell
+    PASS  src/projects/__tests__/ProjectForm-test.tsx
+   ```
+
+### Test Validation Rules
+
+1. **Test**
 
    #### `src\projects\__tests__\ProjectForm-test.tsx`
 
-   ```ts
+   ```diff
    ...
 
-    test('should allow users to update name ', () => {
-        nameWrapper.simulate('change', {
-        target: { type: 'text', name: 'name', value: updatedProject.name }
-        });
+   describe('<ProjectForm />', () => {
+     ...
 
-        const updatedNameWrapper = wrapper.find('input[name="name"]');
-        expect(updatedNameWrapper.props().value).toBe(updatedProject.name);
-    });
+   +  test('name should display required validation', async () => {
+   +    userEvent.clear(nameTextBox);
+   +    expect(screen.getByRole('alert')).toBeInTheDocument();
+   +  });
+   +
+   +  test('name should display minlength validation', async () => {
+   +    userEvent.clear(nameTextBox);
+   +    userEvent.type(nameTextBox, 'ab');
+   +    expect(screen.getByRole('alert')).toBeInTheDocument();
+   +    userEvent.type(nameTextBox, 'c');
+   +    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+   +  });
+   +  test('budget should display not 0 validation', async () => {
+   +    userEvent.clear(budgetTextBox);
+   +    userEvent.type(budgetTextBox, '0');
+   +    expect(screen.getByRole('alert')).toBeInTheDocument();
+   +    userEvent.type(budgetTextBox, '1');
+   +    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+   +  });
 
-    test('should allow users to update description ', () => {
-        descriptionWrapper.simulate('change', {
-        target: {
-            type: 'textarea',
-            name: 'description',
-            value: updatedProject.description
-        }
-        });
-
-        const updatedDescriptionWrapper = wrapper.find(
-        'textarea[name="description"]'
-        );
-        expect(updatedDescriptionWrapper.props().value).toBe(
-        updatedProject.description
-        );
-    });
-   ```
-
-   > Note that enzyme's `ShallowWrapper` objects are immutable and do not update when events are simulated. Because of this we need call find again on the root element's wrapper to see the updates.
-
-   > See the following Github issue for more information: [Shallow does not rerender when props change](https://github.com/airbnb/enzyme/issues/1229).
-
-1. **Test** that `onSave` is **called** when the `form` is **submitted**.
-
-   #### `src\projects\__tests__\ProjectForm-test.tsx`
-
-   ```ts
-   ...
-
-    test('should call onSave when submitted ', () => {
-        const formWrapper = wrapper.find('form');
-        formWrapper.simulate('submit', { preventDefault: () => {} });
-        expect(handleSave).toHaveBeenCalledWith(project);
-    });
+   });
 
    ```
 
-1. **Test** the **validation** errors.
-
-   #### `src\projects\__tests__\ProjectForm-test.tsx`
-
-   ```ts
-   ...
-
-    test('should display required validation message if name not provided', () => {
-        nameWrapper.simulate('change', {
-        target: { type: 'text', name: 'name', value: '' }
-        });
-
-        const validationErrorWrapper = wrapper.find('div.card.error');
-        expect(validationErrorWrapper.length).toBe(1);
-    });
-
-    test('should not display required validation message if name is provided', () => {
-        nameWrapper.simulate('change', {
-        target: { type: 'text', name: 'name', value: 'abc' }
-        });
-
-        const validationErrorWrapper = wrapper.find('div.card.error');
-        expect(validationErrorWrapper.length).toBe(0);
-    });
-
-    test('should display minlength validation message if name is too short', () => {
-        nameWrapper.simulate('change', {
-        target: { type: 'text', name: 'name', value: 'ab' }
-        });
-
-        const validationErrorWrapper = wrapper.find('div.card.error');
-        expect(validationErrorWrapper.length).toBe(1);
-    });
-
-    test('should not display minlength validation message if name is long enough', () => {
-        nameWrapper.simulate('change', {
-        target: { type: 'text', name: 'name', value: 'abc' }
-        });
-
-        const validationErrorWrapper = wrapper.find('div.card.error');
-        expect(validationErrorWrapper.length).toBe(0);
-    });
-   ```
-
-1. If you haven't already, **verify** that all the above **tests pass**.
+1. **Verify** the **test passes**.
 
    ```shell
     PASS  src/projects/__tests__/ProjectForm-test.tsx

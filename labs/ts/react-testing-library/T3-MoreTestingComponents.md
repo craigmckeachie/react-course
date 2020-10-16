@@ -1,4 +1,4 @@
-# Unit Testing Lab 3: Testing More Components
+# Unit Testing Lab 3: More Component Testing
 
 ## Objectives
 
