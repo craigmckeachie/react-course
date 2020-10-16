@@ -33,6 +33,7 @@
       - [Yarn](#yarn)
       - [`src/setupTests.js`](#srcsetuptestsjs)
       - [`src/App.test.js`](#srcapptestjs)
+    - [React Testing Library Tips](#react-testing-library-tips)
   - [Components Tests (with Enzyme)](#components-tests-with-enzyme)
     - [Smoke](#smoke)
     - [Shallow](#shallow)
@@ -462,6 +463,8 @@ You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily 
 
 ## Component Tests (with React Testing Library)
 
+> React Testing Library is now installed by default in Create React App projects but if you have a project created before this change or not using Create React App then you follow these steps to install it.
+
 1. **Install** React Testing Library
 
    #### npm
@@ -489,24 +492,39 @@ You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily 
    import '@testing-library/jest-dom/extend-expect';
    ```
 
-1. Stop `npm test` using `Ctrl+C`
-1. Run the command `npm test` so it configures the adapter
-1. Add the following test
+1. Update the default test to use the `screen` object.
+
+   > When a new version of Create React App is released it will likely use this new syntax available in React Testing Library.
 
    #### `src/App.test.js`
 
    ```diff
-   ...
-   + import { render } from '@testing-library/react';
+   import React from 'react';
+   import { render, screen } from '@testing-library/react';
+   import App from './App';
 
-   + it('renders welcome message', () => {
-   +   const { getByText } = render(<App />);
-   +   expect(getByText('Learn React')).toBeInTheDocument();
-   + });
+   test('renders learn react link', () => {
+   -  const { getByText } = render(<App />);
+   -  const linkElement = getByText(/learn react/i);
+   +  render(<App />);
+   +  const linkElement = screen.getByText(/learn react/i);
+     expect(linkElement).toBeInTheDocument();
+   });
    ```
 
-   - [Which query to use for React Testing Library?](https://testing-library.com/docs/guide-which-query)
-   - [screen.debug](https://testing-library.com/docs/dom-testing-library/api-queries#screendebug)
+### React Testing Library Tips
+
+- Use `[screen.debug()](https://testing-library.com/docs/dom-testing-library/api-queries#screendebug) to see the HTML markup you are trying to select using various queries.
+- Paste the HTML output of `screen.debug()` into the left panel on the [testing-playground.com](https://testing-playground.com/) to see which queries you should use to access a given element.
+- If the query supplied is not good consider that the markup in your app is not accessible and endevour to learn more about accessibility.
+  > Even if you don't care about accessibility your tests will become more reliable and less brittle by embracing it.
+- Prefer ByRole
+<!-- - find versus get versus
+- async await
+- React Testing Library does not encourage you to mock child components so often you are writing integration tests instead of unit tests.
+- Test components that use APIs with `msw`
+- [Which query to use for React Testing Library?](https://testing-library.com/docs/guide-which-query)
+- Accessibility Cheat Sheet for, id role button, role form requires name, role alert -->
 
 ## Components Tests (with Enzyme)
 
