@@ -1,4 +1,4 @@
-# Unit Testing Lab 7: Action Tests
+# Testing Lab 7: Action Tests
 
 ## Objectives
 

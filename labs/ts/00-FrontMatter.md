@@ -73,12 +73,12 @@ This material is available for private, non-commercial use under the [GPL versio
 
 ### Testing
 
-- [Unit Testing Lab 1: Shallow Rendering with Enzyme](testing/T1-ShallowRendering.md)
-- [Unit Testing Lab 2: Snapshot Tests](testing/T2-SnapshotTests.md)
-- [Unit Testing Lab 3: Testing Props](testing/T3-TestingProps.md)
-- [Unit Testing Lab 4: Nested Components](testing/T4-NestedComponents.md)
-- [Unit Testing Lab 5: Container Components](testing/T5-ContainerComponents.md)
-- [Unit Testing Lab 6: Testing Forms](testing/T6-TestingForms.md)
-- [Unit Testing Lab 7: Action Tests](testing/T7-ActionTests.md)
-- [Unit Testing Lab 8: Reducer Tests](testing/T8-ReducerTests.md)
-- [Unit Testing Lab 9: API Tests](testing/T9-APITests.md)
+- [Testing Lab 1: First Component Tests](react-testing-library/T1-FirstComponentTests.md)
+- [Testing Lab 2: Snapshot Tests](react-testing-library/T2-SnapshotTests.md)
+- [Testing Lab 3: More Testing Components](react-testing-library/T3-MoreTestingComponents.md)
+- [Testing Lab 4: Nested Components](react-testing-library/T4-NestedComponents.md)
+- [Testing Lab 5: Container Components](react-testing-library/T5-ContainerComponents.md)
+- [Testing Lab 6: Testing Forms](react-testing-library/T6-TestingForms.md)
+- [Testing Lab 7: Action Tests](react-testing-library/T7-ActionTests.md)
+- [Testing Lab 8: Reducer Tests](react-testing-library/T8-ReducerTests.md)
+- [Testing Lab 9: API Tests](react-testing-library/T9-APITests.md)

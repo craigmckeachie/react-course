@@ -1,4 +1,4 @@
-# Unit Testing Lab 8: Reducer Tests
+# Testing Lab 8: Reducer Tests
 
 ## Objectives
 
@@ -22,17 +22,17 @@
      test('should update an existing project', () => {
        const project = MOCK_PROJECTS[0];
        const updatedProject = Object.assign(new Project(), project, {
-         name: project.name + ' updated'
+         name: project.name + ' updated',
        });
        const currentState = { ...initialProjectState, projects: [project] };
        const updatedState = {
          ...initialProjectState,
-         projects: [updatedProject]
+         projects: [updatedProject],
        };
        expect(
          projectReducer(currentState, {
            type: SAVE_PROJECT_SUCCESS,
-           payload: updatedProject
+           payload: updatedProject,
          })
        ).toEqual(updatedState);
      });

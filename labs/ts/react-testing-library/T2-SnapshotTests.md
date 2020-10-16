@@ -1,4 +1,4 @@
-# Unit Testing Lab 2: Snapshot Tests
+# Testing Lab 2: Snapshot Tests
 
 ## Objectives
 
@@ -80,4 +80,4 @@
 
 ---
 
-### &#10004; You have completed Unit Testing Lab 2
+### &#10004; You have completed Testing Lab 2

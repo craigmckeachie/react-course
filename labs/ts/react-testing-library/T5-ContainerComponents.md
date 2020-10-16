@@ -1,4 +1,4 @@
-# Unit Testing Lab 5: Container Components
+# Testing Lab 5: Container Components
 
 ## Objectives
 

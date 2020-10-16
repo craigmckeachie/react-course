@@ -1,4 +1,4 @@
-# Unit Testing Lab 4: Nested Components
+# Testing Lab 4: Nested Components
 
 ## Objectives
 
@@ -241,4 +241,4 @@
 
 ---
 
-### &#10004; You have completed Unit Testing Lab 4
+### &#10004; You have completed Testing Lab 4

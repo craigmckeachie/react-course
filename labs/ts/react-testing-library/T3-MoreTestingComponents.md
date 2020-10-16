@@ -1,4 +1,4 @@
-# Unit Testing Lab 3: More Component Testing
+# Testing Lab 3: More Component Testing
 
 ## Objectives
 
@@ -246,4 +246,4 @@ npm install --save-dev @testing-library/user-event @testing-library/dom
 
 ---
 
-### &#10004; You have completed Unit Testing Lab 3
+### &#10004; You have completed Testing Lab 3

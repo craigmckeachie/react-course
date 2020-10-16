@@ -1,4 +1,4 @@
-# Unit Testing Lab 6: Testing Forms
+# Testing Lab 6: Testing Forms
 
 ## Objectives
 
@@ -339,4 +339,4 @@ One of the great benefits of using React Testing Library is that it helps us bui
 
 ---
 
-### &#10004; You have completed Unit Testing Lab 6
+### &#10004; You have completed Testing Lab 6

@@ -1,4 +1,4 @@
-# Unit Testing Lab 1: Your First Component Test
+# Testing Lab 1: Your First Component Test
 
 ## Objectives
 
@@ -155,4 +155,4 @@
 
 ---
 
-### &#10004; You have completed Lab Unit Testing Lab 1
+### &#10004; You have completed Testing Lab 1

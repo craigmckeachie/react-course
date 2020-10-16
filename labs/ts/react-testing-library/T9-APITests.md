@@ -1,4 +1,4 @@
-# Unit Testing Lab 9: API Tests
+# Testing Lab 9: API Tests
 
 ## Objectives
 
@@ -21,7 +21,7 @@
      test('should return records', () => {
        const response = new Response(undefined, {
          status: 200,
-         statusText: 'OK'
+         statusText: 'OK',
        });
        response.json = () => Promise.resolve(MOCK_PROJECTS);
        jest
@@ -30,7 +30,7 @@
 
        return projectAPI
          .get()
-         .then(data => expect(data).toEqual(MOCK_PROJECTS));
+         .then((data) => expect(data).toEqual(MOCK_PROJECTS));
      });
    });
    ```
