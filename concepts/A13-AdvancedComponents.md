@@ -1,19 +1,380 @@
-# Appendix A13: Advanced Components
+# Appendix: Advanced Components
+
+- [Appendix: Advanced Components](#appendix-advanced-components)
+- [Context](#context)
+  - [When to Use Context](#when-to-use-context)
+  - [Function Component Example](#function-component-example)
+      - [Passing Props](#passing-props)
+      - [Using the Context API](#using-the-context-api)
+  - [Class Component Example](#class-component-example)
+      - [Passing Props](#passing-props-1)
+      - [Using the Context API](#using-the-context-api-1)
+  - [Reference](#reference)
+- [Render Props](#render-props)
+  - [Demo](#demo)
+  - [Use Cases](#use-cases)
+  - [Reference](#reference-1)
+- [Higher-Order Components](#higher-order-components)
+  - [Definition](#definition)
+  - [Demo](#demo-1)
+    - [Simple HOC](#simple-hoc)
+    - [Another Simple Example](#another-simple-example)
+  - [Use Cases](#use-cases-1)
+  - [Conventions](#conventions)
+  - [Reference](#reference-2)
 
 ---
+
+# Context
+
+> Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language.
+
+## When to Use Context
+
+When props need to be shared with most of a tree of components.
+
+## Function Component Example
+
+#### Passing Props
+
+```jsx
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee',
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222',
+  },
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  const [themeName, setThemeName] = React.useState('light');
+  const currentTheme = themes[themeName];
+  return (
+    <>
+      <select
+        onChange={(event) => setThemeName(event.target.value)}
+        value={themeName}
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+
+      <Toolbar theme={currentTheme} />
+    </>
+  );
+}
+
+function Toolbar({ theme }) {
+  return (
+    <div>
+      <ThemedButton theme={theme} />
+    </div>
+  );
+}
+
+function ThemedButton({ theme }) {
+  const { background, foreground } = theme;
+  return (
+    <button
+      style={{
+        backgroundColor: background,
+        color: foreground,
+      }}
+    >
+      Click Me
+    </button>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+#### Using the Context API
+
+```jsx
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee',
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222',
+  },
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  const [themeName, setThemeName] = React.useState('light');
+  const currentTheme = themes[themeName];
+  return (
+    <>
+      <select
+        onChange={(event) => setThemeName(event.target.value)}
+        value={themeName}
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+      <ThemeContext.Provider value={currentTheme}>
+        <Toolbar />
+      </ThemeContext.Provider>
+    </>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const { background, foreground } = React.useContext(ThemeContext);
+  return (
+    <button
+      style={{
+        backgroundColor: background,
+        color: foreground,
+      }}
+    >
+      Click Me
+    </button>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+---
+
+## Class Component Example
+
+In the example below, the theme is a prop to all components in the tree.
+
+#### Passing Props
+
+```jsx
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee',
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222',
+  },
+};
+
+class App extends React.Component {
+  render() {
+    return <Toolbar theme={themes.light} />;
+  }
+}
+
+function Toolbar(props) {
+  // The Toolbar component must take an extra "theme" prop
+  // and pass it to the ThemedButton. This can become painful
+  // if every single button in the app needs to know the theme
+  // because it would have to be passed through all components.
+  return (
+    <div>
+      <ThemedButton theme={props.theme} />
+    </div>
+  );
+}
+
+class ThemedButton extends React.Component {
+  render() {
+    const { background, foreground } = this.props.theme;
+
+    return (
+      <button
+        style={{
+          backgroundColor: background,
+          color: foreground,
+        }}
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+#### Using the Context API
+
+```js
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#eeeeee',
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222',
+  },
+};
+
+// Create a context for the current theme (with "light" as the default).
+const ThemeContext = React.createContext(themes.light);
+
+// class App extends React.Component {
+//   render() {
+//     return <Toolbar theme={themes.light} />;
+//   }
+// }
+
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeContext.Provider value={themes.dark}>
+        <Toolbar />
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+// function Toolbar(props) {
+//   return (
+//     <div>
+//       <ThemedButton theme={props.theme} />
+//     </div>
+//   );
+// }
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+class ThemedButton extends React.Component {
+  static contextType = ThemeContext;
+  render() {
+    const { background, foreground } = this.context;
+
+    return (
+      <button
+        style={{
+          backgroundColor: background,
+          color: foreground,
+        }}
+      >
+        Click Me
+      </button>
+    );
+  }
+}
+// ThemedButton.contextType = ThemeContext;
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+## Reference
+
+- [Context: React Documentation](https://reactjs.org/docs/context.html)
+
+---
+
+# Render Props
+
+> The term “render prop” refers to a technique for sharing code between React components using a prop whose value is a function.
+
+A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
+## Demo
+
+1. Create a Box component and render it
+
+```js
+function Box(props) {
+  return (
+    <div style={{ width: 100, height: 100, border: '1px solid black' }}>
+      {props.render && props.render()}
+    </div>
+  );
+}
+
+function App() {
+  return <Box />;
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+2. Tell the box what you want to render inside it
+
+```diff
+function App() {
++ return <Box render={() => <h3>Jack</h3>} />;
+}
+```
+
+3. Use children instead of render
+
+```diff
+function Box(props) {
+  return (
+    <div style={{ width: 100, height: 100, border: '1px solid black' }}>
+-     {props.render && props.render()}
++     {props.children}
+    </div>
+  );
+}
+```
+
+4. Modify the code to tell the box what you want to render inside it
+
+```js
+// function App() {
+//   return <Box render={() => <h3>Jack</h3>} />;
+// }
+
+function App() {
+  return (
+    <Box>
+      <h3>Jack</h3>
+    </Box>
+  );
+}
+```
+
+## Use Cases
+
+Cross-Cutting Concerns
+
+- When you have the need to share the state or behavior that one component encapsulates to other components that need that same state
+- You can often get the same reuse out of your code using any of the following techniques
+  - Higher-Order Components
+  - Render Props
+  - Custom Hooks
+
+## Reference
+
+- [Render Props: React Documentation](https://reactjs.org/docs/render-props.html)
+- [Understanding React Render Props](https://levelup.gitconnected.com/understanding-react-render-props-by-example-71f2162fd0f2)
+- [React Render Props Article](https://tylermcginnis.com/react-render-props/)
+
+---
+
 # Higher-Order Components
-
-- [Appendix A13: Advanced Components](#appendix-a13-advanced-components)
-- [Higher-Order Components](#higher-order-components)
-      - [Definition](#definition)
-  - [Demo](#demo)
-    - [Simple HOC](#simple-hoc)
-  - [Reference](#reference)
-
 
 > A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React’s compositional nature.
 
-#### Definition
+## Definition
 
 Higher Order Component (HOC): an abstraction over a component. When given a component (and perhaps some other parameters), they return a new component.
 
@@ -200,236 +561,3 @@ Cross-Cutting Concerns
 
 
 
----
-
-# Render Props
-
-- [Appendix A13: Advanced Components](#appendix-a13-advanced-components)
-- [Higher-Order Components](#higher-order-components)
-      - [Definition](#definition)
-  - [Demo](#demo)
-    - [Simple HOC](#simple-hoc)
-  - [Reference](#reference)
-
-#### The term “render prop” refers to a technique for sharing code between React components using a prop whose value is a function.
-
-A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
-
-## Demo
-
-1. Create a Box component and render it
-
-```js
-function Box(props) {
-  return (
-    <div style={{ width: 100, height: 100, border: '1px solid black' }}>
-      {props.render && props.render()}
-    </div>
-  );
-}
-
-function App() {
-  return <Box />;
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
-```
-
-2. Tell the box what you want to render inside it
-
-```diff
-function App() {
-+ return <Box render={() => <h3>Jack</h3>} />;
-}
-```
-
-3. Use children instead of render
-
-```diff
-function Box(props) {
-  return (
-    <div style={{ width: 100, height: 100, border: '1px solid black' }}>
--     {props.render && props.render()}
-+     {props.children}
-    </div>
-  );
-}
-```
-
-4. Modify the code to tell the box what you want to render inside it
-
-```js
-// function App() {
-//   return <Box render={() => <h3>Jack</h3>} />;
-// }
-
-function App() {
-  return (
-    <Box>
-      <h3>Jack</h3>
-    </Box>
-  );
-}
-```
-
-## Use Cases
-
-Cross-Cutting Concerns
-
-- When you have the need to share the state or behavior that one component encapsulates to other components that need that same state
-- You can often get the same reuse out of your code using any of the following techniques
-  - Higher-Order Components
-  - Render Props
-  - Custom Hooks
-
-## Reference
-
-- [Render Props: React Documentation](https://reactjs.org/docs/render-props.html)
-- [Understanding React Render Props](https://levelup.gitconnected.com/understanding-react-render-props-by-example-71f2162fd0f2)
-- [React Render Props Article](https://tylermcginnis.com/react-render-props/)
-
----
-
-# Context
-
-- [Appendix A13: Advanced Components](#appendix-a13-advanced-components)
-- [Higher-Order Components](#higher-order-components)
-      - [Definition](#definition)
-  - [Demo](#demo)
-    - [Simple HOC](#simple-hoc)
-  - [Reference](#reference)
-
-#### Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language.
-
-## When to Use Context
- When props need to be shared with most of a tree of components.
-
- In the example below, the theme is a prop to all components in the tree.
-
-###
-```js
-const themes = {
-  light: {
-    foreground: '#000000',
-    background: '#eeeeee'
-  },
-  dark: {
-    foreground: '#ffffff',
-    background: '#222222'
-  }
-};
-
-class App extends React.Component {
-  render() {
-    return <Toolbar theme={themes.light} />;
-  }
-}
-
-function Toolbar(props) {
-  // The Toolbar component must take an extra "theme" prop
-  // and pass it to the ThemedButton. This can become painful
-  // if every single button in the app needs to know the theme
-  // because it would have to be passed through all components.
-  return (
-    <div>
-      <ThemedButton theme={props.theme} />
-    </div>
-  );
-}
-
-class ThemedButton extends React.Component {
-  render() {
-    const { background, foreground } = this.props.theme;
-
-    return (
-      <button
-        style={{
-          backgroundColor: background,
-          color: foreground
-        }}
-      >
-        Click Me
-      </button>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-```
-
-Instead we could use the `Context` API.
-
-```js
-const themes = {
-  light: {
-    foreground: '#000000',
-    background: '#eeeeee'
-  },
-  dark: {
-    foreground: '#ffffff',
-    background: '#222222'
-  }
-};
-
-// Create a context for the current theme (with "light" as the default).
-const ThemeContext = React.createContext(themes.light);
-
-// class App extends React.Component {
-//   render() {
-//     return <Toolbar theme={themes.light} />;
-//   }
-// }
-
-class App extends React.Component {
-  render() {
-    return (
-      <ThemeContext.Provider value={themes.dark}>
-        <Toolbar />
-      </ThemeContext.Provider>
-    );
-  }
-}
-
-// function Toolbar(props) {
-//   return (
-//     <div>
-//       <ThemedButton theme={props.theme} />
-//     </div>
-//   );
-// }
-
-function Toolbar(props) {
-  return (
-    <div>
-      <ThemedButton />
-    </div>
-  );
-}
-
-class ThemedButton extends React.Component {
-  static contextType = ThemeContext;
-  render() {
-    const { background, foreground } = this.context;
-
-    return (
-      <button
-        style={{
-          backgroundColor: background,
-          color: foreground
-        }}
-      >
-        Click Me
-      </button>
-    );
-  }
-}
-// ThemedButton.contextType = ThemeContext;
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-```
-
-
-## Reference
-- [Context: React Documentation](https://reactjs.org/docs/context.html)

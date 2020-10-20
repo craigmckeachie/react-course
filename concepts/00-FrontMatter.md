@@ -72,6 +72,7 @@ This material is available for private, non-commercial use under the [GPL versio
   - [HTTP Advanced](A15-AdvancedHTTP.md)
   - [Testing](25-Testing.md)
   - [UI Components](A24-UIComponents.md)
+  - [React Context vs. Redux](A25-ReactContextvsRedux.md)
 
 * Redux (if applicable)
 
