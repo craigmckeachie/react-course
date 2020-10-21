@@ -21,8 +21,9 @@
 - Using Redux Toolkit can significantly reduce the amount of _boilerplate_ code in Redux
 - Using TypeScript with Redux provides strong typing advantages but further increases the amount of _boilerplate_ code
 - Implementing Redux functionality with React Context often often results in eventually recreating Redux
+- Consider using libraries that focus on the specific kind of state that is most challenging,network state, such as React Query and SWR.
 - Consider libraries which give you the basic functionality of Redux with a simpler API like Zustand or Easy Peasy
-- Also, consider using libraries that focus on the specific kind of state that is most challenging,network state, such as React Query and SWR.
+- [npm Trends Chart comparing SWR, React Query, Zustand, Easy Peasy](https://www.npmtrends.com/swr-vs-react-query-vs-zustand-vs-easy-peasy)
 
 ## Examples
 
@@ -38,6 +39,7 @@ Good use cases for Redux include:
   - Again, this often can be done by having a common parent component but sometimes it might be too far removed from where you are updating this information
 - Steps in a workflow or wizard that share data (although this can easily be done by storing the shared data in a parent component)
 - Collaboritive software where multiple users can work on the same document at the same time (Google Docs, Google Sheets etc...)
+-
 
 ## Reference
 
@@ -49,3 +51,5 @@ Good use cases for Redux include:
 - [Use Hooks + Context, not React + Redux](https://blog.logrocket.com/use-hooks-and-context-not-react-and-redux/)
 - [Context with Reducer (Redux Like): Code from Pluralsight Course](https://github.com/pkellner/pluralsight-course-using-react-hooks/tree/master/06-Context-with-Reducer-Redux-like)
 - [How to Implement useState with useReducer](https://kentcdodds.com/blog/how-to-implement-usestate-with-usereducer)
+- [SWR Documentation](https://swr.vercel.app/)
+- [React Query Documentation](https://react-query.tanstack.com/docs/overview)
