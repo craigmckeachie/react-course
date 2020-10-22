@@ -3,7 +3,7 @@
 ## Objectives
 
 - [ ] Refactor the Page (container) component to use React Redux Hooks
-- [ ] Refactor the Form component to be a Redux connected component
+- [ ] Refactor the Form component to dispatch an action
 
 ## Steps
 
@@ -46,7 +46,7 @@
    }
    ```
 
-1. Replace state setter function calls and API calls with calls to dispatch passing action creators.
+1. Replace state setter function calls and API calls with calls to dispatch passing action creators. Also, remove the `onSave` function and stop passing it as a prop to the `<ProjectList/>` component.
 
    #### `src\projects\ProjectsPage.js`
 
@@ -56,6 +56,8 @@
 
    - import React, { Fragment, useState, useEffect } from 'react';
    + import React, { Fragment, useEffect } from 'react';
+
+   + import { loadProjects } from './state/projectActions';
 
    function ProjectsPage() {
      ...
@@ -123,7 +125,7 @@
    + import { Provider } from 'react-redux';
    + import { store } from './state';
 
-   const App: React.FC = () => {
+   function App() {
      return (
    +    <Provider store={store}>
          <Router>
@@ -154,30 +156,66 @@
    export default App;
    ```
 
-### Refactor the Form component to be a Redux connected component
+### Refactor the Form component to dispatch an action
 
-1. Connect the Form component so it has access to the Redux store's dispatch function so we can dispatch the `saveProject` action.
+1. Refactor the Form component so it dispatches the `saveProject` action instead of receiving the function as a prop.
 
    #### `src\projects\ProjectForm.js`
 
-   ```tsx
-   ...
-   import { saveProject } from './state/projectActions';
-   import { connect } from 'react-redux';
-   ...
+   ```diff
+   import React, { SyntheticEvent, useState } from 'react';
+   + import { useDispatch } from 'react-redux';
+   import { Project } from './Project';
+   + import { saveProject } from './state/projectActions';
 
-   // export default ProjectForm;
 
-   // React Redux (connect)---------------
+   function ProjectForm({
+     project: initialProject,
+   - onSave,
+     onCancel,
+   }) {
+     const [project, setProject] = useState(initialProject);
+     const [errors, setErrors] = useState({
+       name: '',
+       description: '',
+       budget: '',
+     });
 
-   const mapDispatchToProps = {
-     onSave: saveProject
+   +  const dispatch = useDispatch();
+
+     const handleSubmit = (event) => {
+       event.preventDefault();
+       if (!isValid()) return;
+   -    onSave(project);
+   +    dispatch(saveProject(project));
+     };
+
+     const handleChange = (event) => {
+       ...
+     };
+
+     function validate(project) {
+     ...
+     }
+
+     function isValid() {
+       ...
+     }
+
+     return (
+       <form className="input-group vertical" onSubmit={handleSubmit}>
+       ...
+       </form>
+     );
+   }
+
+    ProjectForm.propTypes = {
+   -  onSave: PropTypes.func.isRequired,
+      onCancel: PropTypes.func.isRequired
    };
 
-   export default connect(
-   null,
-   mapDispatchToProps
-   )(ProjectForm);
+
+   export default ProjectForm;
 
    ```
 
@@ -185,58 +223,51 @@
 
    - This was already done in `src\App.js` because it is inherited from the parent Page component: Page =>List=>Form.
 
-3. In the `ProjectList` component, update the `render` method to not pass `onSave` to `<ProjectForm>` as it is now automatically connected to that Redux action via the `Provider`.
+3. In the `ProjectList` component, remove `onSave` in the `propTypes` definition and update the component to not pass `onSave` to `<ProjectForm>` as it is now dispatches this action itself after importing it.
 
    #### `src\Projects\ProjectList.js`
 
    ```diff
+   import React, { useState } from 'react';
+   import { Project } from './Project';
+   import ProjectCard from './ProjectCard';
+   import ProjectForm from './ProjectForm';
 
-   class ProjectList extends React.Component {
-     state = {
-       editingProject: {}
+   - function ProjectList({ projects, onSave }) {
+   + function ProjectList({ projects }) {
+     const [projectBeingEdited, setProjectBeingEdited] = useState({});
+
+     const handleEdit = (project) => {
+       setProjectBeingEdited(project);
      };
-     handleEdit = (project: Project) => {
-       this.setState({ editingProject: project });
+
+     const cancelEditing = () => {
+       setProjectBeingEdited({});
      };
 
-     cancelEditing = () => {
-       this.setState({ editingProject: {} });
-     };
-
-     render() {
-   -   const { projects, onSave } = this.props;
-   +    const { projects } = this.props;
-
-       let item: JSX.Element;
-       const items = projects.map((project: Project) => {
-         if (project !== this.state.editingProject) {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectCard
-                 project={project}
-                 onEdit={() => {
-                   this.handleEdit(project);
-                 }}
-               ></ProjectCard>
-             </div>
-           );
-         } else {
-           item = (
-             <div key={project.id} className="cols-sm">
-               <ProjectForm
-                 project={project}
+     return (
+       <div className="row">
+         {projects.map((project) => (
+           <div key={project.id} className="cols-sm">
+             {project === projectBeingEdited ? (
+               <ProjectForm project={project}
    -             onSave={onSave}
-                 onCancel={this.cancelEditing}
-               ></ProjectForm>
-             </div>
-           );
-         }
-         return item;
-       });
+                 onCancel={cancelEditing} />
+             ) : (
+               <ProjectCard project={project} onEdit={handleEdit} />
+             )}
+           </div>
+         ))}
+       </div>
+     );
+    }
 
-       return <div className="row">{items}</div>;
-     }
-   }
+    ProjectList.propTypes = {
+      projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
+   -  onSave: PropTypes.func.isRequired
+    };
+
+   export default ProjectList;
    ```
 
 4. **Verify** the application still works including loading and updating the projects.

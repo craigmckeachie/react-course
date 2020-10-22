@@ -22,24 +22,26 @@
 
    > Be sure to set a key for each list item.
 
-   #### `src\projects\ProjectList.js`
+#### `src\projects\ProjectList.js`
 
-   ```diff
-   ...
-   class ProjectList extends React.Component{
-     render() {
-       const { projects } = this.props;
-   -    return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-   +    const items = projects.map(project => (
-   +      <li key={project.id}>{project.name}</li>
-   +    ));
-   +    return <ul>{items}</ul>;
-     }
-   }
-   ...
-   ```
+```diff
+...
 
-2) Verify the project names display correctly in the browser.
+function ProjectList({ projects }: ProjectListProps) {
+-  return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
++  return (
++    <ul className="row">
++      {projects.map((project) => (
++        <li key={project.id}>{project.name}</li>
++      ))}
++    </ul>
++  );
+}
+
+export default ProjectList;
+```
+
+2. Verify the project names display correctly in the browser.
 
 ### Format the list data as cards
 
@@ -68,31 +70,44 @@
 
    ```diff
    ...
-   class ProjectList extends React.Component {
-     render() {
-       const { projects } = this.props;
-   -   const items = projects.map(project => (
-   -   <li key={project.id}>{project.name}</li>
-   -   ));
-   -  return <ul>{items}</ul>;
-   +    const items = projects.map(project => (
-   +      <div key={project.id} className="cols-sm">
-   +        <div className="card">
-   +          <img src={project.imageUrl} alt={project.name} />
-   +          <section className="section dark">
-   +            <h5 className="strong">
-   +              <strong>{project.name}</strong>
-   +            </h5>
-   +            <p>{project.description}</p>
-   +            <p>Budget : {project.budget.toLocaleString()}</p>
-   +          </section>
-   +        </div>
-   +      </div>
-   +    ));
-   +    return <div className="row">{items}</div>;
-     }
+
+   function ProjectList({ projects }) {
+   -  return (
+   -    <ul className="row">
+   -      {projects.map((project) => (
+   -        <li key={project.id}>{project.name}</li>
+   -      ))}
+   -    </ul>
+   -  );
    }
+
+   export default ProjectList;
+   ```
+
+   ```diff
    ...
+   function ProjectList({ projects }) {
+   +  return (
+   +    <div className="row">
+   +      {projects.map((project) => (
+   +        <div key={project.id} className="cols-sm">
+   +          <div className="card">
+   +            <img src={project.imageUrl} alt={project.name} />
+   +            <section className="section dark">
+   +              <h5 className="strong">
+   +                <strong>{project.name}</strong>
+   +              </h5>
+   +              <p>{project.description}</p>
+   +              <p>Budget : {project.budget.toLocaleString()}</p>
+   +            </section>
+   +          </div>
+   +        </div>
+   +      ))}
+   +    </div>
+   +  );
+   }
+
+   export default ProjectList;
    ```
 
 1. **Verify** the **project** **data** **displays** correctly in the browser.
@@ -101,7 +116,7 @@
 
 <br/>
 
-> Note we are using `toLocaleString` to format the project budget `number` in JavaScript.
+> Note you can use `toLocaleString` to format the project budget `number` in JavaScript.
 
 ```html
 <p>Budget : {project.budget.toLocaleString()}</p>

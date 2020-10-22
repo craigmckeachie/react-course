@@ -22,46 +22,45 @@
 2. After the application builds, it will **automatically** **open** your `Chrome` **browser** to [http://localhost:3000](http://localhost:3000).
 
 3. **Verify** the **React logo** is displayed in the browser.
-   <kbd>![React Logo Screenshot](https://user-images.githubusercontent.com/1474579/65819379-bd3c8380-e1e9-11e9-9a56-b8beaa4ddfbd.png)</kbd>
+   ![image](https://user-images.githubusercontent.com/1474579/64879243-94ca5c00-d623-11e9-8a5d-36a1fd96c50d.png)
 
 ### Make a change and see the app update
 
-1.  **Add** some additional text (exclamation points) in the `render` method of the `App` component as shown below.
+1. **Add** some additional text (exclamation points) in the `render` method of the `App` component as shown below.
 
-    #### `src\App.jsx`
+   #### `src\App.js`
 
-    ```diff
-    function App() {
-    return (
-        <div className="App">
-        <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-            Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-    -          Learn React
-    +          Learn React!!!
-            </a>
-        </header>
-        </div>
-    );
-    }
-    ```
+   ```diff
+   function App() {
+   return (
+       <div className="App">
+       <header className="App-header">
+           <img src={logo} className="App-logo" alt="logo" />
+           <p>
+           Edit <code>src/App.js</code> and save to reload.
+           </p>
+           <a
+           className="App-link"
+           href="https://reactjs.org"
+           target="_blank"
+           rel="noopener noreferrer"
+           >
+   -        Learn React
+   +        Learn React!!!
+           </a>
+       </header>
+       </div>
+   );
+   }
+   ```
 
-2.  **Verify** the additional text is displayed in your browser.
+2. **Save** your changes to the file.
+   > In the VS Code menu bar you can turn on `File > Autosave` and this is recommended for the course.
+3. **Verify** the additional text is displayed in your browser.
 
-    > The page will automatically reload if you make changes to the code.
+   > The page will automatically reload if you make changes to the code. The file saves then the code compiles then the browser refreshes.
 
-    ```
-    Edit src/App.js and save to reload.
-    Learn React!!!
-    ```
+   ![image](https://user-images.githubusercontent.com/1474579/64879510-233edd80-d624-11e9-9a9d-0182cfe8a56f.png)
 
 ### Stop the Project
 

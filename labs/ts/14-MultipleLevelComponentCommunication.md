@@ -2,7 +2,7 @@
 
 ## Objectives
 
-- [ ] In a child compoonent, accept a function as a prop and invoke it and pass a parameter
+- [ ] In a child component, accept a function as a prop and invoke it and pass a parameter
 - [ ] At the next level in the component hierarchy, accept a function as a prop and invoke it
 - [ ] In a parent component, implement a function and pass it as a prop to a child component
 

@@ -92,8 +92,7 @@
    ...
    + import ProjectForm from './ProjectForm';
    ...
-   class ProjectList extends React.Component<ProjectListProps> {
-     render() {
+   function ProjectList () {
        const { projects } = this.props;
        const items = projects.map(project => (
          <div key={project.id} className="cols-sm">
@@ -102,8 +101,8 @@
          </div>
        ));
        return <div className="row">{items}</div>;
-     }
    }
+   ...
    ```
 
 3. **Verify** a **form** **renders** under each card in the application. Note, you may need to reload the application a few times to see the changes on this step.

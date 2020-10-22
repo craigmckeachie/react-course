@@ -16,18 +16,21 @@
 
    #### `src\home\HomePage.js`
 
-   ```js
+   ```jsx
    import React from 'react';
 
    export default function HomePage() {
      return <h2>Home</h2>;
    }
+
+   export default HomePage;
    ```
 
 ### Add Basic Routes (install, configure)
 
 1. **Open** a `command prompt` (Windows) or `terminal` (Mac).
-1. Change the **current directory** to `working\keeptrack`.
+1. Change the **current directory** to `code\keeptrack`.
+   > If the top level directory you have open in VS Code is `keeptrack` and you are using the integrated terminal you will already be in this directory.
 1. **Run** _one_ of the following commands to install `React Router`:
    #### npm
    ```shell
@@ -39,18 +42,19 @@
    ```
 1. **Configure** the **routes**.
 
-   #### `src/App.js`
+   #### `src/app.js`
 
    ```diff
    import React from 'react';
    import './App.css';
-   import ProjectsPage from './projects/ProjectsPage';
+   + import ProjectsPage from './projects/ProjectsPage';
 
    + import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
    + import HomePage from './home/HomePage';
 
+
    function App() {
-   - <ProjectsPage />
+   - return  <ProjectsPage />
    +  return (
    +    <Router>
    +      <div className="container">
@@ -86,10 +90,10 @@
 
 2. **Add** two `<NavLink>` **components** (which are provided by the React Router) and set them to visit the configured routes.
 
-   #### `src/App.js`
+   #### `src/app.js`
 
    ```diff
-   function App()  {
+   function App() {
      return (
        <Router>
    +      <header className="sticky">
@@ -113,6 +117,7 @@
        </Router>
      );
    };
+   ...
    ```
 
    > You can make any `<a>` tag a `<NavLink>` and add the `to` property to set the `href`.
@@ -127,10 +132,10 @@
    1. **Visit** the root of the site: `http://localhost:3000/` and refresh the page in your browser.
    2. **Click** on `Projects` in the **navigation**.
    3. **Verify** you are taken to the `/projects` route and the `ProjectsPage` **displays**.
-      <kbd>![image](https://user-images.githubusercontent.com/1474579/65077261-9d46cd80-d968-11e9-92fd-e5e9689f694c.png)</kbd>
+      ![image](https://user-images.githubusercontent.com/1474579/65077261-9d46cd80-d968-11e9-92fd-e5e9689f694c.png)
    4. **Click** on `Home` in the **navigation**.
    5. **Verify** you are taken to the `/` route and the `HomePage` **displays**.
-      <kbd>![image](https://user-images.githubusercontent.com/1474579/65077364-c9fae500-d968-11e9-8af5-4caeb20e1b5a.png)</kbd>
+      ![image](https://user-images.githubusercontent.com/1474579/65077364-c9fae500-d968-11e9-8af5-4caeb20e1b5a.png)
 
 ---
 

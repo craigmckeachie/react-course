@@ -37,11 +37,12 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        ...
+      ...
     +   "mini.css": "~3.0.1",
-        "react": "^16.9.0",
-        "react-dom": "^16.9.0",
-        "react-scripts": "3.1.1"
+      "react": "^16.9.0",
+      "react-dom": "^16.9.0",
+      "react-scripts": "3.1.1"
+      ...
     },
     ...
     }
@@ -49,11 +50,11 @@
 
 ### Apply CSS
 
-1. **Open** and **delete** the contents of `App.css`
-2. Open the file `App.js`.
+1. **Open** and **delete** the contents of `app.css`
+2. Open the file `app.js`.
 3. Delete the `JSX` returned and replace with the `HTML` as shown below.
 
-   #### src\App.tsx
+   #### src\App.js
 
    ```diff
    import React from 'react';
@@ -66,7 +67,7 @@
    -      <header className="App-header">
    -        <img src={logo} className="App-logo" alt="logo" />
    -        <p>
-   -          Edit <code>src/App.tsx</code> and save to reload.
+   -          Edit <code>src/App.js</code> and save to reload.
    -        </p>
    -        <a
    -          className="App-link"

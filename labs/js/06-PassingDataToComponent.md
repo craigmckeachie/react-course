@@ -13,25 +13,21 @@
 2. **Implement** a `ProjectList` **class component** that meets the following specifications:
 
    1. Takes a `projects` array as a `prop`.
+      > You will need to create an interface to define the properties that come into the component.
+   2. **Displays** the `projects` array as a `JSON string`.
 
-2)  **Displays** the `projects` array as a `JSON string`.
+   #### `src\projects\ProjectList.js`
 
-    #### `src\projects\ProjectList.js`
+   ```jsx
+   import React from 'react';
+   import { Project } from './Project';
 
-    ```js
-    import React from 'react';
-    import { Project } from './Project';
+   function ProjectList({ projects }) {
+     return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+   }
 
-    class ProjectList extends React.Component {
-      render() {
-        const { projects } = this.props;
-        return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-      }
-    }
-
-    export default ProjectList;
-    ```
-
+   export default ProjectList;
+   ```
 3.  Define the property (prop) and its type using the `prop-types` library by doing the steps below.
 
     1.  In the `keep-track` directory, **install** the `prop-types` library.
@@ -47,12 +43,9 @@
     + import PropTypes from 'prop-types';
     + import { Project } from './Project';
 
-    class ProjectList extends React.Component {
-      render() {
-        const { projects } = this.props;
-        return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-      }
-    }
+     function ProjectList({ projects }) {
+       return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+     }
 
     + ProjectList.propTypes = {
     +  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
@@ -75,15 +68,16 @@
 
    function ProjectsPage() {
      return (
-      <Fragment>
-        <h1>Projects</h1>
-   -        <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
-   +        <ProjectList projects={MOCK_PROJECTS}></ProjectList>
-      </Fragment>
+       <>
+         <h1>Projects</h1>
+   -     <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
+   +     <ProjectList projects={MOCK_PROJECTS} />
+       </>
      );
    }
 
    export default ProjectsPage;
+
    ```
 
 2. **Verify** the application is **displaying** the **projects** as it was in the last lab.

@@ -15,11 +15,11 @@
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell
-   npm install json-server@0.15.1
+   npm install json-server@0.16.6
    ```
    #### Yarn
    ```shell
-   yarn add json-server@0.15.1
+   yarn add json-server@0.16.2
    ```
 
 ### Create a custom npm script to run the REST API server
@@ -34,12 +34,12 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject", //be sure to add the comma on this line
+        "eject": "react-scripts eject",
    +    "api": "json-server api/db.json --port 4000"
     },
    }
    ```
-2. **Copy** the directory `labs\js\snippets\lab17\api` into the `working\keeptrack` directory.
+2. Copy the directory `labs\ts\snippets\lab17\api` into the `working\keeptrack` directory.
 
 ### Start the REST API server
 

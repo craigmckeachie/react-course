@@ -51,12 +51,11 @@
    #### `src\projects\ProjectList.tsx`
 
    ```diff
-    class ProjectList extends React.Component<ProjectListProps> {
-   +   handleEdit = (project: Project) => {
+    function ProjectList () {
+   +   const handleEdit = (project: Project) => {
    +     console.log(project);
    +   };
 
-      render() {
         const { projects } = this.props;
         const items = projects.map(project => (
           <div key={project.id} className="cols-sm">
@@ -68,7 +67,6 @@
           </div>
         ));
         return <div className="row">{items}</div>;
-      }
     }
    ```
 

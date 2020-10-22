@@ -2,7 +2,7 @@
 
 ## Objectives
 
-- [ ] In a child compoonent, accept a function as a prop and invoke it and pass a parameter
+- [ ] In a child component, accept a function as a prop and invoke it and pass a parameter
 - [ ] At the next level in the component hierarchy, accept a function as a prop and invoke it
 - [ ] In a parent component, implement a function and pass it as a prop to a child component
 
@@ -24,32 +24,48 @@
    ...
    ```
 
-3. Create an event handler function `handleSubmit` to handle the submission of the form. The function should prevent the default behavior of the browser to post to the server and then invoke the function passed into the `onSave` `prop` and pass a new `Project` that you create inline for now with just a name as shown below.
+3. Create an event handler function `handleSubmit` to handle the submission of the form.
+
+   > The function should prevent the default behavior of the browser to post to the server and then invoke the function passed into the `onSave` `prop` and pass a new `Project` that you create inline for now with just a name as shown below.
+
+   Update the `<form>` tag in the `render` method to invoke handleSubmit and pass the SyntheticEvent object representing the DOM submit event.
 
    #### `src\projects\ProjectForm.js`
 
    ```diff
-   + import { Project } from './Project';
-   ...
+   - function ProjectForm({ onSave, onCancel }) {
+   + function ProjectForm({ onCancel }) {
 
-   class ProjectForm extends React.Component {
-   +  handleSubmit = event => {
+   +  const handleSubmit = (event) => {
    +    event.preventDefault();
-   +    this.props.onSave(new Project({ name: 'Updated Project' }));
+   +    onSave(new Project({ name: 'Updated Project' }));
    +  };
-   ...
+
+   return (
+
+      <form className="input-group vertical"
+   +    onSubmit={handleSubmit}
+      >
+         <label htmlFor="name">Project Name</label>
+         <input type="text" name="name" placeholder="enter name" />
+         <label htmlFor="description">Project Description</label>
+         <textarea name="description" placeholder="enter description" />
+         <label htmlFor="budget">Project Budget</label>
+         <input type="number" name="budget" placeholder="enter budget" />
+         <label htmlFor="isActive">Active?</label>
+         <input type="checkbox" name="isActive" />
+         <div className="input-group">
+         <button className="primary bordered medium">Save</button>
+         <span />
+         <button type="button" className="bordered medium" onClick={onCancel}>
+            cancel
+         </button>
+         </div>
+      </form>
+   );
    }
-   ```
-
-4. Update the `<form>` tag in the `render` method to invoke handleSubmit and pass the SyntheticEvent object representing the DOM submit event.
-
-   #### `src\projects\ProjectForm.js`
-
-   ```diff
-   <form
-     className="input-group vertical"
-   + onSubmit={this.handleSubmit}
-   >
+   ...
+   export default ProjectForm;
    ```
 
 ### At the next level in the component hierarchy, accept a function as a prop and invoke it
@@ -57,63 +73,68 @@
 1. **Open** the **file** `src\projects\ProjectList.js`.
 2. To the `propTypes`, **add** an `onSave` **event handler**.
 
-#### `src\projects\ProjectList.js`
+   #### `src\projects\ProjectList.js`
 
-```diff
-ProjectList.propTypes = {
-  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
-+  onSave: PropTypes.func.isRequired
-};
-```
+   ```diff
+   ...
+   ProjectList.propTypes = {
+      projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired,
+   +  onSave: PropTypes.func.isRequired
+   };
+   ...
+   ```
 
 3. **Update** the `<ProjectForm>` component tag to **handle** a `onSave` event and have it **invoke** the function passed into the `onSave` `prop`.
 
    #### `src\projects\ProjectList.js`
 
    ```diff
-   class ProjectList extends React.Component {
-   ...
-   render() {
-       const { projects,
-   +            onSave
-               } = this.props;
+   - function ProjectList({ projects }) {
+   + function ProjectList({ projects, onSave }) {
+   const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
-       let item: JSX.Element;
-       const items = projects.map((project) => {
-       if (project !== this.state.editingProject) {
-           ...
-           );
-       } else {
-           item = (
-           <div key={project.id} className="cols-sm">
+   const handleEdit = (project) => {
+      setProjectBeingEdited(project);
+   };
+
+   const cancelEditing = () => {
+      setProjectBeingEdited({});
+   };
+
+   return (
+      <div className="row">
+         {projects.map((project) => (
+         <div key={project.id} className="cols-sm">
+            {project === projectBeingEdited ? (
                <ProjectForm
-   +              onSave={onSave}
-                  onCancel={this.cancelEditing}
-               ></ProjectForm>
-           </div>
-           );
-       }
-       return item;
-       });
-
-       return <div className="row">{items}</div>;
+   +            onSave={onSave}
+               onCancel={cancelEditing} />
+            ) : (
+               <ProjectCard project={project} onEdit={handleEdit} />
+            )}
+         </div>
+         ))}
+      </div>
+   );
    }
-   }
+   ...
+   export default ProjectList;
    ```
 
 ### In a parent component, implement a function and pass it as a prop to a child component
 
-1. In the file `src\projects\ProjectPage.js`:
+1. In the file `src\projects\ProjectsPage.js`:
 
    1. **Add** a `saveProject`**event handler** that takes a `project` to `ProjectPage` and `console.log`'s the project out.
    2. **Wire** up the **onSave** **event** of the `<ProjectList />` component rendered in the `ProjectPage` to the `saveProject` event handler.
 
-   #### `src\projects\ProjectPage.tsx`
+   #### `src\projects\ProjectsPage.js`
 
    ```diff
    import React, { Fragment } from 'react';
    import { MOCK_PROJECTS } from './MockProjects';
    import ProjectList from './ProjectList';
+   + import { Project } from './Project';
 
    function ProjectsPage() {
    +  const saveProject = (project) => {

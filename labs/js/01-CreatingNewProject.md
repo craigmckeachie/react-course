@@ -2,7 +2,7 @@
 
 ## Objectives
 
-- [ ] Create a new React project (app) that uses TypeScript
+- [ ] Create a new React project (app)
 - [ ] Open the new project
 - [ ] Review the default project structure
 
@@ -15,23 +15,19 @@
 1. As part of the course setup, you created a `code` directory for the course (somewhere on your computer that you would easily remember). If you haven't created a `code` directory yet please do that now.
 2. **Open** a `command prompt` (Windows) or `terminal` (Mac).
 3. Change the **current directory** to your `code` directory.
-4. **Run** one of the following commands:
+4. **Run** **ONE** of the following commands:
 
-   #### npx
+   If you want to use `npm` as your package manager.
+
+   #### `npm`
 
    ```bash
    npx create-react-app keeptrack --use-npm
    ```
 
-   #### npm
+   If you want to use `Yarn` as your package manager.
 
-   ```bash
-   npm init react-app keeptrack --use-npm
-   ```
-
-   > `npm init <initializer>` is available in npm 6+
-
-   #### Yarn
+   #### `Yarn`
 
    ```bash
    yarn create react-app keeptrack

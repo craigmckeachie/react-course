@@ -24,14 +24,15 @@
 
    #### `src\projects\ProjectCard.js`
 
-   ```diff
+   ```html
    ...
-     <p>Budget : {project.budget.toLocaleString()}</p>
-   +  <button className=" bordered">
-   +    <span className="icon-edit "></span>
-   +    Edit
-   +  </button>
-
+   <p>
+     Budget...
+     <button className=" bordered">
+       <span className="icon-edit "></span>
+       Edit
+     </button>
+   </p>
    ```
 
 3. **Verify** the **button** **displays** in your browser.

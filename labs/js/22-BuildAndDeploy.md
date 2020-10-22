@@ -28,19 +28,15 @@
 
 ### Deploy the application to a web server
 
-1. **In** the `command prompt` (Windows) or `terminal` (Mac) change the current directory to `build`.
-   ```shell
-   cd build
-   ```
-1. Once in the `build` directory, **run** the following **command** to **start** a **web server**.
+1. **In** the `command prompt` (Windows) or `terminal` (Mac) **run** the following **command** to **start** a **web server** and serve up the contents of the `build` directory created in the last step.
 
    ```shell
-   serve
+   serve build
    ```
 
    > Assuming you would like to serve a state site, single page application or just a static file (no matter if on your device or on the local network), the package `serve` is a web server that serves static content.
 
-   > It behaves exactly like static deployments on https://zeit.co so it's perfect for developing your static project.
+   > It behaves exactly like static deployments on https://vercel.com so it's perfect for developing your static project.
 
    > For more information see: https://www.npmjs.com/package/serve
 
@@ -65,7 +61,7 @@
 1. Use `Ctrl+C` to **stop** the **web server**.
 1. **Start** the **web server** again but add the `-s` flag for single-page-application.
    ```shell
-    serve -s
+    serve -s build
    ```
 1. Follow these steps to verify the server is now redirecting to `index.html` when it can't find a route.
    1. **Visit** the root of the site `http://localhost:5000/`
@@ -78,6 +74,6 @@
 
 ### &#10004; You have completed Lab 22
 
-> If time permits you can read the documentation linked below for very similar steps to deploy the application on common production web servers and cloud platforms including AWS, Asure, Heroku, Netlify, and ZEIT Now.
->
->       https://create-react-app.dev/docs/deployment
+> If time permits you can read the documentation linked below for very similar steps to deploy the application on common production web servers and cloud platforms including AWS, Azure, Heroku, Netlify, and Vercel.
+
+- [https://create-react-app.dev/docs/deployment](https://create-react-app.dev/docs/deployment)

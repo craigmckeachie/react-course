@@ -22,6 +22,10 @@
    ...
    ```
 
+   ```
+
+   ```
+
 2. Update the `handleEditClick` event to invoke the function passed into the `onEdit` `prop` and **remove** the console.log statement.
 
    #### `src\projects\ProjectCard.js`
@@ -43,30 +47,32 @@
 
 ### In a parent component, implement a function and pass it as a prop to a child component
 
-1. **Add** a `handleEdit`**event handler** to`ProjectList`that takes a`project`as an argument and **logs** it to the`console`.
+1. **Add** a `handleEdit`**event handler** to`ProjectList`that takes a `project` as an argument and **logs** it to the `console`.
 2. **Wire** up the **onEdit** **event** of the `ProjectCard` component to the `handleEdit` event handler.
+
+   > In VS Code, the code snippet `nfn` can help create the `handleEdit` event handler.
 
    #### `src\projects\ProjectList.js`
 
    ```diff
-    class ProjectList extends React.Component {
-   +   handleEdit = (project) => {
+   ...
+    function ProjectList () {
+   +   const handleEdit = (project) => {
    +     console.log(project);
    +   };
 
-      render() {
-        const { projects } = this.props;
-        const items = projects.map(project => (
-          <div key={project.id} className="cols-sm">
-            <ProjectCard
-              project={project}
-   +          onEdit={this.handleEdit}
-            ></ProjectCard>
-            <ProjectForm></ProjectForm>
-          </div>
-        ));
-        return <div className="row">{items}</div>;
-      }
+      const { projects } = this.props;
+      const items = projects.map(project => (
+        <div key={project.id} className="cols-sm">
+          <ProjectCard
+            project={project}
+   +        onEdit={this.handleEdit}
+           ></ProjectCard>
+           <ProjectForm></ProjectForm>
+         </div>
+       ));
+       return <div className="row">{items}</div>;
+
     }
    ```
 

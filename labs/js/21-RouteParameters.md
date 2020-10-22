@@ -17,8 +17,7 @@
    +  find(id) {
    +    return fetch(`${url}/${id}`)
    +      .then(checkStatus)
-   +      .then(parseJSON)
-   +      .then(toProject);
+   +      .then(parseJSON);
    +  },
    +
     ...
@@ -29,33 +28,38 @@
    > These files contain some pre-built components we will use in this lab. Take a moment to review the code in them.
 3. Add a route to display the `ProjectPage` (notice that we now have a `ProjectPage` and a `ProjectsPage` so be careful you are in the correct file).
 
-   #### `src\App.js`
+```diff
+import ProjectsPage from './projects/ProjectsPage';
++ import ProjectPage from './projects/ProjectPage';
 
-   ```diff
-   import ProjectsPage from './projects/ProjectsPage';
-   + import ProjectPage from './projects/ProjectPage';
+function App() {
+  return (
+    <Router>
+      <header className="sticky">
+        <span className="logo">
+          <img src="/assets/logo-3.svg" alt="logo" width="49" height="99" />
+        </span>
+        <NavLink to="/" exact className="button rounded">
+          <span className="icon-home"></span>
+          Home
+        </NavLink>
+        <NavLink to="/projects/" className="button rounded">
+          Projects
+        </NavLink>
+      </header>
+      <div className="container">
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/projects" exact component={ProjectsPage} />
++          <Route path="/projects/:id" component={ProjectPage} />
+        </Switch>
+      </div>
+    </Router>
+  );
+}
 
-   function App () {
-   return (
-       <Router>
-       <header className="sticky">
-         ...
-       </header>
-       <div className="container">
-           <Provider store={store}>
-           <Switch>
-               <Route path="/" exact component={HomePage} />
-               <Route path="/projects/" exact component={ProjectsPage} />
-   +           <Route path="/projects/:id" component={ProjectPage} />
-           </Switch>
-           </Provider>
-       </div>
-       </Router>
-   );
-   };
 
-   export default App;
-   ```
+```
 
 4. Make the name and description clickable by adding a `<Link />` component around them.
 
