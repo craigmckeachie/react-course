@@ -17,10 +17,10 @@
 
    ```diff
    import React from 'react';
-
+   + import PropTypes from 'prop-types';
 
    - function ProjectForm() {
-   + function ProjectForm({ onCancel }: ProjectFormProps) {
+   + function ProjectForm({ onCancel }) {
      return (
        <form className="input-group vertical">
          <label htmlFor="name">Project Name</label>

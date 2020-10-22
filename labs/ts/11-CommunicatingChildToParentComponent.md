@@ -51,17 +51,16 @@
    #### `src\projects\ProjectList.tsx`
 
    ```diff
-    function ProjectList () {
+    function ProjectList ({ projects }) {
    +   const handleEdit = (project: Project) => {
    +     console.log(project);
    +   };
 
-        const { projects } = this.props;
         const items = projects.map(project => (
           <div key={project.id} className="cols-sm">
             <ProjectCard
               project={project}
-   +          onEdit={this.handleEdit}
+   +          onEdit={handleEdit}
             ></ProjectCard>
             <ProjectForm></ProjectForm>
           </div>

@@ -33,6 +33,9 @@
    #### `src\projects\ProjectForm.js`
 
    ```diff
+   ...
+   +  import { Project } from './Project';
+
    - function ProjectForm({ onSave, onCancel }) {
    + function ProjectForm({ onCancel }) {
 

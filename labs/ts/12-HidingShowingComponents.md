@@ -64,7 +64,7 @@ function ProjectList({ projects }: ProjectListProps) {
 +          {project === projectBeingEdited ? (
 +            <ProjectForm />
 +          ) : (
-+            <ProjectCard project={project} onEdit=+{handleEdit} />
++            <ProjectCard project={project} onEdit={handleEdit} />
 +          )}
         </div>
       ))}

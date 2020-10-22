@@ -64,9 +64,7 @@
    import { Project } from './Project';
    + import ProjectCard from './ProjectCard';
 
-   function ProjectList () {
-
-       const { projects } = this.props;
+   function ProjectList ({ projects }) {
        const items = projects.map(project => (
          <div key={project.id} className="cols-sm">
    -      <div className="card">
