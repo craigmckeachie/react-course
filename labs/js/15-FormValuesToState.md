@@ -30,6 +30,9 @@
    #### `src\projects\ProjectForm.js`
 
    ```diff
+   - import React from 'react';
+   + import React, { useState } from 'react';
+
    function ProjectForm({
    + project: initialProject,
      onSave,
@@ -220,10 +223,9 @@ export default ProjectForm;
    + useState } from 'react';
    import { MOCK_PROJECTS } from './MockProjects';
    import ProjectList from './ProjectList';
-   import { Project } from './Project';
 
    function ProjectsPage() {
-   +  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+   +  const [projects, setProjects] = useState(MOCK_PROJECTS);
 
    const saveProject = (project) => {
    -   console.log('Saving project: ', project);
