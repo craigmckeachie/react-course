@@ -9,6 +9,10 @@
 
 ### Add data
 
+1. **Download** the code snippets, data, and images needed for the labs by **following these steps**.
+   1. **Click** this **link** to open the [snip repository](https://github.com/craigmckeachie/snip) on GitHub.
+   2. **Click** the **Green Code button** then choose **Download ZIP**.
+   3. Unzip the file `snip-master.zip` archive you downloaded in the prior step.
 1. Open File Explorer (Windows) or Finder (Mac).
 1. **Copy** the `labs\ts\snippets\lab05\assets` directory into the `keeptrack\public` directory.
 
@@ -45,12 +49,13 @@
    + import { MOCK_PROJECTS } from './MockProjects';
 
    function ProjectsPage() {
-     return (
+   - return  <h1>Projects</h1>   
+   +  return (
    +   <>
-        <h1>Projects</h1>
+   +     <h1>Projects</h1>
    +    <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
    +   </>
-     );
+   +  );
    }
 
    export default ProjectsPage;

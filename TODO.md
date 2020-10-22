@@ -1,4 +1,22 @@
-labs 10,11 missing
+## Creating branches
+
+-- commit to main
+push
+git checkout -b lab
+git checkout main
+
+
+
+git checkout -b lab01
+git add -A
+git commit -m 'lab01'
+git push --set-upstream origin lab01
+git checkout main
+
+
+
+
+
 
 #### `src\index.css`
 

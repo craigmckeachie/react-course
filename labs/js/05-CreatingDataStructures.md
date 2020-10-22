@@ -9,18 +9,17 @@
 
 ### Add data
 
-1. Open File Explorer (Windows) or Finder (Mac).
-1. **Copy** the `labs\ts\snippets\lab05\assets` directory into the `keeptrack\public` directory.
-
-   > You will need to clone the entire `react-course` repo (or download a zip) to your local machine to easily download all the files needed in this step and the next step.
-
-1. You can safely **delete** these files in the `keeptrack` project.
+1. **Download** the code snippets, data, and images needed for the labs by **following these steps**.
+   1. **Click** this **link** to open the [snip repository](https://github.com/craigmckeachie/snip) on GitHub.
+   2. **Click** the **Green Code button** then choose **Download ZIP**.
+   3. Unzip the file `snip-master.zip` archive you downloaded in the prior step.
+2. Open File Explorer (Windows) or Finder (Mac).
+3. **Copy** the `snip-master\labs\js\snippets\lab05\assets` directory (including the assets directory) into the `keeptrack\public` directory.
+4. You can safely **delete** these files in the `keeptrack` project.
    > Note that it won't have any effect on the project outcome we just don't need them anymore.
    - `src\public\logo192.png`
    - `src\public\logo512.png`
-1. **Copy** the files `labs\ts\snippets\lab05\MockProjects.js` and `labs\ts\snippets\lab05\Project.js` into the `keeptrack\src\projects` directory.
-
-<!-- <a href=".\snippets\lab05\assets" target="_blank">assets</a> -->
+5. **Copy** the files `snip-master\labs\js\snippets\lab05\MockProjects.js` and `snip-master\labs\js\snippets\lab05\Project.js` into the `keeptrack\src\projects` directory.
 
 ### Display the data
 
@@ -45,12 +44,13 @@
    + import { MOCK_PROJECTS } from './MockProjects';
 
    function ProjectsPage() {
-     return (
+   - return  <h1>Projects</h1>   
+   +  return (
    +   <>
-        <h1>Projects</h1>
+   +     <h1>Projects</h1>
    +    <pre>{JSON.stringify(MOCK_PROJECTS, null, ' ')}</pre>
    +   </>
-     );
+   +  );
    }
 
    export default ProjectsPage;
