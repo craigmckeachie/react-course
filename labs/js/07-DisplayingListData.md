@@ -41,7 +41,7 @@ function ProjectList({ projects }: ProjectListProps) {
 export default ProjectList;
 ```
 
-2. Verify the project names display correctly in the browser.
+2. Verify the project names display in the browser (they may overlap at this point).
 
 ### Format the list data as cards
 

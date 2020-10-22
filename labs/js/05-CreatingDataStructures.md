@@ -15,11 +15,7 @@
    3. Unzip the file `snip-master.zip` archive you downloaded in the prior step.
 2. Open File Explorer (Windows) or Finder (Mac).
 3. **Copy** the `snip-master\labs\js\snippets\lab05\assets` directory (including the assets directory) into the `keeptrack\public` directory.
-4. You can safely **delete** these files in the `keeptrack` project.
-   > Note that it won't have any effect on the project outcome we just don't need them anymore.
-   - `src\public\logo192.png`
-   - `src\public\logo512.png`
-5. **Copy** the files `snip-master\labs\js\snippets\lab05\MockProjects.js` and `snip-master\labs\js\snippets\lab05\Project.js` into the `keeptrack\src\projects` directory.
+4. **Copy** the files `snip-master\labs\js\snippets\lab05\MockProjects.js` and `snip-master\labs\js\snippets\lab05\Project.js` into the `keeptrack\src\projects` directory.
 
 ### Display the data
 
@@ -44,7 +40,7 @@
    + import { MOCK_PROJECTS } from './MockProjects';
 
    function ProjectsPage() {
-   - return  <h1>Projects</h1>   
+   - return  <h1>Projects</h1>
    +  return (
    +   <>
    +     <h1>Projects</h1>

@@ -15,10 +15,6 @@
    3. Unzip the file `snip-master.zip` archive you downloaded in the prior step.
 1. Open File Explorer (Windows) or Finder (Mac).
 1. **Copy** the `labs\ts\snippets\lab05\assets` directory into the `keeptrack\public` directory.
-1. You can safely **delete** these files in the `keeptrack` project.
-   > Note that it won't have any effect on the project outcome we just don't need them anymore.
-   - `src\public\logo192.png`
-   - `src\public\logo512.png`
 1. **Copy** the files `labs\ts\snippets\lab05\MockProjects.ts` and `labs\ts\snippets\lab05\Project.ts` into the `keeptrack\src\projects` directory.
 
 <!-- <a href=".\snippets\lab05\assets" target="_blank">assets</a> -->
