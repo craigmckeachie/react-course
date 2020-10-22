@@ -13,7 +13,6 @@
 2. **Implement** a `ProjectList` **class component** that meets the following specifications:
 
    1. Takes a `projects` array as a `prop`.
-      > You will need to create an interface to define the properties that come into the component.
    2. **Displays** the `projects` array as a `JSON string`.
 
    #### `src\projects\ProjectList.js`
@@ -28,32 +27,33 @@
 
    export default ProjectList;
    ```
-3.  Define the property (prop) and its type using the `prop-types` library by doing the steps below.
 
-    1.  In the `keep-track` directory, **install** the `prop-types` library.
-        ```npm
-        npm install prop-types
-        ```
-    1.  Add the following prop type definition.
+3. Define the property (prop) and its type using the `prop-types` library by doing the steps below.
 
-    #### `src\projects\ProjectList.js`
+   1. Open a command prompt (Windows) or Terminal (Mac) in the `keep-track` directory, and **run** the following **command** to **install** the `prop-types` library.
+      ```npm
+      npm install prop-types
+      ```
+   1. Add the following prop type definition.
 
-    ```diff
-    import React from 'react';
-    + import PropTypes from 'prop-types';
-    + import { Project } from './Project';
+   #### `src\projects\ProjectList.js`
 
-     function ProjectList({ projects }) {
-       return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
-     }
+   ```diff
+   import React from 'react';
+   + import PropTypes from 'prop-types';
+   + import { Project } from './Project';
 
-    + ProjectList.propTypes = {
-    +  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
-    + };
+    function ProjectList({ projects }) {
+      return <pre>{JSON.stringify(projects, null, ' ')}</pre>;
+    }
 
-    export default ProjectList;
+   + ProjectList.propTypes = {
+   +  projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
+   + };
 
-    ```
+   export default ProjectList;
+
+   ```
 
 ### Pass data into a component property
 

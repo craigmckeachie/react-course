@@ -15,9 +15,6 @@
    3. Unzip the file `snip-master.zip` archive you downloaded in the prior step.
 1. Open File Explorer (Windows) or Finder (Mac).
 1. **Copy** the `labs\ts\snippets\lab05\assets` directory into the `keeptrack\public` directory.
-
-   > You will need to clone the entire `react-course` repo (or download a zip) to your local machine to easily download all the files needed in this step and the next step.
-
 1. You can safely **delete** these files in the `keeptrack` project.
    > Note that it won't have any effect on the project outcome we just don't need them anymore.
    - `src\public\logo192.png`
@@ -49,7 +46,7 @@
    + import { MOCK_PROJECTS } from './MockProjects';
 
    function ProjectsPage() {
-   - return  <h1>Projects</h1>   
+   - return  <h1>Projects</h1>
    +  return (
    +   <>
    +     <h1>Projects</h1>
