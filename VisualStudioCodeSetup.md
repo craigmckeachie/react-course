@@ -37,7 +37,8 @@ If you have existing `USER SETTINGS` you will want to **add** the following sett
   "editor.formatOnSave": true,
   "workbench.iconTheme": "material-icon-theme",
   "emmet.includeLanguages": {
-    "typescript": "html"
+    "typescript": "html",
+    "javascript": "javascriptreact"
   }
 }
 ```
