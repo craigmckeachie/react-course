@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { projectAPI } from './projectAPI';
 import ProjectDetail from './ProjectDetail';
 
-class ProjectPage extends React.Component {
-  state = {
-    loading: false,
-    project: undefined,
-    error: ''
-  };
+function ProjectPage(props) {
+  const [loading, setLoading] = useState(false);
+  const [project, setProject] = useState(null);
+  const [error, setError] = useState(null);
+  const id = Number(props.match.params.id);
 
-  componentDidMount() {
-    const id = Number(this.props.match.params.id);
-    this.setState({ loading: true });
+  useEffect(() => {
+    setLoading(true);
     projectAPI
       .find(id)
-      .then(data => this.setState({ project: data, loading: false }))
-      .catch(e => this.setState({ error: e.message, loading: false }));
-  }
-  render() {
-    const { loading, project, error } = this.state;
-    return (
-      <React.Fragment>
+      .then((data) => {
+        setProject(data);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setError(e);
+        setLoading(false);
+      });
+  }, [id]);
+
+  return (
+    <div>
+      <>
         <h1>Project Detail</h1>
 
         {loading && (
@@ -43,9 +47,9 @@ class ProjectPage extends React.Component {
         )}
 
         {project && <ProjectDetail project={project} />}
-      </React.Fragment>
-    );
-  }
+      </>
+    </div>
+  );
 }
 
 export default ProjectPage;

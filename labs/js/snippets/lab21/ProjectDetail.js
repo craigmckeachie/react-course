@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function ProjectDetail(props) {
-  const { project } = props;
+export default function ProjectDetail({ project }) {
   return (
     <div className="row">
       <div className="col-sm-6">
@@ -16,7 +15,6 @@ export default function ProjectDetail(props) {
             <p>Signed: {project.contractSignedOn}</p>
             <p>
               <mark className="active">
-                {' '}
                 {project.isActive ? 'active' : 'inactive'}
               </mark>
             </p>
