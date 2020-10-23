@@ -1,4 +1,4 @@
-# React Context vs Redux
+# State Management
 
 ## Summary
 
@@ -53,3 +53,4 @@ Good use cases for Redux include:
 - [How to Implement useState with useReducer](https://kentcdodds.com/blog/how-to-implement-usestate-with-usereducer)
 - [SWR Documentation](https://swr.vercel.app/)
 - [React Query Documentation](https://react-query.tanstack.com/docs/overview)
+- [React Query Blog Refactor Example](https://github.com/tannerlinsley/react-query-blog-refactor-example/commits/master)
