@@ -13,7 +13,6 @@
    #### `src\projects\ProjectAPI.js`
 
    ```diff
-   + import { Project } from './Project';
    ...
 
    const projectAPI = {
@@ -45,6 +44,7 @@
    #### `src\projects\ProjectsPage.js`
 
    ```diff
+   import { Project } from './Project';
    ...
    function ProjectsPage() {
      ...
@@ -59,7 +59,7 @@
    +     .put(project)
    +     .then((updatedProject) => {
    +       let updatedProjects = projects.map((p) => {
-   +         return p.id === project.id ? project : p;
+   +         return p.id === project.id ? new Project(updatedProject) : p;
    +       });
    +       setProjects(updatedProjects);
    +     })
