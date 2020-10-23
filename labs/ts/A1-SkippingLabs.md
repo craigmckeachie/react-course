@@ -27,20 +27,20 @@ Download the completed code for the lab **before** the one you would like to wor
 
 > For example, if you wanted to work on lab 18 download lab 17
 
-> [Finished solution code for each of the labs is available in this repository](https://github.com/craigmckeachie/keeptrack-r-ts)
+> [Finished solution code for each of the labs is available in this repository](https://github.com/craigmckeachie/keeptrack-ts)
 
 1. Open the branch you want to download:
 
    - For example:
 
    ```shell
-   https://github.com/craigmckeachie/keeptrack-r-ts/tree/lab25
+   https://github.com/craigmckeachie/keeptrack-ts/tree/lab25
    ```
 
    - You can use this template:
 
    ```shell
-   https://github.com/craigmckeachie/keeptrack-r-ts/tree/labxx
+   https://github.com/craigmckeachie/keeptrack-ts/tree/labxx
    ```
 
    > Replacing xx with the lab number
@@ -48,14 +48,14 @@ Download the completed code for the lab **before** the one you would like to wor
 2. Change `tree` to `archive` and add a `.zip` extension
 
 ```diff
--   https://github.com/craigmckeachie/keeptrack-r-ts/tree/lab25
-+   https://github.com/craigmckeachie/keeptrack-r-ts/archive/lab25.zip
+-   https://github.com/craigmckeachie/keeptrack-ts/tree/lab25
++   https://github.com/craigmckeachie/keeptrack-ts/archive/lab25.zip
 ```
 
 3.  Rename the zip.
 
 ```diff
-- keeptrack-r-ts-lab25.zip
+- keeptrack-ts-lab25.zip
 + keeptrack.zip
 ```
 

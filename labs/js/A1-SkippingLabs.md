@@ -27,20 +27,20 @@ Download the completed code for the lab **before** the one you would like to wor
 
 > For example, if you wanted to work on lab 18 download lab 17
 
-> [Finished solution code for each of the labs is available in this repository](https://github.com/craigmckeachie/keeptrack-r16-js)
+> [Finished solution code for each of the labs is available in this repository](https://github.com/craigmckeachie/keeptrack-js)
 
 1. Open the branch you want to download:
 
    - For example:
 
    ```shell
-   https://github.com/craigmckeachie/keeptrack-r16-js/tree/lab25
+   https://github.com/craigmckeachie/keeptrack-js/tree/lab25
    ```
 
    - You can use this template:
 
    ```shell
-   https://github.com/craigmckeachie/keeptrack-r16-js/tree/labxx
+   https://github.com/craigmckeachie/keeptrack-js/tree/labxx
    ```
 
    > Replacing xx with the lab number
@@ -48,14 +48,14 @@ Download the completed code for the lab **before** the one you would like to wor
 2. Change `tree` to `archive` and add a `.zip` extension
 
 ```diff
--   https://github.com/craigmckeachie/keeptrack-r16-js/tree/lab25
-+   https://github.com/craigmckeachie/keeptrack-r16-js/archive/lab25.zip
+-   https://github.com/craigmckeachie/keeptrack-js/tree/lab25
++   https://github.com/craigmckeachie/keeptrack-js/archive/lab25.zip
 ```
 
 3.  Rename the zip.
 
 ```diff
-- keeptrack-r16-js-lab25.zip
+- keeptrack-js-lab25.zip
 + keeptrack.zip
 ```
 

@@ -45,8 +45,8 @@
 1.  Verify the comile error goes away.
 1.  Remove the return statement as shown below.
 
-
     #### `src\Projects\ProjectList.[js|tsx]`
+
     ```diff
     class ProjectList extends React.Component {
     ...
@@ -58,7 +58,7 @@
     }
     ```
 
-1. You should see the following error in the terminal where you are running `npm start`.
+1.  You should see the following error in the terminal where you are running `npm start`.
 
 ```
 Failed to compile.
@@ -92,7 +92,7 @@ Open `Chrome DevTools` by following these steps:
 1. Open `ProjectsPage.[js|tsx]` in the Chrome DevTools `Sources` tab.
 
    > To find a file in the Chrome DevTools `Sources` tab and open the navigation to follow this or a similar path:
-   > top/localhost:3000/Users/[your username]/Documents/git/r16/keeptrack-r16-js/src/...
+   > top/localhost:3000/Users/[your username]/Documents/git/r16/keeptrack-js/src/...
    > The path may differ depending on your operating system.
 
 1. Set breakpoint on line 38.
