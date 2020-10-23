@@ -15,7 +15,7 @@
 1. **Run** _one_ of the following commands:
    #### npm
    ```shell
-   npm install json-server@0.16.6
+   npm install json-server@0.16.2
    ```
    #### Yarn
    ```shell

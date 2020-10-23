@@ -71,6 +71,11 @@
           .then(delay(600))
           .then(checkStatus)
           .then(parseJSON)
+          .then((projects) => {
+            return projects.map((p) => {
+              return new Project(p);
+            });
+          })
           .catch((error) => {
             console.log('log client error ' + error);
             throw new Error(
@@ -93,7 +98,7 @@
    ```diff
    ...
     function ProjectsPage() {
-      const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+      const [projects, setProjects] = useState(MOCK_PROJECTS);
    +  const [loading, setLoading] = useState(false);
    +  const [error, setError] = useState(undefined);
    ...
@@ -107,6 +112,7 @@
    #### `src\projects\ProjectsPage.js`
 
    ```diff
+   - import { Project } from './Project';
    - import { MOCK_PROJECTS } from './MockProjects';
    ...
     function ProjectsPage() {
@@ -354,7 +360,7 @@ function ProjectsPage() {
    ```diff
    ...
    function ProjectsPage() {
-     const [projects, setProjects] = useState<Project[]>([]);
+     const [projects, setProjects] = useState([]);
      const [loading, setLoading] = useState(false);
      const [error, setError] = useState(undefined);
    + const [currentPage, setCurrentPage] = useState(1);
@@ -369,7 +375,7 @@ function ProjectsPage() {
 ```diff
 ...
 function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(1);
