@@ -19,7 +19,7 @@
    ```jsx
    import React from 'react';
 
-   export default function HomePage() {
+   function HomePage() {
      return <h2>Home</h2>;
    }
 
@@ -42,19 +42,24 @@
    ```
 1. **Configure** the **routes**.
 
-   #### `src/app.js`
+   #### `src/App.js`
 
    ```diff
    import React from 'react';
    import './App.css';
-   + import ProjectsPage from './projects/ProjectsPage';
+   import ProjectsPage from './projects/ProjectsPage';
 
    + import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
    + import HomePage from './home/HomePage';
 
 
    function App() {
-   - return  <ProjectsPage />
+   -  return (
+   -    <div className="container">
+   -      <ProjectsPage />
+   -    </div>
+   -  );
+
    +  return (
    +    <Router>
    +      <div className="container">
