@@ -69,6 +69,35 @@
 
     > Only files inside `public` can be used from `public/index.html`.
 
+### Downgrade to React version 16
+
+#### React 17
+
+- React 17 was released October 22nd 2020.
+- There aren't any significant changes but the labs have not been tested with the changes.
+- In particular, a new JSX transform was introduced.
+- With the new transform, you can use JSX without importing React.
+- The new transform was also implemented in the latest version of all the major React releases (16, 15, 0.14.x).
+
+#### Using React 16
+
+This section describes how to downgrade a new React project to use React version 16 and the last version of Create React App that doesn't use the new JSX transform.
+
+1. Open a command prompt or terminal in the `keeptrack` directory and run the following commands:
+
+   ```shell
+   npm install react@16.13 react-dom@16.13 react-scripts@3
+   ```
+
+1. Open the `App.js` file and add the import shown below.
+
+   #### `src\App.js`
+
+   ```diff
+   + import React from 'react';
+   ...
+   ```
+
 ---
 
 ## &#10004; You have completed Lab 1
