@@ -16,11 +16,11 @@
    > Make sure you are in Project**s**Page.js not ProjectPage.js.
 
    ```diff
-   import React, { Fragment, useEffect } from 'react';
+   - import React, { useState, useEffect } from 'react';
+   + import React, { useEffect } from 'react';
    import ProjectList from './ProjectList';
-   import { Project } from './Project';
+   - import { Project } from './Project';
    + import { useSelector, useDispatch } from 'react-redux';
-   + import { AppState } from '../state';
 
    function ProjectsPage() {
    -  const [projects, setProjects] = useState<Project[]>([]);
@@ -51,12 +51,9 @@
    #### `src\projects\ProjectsPage.js`
 
    ```diff
+   ...
    - import { Project } from './Project';
    - import { projectAPI } from './projectAPI';
-
-   - import React, { Fragment, useState, useEffect } from 'react';
-   + import React, { Fragment, useEffect } from 'react';
-
    + import { loadProjects } from './state/projectActions';
 
    function ProjectsPage() {

@@ -46,6 +46,10 @@
    npm start
    ```
 
+   <!-- ```shell
+   npm i react@16 react-dom@16
+   ``` -->
+
    > If you've previously installed `create-react-app` globally via `npm install -g create-react-app`, it is recommended that you uninstall the package using `npm uninstall -g create-react-app` to ensure that `npx` always uses the latest version.
 
    3. After the application builds, your default browser should open to [http://localhost:3000/](http://localhost:3000/).

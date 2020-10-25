@@ -18,8 +18,6 @@
    #### `src\projects\state\projectTypes.js`
 
    ```js
-   import { Project } from '../Project';
-
    //action types
    export const LOAD_PROJECTS_REQUEST = 'LOAD_PROJECTS_REQUEST';
    export const LOAD_PROJECTS_SUCCESS = 'LOAD_PROJECTS_SUCCESS';
@@ -40,10 +38,8 @@
    #### `src\projects\state\projectActions.js`
 
    ```js
-   import { Action } from 'redux';
-   import { ThunkAction } from 'redux-thunk';
    import { projectAPI } from '../projectAPI';
-   import { Project } from '../Project';
+
    import {
      LOAD_PROJECTS_REQUEST,
      LOAD_PROJECTS_SUCCESS,
@@ -93,6 +89,7 @@
    `src\projects\state\projectReducer.js`
 
 ```js
+import { Project } from '../Project';
 import {
   LOAD_PROJECTS_REQUEST,
   LOAD_PROJECTS_SUCCESS,
@@ -104,7 +101,6 @@ import {
   SAVE_PROJECT_SUCCESS,
   SAVE_PROJECT_FAILURE,
 } from './projectTypes';
-import { Project } from '../Project';
 
 export const initialProjectState = {
   projects: [],
@@ -137,22 +133,22 @@ export function projectReducer(state = initialProjectState, action) {
     case SAVE_PROJECT_REQUEST:
       return { ...state };
     case SAVE_PROJECT_SUCCESS:
-      if (action.payload.isNew) {
+      let updatedProject = new Project(action.payload);
+      if (updatedProject.isNew()) {
         return {
           ...state,
-          projects: [...state.projects, action.payload],
+          projects: [...state.projects, updatedProject],
         };
       } else {
         return {
           ...state,
           projects: state.projects.map((project) => {
             return project.id === action.payload.id
-              ? Object.assign({}, project, action.payload)
+              ? Object.assign(new Project(), project, updatedProject)
               : project;
           }),
         };
       }
-
     case SAVE_PROJECT_FAILURE:
       return { ...state, error: action.payload.message };
     case DELETE_PROJECT_REQUEST:
@@ -187,7 +183,6 @@ export function projectReducer(state = initialProjectState, action) {
    import { composeWithDevTools } from 'redux-devtools-extension';
    import { combineReducers } from 'redux';
 
-   + import { ProjectState } from './projects/state/projectTypes';
    + import { initialProjectState } from './projects/state/projectReducer';
    + import { projectReducer } from './projects/state/projectReducer';
 
