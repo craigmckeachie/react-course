@@ -1,5 +1,10 @@
 ## Outline
 
+## Part 0
+
+- [Computer Setup](./Setup.md)
+  > Attendees were sent an email from Ruchika Dhir at NetCom to complete these steps before class.
+
 ## Part 1
 
 #### Concepts (will be covered in the flow of the React Content)
