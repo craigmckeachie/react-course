@@ -36,8 +36,8 @@
    ...
    +  import { Project } from './Project';
 
-   - function ProjectForm({ onSave, onCancel }) {
-   + function ProjectForm({ onCancel }) {
+   - function ProjectForm({ onCancel }) {
+   + function ProjectForm({ onSave, onCancel }) {
 
    +  const handleSubmit = (event) => {
    +    event.preventDefault();
