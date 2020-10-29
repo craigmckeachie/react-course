@@ -108,18 +108,6 @@
 
 #### Concepts
 
-- [Build & Deploy](./concepts/17-BuildDeploy.md)
-
-#### Labs
-
-- [Lab 22: Build & Deploy](./labs/js/22-BuildAndDeploy.md)
-
-# Advanced
-
-## Part 10
-
-#### Concepts
-
 - [Routing (using React Router)](./concepts/15-Routing.md)
 
 #### Labs
@@ -127,7 +115,17 @@
 - [Lab 20: Router Basics](./labs/js/20-RouterBasics.md)
 - [Lab 21: Route Parameters](./labs/js/21-RouteParameters.md)
 
+## Part 10
+
 #### Concepts
+
+- [Build & Deploy](./concepts/17-BuildDeploy.md)
+
+#### Labs
+
+- [Lab 22: Build & Deploy](./labs/js/22-BuildAndDeploy.md)
+
+#### Advanced Concepts
 
 - Hooks (used throughout the course)
 - [Context](./concepts/A13-AdvancedComponents.md)

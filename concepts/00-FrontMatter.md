@@ -72,7 +72,7 @@ This material is available for private, non-commercial use under the [GPL versio
   - [HTTP Advanced](A15-AdvancedHTTP.md)
   - [Testing](25-Testing.md)
   - [UI Components](A24-UIComponents.md)
-  - [Sate Management](A25-StateManagement.md)
+  - [State Management](A25-StateManagement.md)
 
 * Redux (if applicable)
 
