@@ -116,8 +116,8 @@
    - import { MOCK_PROJECTS } from './MockProjects';
    ...
     function ProjectsPage() {
-   -  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
-   +  const [projects, setProjects] = useState<Project[]>([]);
+   -  const [projects, setProjects] = useState(MOCK_PROJECTS);
+   +  const [projects, setProjects] = useState([]);
       const [loading, setLoading] = useState(false);
       const [error, setError] = useState(undefined);
    ...
