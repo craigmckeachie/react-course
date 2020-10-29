@@ -364,6 +364,7 @@ function ContactUsForm() {
       setDepartmentError(error);
       return error;
     } else {
+      setDepartmentError(null);
       return null;
     }
   }
@@ -371,16 +372,20 @@ function ContactUsForm() {
     if (value === '') {
       const error = 'Message is required.';
       setMessageError(error);
+      return error;
     } else {
       setMessageError(null);
+      return null;
     }
   }
   function validateAgreedToTerms(checked) {
     if (checked) {
       setAgreedToTermsError(null);
+      return null;
     } else {
       const error = 'You must agree to the terms and conditions.';
       setAgreedToTermsError(error);
+      return error;
     }
   }
 
