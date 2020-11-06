@@ -35,6 +35,12 @@
    export default ProjectsPage;
    ```
 
+   > The import: `import React from 'react';` is not required in the latest version(s) of **React** because it uses a new `JSX Transform`.
+   >
+   > - `React 17` RC and **higher** supports the new JSX Transform, and they’ve also released `React 16.14.0`, `React 15.7.0`, and `React 0.14.10` for people who are still on the older major versions).
+   > - With the new JSX Transform, the import statement is only needed at the entry point of the application which is `src\index.js` in a **Create React App**. Note that the code still works if you include the import in other files but it is no longer required.
+   > - The import is included throughout the labs so the code continues to work on older versions of React
+
 ### Render the component
 
 1. **Remove** the `<blockquote>...</blockquote>` we returned in the last lab and **replace** it with `<ProjectsPage/>` wrapped in a `div` with a css `class` of `container`.
