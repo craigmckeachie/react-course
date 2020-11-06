@@ -12,8 +12,8 @@
     - [Example](#example)
   - [Reuse](#reuse)
   - [POST](#post)
-    - [POST with Axios](#post-with-axios)
-    - [POST with Fetch](#post-with-fetch)
+      - [POST with Axios](#post-with-axios)
+      - [POST with Fetch](#post-with-fetch)
   - [PUT](#put)
   - [DELETE](#delete)
   - [Items Demo App (CRUD) using HTTP](#items-demo-app-crud-using-http)
@@ -699,9 +699,6 @@ form {
 
 ```js
 function ID() {
-  // Math.random should be unique because of its seeding algorithm.
-  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-  // after the decimal.
   return '_' + Math.random().toString(36).substr(2, 9);
 }
 
@@ -730,9 +727,7 @@ function checkStatus(response) {
       `logging http details for debugging: ${JSON.stringify(httpErrorInfo)}`
     );
 
-    let errorMessage = ItemAPI.translateStatusToErrorMessage(
-      httpErrorInfo.status
-    );
+    let errorMessage = translateStatusToErrorMessage(httpErrorInfo.status);
     throw new Error(errorMessage);
   }
 }
@@ -756,7 +751,11 @@ const itemAPI = {
   getAll(page = 1, limit = 100) {
     return fetch(`${url}?_page=${page}&_limit=${limit}`)
       .then(checkStatus)
-      .then(parseJSON);
+      .then(parseJSON)
+      .catch((error) => {
+        let errorMessage = translateStatusToErrorMessage(error);
+        throw new Error(errorMessage);
+      });
   },
 
   add(item) {
@@ -814,7 +813,7 @@ function List(props) {
   } else {
     return (
       <ul>
-        {items.map((item) => (
+        {items?.map((item) => (
           <li key={item.id}>
             {item === editingItem ? (
               <Form item={item} onSubmit={onUpdate} onCancel={handleCancel} />
