@@ -68,6 +68,15 @@ This material is available for private, non-commercial use under the [GPL versio
 - [Lab 23: Redux Install](23-ReduxInstall.md)
 - [Lab 24: Redux Actions & Reducer](24-ReduxActionsReducer.md)
 - [Lab 25: Redux with React](25-ReduxWithReact.md)
-<!--
 
-### Testing -->
+### Testing
+
+- [Testing Lab 1: First Component Tests](react-testing-library/T1-FirstComponentTests.md)
+- [Testing Lab 2: Snapshot Tests](react-testing-library/T2-SnapshotTests.md)
+- [Testing Lab 3: More Testing Components](react-testing-library/T3-MoreTestingComponents.md)
+- [Testing Lab 4: Nested Components](react-testing-library/T4-NestedComponents.md)
+- [Testing Lab 5: Container Components](react-testing-library/T5-ContainerComponents.md)
+- [Testing Lab 6: Testing Forms](react-testing-library/T6-TestingForms.md)
+- [Testing Lab 7: Action Tests](react-testing-library/T7-ActionTests.md)
+- [Testing Lab 8: Reducer Tests](react-testing-library/T8-ReducerTests.md)
+- [Testing Lab 9: API Tests](react-testing-library/T9-APITests.md)
