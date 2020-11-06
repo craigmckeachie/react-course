@@ -101,13 +101,28 @@ Open `Chrome DevTools` by following these steps:
 1. Log `this.props.project`
 1. Step through the code using the buttons outlined in the [JavaScript Debugging Reference](https://developers.google.com/web/tools/chrome-devtools/javascript/reference).
 
+## Debugging React in Visual Studio Code
+
+This section describes how you can set breakpoints and debug JavaScript or TypeScript directly in Visual Studio Code instead of directly using a browser's DevTools like Chrome.
+
+> Note that in the latest versions of Visual Studio Code it is no longer necessary to install the Debugger for Chrome extension.
+
+- If you already have it installed that is OK it will just forward to the built-in `js-debug` functionality.
+
+### Steps
+
+1. In a **Create React App** project, run `npm start` command from the command prompt or terminal.
+2. Open `App.js` or `App.tsx` and set a breakpoint by clicking in the gutter to the left of the line number.
+3. Click the `Run\Debugger` in Toolbar.
+4. Click the `Run and Debug` button.
+5. Choose environment `Chrome (preview)`
+6. **Change port** `8080` to port `3000` in the `launch.json` file.
+7. In the top left of the window click `Launch Chrome again`
+8. You will stop on the breakpoint in **VS Code**.
 <!-- ## Network -->
 
 ## Resources
 
 - [Get Started with Debugging JavaScript in Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript)
 - [Chrome Devtools Documentation](https://developers.google.com/web/tools/chrome-devtools)
-
-```
-
-```
+- [Debugging React in Visual Studio Code](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial#_debugging-react)
