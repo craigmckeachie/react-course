@@ -39,7 +39,28 @@ Good use cases for Redux include:
   - Again, this often can be done by having a common parent component but sometimes it might be too far removed from where you are updating this information
 - Steps in a workflow or wizard that share data (although this can easily be done by storing the shared data in a parent component)
 - Collaboritive software where multiple users can work on the same document at the same time (Google Docs, Google Sheets etc...)
--
+
+## Deciding How to Handle State
+
+> From Managing React State: Pluralsight Course by Cory House
+
+1. Does in belong in
+   Does it belong in the URL? (current page, current record, sorting, scroll location...)
+   - Keep URL-related state in the URL.
+2. Want to persist data across sessions or make data available offline?
+   - Consider web storage (localStorage, IndexedDB, etc)
+3. Is it server data?
+   - Try react-query or swr. Using GraphQL? Then also consider Relay / Apollo.
+4. Is it a DOM element reference, state that doesn’t change, or not rendered at all?
+   - Use a ref.
+5. Can it be derived from existing props, state, URL, etc?
+   - Derive it “on-the-fly” as part of each render (memoize if expensive).
+6. Does only one component use the data?
+   - Use local state.
+7. Do a few related components use it?
+   - Store state in a common parent.
+8. Is it global state? Consider, in order:
+   - Store in App’s root component, context, or separate library like Redux.
 
 ## Reference
 
@@ -54,3 +75,4 @@ Good use cases for Redux include:
 - [SWR Documentation](https://swr.vercel.app/)
 - [React Query Documentation](https://react-query.tanstack.com/docs/overview)
 - [React Query Blog Refactor Example](https://github.com/tannerlinsley/react-query-blog-refactor-example/commits/master)
+- [Managing React State: Pluralsight Course by Cory House](https://www.pluralsight.com/courses/react-state-managing)
