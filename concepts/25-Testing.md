@@ -71,7 +71,7 @@ Tools with similar scope include:
 
 ### React Testing Library
 
-- React Testing Library is a library for testing **React Component**
+- React Testing Library is a library for testing **React Components**
 - Resembles the way the components are used by end users
 - It works more directly with DOM nodes, and therefore it's recommended to use with jest-dom for improved assertions.
 - Created by Kent C. Dodds
@@ -80,34 +80,34 @@ Tools with similar scope include:
   > The more your tests resemble the way your software is used, the more confidence they can give you.
 - I recommend React Testing Library because of it's focus on not testing code implementation details
 
-Features:
+  Features:
 
-- Work with actual DOM nodes.
-- The utilities this library provides facilitate querying the DOM in the same way the user would.
-  - Finding form elements by their label text (just like a user would)
-  - Finding links and buttons from their text (like a user would).
-  - Encourages your applications to be more accessible
+  - Work with actual DOM nodes.
+  - The utilities this library provides facilitate querying the DOM in the same way the user would.
+    - Finding form elements by their label text (just like a user would)
+    - Finding links and buttons from their text (like a user would).
+    - Encourages your applications to be more accessible
 
 ### Enzyme
 
-- Enzyme is a library for testing **React Component**
+- Enzyme is a library for testing **React Components**
 - Provides testing utilities for React
 - Created by Airbnb
 - Enzyme uses the React Test Utilities (from the React team at Facebook) underneath, but is more convenient, readable, and powerful.
 - Enzyme and React Testing Library are alternatives for doing the same thing.
 
-Features:
+  Features:
 
-- renders a react component into a document
-- shallow component rendering
-  - doesn't render child components
-- full (mount) component rendering
-  - renders children: useful when
-    - components interact with DOM API
-    - need to test component lifecycle
-- query the DOM
-  - similar to jQuery
-- simulates events
+  - renders a react component into a document
+  - shallow component rendering
+    - doesn't render child components
+  - full (mount) component rendering
+    - renders children: useful when
+      - components interact with DOM API
+      - need to test component lifecycle
+  - query the DOM
+    - similar to jQuery
+  - simulates events
 
 ### Jest DOM
 
@@ -492,29 +492,25 @@ You can replace `it()` with `xit()` (or `test()` with `xtest()`) to temporarily 
    import '@testing-library/jest-dom/extend-expect';
    ```
 
-1. Update the default test to use the `screen` object.
-
-   > When a new version of Create React App is released it will likely use this new syntax available in React Testing Library.
+1. Review the generated test to see how.
 
    #### `src/App.test.js`
 
-   ```diff
+   ```js
    import React from 'react';
    import { render, screen } from '@testing-library/react';
    import App from './App';
 
    test('renders learn react link', () => {
-   -  const { getByText } = render(<App />);
-   -  const linkElement = getByText(/learn react/i);
-   +  render(<App />);
-   +  const linkElement = screen.getByText(/learn react/i);
+     render(<App />);
+     const linkElement = screen.getByText(/learn react/i);
      expect(linkElement).toBeInTheDocument();
    });
    ```
 
 ### React Testing Library Tips
 
-- Use `[screen.debug()](https://testing-library.com/docs/dom-testing-library/api-queries#screendebug) to see the HTML markup you are trying to select using various queries.
+- Use [screen.debug()](https://testing-library.com/docs/dom-testing-library/api-queries#screendebug) to see the HTML markup you are trying to select using various queries.
 - Paste the HTML output of `screen.debug()` into the left panel on the [testing-playground.com](https://testing-playground.com/) to see which queries you should use to access a given element.
 - If the query supplied is not good consider that the markup in your app is not accessible and endevour to learn more about accessibility.
   > Even if you don't care about accessibility your tests will become more reliable and less brittle by embracing it.
