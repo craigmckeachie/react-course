@@ -148,15 +148,15 @@ Hello World in JavaScript is not that different than it is in React. Let's updat
 1. Open a new cmd prompt or terminal (leave `serve` running) and install `React`
 
    ```shell
-   npm install react@16.13 react-dom@16.13 --save
+   npm install react react-dom --save
    ```
 
-   > Why are we using this specific version of React?
+   > About React version 17
 
    - React 17 was released October 22nd 2020.
-   - There aren't any significant changes but the code demos have not yet been tested with the changes.
-   - In particular, a new JSX transform was introduced.
-   - With the new transform, you can use JSX without importing React.
+   - There aren't any significant changes
+   - A new JSX transform was introduced
+   - With the new transform, you can use JSX without importing React
    - The new transform was also implemented in the latest version of all the major React releases (16, 15, 0.14.x).
 
 2. Add the script tags to include `React` on the page. Place them just below the `root div` but before the `main.jsx` `script` tag
